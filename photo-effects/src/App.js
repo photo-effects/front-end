@@ -4,7 +4,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Landing from './layout/Landing';
 import Dashboard from './layout/Dashboard';
-import Canvas from './layout/Canvas'
+import Canvas from './layout/Canvas';
+
 
 export default class App extends Component {
   render = () => (
@@ -12,15 +13,15 @@ export default class App extends Component {
       <Switch>
         <Route 
           exact path="/home" 
-          exact component = { Landing } 
+           component = { Landing } 
         />
         <Route 
           exact path="/dashboard"
-          exact component = { Dashboard }
+          component = { Dashboard }
         />
         <Route 
           exact path="/canvas"
-          exact component = { Canvas }
+          component = { Canvas }
         />
       </Switch>
     </Router>
