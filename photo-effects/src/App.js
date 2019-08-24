@@ -4,6 +4,7 @@ import logo from './logo.svg';
 import './App.css';
 import Users from './components/Users';
 import Auth from './components/Auth';
+import Home from './components/Home'
 
 class App extends Component {
  // Constructor for Auth0
@@ -19,7 +20,8 @@ class App extends Component {
     <div className="body">
       <Route 
         path="/" exact 
-        render = {props => <Home auth={this.auth} {...props} />} />
+        render = {props => <Home auth={this.auth} {...props} />} 
+      />
     </div>
   );
  }
