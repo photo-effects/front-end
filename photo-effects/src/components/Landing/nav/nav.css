@@ -35,6 +35,7 @@ nav {
 .loginbutton {
   background-color: #1bb76e;
   padding: 10px;
+  border-radius: 8px
 }
 
 .searchnav{

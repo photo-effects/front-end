@@ -14,7 +14,8 @@
  font-size: 2rem;
  text-align: center;
  color: whitesmoke;
- padding-top: 11px
+ padding-top: 11px;
+ border-radius: 8px
 }
 
 .greencard{

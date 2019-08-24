@@ -2,11 +2,27 @@
   display: flex;
   justify-content: space-around;
   align-content: center;
-  padding-top: 30px
+  padding-top: 120px
 }
 
+.herobg{
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(to right bottom, #6600d6, #5800d5, #4700d5, #3100d4, #0000d3);
+  position: absolute;
+  z-index: -1;
+}
+
+
 .title{
-  font-size: 10rem;
+  font-size: 11rem;
   color: whitesmoke;
   width: 30%;
+  text-shadow: -2px 1px 1px rgb(40, 5, 145);
+}
+
+.video{
+  box-shadow: -2px 1px 3px rgb(40, 5, 145);
+  border: whitesmoke 1px solid;
+  border-radius: 8px
 }
