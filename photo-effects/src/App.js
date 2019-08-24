@@ -15,12 +15,12 @@ class App extends Component {
 
  render() {
   return (
-    <>
-    <div>
-      <h1>Photo Effects</h1>
-      <Users />
+    
+    <div className="body">
+      <Route 
+        path="/" exact 
+        render = {props => <Home auth={this.auth} {...props} />} />
     </div>
-    </>
   );
  }
 }
