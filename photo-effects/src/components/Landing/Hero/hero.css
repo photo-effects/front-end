@@ -1,0 +1,12 @@
+.hero{
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+  padding-top: 30px
+}
+
+.title{
+  font-size: 10rem;
+  color: whitesmoke;
+  width: 30%;
+}
