@@ -58,7 +58,7 @@ export default class Dashboard extends Component {
     this.setState({ uploading: true })
 
   
-    fetch(`http://localhost:5000/image-upload`, {
+    fetch(`https://photo-effects-backend-stage-1.herokuapp.com/image-upload`, {
       method: 'POST',
       body: formData
     })
@@ -109,7 +109,8 @@ export default class Dashboard extends Component {
 
 
     axios
-    .get('http://localhost:5000/api/projects')
+    // .get('http://localhost:5000/api/projects')
+    .get('https://photo-effects-backend-stage-1.herokuapp.com/api/projects')
     .then(res => this.setState({ projects: res.data }))
     .catch(err => console.log(err));
 
