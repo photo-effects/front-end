@@ -14,7 +14,7 @@ class Tabs extends Component {
     return (
       <div className="tab-container">
 
-        <ol className="tab-list">
+        <ol style={tabList}>
           {this.props.children.map(child => {
             return (
               <Tab
@@ -39,6 +39,11 @@ class Tabs extends Component {
       </div>
     );
   }
+}
+
+const tabList = {
+   borderBottom: "1px solid #ccc",
+   paddingLeft: '0'
 }
 
 export default Tabs;

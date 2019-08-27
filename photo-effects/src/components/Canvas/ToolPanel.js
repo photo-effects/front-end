@@ -1,60 +1,26 @@
-import React, { Component } from 'react';
-import ToolLayers from './Tools/ToolLayers';
-import ToolTextEditor from './Tools/ToolTextEditor';
+import React from 'react';
+import Tabs from './Tabs';
 import ToolUploads from './Tools/ToolUploads';
+import ToolTextEditor from './Tools/ToolTextEditor';
+import ToolLayers from './Tools/ToolLayers';
 
-class ToolPanel extends Component {
-   state = {
-      activeTool: "Uploads",
-      clicked: 1
-   }
-
-   changeActiveTool = newActiveTool => {
-      this.setState({
-         ...this.state,
-         activeTool: newActiveTool,
-         clicked: this.state.clicked + 1
-      })
-   }
-
-   makeUploadsActive = () => {
-      this.setState({
-         ...this.state,
-         activeTool: "Uploads"
-      })
-   }
-
-   makeTextEditorActive = () => {
-      this.setState({
-         ...this.state,
-         activeTool: "TextEditor"
-      })
-   }
-
-   makeLayersActive = () => {
-      this.setState({
-         ...this.state,
-         activeTool: "Layers"
-      })
-   }
-
-   render() {
-      return (
-         <div>
-            <button onClick={this.changeActiveTool}>Test Active Change Tool</button>
-
-            <button onClick={this.makeUploadsActive}>Make Uploads Active</button>
-            <button onClick={this.makeTextEditorActive}>Make Text Editor Active</button>
-            <button onClick={this.makeLayersActive}>Make Layers Active</button>
-
-
-            {this.state.clicked}
-            <h2>Active Tool: </h2>
-            {/* {this.state.activeTool === "Uploads" ? <ToolUploads /> : <ToolTextEditor />} */}
-            {this.state.activeTool === "Uploads" ? <ToolUploads /> : (this.state.activeTool === "TextEditor" ? <ToolTextEditor /> : <ToolLayers />)}
-         </div>
-      )
-   }
+function ToolPanel() {
+  return (
+    <div>
+      <h1>Tool Panel</h1>
+      <Tabs>
+        <div label="Upload Tools">
+          <ToolUploads />
+        </div>
+        <div label="Text Editor">
+          <ToolTextEditor />
+        </div>
+        <div label="Layer Tools">
+          <ToolLayers />
+        </div>
+      </Tabs>
+    </div>
+  );
 }
 
 export default ToolPanel;

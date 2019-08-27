@@ -1,18 +1,36 @@
 import React from 'react';
 
 function Tab(props) {
-   let className = 'tab-list-item';
+   let className = tabListItem;
 
    if (props.activeTab === props.label) {
-   className = className + ' tab-list-active';
+      className = tabListActive;
    }
 
    return (
-      <li className={className} onClick={() => props.toggleTab(props.label)}>
+      <li style={className} onClick={() => props.toggleTab(props.label)}>
          {props.label}
       </li>
    );
 }
 
+const tabListItem = {
+   display: 'inline-block',
+   listStyle: 'none',
+   marginBottom: '-1px',
+   padding: '1rem',
+   cursor: 'pointer'
+}
+
+const tabListActive = {
+   display: 'inline-block',
+   listStyle: 'none',
+   marginBottom: '-1px',
+   cursor: 'pointer',
+   padding: '1rem',
+   backgroundColor: "white",
+   border: "solid",
+   borderWidth: "1px 1px 0 1px"
+}
 
 export default Tab;
