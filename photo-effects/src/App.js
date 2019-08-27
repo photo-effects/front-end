@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Landing from './layout/Landing';
 import Dashboard from './layout/Dashboard';
-import Canvas from './layout/Canvas'
+import Canvas from './layout/Canvas/Canvas';
 
 export default class App extends Component {
   render = () => (
@@ -26,3 +26,5 @@ export default class App extends Component {
     </Router>
   );
 }
+
+// Joe is cool
