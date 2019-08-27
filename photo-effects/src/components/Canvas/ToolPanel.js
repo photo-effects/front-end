@@ -41,16 +41,17 @@ class ToolPanel extends Component {
    render() {
       return (
          <div>
-            {this.state.clicked}
-            <h2>Active Tool: </h2>
-            {/* {this.state.activeTool === "Uploads" ? <ToolUploads /> : <ToolTextEditor />} */}
-            {this.state.activeTool === "Uploads" ? <ToolUploads /> : (this.state.activeTool === "TextEditor" ? <ToolTextEditor /> : <ToolLayers />)}
-         
             <button onClick={this.changeActiveTool}>Test Active Change Tool</button>
 
             <button onClick={this.makeUploadsActive}>Make Uploads Active</button>
             <button onClick={this.makeTextEditorActive}>Make Text Editor Active</button>
             <button onClick={this.makeLayersActive}>Make Layers Active</button>
+
+
+            {this.state.clicked}
+            <h2>Active Tool: </h2>
+            {/* {this.state.activeTool === "Uploads" ? <ToolUploads /> : <ToolTextEditor />} */}
+            {this.state.activeTool === "Uploads" ? <ToolUploads /> : (this.state.activeTool === "TextEditor" ? <ToolTextEditor /> : <ToolLayers />)}
          </div>
       )
    }
