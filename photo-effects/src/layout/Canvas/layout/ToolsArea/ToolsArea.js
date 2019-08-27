@@ -2,12 +2,14 @@ import React from 'react';
 
 import TopBar from './TopBar';
 import ToolsContainer from './ToolsContainer';
+import ToolPanel from '../../components/LeftPanelArea/ToolPanel';
 
 const ToolsArea = () => {
   return (
     <div style = { container }>
       <TopBar />
-      <ToolsContainer />
+      {/* <ToolsContainer /> */}
+      <ToolPanel />
     </div>
   );
 }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Tools from './layout/ToolsArea/ToolsArea';
 import CanvasArea from './layout/CanvasArea/CanvasArea';
+import ToolPanel from './components/LeftPanelArea/ToolPanel'
 
 export default class Canvas extends Component {
   render() {
