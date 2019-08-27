@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ToolPanel from '../components/Canvas/ToolPanel';
+import ToolPanel from './Canvas/components/LeftPanelArea/ToolPanel';
 
 export default class Canvas extends Component {
   render() {

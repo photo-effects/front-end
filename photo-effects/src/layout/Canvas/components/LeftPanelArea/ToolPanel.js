@@ -11,7 +11,7 @@ function ToolPanel() {
         <div label="Upload Tools">
           <ToolUploads />
         </div>
-        <div label="Text Editor">
+        <div label="Text Tools">
           <ToolTextEditor />
         </div>
         <div label="Layer Tools">

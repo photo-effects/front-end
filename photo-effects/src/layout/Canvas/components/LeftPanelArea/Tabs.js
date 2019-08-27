@@ -27,7 +27,6 @@ class Tabs extends Component {
                    toggleTab={this.toggleTab}
                  />
 
-
                  {child.props.label === this.state.activeTab ? tabContent : undefined}
               </>
             );
