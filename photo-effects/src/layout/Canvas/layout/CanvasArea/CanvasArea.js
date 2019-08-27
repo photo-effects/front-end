@@ -1,13 +1,11 @@
 import React from 'react';
 
-import Canvas from '../components/CanvasArea/Canvas';
-import Toolbar from '../components/CanvasArea/Toolbar';
+import Toolbar from './Toolbar';
 
-const CanvasArea = () => {
+const CanvasArea= () => {
   return (
     <div style = { container }>
       <Toolbar />
-      <Canvas />
     </div>
   );
 }

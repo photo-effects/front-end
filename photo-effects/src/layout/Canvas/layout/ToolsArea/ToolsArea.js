@@ -1,13 +1,13 @@
 import React from 'react';
 
-import TopBar from '../components/Tools/TopBar';
-import Tools from '../components/Tools/Tools';
+import TopBar from './TopBar';
+import ToolsContainer from './ToolsContainer';
 
 const ToolsArea = () => {
   return (
     <div style = { container }>
       <TopBar />
-      <Tools />
+      <ToolsContainer />
     </div>
   );
 }

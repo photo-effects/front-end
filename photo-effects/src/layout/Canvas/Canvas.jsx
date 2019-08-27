@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import Tools from './layout/ToolsArea';
-import CanvasArea from './layout/CanvasArea';
+import Tools from './layout/ToolsArea/ToolsArea';
+import CanvasArea from './layout/CanvasArea/CanvasArea';
 
 export default class Canvas extends Component {
   render() {
