@@ -2,17 +2,22 @@
   display: flex;
   justify-content: space-around;
   align-content: center;
-  padding-top: 120px
+  padding-top: 120px;
+  position: absolute;
+
+  
 }
 
 .herobg{
-  height: 100%;
-  width: 100%;
-  background: linear-gradient(to right bottom, #6600d6, #5800d5, #4700d5, #3100d4, #0000d3);
-  position: absolute;
-  z-index: -1;
+  height: 700px;
+
+
 }
 
+.particles{
+  height: 100%;
+  z-index:-1;
+}
 
 .title{
   font-size: 11rem;

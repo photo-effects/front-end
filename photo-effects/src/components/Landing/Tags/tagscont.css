@@ -1,10 +1,14 @@
 .swiper{
-  margin-top: 20px;
-  padding: 20px
+  border-top: 1px solid green;
+  border-bottom: 1px solid green;
+  padding-bottom: 10px;
+  padding-top: 8px;
+  background: #171544;
+  color: whitesmoke
 }
 
 .tagheader{
-  margin:10px 25px;
+  margin: 0px 5px 25px;
   font-size: 2rem;
 }
 

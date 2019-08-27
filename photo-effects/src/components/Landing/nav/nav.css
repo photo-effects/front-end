@@ -10,7 +10,8 @@ nav {
   background-color: #171544;
   color: whitesmoke;
   font-size: 2rem;
-  position: fixed
+  position: fixed;
+  z-index: +3
 }
 
 .logo {
