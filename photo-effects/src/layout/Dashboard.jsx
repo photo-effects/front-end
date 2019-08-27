@@ -91,7 +91,7 @@ export default class Dashboard extends Component {
     this.setState({ images: this.filter(id) })
   }
 
-  // add image
+ 
 
 
   // logout
