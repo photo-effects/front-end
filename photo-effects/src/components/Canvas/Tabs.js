@@ -12,28 +12,25 @@ class Tabs extends Component {
 
   render() {
     return (
-      <div className="tab-container">
-
-        <ol style={tabList}>
+      <div style={tabContainer}>
+        <div style={tabList}>
           {this.props.children.map(child => {
+
+            const tabContent = child.props.children;
+            
             return (
-              <Tab
-                activeTab={this.state.activeTab}
-                key={child.props.label}   
-                label={child.props.label}
-                toggleTab={this.toggleTab}
-              />
-            );
-          })}
-        </ol>
+              <>
+                 <Tab
+                   activeTab={this.state.activeTab}
+                   key={child.props.label}   
+                   label={child.props.label}
+                   toggleTab={this.toggleTab}
+                 />
 
-        <div className="tab-content">
-          {this.props.children.map(child => {
-            if (child.props.label === this.state.activeTab) {
-               return child.props.children;
-            } else {
-               return;
-            }
+
+                 {child.props.label === this.state.activeTab ? tabContent : undefined}
+              </>
+            );
           })}
         </div>
       </div>
@@ -41,9 +38,14 @@ class Tabs extends Component {
   }
 }
 
+const tabContainer = {
+   maxWidth: '250px',
+   height: '500px',
+   border: '1px solid #000'
+}
+
 const tabList = {
-   borderBottom: "1px solid #ccc",
-   paddingLeft: '0'
+   
 }
 
 export default Tabs;

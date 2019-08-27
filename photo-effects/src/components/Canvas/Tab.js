@@ -8,29 +8,26 @@ function Tab(props) {
    }
 
    return (
-      <li style={className} onClick={() => props.toggleTab(props.label)}>
+      <div style={className} onClick={() => props.toggleTab(props.label)}>
          {props.label}
-      </li>
+      </div>
    );
 }
 
 const tabListItem = {
    display: 'inline-block',
-   listStyle: 'none',
-   marginBottom: '-1px',
-   padding: '1rem',
-   cursor: 'pointer'
+   padding: '10px',
+   cursor: 'pointer',
+   width: '100%',
+   backgroundColor: "#ececec",
 }
 
 const tabListActive = {
    display: 'inline-block',
-   listStyle: 'none',
-   marginBottom: '-1px',
+   padding: '10px',
    cursor: 'pointer',
-   padding: '1rem',
-   backgroundColor: "white",
-   border: "solid",
-   borderWidth: "1px 1px 0 1px"
+   width: '100%',
+   backgroundColor: "#a7a7a7",
 }
 
 export default Tab;

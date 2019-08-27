@@ -7,7 +7,6 @@ import ToolLayers from './Tools/ToolLayers';
 function ToolPanel() {
   return (
     <div>
-      <h1>Tool Panel</h1>
       <Tabs>
         <div label="Upload Tools">
           <ToolUploads />
