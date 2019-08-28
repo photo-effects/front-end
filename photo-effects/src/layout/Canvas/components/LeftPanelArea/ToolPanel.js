@@ -1,21 +1,27 @@
 import React from 'react';
 import Tabs from './Tabs';
-import ToolUploads from './Tools/ToolUploads';
-import ToolTextEditor from './Tools/ToolTextEditor';
-import ToolLayers from './Tools/ToolLayers';
+import UploadedPhotosTool from './Tools/UploadedPhotosTool';
+import TextEditorTool from './Tools/TextEditorTool';
+import LayersTool from './Tools/LayersTool';
+import GraphicsTool from './Tools/GraphicsTool';
+import StockPhotosTool from './Tools/StockPhotosTool';
 
 function ToolPanel() {
   return (
     <div>
       <Tabs>
-        <div label="Upload Tools">
-          <ToolUploads />
+        <div label="Photos">
+          <UploadedPhotosTool /> 
+          <StockPhotosTool />
         </div>
-        <div label="Text Tools">
-          <ToolTextEditor />
+        <div label="Text">
+          <TextEditorTool />
         </div>
-        <div label="Layer Tools">
-          <ToolLayers />
+        <div label="Layers">
+          <LayersTool />
+        </div>
+        <div label="Graphics">
+          <GraphicsTool />
         </div>
       </Tabs>
     </div>

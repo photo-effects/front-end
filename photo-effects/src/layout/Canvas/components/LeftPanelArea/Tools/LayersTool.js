@@ -1,9 +1,8 @@
 import React from 'react';
 
-export default function ToolLayers() {
+export default function LayersTool() {
    return (
       <>
-         <div>ToolLayers</div>
          <ol>
             <li>Layer Tool #1</li>
             <li>Layer Tool #2</li>

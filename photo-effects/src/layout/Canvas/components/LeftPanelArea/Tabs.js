@@ -38,7 +38,7 @@ class Tabs extends Component {
 }
 
 const tabContainer = {
-   maxWidth: '250px',
+   maxWidth: '300px',
    height: '500px',
    border: '1px solid #000'
 }
