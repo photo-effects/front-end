@@ -7,12 +7,13 @@ export default class Toolbar extends Component {
 
   container = open => ({
     height: '52px',
-    marginTop: open ? 0 : '-50px',
+    marginTop: open ? 0 : '-52px',
     borderBottom: '2px solid black',
     width: '100%',
     background: 'white',
     transition: 'margin-top 1s ease',
-    position: 'relative'
+    position: 'relative',
+    zIndex: 100000
   })
 
   render() {

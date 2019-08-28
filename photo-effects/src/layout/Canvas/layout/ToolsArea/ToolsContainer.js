@@ -16,6 +16,7 @@ class ToolsContainer extends Component {
     <div style = { this.container }>
       { this.toolMenus.map(menu => (
         <ToolMenu 
+          key = { menu }
           menu = { menu }
         />
       ))}
@@ -47,7 +48,7 @@ class ToolMenu extends Component {
         style = { this.svg(this.state.menuOpen) }
         onClick = { () => this.setState({ menuOpen: !this.state.menuOpen })}
       >
-		    <polygon points="5,5 20,15 5,25" class="triangle" />
+		    <polygon points="5,5 20,15 5,25" />
 		    Sorry, your browser does not support inline SVG.
 	    </svg>
       { this.props.menu }

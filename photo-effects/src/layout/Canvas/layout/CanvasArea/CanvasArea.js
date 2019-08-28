@@ -1,18 +1,63 @@
-import React from 'react';
+import React, { Component } from 'react';
+import axios from 'axios';
 
 import Toolbar from './Toolbar';
+import Canvas from '../../components/CanvasArea/Canvas';
 
-const CanvasArea= () => {
-  return (
-    <div style = { container }>
-      <Toolbar />
-    </div>
-  );
+class CanvasArea extends Component {
+  state = {
+    items: []
+  }
+
+  componentDidMount() {
+    axios
+      .get('http://jsonplaceholder.typicode.com/photos')
+      .then(res => {
+        let arr = [];
+        for(let i = 0; i < 1; i++) {
+          arr.push({
+            ...res.data[i],
+            x: 0,
+            y: 0,
+            height: 100,
+            width: 100
+          })
+        }
+        this.setState({ items: arr })
+      })
+      .catch(err => console.log(err))
+  }
+
+  set = (x, y, id) => {
+    let items = this.state.items.map(item => {
+      if(item.id === id) {
+        item.x = x
+        item.y = y
+        return item;
+      }
+      return item;
+    })
+
+    this.setState({ items })
+  }
+
+  render() {
+    return (
+      <div style = { container }>
+        <Toolbar />
+        <Canvas 
+          items = { this.state.items }
+          set = { this.set }
+        />
+      </div>
+    )
+  };
 }
 
 const container = {
   width: '80%',
-  height: '100%'
+  height: '100%',
+  position: 'relative'
 }
 
 export default CanvasArea;
