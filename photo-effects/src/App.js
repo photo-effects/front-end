@@ -8,29 +8,6 @@ import Canvas from './layout/Canvas/Canvas';
 
 export default class App extends Component {
   render = () => (
-<<<<<<< HEAD
-
-    
-    <Router>
-      <nav>
-        <NavLink to='/dashboard'> Dashboard </NavLink>
-      </nav>
-      <Switch>
-        <Route 
-          exact path="/home" 
-          exact component = { Landing } 
-        />
-        <Route 
-          exact path="/dashboard"
-          exact component = { Dashboard }
-        />
-        <Route 
-          exact path="/canvas"
-          exact component = { Canvas }
-        />
-      </Switch>
-    </Router>
-=======
     <div>
       <Router>
         <Switch>
@@ -41,7 +18,6 @@ export default class App extends Component {
         </Switch>
       </Router>
     </div>
->>>>>>> master
   );
 }
 
