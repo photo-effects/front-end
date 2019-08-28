@@ -1,19 +1,23 @@
 import React, { Component } from "react";
+import PhotoLink from './PhotoLink';
 
 
-const Image = props => {
+
+
+
+const Image= props => {
     return (
         <div>
         {props.images.map(image=> {
             console.log(image.secure_url)
             return (
                 <>
-                <div>
-                <img src={image.secure_url} />
-                </div>
-                <div>
-                <button onClick={() => props.removeImage(image.public_id)}>Delete</button>
-                </div>
+                <PhotoLink 
+                secure_url={image.secure_url}
+                public_id={image.public_id}
+                removeImage={props.removeImage}
+                updateProject={props.updateProject}
+                />
                 </>
             )
         })}

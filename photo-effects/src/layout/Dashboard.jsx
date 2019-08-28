@@ -57,13 +57,14 @@ export default class Dashboard extends Component {
 
     this.setState({ uploading: true })
 
-  
+    // axios.post(`https://photo-effects-backend-stage-1.herokuapp.com/image-upload`, formData)
     fetch(`https://photo-effects-backend-stage-1.herokuapp.com/image-upload`, {
       method: 'POST',
       body: formData
     })
     .then(res => {
       if (!res.ok) {
+        console.log(formData)
         throw res
       }
       return res.json()
@@ -89,6 +90,11 @@ export default class Dashboard extends Component {
   // remove image
   removeImage = id => {
     this.setState({ images: this.filter(id) })
+  }
+
+  // Update
+  updateProject = newProject => {
+    this.setState({ projects: newProject });
   }
 
  
@@ -123,7 +129,7 @@ export default class Dashboard extends Component {
         <Logout logoutButton={this.logoutButton} />
        <h1>Welcome Username!</h1>
        <Upload onChange={this.onChange} />
-       <Image images={this.state.images} removeImage={this.removeImage} />
+       <Image images={this.state.images} removeImage={this.removeImage} updateProject={this.updateProject} />
        < Projects projects={this.state.projects} />
       </div>
     )
