@@ -28,12 +28,23 @@ class CanvasArea extends Component {
       .catch(err => console.log(err))
   }
 
-  set = (x, y, id) => {
+  setCoords = (x, y, id) => {
     let items = this.state.items.map(item => {
       if(item.id === id) {
-        item.x = x
-        item.y = y
-        return item;
+        item.x = x;
+        item.y = y;
+      }
+      return item;
+    })
+
+    this.setState({ items })
+  }
+
+  setResize = (height, width, id) => {
+    let items = this.state.items.map(item => {
+      if(item.id === id) {
+        item.height = height;
+        item.width = width;
       }
       return item;
     })
@@ -47,7 +58,8 @@ class CanvasArea extends Component {
         <Toolbar />
         <Canvas 
           items = { this.state.items }
-          set = { this.set }
+          setCoords = { this.setCoords }
+          setResize = { this.setResize }
         />
       </div>
     )

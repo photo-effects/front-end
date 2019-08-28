@@ -65,10 +65,10 @@ export default class CanvasItem extends Component {
       top: top,
       left: left,
       color: 'black',
-      width: this.props.item.width,
-      height: this.props.item.height,
-      // width: this.state.resizeWidth || this.props.item.props.style.width || 100,
-      // height: this.state.resizeHeight || this.props.item.props.style.height || 100,
+      // width: this.props.item.width,
+      // height: this.props.item.height,
+      width: this.state.resizeWidth || this.props.item.width,
+      height: this.state.resizeHeight || this.props.item.height,
     }
   }
 
@@ -77,7 +77,7 @@ export default class CanvasItem extends Component {
     e.stopPropagation();
     
     if(this.state.drag) {
-      this.props.set(this.props.new_x, this.props.new_y, this.props.id)
+      this.props.setCoords(this.props.new_x, this.props.new_y, this.props.id)
     }
 
     this.setState({ 
@@ -125,9 +125,7 @@ export default class CanvasItem extends Component {
           style = {{ height: '100%', width: 'auto' }}
         />
         <Resizer 
-          onMouseDown = { this.props.setResize }
-          onMouseUp = { this.props.setResize }
-          onMouseMove = { this.resize }
+
         /> 
       </div>
     )

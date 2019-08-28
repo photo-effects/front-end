@@ -10,9 +10,7 @@ export default class Canvas extends Component {
     top: 0,
     x: 0,
     y: 0,
-    items: [],
-    resizeX: null,
-    resizeY: null
+    items: []
   }
 
   componentDidMount() {
@@ -36,15 +34,9 @@ export default class Canvas extends Component {
   onMouseMove = e => {
     e.stopPropagation();
     this.setState({ 
-      resizeX: e.clientX,
-      resizeY: e.clientY,
       x: e.clientX - this.state.left,
       y: e.clientY - this.state.top
     })
-  }
-
-  setResize = bool => {
-    this.setState({ resize: bool })
   }
 
   render() {
@@ -56,7 +48,6 @@ export default class Canvas extends Component {
           { ...this.props }
           onMouseMove = { this.onMouseMove }
           z = { i }
-          onMouseUp = { () => this.setResize(false) }
         >
           <CanvasItem 
             key = { i }
@@ -64,11 +55,7 @@ export default class Canvas extends Component {
             id = { item.id }
             new_x = { this.state.x }
             new_y = { this.state.y }
-            set = { this.props.set }
-            resizeX = { this.state.resizeX }
-            resizeY = { this.state.resizeY }
-            resize = { this.state.resize }
-            setResize = { this.setResize }
+            setCoords = { this.props.setCoords }
           />
         </Box>
       )) 
@@ -82,13 +69,9 @@ export default class Canvas extends Component {
           <CanvasItem
             item = { items[0] }
             id = { items[0].id }
-            style = { items[0].style }
             new_x = { this.state.x }
             new_y = { this.state.y }
-            set = { this.props.set }
-            resizeX = { this.state.resizeX }
-            resizeY = { this.state.resizeY }
-            setResize = { this.setResize }
+            setCoords = { this.props.setCoords }
           />
         </Box>
       )
@@ -115,9 +98,9 @@ const Box = props => {
 
   return (
     <div
-        { ...props }
-        style = { container }
-        onMouseMove = { e => props.onMouseMove(e) }
+      { ...props }
+      style = { container }
+      onMouseMove = { e => props.onMouseMove(e) }
     >
       { props.children }
     </div>
