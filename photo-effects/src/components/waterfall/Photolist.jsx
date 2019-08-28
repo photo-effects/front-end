@@ -14,24 +14,28 @@ export class Photolist extends Component {
           background: '#171544',
           width: '96%',
           borderRadius: '10px',
-          padding: '20px'
+          paddingTop: '70px',
+         
         }}
       >
-        {this.props.pics.map(pic => (
+        {this.props.pics.map((pic, index) => (
           <Fade bottom big cascade>
-          <div style={{ margin: 'auto', fontSize: '1.8rem' }}>
-            {/* <h4>{pic.title}</h4> */}
-            <img
-              src={pic.url}
-              alt="pic"
-              style={{ height: '200px', width: '200px' }}
-            />
-            <p>Tags:{pic.tags}</p>
-          </div>
+            <div style={{ margin: 'auto', fontSize: '1.8rem' }}>
+              {/* <h4>{pic.title}</h4> */}
+              <img
+                src={pic.url}
+                alt="pic"
+                style={{
+                  height: '300px',
+                  width: '200px', marginTop: index %2 === 0 ? '-100px': '0px' 
+                  // alignContent: 'stretch'
+                }}
+              />
+              <p>Tags:{pic.tags}</p>
+            </div>
           </Fade>
         ))}
       </div>
-     
     );
   }
 }
