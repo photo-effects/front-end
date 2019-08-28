@@ -16,7 +16,7 @@ const WaterfallCont = () => {
   }, []);
 
   return (
-    <div className="waterfallcont">
+    <div className="waterfallcont" >
       <Photolist pics={pics}/>
      
     </div>

@@ -8,7 +8,7 @@ import HeroBg from '../components/Landing/Hero/HeroBg'
 
 const Landing = () => {
   return (
-    <div >
+    <div>
       <Navbar />
       <div style={{ height: '5.5vh' }} />
       
