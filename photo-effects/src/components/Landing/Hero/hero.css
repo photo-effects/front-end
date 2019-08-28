@@ -1,0 +1,33 @@
+.hero{
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+  padding-top: 120px;
+  position: absolute;
+
+  
+}
+
+.herobg{
+  height: 700px;
+
+
+}
+
+.particles{
+  height: 100%;
+  z-index:-1;
+}
+
+.title{
+  font-size: 11rem;
+  color: whitesmoke;
+  width: 30%;
+  text-shadow: -2px 1px 1px rgb(40, 5, 145);
+}
+
+.video{
+  box-shadow: -2px 1px 3px rgb(40, 5, 145);
+  border: whitesmoke 1px solid;
+  border-radius: 8px
+}
