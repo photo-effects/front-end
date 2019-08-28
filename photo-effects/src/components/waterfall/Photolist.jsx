@@ -1,36 +1,39 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { Component } from 'react';
 import './waterfall.css';
+import Fade from 'react-reveal/Fade';
 
-const Photolist = () => {
-  const [pics, setPics] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get('https://photo-effects-backend-stage-1.herokuapp.com/api/projects')
-      .then(res => {
-        console.log(res.data);
-        setPics(res.data);
-      });
-  }, []);
-
-  return (
-    <div style={{ display: 'flex', flexDirection: 'row', margin:'auto', background:'#171544',width:'96%', borderRadius:'10px', padding:'20px' }}>
-      {pics.map(pic => (
-       
-          <div style={{margin:'auto', fontSize:'1.8rem'}}>
-            <h4>{pic.title}</h4>
+export class Photolist extends Component {
+  render() {
+    return (
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          flexWrap: 'wrap',
+          margin: 'auto',
+          background: '#171544',
+          width: '96%',
+          borderRadius: '10px',
+          padding: '20px'
+        }}
+      >
+        {this.props.pics.map(pic => (
+          <Fade bottom big cascade>
+          <div style={{ margin: 'auto', fontSize: '1.8rem' }}>
+            {/* <h4>{pic.title}</h4> */}
             <img
-              src={pic.secure_url}
+              src={pic.url}
               alt="pic"
               style={{ height: '200px', width: '200px' }}
             />
             <p>Tags:{pic.tags}</p>
           </div>
-          
-      ))}
-    </div>
-  );
-};
+          </Fade>
+        ))}
+      </div>
+     
+    );
+  }
+}
 
 export default Photolist;

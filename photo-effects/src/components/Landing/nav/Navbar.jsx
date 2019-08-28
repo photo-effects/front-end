@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+
 import Photolist from '../../waterfall/Photolist';
 import TagsCont from '../../Landing/Tags/TagsCont';
 import './nav.css';
