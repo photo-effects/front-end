@@ -1,43 +1,42 @@
 import React from 'react';
-import { useTransition, animated } from 'react-spring';
-import { Spring } from 'react-spring/renderprops';
+import { useTransition, useState, animated } from 'react-spring';
+import { Spring, Transition } from 'react-spring/renderprops';
 
 function TabContent(props) {
+
    return (
       <>
          {/* <Transition
-            native
             items={props.tabContent}
-            from={{opacity: 0}}
-            enter={{opacity: 1}}
-            leave={{opacity: 0}}
+            from={{height: 0}}
+            enter={{height: 100}}
+            leave={{height: 10}}
          >
-            {show => show && (transProps => {
-               <animated.div style={transProps}> */}
+            {show => show && (transProps => (
+               <div style={transProps}> */}
                    <Spring 
                      from = {{ height: 0 }} 
-                     to = {{ height: 80 }}
-                     enter = {{height: 80}}
-                     leave = {{height: 0}}
+                     to = {{ height: 100 }}
                      config = {{ duration: 250 }}
                   >
                      {springProps => (
-                        <div style ={springProps}>
-                           <div style={c1Style}>
+                        <div style={springProps}>
+                           <div style={tabContentStyle}>
                               {props.tabContent}
                            </div>
                         </div>
                      )}
                   </Spring>
-               {/* </animated.div>
-            })}
+               {/* </div>
+            ))}
          </Transition> */}
       </>
    )
 }
 
-const c1Style = {
+const tabContentStyle = {
    background: '#535758',
+   fontSize: '16px',
    color: '#fff',
    padding: '1.5rem',
    height: 'fit-content'

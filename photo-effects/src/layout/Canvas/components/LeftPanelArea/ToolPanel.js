@@ -10,12 +10,12 @@ function ToolPanel() {
   return (
     <div>
       <Tabs>
-        <div label="Graphics">
-          <GraphicsTool />
-        </div>
         <div label="Photos">
           <UploadedPhotosTool /> 
-          <StockPhotosTool />
+          {/* <StockPhotosTool /> */}
+        </div>
+        <div label="Graphics">
+          <GraphicsTool />
         </div>
         <div label="Text">
           <TextEditorTool />
