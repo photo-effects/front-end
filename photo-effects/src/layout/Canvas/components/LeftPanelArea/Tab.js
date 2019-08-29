@@ -3,7 +3,7 @@ import TabContent from './TabContent';
 
 class Tab extends Component {
    state = {
-      active: false
+      active: true
    }
 
    toggleActiveTab = () => {
@@ -11,7 +11,6 @@ class Tab extends Component {
    }
 
    render() {
-
       let className = tabListItem;
 
       if (this.state.active === true) {
@@ -32,7 +31,7 @@ const tabListItem = {
    padding: '10px',
    cursor: 'pointer',
    width: '100%',
-   backgroundColor: "#ececec",
+   backgroundColor: "#BDC3C7",
 }
 
 const tabListActive = {
@@ -40,7 +39,7 @@ const tabListActive = {
    padding: '10px',
    cursor: 'pointer',
    width: '100%',
-   backgroundColor: "#a7a7a7",
+   backgroundColor: "#98A0A5",
 }
 
 export default Tab;

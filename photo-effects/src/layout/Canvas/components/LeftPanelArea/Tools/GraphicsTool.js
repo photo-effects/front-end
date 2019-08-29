@@ -1,11 +1,11 @@
 import React from 'react';
+import axios from 'axios';
 
 export default function GraphicsTool() {
+   let stickers = [];
    return (
       <>
          <ol>
-            <li style ={graphicContainer}>G</li>
-            <li style ={graphicContainer}>G</li>
             <li style ={graphicContainer}>G</li>
          </ol>
       </>

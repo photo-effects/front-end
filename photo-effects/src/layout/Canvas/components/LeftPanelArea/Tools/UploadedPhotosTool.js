@@ -5,8 +5,6 @@ export default function UploadedPhotosTool() {
       <>
          <ol>
             <li style={photoContainer}>P</li>
-            <li style={photoContainer}>P</li>
-            <li style={photoContainer}>P</li>
          </ol>
       </>
    )

@@ -6,7 +6,6 @@ import Upload from '../components/Dashboard/Upload';
 import Image from '../components/Dashboard/Image';
 import Projects from '../components/Dashboard/Projects';
 
-
 const toastColor = {
   background: '#505050',
   text: '#fff'
@@ -20,9 +19,12 @@ export default class Dashboard extends Component {
       users: [],
       images: [],
       projects:[],
-      uploading: false
+      uploading: false,
+      error: null
     };
   }
+
+  toast = notify.createShowQueue()
 
   // onChange
   onChange = e => {
@@ -36,7 +38,7 @@ export default class Dashboard extends Component {
     }
 
     const formData = new FormData()
-    const types = ['image/png', 'image/jpeg', 'image/gif']
+    const types = ['image/png', 'image/jpeg', 'image/gif', 'image/svg']
 
     files.forEach((file, i) => {
 
@@ -52,7 +54,8 @@ export default class Dashboard extends Component {
     })
 
     if (errs.length) {
-      return errs.forEach(err => this.toast(err, 'custom', 2000, toastColor))
+      // return errs.forEach(err => this.toast(err, 'custom', 2000, toastColor))
+      return errs.forEach(err => this.setState({...this.state, error: err}))
     }
 
     this.setState({ uploading: true })
@@ -129,6 +132,7 @@ export default class Dashboard extends Component {
         <Logout logoutButton={this.logoutButton} />
        <h1>Welcome Username!</h1>
        <Upload onChange={this.onChange} />
+       {this.state.error}
        <Image images={this.state.images} removeImage={this.removeImage} updateProject={this.updateProject} />
        < Projects projects={this.state.projects} />
       </div>

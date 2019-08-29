@@ -5,8 +5,6 @@ export default function LayersTool() {
       <>
          <ol>
             <li>Layer Tool #1</li>
-            <li>Layer Tool #2</li>
-            <li>Layer Tool #3</li>
          </ol>
       </>
    )

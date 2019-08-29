@@ -10,6 +10,9 @@ function ToolPanel() {
   return (
     <div>
       <Tabs>
+        <div label="Graphics">
+          <GraphicsTool />
+        </div>
         <div label="Photos">
           <UploadedPhotosTool /> 
           <StockPhotosTool />
@@ -19,9 +22,6 @@ function ToolPanel() {
         </div>
         <div label="Layers">
           <LayersTool />
-        </div>
-        <div label="Graphics">
-          <GraphicsTool />
         </div>
       </Tabs>
     </div>
