@@ -1,17 +1,30 @@
-import React from 'react';
+import React, {Component} from 'react';
+import TabContent from './TabContent';
 
-function Tab(props) {
-   let className = tabListItem;
-
-   if (props.activeTab === props.label) {
-      className = tabListActive;
+class Tab extends Component {
+   state = {
+      active: false
    }
 
-   return (
-      <div style={className} onClick={() => props.toggleTab(props.label)}>
-         {props.label}
-      </div>
-   );
+   toggleActiveTab = () => {
+      this.setState({ active: !this.state.active})
+   }
+
+   render() {
+
+      let className = tabListItem;
+
+      if (this.state.active === true) {
+         className = tabListActive;
+      }
+
+      return (
+         <div>
+            <div style={className} onClick={this.toggleActiveTab}>{this.props.tabName}</div>
+            {this.state.active === true ? <TabContent tabContent={this.props.tabContent} /> : undefined}
+         </div>
+      );
+   }
 }
 
 const tabListItem = {

@@ -1,40 +1,24 @@
 import React, { Component } from "react";
 import Tab from "./Tab";
 
-class Tabs extends Component {
-   state = {
-      activeTab: this.props.children[0].props.label
-   }
-
-  toggleTab = newTab => {
-    this.setState({ activeTab: newTab });
-  };
-
-  render() {
+function Tabs(props) {
     return (
       <div style={tabContainer}>
         <div style={tabList}>
-          {this.props.children.map(child => {
-
-            const tabContent = child.props.children;
-            
+          {props.children.map(child => {
             return (
               <>
                  <Tab
-                   activeTab={this.state.activeTab}
                    key={child.props.label}   
-                   label={child.props.label}
-                   toggleTab={this.toggleTab}
+                   tabName={child.props.label}
+                   tabContent={child.props.children}
                  />
-
-                 {child.props.label === this.state.activeTab ? tabContent : undefined}
               </>
             );
           })}
         </div>
       </div>
     );
-  }
 }
 
 const tabContainer = {
