@@ -13,9 +13,9 @@ const Navbar = () => {
     setSearchbar(e.target.value);
   };
 
-  const filteredpics = photos.filter(photo =>
-    photo.title.toLowerCase().includes(searchbar.toLowerCase())
-  );
+  // const filteredpics = photos.filter(photo =>
+  //   photo.title.toLowerCase().includes(searchbar.toLowerCase())
+  // );
 
   // useEffect(() => {
   //   const fetchpics = async () => {
