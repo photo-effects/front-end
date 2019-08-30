@@ -59,7 +59,7 @@ export default class Dashboard extends Component {
     // })
 
     // master
-    fetch(`https://photo-effects-backend.herokuapp/image-upload`, {
+    fetch(`https://photo-effects-backend.herokuapp.com/image-upload`, {
       method: 'POST',
       body: formData
     })
