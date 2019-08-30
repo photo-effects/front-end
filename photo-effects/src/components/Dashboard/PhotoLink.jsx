@@ -20,6 +20,8 @@ class PhotoLink extends Component {
     }
 
    // master
+   // when adding project will push info from component state to our backend in postgreSQL
+   // doing props.history.push as a bandaid fix until fix error that occurs after clicking "Add To Backend"
     addProject = e => {
         e.preventDefault();
         axios
@@ -58,10 +60,9 @@ render() {
         <>
         <div>
         <img src={this.props.secure_url} />
-        
         </div>
         <div>
-        <button onClick={() => this.props.removeImage(this.props.public_id)}>Delete</button>
+        {/* <button onClick={() => this.props.removeImage(this.props.public_id)}>Delete</button> */}
         <button onClick={this.addProject}> Add To Backend</button>
         </div>
         </>

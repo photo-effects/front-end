@@ -19,7 +19,11 @@ export default class Dashboard extends Component {
     };
   }
 
-  // onChange
+  
+
+  // When click "Choose File" and choosing a photo the code below will occur. First will check to make sure only using 1 files and will only accept /png /jgp
+  // Code set up for multiple files but need to change for only a single file(using because works for now and gets job done)
+  
   onChange = e => {
     const errs = [] 
     const files = Array.from(e.target.files)
@@ -46,6 +50,7 @@ export default class Dashboard extends Component {
       formData.append(i, file)
     })
 
+    // will display error to user
     if (errs.length) {
       return errs.forEach(err => this.setState({ ...this.state, error:err }))
     }
@@ -59,6 +64,7 @@ export default class Dashboard extends Component {
     // })
 
     // master
+    // This will push code to cloudinary db
     fetch(`https://photo-effects-backend.herokuapp.com/image-upload`, {
       method: 'POST',
       body: formData
@@ -70,6 +76,7 @@ export default class Dashboard extends Component {
       }
       return res.json()
     })
+    // will push image in images state to be displayed to user
     .then(images => {
       this.setState({
         uploading: false, 
@@ -85,12 +92,17 @@ export default class Dashboard extends Component {
 
 
   // filter
-  filter = id => {
-    return this.state.images.filter(image => image.public_id !== id)
+  // filter = id => {
+  //   return this.state.images.filter(image => image.public_id !== id)
+  // }
 
-  }
+  // removeImage = id => {
+  //   this.setState({ images: this.filter(id) })
+  // }
+
 
   // Update
+  // will update state for user projects when adding/deleting for now.
   updateProject = newProject => {
     this.setState({ projects: newProject });
   }
@@ -104,13 +116,13 @@ export default class Dashboard extends Component {
   }
 
   componentDidMount() {
-
+    // sets users in state
      axios
     .get('https://photo-effects-backend.herokuapp.com/api/users')
     .then(res => this.setState({ users: res.data }))
     .catch(err => console.log(err));
 
-
+    // sets projects in state
     axios
     .get('https://photo-effects-backend.herokuapp.com/api/projects')
     .then(res => this.setState({ projects: res.data }))

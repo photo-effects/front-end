@@ -8,6 +8,8 @@ class Projects extends Component {
 
 
 // master
+// Used to delete a project already in our backend and from cloudinary
+// takes in public_id so cloudinary knows which photo to delete
   deleteProject = (id, public_id) => {
     console.log(id, public_id);
     axios
@@ -48,6 +50,7 @@ class Projects extends Component {
         {this.props.projects.map(project => {
             return(
             <div>
+              <h1>Title:{project.title}</h1>
               <img src={project.secure_url} />
               <button onClick={() => this.deleteProject(project.id, project.public_id)}>Delete</button>
               </div>
