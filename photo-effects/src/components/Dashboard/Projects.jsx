@@ -1,5 +1,6 @@
 
 import React, { Component } from "react";
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 
 
@@ -11,6 +12,7 @@ class Projects extends Component {
     axios
       .delete(`https://photo-effects-backend-stage-1.herokuapp.com/api/projects/${id}`, { data: { public_id } })
       .then(res => {
+          this.props.history.push('/home')
           this.props.updateProject(res.data);
           console.log('deleting from backend')
       })
@@ -43,7 +45,7 @@ class Projects extends Component {
 
 
 
-export default Projects;
+export default withRouter(Projects);
 
 
 

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 
 
@@ -13,7 +14,7 @@ class PhotoLink extends Component {
             title: `I am test title ${this.props.public_id}`,
             user_id: "1",
             secure_url: this.props.secure_url,
-            public_id: this.props.public_id
+            public_id: this.props.public_id,
         }
     }
     }
@@ -22,12 +23,12 @@ class PhotoLink extends Component {
 
     addProject = e => {
         e.preventDefault();
-        console.log('hi');
         axios
           .post('https://photo-effects-backend-stage-1.herokuapp.com/api/projects', this.state.photoInfo)
             .then(res => {
-                this.props.updateProject(res.data);
-                console.log('adding to backend')
+                this.props.history.push('/home')
+                this.props.updateProject(res.data)
+                console.log('adding to backend');
             })
             .catch(err => {
                 console.log(err);
@@ -54,4 +55,4 @@ render() {
 }
 
 
-export default PhotoLink;
+export default withRouter(PhotoLink);

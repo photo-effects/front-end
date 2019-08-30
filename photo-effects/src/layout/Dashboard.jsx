@@ -25,10 +25,9 @@ export default class Dashboard extends Component {
     const files = Array.from(e.target.files)
     console.log(files);
 
-    if (files.length > 2) {
-      const msg = 'Only 2 images can be uploaded at a time'
-      // return this.toast(msg, 'custom', 2000, toastColor) 
-      return console.log('No more than 2') 
+    if (files.length > 1) {
+      const msg = 'Only 1 images can be uploaded at a time'
+      return console.log('No more than 1') 
     }
 
     const formData = new FormData()
@@ -78,45 +77,18 @@ export default class Dashboard extends Component {
     })
   }
 
+
   // filter
   filter = id => {
     return this.state.images.filter(image => image.public_id !== id)
 
   }
 
-  // remove image
-  // removeImage = id => {
-  //   console.log(id);
-  //   this.setState({ images: this.filter(id) })
-  //   axios
-  //     .delete(`https://photo-effects-backend-stage-1.herokuapp.com/image-delete/${id}`)
-  //       .then(res => {
-  //         res.json();
-  //       })
-  //       .catch(err => console.log(err));
-  // }
-
-//   removeImage = (publicId,resourceType,callback) => { 
-//     console.log(resourceType); image,video,raw
-
-//     cloudinary.api.delete_resources(publicId, function(result) {
-//         console.log(result);
-//          if(result.hasOwnProperty("error")){
-//              callback(result);
-//              return;
-//          }else{
-//               callback(result);
-
-//          }  
-//     },{all:true,resource_type:resourceType});   
-// }
 
   // Update
   updateProject = newProject => {
     this.setState({ projects: newProject });
   }
-
- 
 
 
   // logout
@@ -148,7 +120,7 @@ export default class Dashboard extends Component {
        <h1>Welcome Username!</h1>
        <Upload onChange={this.onChange} />
        {this.state.error}
-       <Image images={this.state.images} removeImage={this.removeImage} updateProject={this.updateProject} />
+       <Image images={this.state.images} removeImage={this.removeImage} updateProject={this.updateProject}/>
        < Projects projects={this.state.projects} updateProject={this.updateProject} />
       </div>
     )
