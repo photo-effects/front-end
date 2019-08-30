@@ -51,9 +51,15 @@ const TagsCont = (props) => {
 
   return (
     <div className="swiper">
-      <h2 className="tagheader">Browse Tags</h2>
-
-      <Swiper {...params}>
+     <div style={{display:'flex', flexDirection:'row'}}> <h2 className="tagheader">Browse Tags</h2>
+      <input
+            type="text"
+            className="searchnav" 
+            placeholder="Search Tags"
+            value=''
+            onChange='{}'
+          /> </div>
+      <Swiper {...params}></Swiper>
         <div className="swipecards greencard">Animals</div>
         <div className="swipecards ltpurplecard">Memes</div>
         <div className="swipecards magentacard">Funny</div>

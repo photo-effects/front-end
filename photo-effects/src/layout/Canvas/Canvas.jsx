@@ -7,7 +7,7 @@ export default class Canvas extends Component {
   render() {
     return (
       <div style = { page }>
-        <Tools />
+        <Tools auth={this.props.auth} />
         <CanvasArea />
       </div>
     )
