@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Notifications, { notify } from 'react-notify-toast';
 import Logout from '../components/Dashboard/Logout';
 import Upload from '../components/Dashboard/Upload';
 import Image from '../components/Dashboard/Image';
 import Projects from '../components/Dashboard/Projects';
 
-
-const toastColor = {
-  background: '#505050',
-  text: '#fff'
-}
 
 export default class Dashboard extends Component {
 
@@ -20,7 +14,8 @@ export default class Dashboard extends Component {
       users: [],
       images: [],
       projects:[],
-      uploading: false
+      uploading: false,
+      error: null
     };
   }
 
@@ -32,11 +27,12 @@ export default class Dashboard extends Component {
 
     if (files.length > 2) {
       const msg = 'Only 2 images can be uploaded at a time'
-      return this.toast(msg, 'custom', 2000, toastColor)  
+      // return this.toast(msg, 'custom', 2000, toastColor) 
+      return console.log('No more than 2') 
     }
 
     const formData = new FormData()
-    const types = ['image/png', 'image/jpeg', 'image/gif']
+    const types = ['image/png', 'image/jpeg']
 
     files.forEach((file, i) => {
 
@@ -52,7 +48,7 @@ export default class Dashboard extends Component {
     })
 
     if (errs.length) {
-      return errs.forEach(err => this.toast(err, 'custom', 2000, toastColor))
+      return errs.forEach(err => this.setState({ ...this.state, error:err }))
     }
 
     this.setState({ uploading: true })
@@ -85,12 +81,35 @@ export default class Dashboard extends Component {
   // filter
   filter = id => {
     return this.state.images.filter(image => image.public_id !== id)
+
   }
 
   // remove image
-  removeImage = id => {
-    this.setState({ images: this.filter(id) })
-  }
+  // removeImage = id => {
+  //   console.log(id);
+  //   this.setState({ images: this.filter(id) })
+  //   axios
+  //     .delete(`https://photo-effects-backend-stage-1.herokuapp.com/image-delete/${id}`)
+  //       .then(res => {
+  //         res.json();
+  //       })
+  //       .catch(err => console.log(err));
+  // }
+
+//   removeImage = (publicId,resourceType,callback) => { 
+//     console.log(resourceType); image,video,raw
+
+//     cloudinary.api.delete_resources(publicId, function(result) {
+//         console.log(result);
+//          if(result.hasOwnProperty("error")){
+//              callback(result);
+//              return;
+//          }else{
+//               callback(result);
+
+//          }  
+//     },{all:true,resource_type:resourceType});   
+// }
 
   // Update
   updateProject = newProject => {
@@ -115,7 +134,6 @@ export default class Dashboard extends Component {
 
 
     axios
-    // .get('http://localhost:5000/api/projects')
     .get('https://photo-effects-backend-stage-1.herokuapp.com/api/projects')
     .then(res => this.setState({ projects: res.data }))
     .catch(err => console.log(err));
@@ -129,8 +147,9 @@ export default class Dashboard extends Component {
         <Logout logoutButton={this.logoutButton} />
        <h1>Welcome Username!</h1>
        <Upload onChange={this.onChange} />
+       {this.state.error}
        <Image images={this.state.images} removeImage={this.removeImage} updateProject={this.updateProject} />
-       < Projects projects={this.state.projects} />
+       < Projects projects={this.state.projects} updateProject={this.updateProject} />
       </div>
     )
   }

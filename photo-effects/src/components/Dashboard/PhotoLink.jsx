@@ -10,9 +10,10 @@ class PhotoLink extends Component {
 
     this.state = {
         photoInfo: {
-            title: 'I am test title 2',
+            title: `I am test title ${this.props.public_id}`,
             user_id: "1",
-            secure_url: this.props.secure_url
+            secure_url: this.props.secure_url,
+            public_id: this.props.public_id
         }
     }
     }
@@ -41,6 +42,7 @@ render() {
         <>
         <div>
         <img src={this.props.secure_url} />
+        
         </div>
         <div>
         <button onClick={() => this.props.removeImage(this.props.public_id)}>Delete</button>
@@ -50,5 +52,6 @@ render() {
     )
 }
 }
+
 
 export default PhotoLink;
