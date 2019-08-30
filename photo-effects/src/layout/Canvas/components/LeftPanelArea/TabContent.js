@@ -16,8 +16,8 @@ function TabContent(props) {
                <div style={transProps}> */}
                    <Spring 
                      from = {{ height: 0 }} 
-                     to = {{ height: 100 }}
-                     config = {{ duration: 250 }}
+                     to = {{ height: 160 }}
+                     config = {{ duration: 500 }}
                   >
                      {springProps => (
                         <div style={springProps}>
@@ -35,10 +35,10 @@ function TabContent(props) {
 }
 
 const tabContentStyle = {
-   background: '#535758',
+   background: '#323F4B',
    fontSize: '16px',
    color: '#fff',
-   padding: '1.5rem',
+   padding: '8px',
    height: 'fit-content'
 }
 

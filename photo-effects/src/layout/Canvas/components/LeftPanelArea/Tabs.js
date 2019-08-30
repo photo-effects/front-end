@@ -22,9 +22,8 @@ function Tabs(props) {
 }
 
 const tabContainer = {
-   maxWidth: '320px',
    border: '0px solid #000',
-   backgroundColor: '#535758'
+   backgroundColor: '#323F4B'
 }
 
 const tabList = {

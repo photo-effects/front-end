@@ -2,13 +2,13 @@ import React from 'react';
 import Tabs from './Tabs';
 import UploadedPhotosTool from './Tools/UploadedPhotosTool';
 import TextEditorTool from './Tools/TextEditorTool';
-import LayersTool from './Tools/LayersTool';
+import Layers from './Tools/Layers';
 import GraphicsTool from './Tools/GraphicsTool';
 import StockPhotosTool from './Tools/StockPhotosTool';
 
 function ToolPanel() {
   return (
-    <div>
+    <div style={toolPanelStyle}>
       <Tabs>
         <div label="Photos">
           <UploadedPhotosTool /> 
@@ -21,11 +21,17 @@ function ToolPanel() {
           <TextEditorTool />
         </div>
         <div label="Layers">
-          <LayersTool />
+          <Layers />
         </div>
       </Tabs>
     </div>
   );
+}
+
+const toolPanelStyle = {
+  fontFamily: 'Arial',
+  fontSize: '16px',
+  minWidth: '360px'
 }
 
 export default ToolPanel;

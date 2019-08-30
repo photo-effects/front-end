@@ -28,18 +28,24 @@ class Tab extends Component {
 
 const tabListItem = {
    display: 'inline-block',
+   // borderTop: '1px solid #F0F4F8',
+   // borderBottom: '1px solid #F0F4F8',
    padding: '10px',
    cursor: 'pointer',
    width: '100%',
-   backgroundColor: "#BDC3C7",
+   backgroundColor: "#1F2933",
+   color: '#F0F4F8',
 }
 
 const tabListActive = {
    display: 'inline-block',
+   // borderTop: '1px solid #F0F4F8',
+   // borderBottom: '1px solid #F0F4F8',
    padding: '10px',
    cursor: 'pointer',
    width: '100%',
-   backgroundColor: "#98A0A5",
+   backgroundColor: "#3E4C59",
+   color: '#F0F4F8'
 }
 
 export default Tab;
