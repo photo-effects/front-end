@@ -19,12 +19,11 @@ class PhotoLink extends Component {
     }
     }
 
-
-
+   // master
     addProject = e => {
         e.preventDefault();
         axios
-          .post('https://photo-effects-backend-stage-1.herokuapp.com/api/projects', this.state.photoInfo)
+          .post('https://photo-effects-backend.herokuapp.com/api/projects', this.state.photoInfo)
             .then(res => {
                 this.props.history.push('/home')
                 this.props.updateProject(res.data)
@@ -34,6 +33,22 @@ class PhotoLink extends Component {
                 console.log(err);
             })
     }
+
+
+    // staging
+    // addProject = e => {
+    //     e.preventDefault();
+    //     axios
+    //       .post('https://photo-effects-backend-stage-1.herokuapp.com/api/projects', this.state.photoInfo)
+    //         .then(res => {
+    //             this.props.history.push('/home')
+    //             this.props.updateProject(res.data)
+    //             console.log('adding to backend');
+    //         })
+    //         .catch(err => {
+    //             console.log(err);
+    //         })
+    // }
 
 
 

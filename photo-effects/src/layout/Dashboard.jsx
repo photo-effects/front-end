@@ -52,8 +52,14 @@ export default class Dashboard extends Component {
 
     this.setState({ uploading: true })
 
-    // axios.post(`https://photo-effects-backend-stage-1.herokuapp.com/image-upload`, formData)
-    fetch(`https://photo-effects-backend-stage-1.herokuapp.com/image-upload`, {
+    // staging
+    // fetch(`https://photo-effects-backend-stage-1.herokuapp.com/image-upload`, {
+    //   method: 'POST',
+    //   body: formData
+    // })
+
+    // master
+    fetch(`https://photo-effects-backend.herokuapp.image-upload/image-upload`, {
       method: 'POST',
       body: formData
     })
@@ -84,7 +90,6 @@ export default class Dashboard extends Component {
 
   }
 
-
   // Update
   updateProject = newProject => {
     this.setState({ projects: newProject });
@@ -99,16 +104,30 @@ export default class Dashboard extends Component {
   }
 
   componentDidMount() {
-    axios
+
+     axios
     .get('https://photo-effects-backend.herokuapp.com/api/users')
     .then(res => this.setState({ users: res.data }))
     .catch(err => console.log(err));
 
 
     axios
-    .get('https://photo-effects-backend-stage-1.herokuapp.com/api/projects')
+    .get('https://photo-effects-backend.herokuapp.com/api/projects')
     .then(res => this.setState({ projects: res.data }))
     .catch(err => console.log(err));
+      
+
+    // staging
+    // axios
+    // .get('https://photo-effects-backend-stage-1.herokuapp.com/api/users')
+    // .then(res => this.setState({ users: res.data }))
+    // .catch(err => console.log(err));
+
+
+    // axios
+    // .get('https://photo-effects-backend-stage-1.herokuapp.com/api/projects')
+    // .then(res => this.setState({ projects: res.data }))
+    // .catch(err => console.log(err));
 
     
   }

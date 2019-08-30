@@ -7,10 +7,11 @@ import axios from 'axios';
 class Projects extends Component {
 
 
+// master
   deleteProject = (id, public_id) => {
     console.log(id, public_id);
     axios
-      .delete(`https://photo-effects-backend-stage-1.herokuapp.com/api/projects/${id}`, { data: { public_id } })
+      .delete(`https://photo-effects-backend.herokuapp.com/api/projects/${id}`, { data: { public_id } })
       .then(res => {
           this.props.history.push('/home')
           this.props.updateProject(res.data);
@@ -20,6 +21,21 @@ class Projects extends Component {
           console.log(err);
       })
 }
+
+// staging
+//   deleteProject = (id, public_id) => {
+//     console.log(id, public_id);
+//     axios
+//       .delete(`https://photo-effects-backend-stage-1.herokuapp.com/api/projects/${id}`, { data: { public_id } })
+//       .then(res => {
+//           this.props.history.push('/home')
+//           this.props.updateProject(res.data);
+//           console.log('deleting from backend')
+//       })
+//       .catch(err => {
+//           console.log(err);
+//       })
+// }
 
 
   render() {
