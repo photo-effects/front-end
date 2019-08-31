@@ -62,7 +62,7 @@ render() {
         <img src={this.props.secure_url} />
         </div>
         <div>
-        {/* <button onClick={() => this.props.removeImage(this.props.public_id)}>Delete</button> */}
+        <button onClick={() => this.props.removeImage(this.props.public_id)}>Delete</button>
         <button onClick={this.addProject}> Add To Backend</button>
         </div>
         </>

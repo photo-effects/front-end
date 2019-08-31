@@ -98,7 +98,20 @@ export default class Dashboard extends Component {
 
   // removeImage = id => {
   //   this.setState({ images: this.filter(id) })
+  //   axios.
+  //      delete(`https://photo-effects-backend.herokuapp.com/image-delete`)
   // }
+
+  removeImage = public_id => {
+    axios
+      .delete(`https://photo-effects-backend.herokuapp.com/image-delete`, { data: { public_id } })
+      .then(res => {
+        this.setState({ images: [] })
+      })
+      .catch(err => {
+          console.log(err);
+      })
+}
 
 
   // Update
