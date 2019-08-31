@@ -4,6 +4,10 @@
   align-content: center;
   padding-top: 120px;
   position: absolute;
+  margin: auto;
+  width: 100%;
+  top:60px
+
 
   
 }
@@ -20,7 +24,7 @@
 }
 
 .title{
-  font-size: 11rem;
+  font-size: 13rem;
   color: whitesmoke;
   width: 30%;
   text-shadow: -2px 1px 1px rgb(40, 5, 145);
@@ -29,5 +33,80 @@
 .video{
   box-shadow: -2px 1px 3px rgb(40, 5, 145);
   border: whitesmoke 1px solid;
-  border-radius: 8px
+  border-radius: 8px;
+  width:40%;
+  height: 500px;
+}
+
+
+
+
+/*  Media Queries */
+
+
+/*  View between Full screen and Tablet */
+
+
+@media (max-width: 1615px) {
+  .title {
+    font-size: 10rem;
+  }
+}
+
+
+/*  Tablet View */
+
+@media (max-width: 800px) {
+
+  .hero {
+    display: flex;
+    flex-direction: column;
+    padding-top: 78px;
+
+  }
+
+.title {
+font-size: 4.5rem;
+width: 100%;
+margin-bottom: 30px;
+text-align: center;
+
+
+
+}
+
+.video {
+  margin:auto;
+width: 95%;
+height: 275px;
+}
+
+.herobg{
+  height: 475px;
+
+
+}
+
+}
+
+
+/* Mobile View */
+
+
+@media (max-width: 500px) {
+
+
+  .hero {
+    display: flex;
+    flex-direction: column;
+    padding-top: 55px;
+
+  }
+
+  .video {
+    margin:auto;
+  width: 95%;
+  height: 250px;
+  }
+
 }

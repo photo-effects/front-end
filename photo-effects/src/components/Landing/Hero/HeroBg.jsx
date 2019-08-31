@@ -60,8 +60,7 @@ export class HeroBg extends Component {
             }
           }}
           style={{
-            backgroundImage:
-              'linear-gradient(to right bottom, #6600d6, #5800d5, #4700d5, #3100d4, #0000d3)',
+            backgroundImage: 'linear-gradient(to bottom, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa4e9, #7aaeef, #6bb7f1, #56c2f4, #44cbf3, #3bd5ee, #43dde6)',
             zIndex: '-2', 
           }}
         />
