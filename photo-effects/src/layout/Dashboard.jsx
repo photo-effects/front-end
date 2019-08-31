@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+// import Logout from '';
+// import Image from '';
+// import Upload from '';
+// import Projects from ''
 //import variables
 
 export default class Dashboard extends Component {
@@ -117,11 +122,11 @@ export default class Dashboard extends Component {
   render() {
     return (
       <div>
-        <Logout logoutButton={this.props.auth.logout} />
+        {/* <Logout logoutButton={this.props.auth.logout} />
        <h1>Welcome Username!</h1>
        <Upload onChange={this.onChange} />
        <Image images={this.state.images} removeImage={this.removeImage} updateProject={this.updateProject} />
-       < Projects projects={this.state.projects} />
+       < Projects projects={this.state.projects} /> */}
       </div>
     )
   }
