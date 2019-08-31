@@ -27,7 +27,7 @@ class PhotoLink extends Component {
         axios
           .post('https://photo-effects-backend.herokuapp.com/api/projects', this.state.photoInfo)
             .then(res => {
-                this.props.history.push('/home')
+                this.props.history.push('/canvas')
                 this.props.updateProject(res.data)
                 console.log('adding to backend');
             })
@@ -62,8 +62,8 @@ render() {
         <img src={this.props.secure_url} />
         </div>
         <div>
-        <button onClick={() => this.props.removeImage(this.props.public_id)}>Delete</button>
-        <button onClick={this.addProject}> Add To Backend</button>
+        <button onClick={() => this.props.removeImage(this.props.public_id)}>Choose A Different Image</button>
+        <button onClick={this.addProject}> Go To Canvas</button>
         </div>
         </>
     )
