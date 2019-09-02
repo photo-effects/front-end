@@ -91,17 +91,8 @@ export default class Dashboard extends Component {
   }
 
 
-  // filter
-  // filter = id => {
-  //   return this.state.images.filter(image => image.public_id !== id)
-  // }
 
-  // removeImage = id => {
-  //   this.setState({ images: this.filter(id) })
-  //   axios.
-  //      delete(`https://photo-effects-backend.herokuapp.com/image-delete`)
-  // }
-
+  // After "Choose File" this refers to "Choose another photo". Will delete from cloudinary db
   removeImage = public_id => {
     axios
       .delete(`https://photo-effects-backend.herokuapp.com/image-delete`, { data: { public_id } })
