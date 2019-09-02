@@ -5,9 +5,9 @@ export default class Auth {
         this.history = history;
 
         this.auth0 = new auth0.WebAuth({
-            domain: 'photoeffectsapp.auth0.com',
-            clientID: 'pHRE8X0Y5vSytjkESoSTKD2oyv71pEUI',
-            redirectURL: 'http://localhost:3000/callback',
+            domain: process.env.REACT_APP_AUTH0_DOMAIN,
+            clientID: process.env.REACT_APP_AUTH0_CLIENT_ID,
+            redirectURL: process.env.REACT_APP_AUTH0_CALLBACK,
             responseType: "token id_token",
             scope: "openid profile email"
         });
