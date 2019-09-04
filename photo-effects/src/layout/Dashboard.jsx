@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Notifications, { notify } from 'react-notify-toast';
 import Logout from '../components/Dashboard/Logout';
 import Upload from '../components/Dashboard/Upload';
 import Image from '../components/Dashboard/Image';
 import Projects from '../components/Dashboard/Projects';
 
-const toastColor = {
-  background: '#505050',
-  text: '#fff'
-}
 
 export default class Dashboard extends Component {
 
@@ -24,21 +19,23 @@ export default class Dashboard extends Component {
     };
   }
 
-  toast = notify.createShowQueue()
+  
 
-  // onChange
+  // When click "Choose File" and choosing a photo the code below will occur. First will check to make sure only using 1 files and will only accept /png /jgp
+  // Code set up for multiple files but need to change for only a single file(using because works for now and gets job done)
+  
   onChange = e => {
     const errs = [] 
     const files = Array.from(e.target.files)
     console.log(files);
 
-    if (files.length > 2) {
-      const msg = 'Only 2 images can be uploaded at a time'
-      return this.toast(msg, 'custom', 2000, toastColor)  
+    if (files.length > 1) {
+      const msg = 'Only 1 images can be uploaded at a time'
+      return console.log('No more than 1') 
     }
 
     const formData = new FormData()
-    const types = ['image/png', 'image/jpeg', 'image/gif', 'image/svg']
+    const types = ['image/png', 'image/jpeg']
 
     files.forEach((file, i) => {
 
@@ -53,15 +50,22 @@ export default class Dashboard extends Component {
       formData.append(i, file)
     })
 
+    // will display error to user
     if (errs.length) {
-      // return errs.forEach(err => this.toast(err, 'custom', 2000, toastColor))
-      return errs.forEach(err => this.setState({...this.state, error: err}))
+      return errs.forEach(err => this.setState({ ...this.state, error:err }))
     }
 
     this.setState({ uploading: true })
 
-    // axios.post(`https://photo-effects-backend-stage-1.herokuapp.com/image-upload`, formData)
-    fetch(`https://photo-effects-backend-stage-1.herokuapp.com/image-upload`, {
+    // staging
+    // fetch(`https://photo-effects-backend-stage-1.herokuapp.com/image-upload`, {
+    //   method: 'POST',
+    //   body: formData
+    // })
+
+    // master
+    // This will push code to cloudinary db
+    fetch(`https://photo-effects-backend.herokuapp.com/image-upload`, {
       method: 'POST',
       body: formData
     })
@@ -72,6 +76,7 @@ export default class Dashboard extends Component {
       }
       return res.json()
     })
+    // will push image in images state to be displayed to user
     .then(images => {
       this.setState({
         uploading: false, 
@@ -85,22 +90,26 @@ export default class Dashboard extends Component {
     })
   }
 
-  // filter
-  filter = id => {
-    return this.state.images.filter(image => image.public_id !== id)
-  }
 
-  // remove image
-  removeImage = id => {
-    this.setState({ images: this.filter(id) })
-  }
+
+  // After "Choose File" this refers to "Choose another photo". Will delete from cloudinary db
+  removeImage = public_id => {
+    axios
+      .delete(`https://photo-effects-backend.herokuapp.com/image-delete`, { data: { public_id } })
+      .then(res => {
+        this.setState({ images: [] })
+      })
+      .catch(err => {
+          console.log(err);
+      })
+}
+
 
   // Update
+  // will update state for user projects when adding/deleting for now.
   updateProject = newProject => {
     this.setState({ projects: newProject });
   }
-
- 
 
 
   // logout
@@ -111,17 +120,30 @@ export default class Dashboard extends Component {
   }
 
   componentDidMount() {
-    axios
+    // sets users in state
+     axios
     .get('https://photo-effects-backend.herokuapp.com/api/users')
     .then(res => this.setState({ users: res.data }))
     .catch(err => console.log(err));
 
-
+    // sets projects in state
     axios
-    // .get('http://localhost:5000/api/projects')
-    .get('https://photo-effects-backend-stage-1.herokuapp.com/api/projects')
+    .get('https://photo-effects-backend.herokuapp.com/api/projects')
     .then(res => this.setState({ projects: res.data }))
     .catch(err => console.log(err));
+      
+
+    // staging
+    // axios
+    // .get('https://photo-effects-backend-stage-1.herokuapp.com/api/users')
+    // .then(res => this.setState({ users: res.data }))
+    // .catch(err => console.log(err));
+
+
+    // axios
+    // .get('https://photo-effects-backend-stage-1.herokuapp.com/api/projects')
+    // .then(res => this.setState({ projects: res.data }))
+    // .catch(err => console.log(err));
 
     
   }
@@ -133,8 +155,8 @@ export default class Dashboard extends Component {
        <h1>Welcome Username!</h1>
        <Upload onChange={this.onChange} />
        {this.state.error}
-       <Image images={this.state.images} removeImage={this.removeImage} updateProject={this.updateProject} />
-       < Projects projects={this.state.projects} />
+       <Image images={this.state.images} removeImage={this.removeImage} updateProject={this.updateProject}/>
+       < Projects projects={this.state.projects} updateProject={this.updateProject} />
       </div>
     )
   }

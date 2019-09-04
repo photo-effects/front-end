@@ -7,22 +7,22 @@ import './hero.css';
 
 const Hero = () => {
   return (
-    <div>
+
          
       <div className="hero">
    
         <div className="title">Make your Next Design A Breeze!</div>
         <Iframe
           url="https://www.youtube.com/embed/FUqfZnF-NNQ"
-          width="660"
-          height="415"
+          width="100%"
+          height="100%"
           className="video"
           display="initial"
         />
      
       </div>
      
-      </div>
+      
   );
 };
 
