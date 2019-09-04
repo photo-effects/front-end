@@ -17,9 +17,9 @@ export default class UploadedPhotosTool extends Component {
    render() {
       return (
          <Spring 
-            from = {{ opacity: 0 }} 
-            to = {{ opacity: 100 }}
-            config = {{ duration: 500 }}
+            from = {{ height: 0 }} 
+            to = {{ height: 100 }}
+            config = {{ delay: 3000 }}
          >
             {springProps => (
                <div style={springProps}>
