@@ -11,7 +11,7 @@ export default class App extends Component {
     <div>
       <Router>
         <Switch>
-          <Route exact path="/home" component={Landing}  />
+          <Route exact path="/" component={Landing}  />
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/canvas" component={Canvas} />
           <Route component={Notfound} />

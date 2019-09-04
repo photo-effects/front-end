@@ -1,5 +1,5 @@
 nav {
-  border: 1px solid springgreen;
+  border-bottom: 1px solid #ffdb27;
   padding: 10px;
   display: flex;
   justify-content: space-between;
@@ -7,7 +7,7 @@ nav {
   width: 100%;
   height: 11vh;
   padding: 10px;
-  background-color: #171544;
+  background-color: #364f6b;
   color: whitesmoke;
   font-size: 2rem;
   position: fixed;
@@ -23,10 +23,11 @@ nav {
   display: flex;
   justify-content: space-between;
   margin: 8px;
+ 
 }
 
 .navright{
-  width: 350px;
+  width: 400px;
 }
 
 .smallnavlinks {
@@ -34,9 +35,15 @@ nav {
 }
 
 .loginbutton {
-  background-color: #1bb76e;
-  padding: 10px;
-  border-radius: 8px
+  background-color: #fc5185;
+  padding: 12px;
+  border-radius: 8px;
+  color: whitesmoke;
+  box-shadow: -1px 1px 90px -2px rgba(240,240,240,1);
+  border: none;
+  font-size:2rem;
+  cursor: pointer
+  
 }
 
 .searchnav{
