@@ -40,7 +40,7 @@ export default class UploadedPhotosTool extends Component {
 
 const photoContainer = {
    overflowY: 'auto',
-   height: '130px'
+   height: '115px'
 }
 
 const photoStyle = {

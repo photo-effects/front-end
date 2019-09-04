@@ -5,17 +5,14 @@ import TextEditorTool from './Tools/TextEditorTool';
 import Layers from './Tools/Layers';
 import GraphicsTool from './Tools/GraphicsTool';
 import StockPhotosTool from './Tools/StockPhotosTool';
+import PhotosPanel from './Tools/PhotosPanel';
 
 function ToolPanel() {
   return (
     <div style={toolPanelStyle}>
       <Tabs>
         <div label="Photos">
-          <UploadedPhotosTool /> 
-          {/* <StockPhotosTool /> */}
-        </div>
-        <div label="Stock Photos">
-          <StockPhotosTool />
+          <PhotosPanel />
         </div>
         <div label="Graphics">
           <GraphicsTool />
