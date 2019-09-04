@@ -5,6 +5,7 @@ import summer from './graphics/hellosummer.svg';
 
 export default function GraphicsTool() {
    let stickers = [];
+   
    return (
       <>
          <div style={photoContainer}>

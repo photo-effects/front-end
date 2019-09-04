@@ -15,7 +15,6 @@ export default class Layers extends Component {
       return (
          <ol>
             {this.state.layers.map(layer => {
-               console.log(layer)
                return (
                   <li key={layer} style={layerStyle}>{layer}</li>
                )

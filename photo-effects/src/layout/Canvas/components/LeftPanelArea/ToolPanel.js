@@ -14,6 +14,9 @@ function ToolPanel() {
           <UploadedPhotosTool /> 
           {/* <StockPhotosTool /> */}
         </div>
+        <div label="Stock Photos">
+          <StockPhotosTool />
+        </div>
         <div label="Graphics">
           <GraphicsTool />
         </div>

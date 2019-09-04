@@ -9,7 +9,7 @@ export default class UploadedPhotosTool extends Component {
 
    componentDidMount() {
       axios
-      .get('https://photo-effects-backend-stage-1.herokuapp.com/api/projects')
+      .get('https://photo-effects-backend.herokuapp.com/api/projects')
       .then(res => this.setState({ uploads: res.data }))
       .catch(err => console.log(err));
    }
@@ -26,7 +26,7 @@ export default class UploadedPhotosTool extends Component {
                   <div style={photoContainer}>
                      {this.state.uploads.map(upload => {
                         return (
-                           <img style={photoStyle} src={upload.secure_url} />
+                           <img style={photoStyle} src={upload.secure_url} onClick={() => console.log(upload.secure_url)}/>
                         )
                      })}
                   </div>
@@ -49,7 +49,9 @@ const photoStyle = {
    height: '75px',
    border: '0px solid #000',
    padding: '5px',
-   marginLeft: '3px',
+   marginRight: '6px',
+   marginBottom: '6px',
    borderRadius: '5px',
    background: '#7B8794',
+   cursor: 'pointer',
 }
