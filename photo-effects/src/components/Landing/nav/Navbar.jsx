@@ -1,30 +1,35 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react'
 
 import Photolist from '../../waterfall/Photolist';
 import TagsCont from '../../Landing/Tags/TagsCont';
 import './nav.css';
 
 
-  const [login, setLogin] = useState('');
+export class Navbar extends Component {
 
 
 
-  return (
-    <nav>
-      
-      <img style={{width:'250px'}} src="https://files.slack.com/files-pri/T4JUEB3ME-FMKCEGRQT/asset_8.png" alt="logo"/>
-    
+//push to landing
+
+  render() {
+    return (
+      <nav>
+      <div>
+        <h1 className="logo">Photo Effects</h1>
+      </div>
       {/* <p className="navlinks loginbutton">
         <i className="far fa-plus-square plus" /> New Project
       </p> */}
       <div>
-      
+        <i className="fas fa-search searchbtn" />
+    
       </div>
       <ul className="navlinks navright">
-        <li className="smallnavlinks">Docs</li>
+        <li className="smallnavlinks">Features</li>
         <li className="smallnavlinks">About</li>
         <li ><button className="loginbutton" onClick={this.props.auth.login} >Login/Signup</button></li>
-        <li ><button className="loginbutton" onClick={this.props.auth.logout} >Logout</button></li>
+         {/* <li ><button className="loginbutton" onClick={this.props.auth.logout} >Logout</button></li> */}
+        
       </ul>
     </nav>
     )
