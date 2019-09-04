@@ -1,133 +1,225 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-import Resizer from './Resizer';
-
 export default class CanvasItem extends Component {
   state = {
-    drag: false,
-    resize: false,
+    resizing: false,
+    x: 0,
+    y: 0,
     max_x: 0,
     max_y: 0,
-    width: 0,
-    height: 0,
-    resizeWidth: null,
-    resizeHeight: null
+    item: {}
   }
 
-  componentDidMount() {
+  componentDidMount() { 
     const _this = ReactDOM.findDOMNode(this);
     const node = _this.getBoundingClientRect();
+    const { left, top } = node;
     const parent = _this.offsetParent.getBoundingClientRect();
-    
+    const { width, height } = parent;
+    const { nodeWidth, nodeHeight, item, z } = this.props; 
+
     this.setState({ 
-      max_x: parent.width - node.width,
-      max_y: parent.height - node.height,
-      width: node.width,
-      height: node.height
+      max_x: width - nodeWidth,
+      max_y: height - nodeHeight,
+      item: {
+        ...item, left, top
+      }
     })
   }
 
-  item = () => {
-    let top = 0;
-    if(this.state.drag) {
-      if(this.props.new_y - (this.state.height / 2) > this.state.max_y) {
-        top = this.state.max_y
-      } else if(this.props.new_y - (this.state.height / 2) < 0) {
-        top = 0
-      } else {
-        top = this.props.new_y - (this.state.height / 2)
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if(!nextProps.resizing) {
+      return {
+        item: {
+          width: nextProps.nodeWidth,
+          height: nextProps.nodeHeight
+        }
       }
-    } else if(this.props.y - (this.state.height / 2) <= 0) {
-      top = 0
-    } else {
-      top = this.props.y - (this.state.height / 2)
-    }
+    } else return null;
+  }
+  
+
+  item = () => {
+    const { 
+      dragging, 
+      resizing, 
+      new_x, 
+      new_y,
+      max_x,
+      max_y, 
+      nodeX,
+      nodeY,
+      nodeWidth, 
+      nodeHeight,
+      hover
+    } = this.props;
+
+    const {
+      item
+    } = this.state;
+
+    const {
+      width,
+      height
+    } = item;
 
     let left = 0;
-    if(this.state.drag) {
-      if(this.props.new_x - (this.state.width / 2) > this.state.max_x) {
-        left = this.state.max_x
-      } else if(this.props.new_x - (this.state.width / 2) < 0) {
-        left = 0;
-      } else {
-        left = this.props.new_x - (this.state.width / 2)
-      }
-    } else if(this.props.x - (this.state.width / 2) <= 0) {
-      left = 0
+    let top = 0;
+
+    if(dragging) {
+      left = new_x - (width / 2)
+      top = new_y - (height / 2)
+    } else if(resizing) {
+      left = nodeX - (width / 2)
+      top = nodeY - (height / 2)
     } else {
-      left = this.props.x - (this.state.width / 2)
+      left = nodeX - (nodeWidth / 2)
+      top = nodeY - (nodeHeight / 2)
     }
+
+    top = top < 4 ? 4 : top + height > max_y ? max_y - height - 8 : top;
+    left = left < 4 ? 4 : left + width > max_x ? max_x - width - 8 : left;
 
     return {
       position: 'absolute',
       cursor: 'pointer',
-      top: top,
-      left: left,
+      top: hover ? top : 4,
+      left: hover ? left : 4,
       color: 'black',
-      // width: this.props.item.width,
-      // height: this.props.item.height,
-      width: this.state.resizeWidth || this.props.item.width,
-      height: this.state.resizeHeight || this.props.item.height,
+      width: nodeWidth,
+      height: nodeHeight,
+      zIndex: this.props.z
     }
-  }
-
-  getPosition = e => {
-    e.preventDefault();
-    e.stopPropagation();
-    
-    if(this.state.drag) {
-      this.props.setCoords(this.props.new_x, this.props.new_y, this.props.id)
-    }
-
-    this.setState({ 
-      drag: !this.state.drag
-    })
   }
 
   resize = e => {
     e.preventDefault();
     e.stopPropagation();
 
+    const mouseup = () => {
+      this.props.resize(false)
+      window.removeEventListener('mouseup', mouseup);
+    }
+
     const _this = ReactDOM.findDOMNode(this);
     const node = _this.getBoundingClientRect();
+    const { left, top } = node;
 
-    const new_width = (e.clientX - 10) - _this.offsetLeft;
-    const new_height = (e.clientY - 10) - _this.offsetTop;
-
-    if(this.state.resize) {
-      this.setState({ 
-        resizeWidth: new_width, 
-        resizeHeight: new_height, 
-        width: node.width, 
-        height: node.height 
-      })
-    }
+    this.props.resize(true, left, top)
+    window.addEventListener('mouseup', mouseup)
   }
 
-  setResize = e => {
-    e.stopPropagation();
+  setOverlayCover = e => {
     e.preventDefault();
-    this.setState({ resize: !this.state.resize })
+    e.stopPropagation();
+
+    this.setState({ hover: true })
+
+    this.props.overlay(
+      0, 0, '100%', '100%', true
+    )
   }
 
-  render() { 
+  setOverlayContain = e => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    this.setState({ hover: false })
+
+    const _this = ReactDOM.findDOMNode(this).getBoundingClientRect();
+    const { top, left, width, height } = _this;
+
+    this.props.overlay(
+      (top - 4) - this.props.top,
+      (left - 4) - this.props.left,
+      width + 12,
+      height + 12,
+      false
+    )
+  }
+
+  resizers = [
+    {
+      top: -5,
+      left: -5,
+      name: 'top-left'
+    },
+    {
+      top: -5,
+      right: -5,
+      name: 'top-right'
+    },
+    {
+      right: -5,
+      bottom: -5,
+      name: 'bottom-right'
+    },
+    {
+      left: -5,
+      bottom: -5,
+      name: 'bottom-left'
+    }
+  ]
+ 
+  render() {
+    const { 
+      resizing,
+      getPosition,
+      item
+    } = this.props;
+    
     return (
       <div
-        {...this.props}
         draggable
-        onMouseDown = { !this.props.resize ? event => this.getPosition(event) : null }
-        onMouseUp = { !this.props.resize ? event => this.getPosition(event) : null }
+        onMouseDown = { 
+          !resizing ? e => getPosition(e) : null 
+        }
         style = { this.item() }
+        onMouseOver = { 
+          e => this.setOverlayCover(e) 
+        }
+        onMouseOut = { 
+          !resizing ? e => this.setOverlayContain(e) : null 
+        }
       >
         <img 
-          src = { this.props.item.url }
-          style = {{ height: '100%', width: 'auto' }}
+          src = { item.url }
+          style = {{ height: '100%', width: '100%' }}
         />
-        <Resizer 
-
-        /> 
+        { this.resizers.map((resizer, i) => (
+            <Resizer 
+              resizer = { resizer }
+              key = { i }
+              cursor = { `${i % 2 === 0 ? 'nwse' : 'nesw'}-resize` }
+              resize = { this.resize }
+              hover = { this.state.hover }
+            />
+          )) }
       </div>
     )
   }
+}
+
+const Resizer = props => {
+  const { cursor, hover, resizer, resize } = props;
+  const { top, left, right, bottom } = resizer;
+
+  const style = () => ({
+    zIndex: 10,
+    border: '2px solid red',
+    borderRadius: '100%',
+    height: '10px',
+    width: '10px',
+    position: 'absolute',
+    visibility: hover ? 'visible' : 'hidden',
+    cursor, top, left, right, bottom
+  })
+
+  return (
+    <div 
+      style = { style() }
+      onMouseDown = { e => resize(e) }
+    ></div>
+  )
 }

@@ -14,12 +14,14 @@ class Tabs extends Component {
     return (
       <div style={tabContainer}>
         <div style={tabList}>
-          {this.props.children.map(child => {
+          {this.props.children.map((child, i) => {
 
             const tabContent = child.props.children;
             
             return (
-              <>
+              <React.Fragment
+                key = { i }
+              >
                  <Tab
                    activeTab={this.state.activeTab}
                    key={child.props.label}   
@@ -28,7 +30,7 @@ class Tabs extends Component {
                  />
 
                  {child.props.label === this.state.activeTab ? tabContent : undefined}
-              </>
+              </React.Fragment>
             );
           })}
         </div>

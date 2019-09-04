@@ -18,6 +18,7 @@ export default function TopBar() {
     <div style = { container }>
       { tools.map(tool => (
         <Tool 
+          key = { tool }
           tool = { tool }
         />
       )) }
