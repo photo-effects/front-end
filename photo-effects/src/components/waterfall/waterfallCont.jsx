@@ -8,7 +8,7 @@ const WaterfallCont = () => {
   const [pics, setPics] = useState([]);
 
   useEffect(() => {
-    axios.get('http://jsonplaceholder.typicode.com/photos?_start=1&_limit=200')
+    axios.get('http://jsonplaceholder.typicode.com/photos?_limit=100')
       .then(res => {
         console.log(res.data);
         setPics(res.data);

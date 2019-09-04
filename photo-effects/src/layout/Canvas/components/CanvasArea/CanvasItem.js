@@ -123,9 +123,7 @@ export default class CanvasItem extends Component {
         <img 
           src = { this.props.item.url }
           style = {{ height: '100%', width: 'auto' }}
-          alt=''
         />
-        
         <Resizer 
           onMouseDown = { this.props.setResize }
           onMouseUp = { this.props.setResize }
