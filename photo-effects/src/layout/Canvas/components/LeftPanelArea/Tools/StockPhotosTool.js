@@ -21,23 +21,13 @@ export default class StockPhotosTool extends Component {
    render() {
       console.log(this.state.photos)
       return (
-         <Spring 
-            from = {{ height: 0 }} 
-            to = {{ height: 100 }}
-            config = {{ delay: 3000 }}
-         >
-            {springProps => (
-               <div style={springProps}>
-                  <div style={photoContainer}>
-                     {this.state.photos.map(photo => {
-                        return (
-                           <img style={photoStyle} src={photo.src.small} onClick={() => console.log(photo.src.original)}/>
-                        )
-                     })}
-                  </div>
-               </div>
-            )}
-         </Spring>
+         <div style={photoContainer}>
+            {this.state.photos.map(photo => {
+               return (
+                  <img style={photoStyle} src={photo.src.small} onClick={() => console.log(photo.src.original)}/>
+               )
+            })}
+         </div>
          
       )
    }

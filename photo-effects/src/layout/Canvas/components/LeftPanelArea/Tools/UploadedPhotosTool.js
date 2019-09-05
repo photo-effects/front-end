@@ -16,24 +16,13 @@ export default class UploadedPhotosTool extends Component {
    
    render() {
       return (
-         <Spring 
-            from = {{ height: 0 }} 
-            to = {{ height: 100 }}
-            config = {{ delay: 3000 }}
-         >
-            {springProps => (
-               <div style={springProps}>
-                  <div style={photoContainer}>
-                     {this.state.uploads.map(upload => {
-                        return (
-                           <img style={photoStyle} src={upload.secure_url} onClick={() => console.log(upload.secure_url)}/>
-                        )
-                     })}
-                  </div>
-               </div>
-            )}
-         </Spring>
-         
+         <div style={photoContainer}>
+            {this.state.uploads.map(upload => {
+               return (
+                  <img style={photoStyle} src={upload.secure_url} onClick={() => console.log(upload.secure_url)}/>
+               )
+            })}
+         </div>
       )
    }
 }
