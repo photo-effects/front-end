@@ -19,7 +19,7 @@ export class Photolist extends Component {
         }}
       >
         {this.props.pics.map((pic, index) => (
-          <Fade bottom big cascade>
+          <Fade bottom cascade>
             <div style={{ margin: 'auto', fontSize: '1.8rem' }}>
               {/* <h4>{pic.title}</h4> */}
               <img
@@ -35,6 +35,7 @@ export class Photolist extends Component {
             </div>
           </Fade>
         ))}
+       
       </div>
     );
   }
