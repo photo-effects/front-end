@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { withRouter } from 'react-router-dom';
+import './image.css';
 import axios from 'axios';
 
 
@@ -62,7 +63,7 @@ render() {
         <img src={this.props.secure_url} />
         </div>
         <div>
-        <button onClick={() => this.props.removeImage(this.props.public_id)}>Choose A Different Image</button>
+        <button className='remove' onClick={() => this.props.removeImage(this.props.public_id)}>Choose A Different Image</button>
         <button onClick={this.addProject}> Go To Canvas</button>
         </div>
         </>

@@ -4,6 +4,7 @@ import Logout from '../components/Dashboard/Logout';
 import Upload from '../components/Dashboard/Upload';
 import Image from '../components/Dashboard/Image';
 import Projects from '../components/Dashboard/Projects';
+import DashNav from '../components/Dashboard/DashNav/DashNav';
 
 
 export default class Dashboard extends Component {
@@ -32,7 +33,7 @@ export default class Dashboard extends Component {
     console.log(files);
 
     // this will clear the error message from the user screen
-    this.setState({ error: null })
+    // this.setState({ error: null })
 
     if (files.length > 1) {
       const msg = 'Only 1 images can be uploaded at a time'
@@ -86,7 +87,8 @@ export default class Dashboard extends Component {
       this.setState({
         uploading: false, 
         exist:'true',
-        images
+        images,
+        error: null
       })
     })
     .catch(err => {
@@ -165,6 +167,7 @@ export default class Dashboard extends Component {
   render() {
     return ( 
       <div>
+        <DashNav />
         <Logout logoutButton={this.logoutButton} />
        <h1>Welcome Username!</h1>
        {(this.state.exist === 'true' && this.state.error === null)  ? 'This is the image you want?' : 
