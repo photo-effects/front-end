@@ -31,6 +31,9 @@ export default class Dashboard extends Component {
     const files = Array.from(e.target.files)
     console.log(files);
 
+    // this will clear the error message from the user screen
+    this.setState({ error: null })
+
     if (files.length > 1) {
       const msg = 'Only 1 images can be uploaded at a time'
       return console.log('No more than 1') 
@@ -164,7 +167,7 @@ export default class Dashboard extends Component {
       <div>
         <Logout logoutButton={this.logoutButton} />
        <h1>Welcome Username!</h1>
-       {(this.state.exist === 'true')  ? 'This is the image you want?' : 
+       {(this.state.exist === 'true' && this.state.error === 'null')  ? 'This is the image you want?' : 
        (<Upload onChange={this.onChange} inputKey={this.state.inputKey} /> )}
        {this.state.error}
        <Image images={this.state.images} removeImage={this.removeImage} updateProject={this.updateProject}/>
