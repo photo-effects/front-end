@@ -1,21 +1,14 @@
 import React, { Component } from 'react'
-
 import Photolist from '../../waterfall/Photolist';
 import TagsCont from '../../Landing/Tags/TagsCont';
 import './nav.css';
-
-
 export class Navbar extends Component {
-
-
-
 //push to landing
-
   render() {
     return (
       <nav>
       <div>
-        <img src='https://files.slack.com/files-pri/T4JUEB3ME-FMKCEGRQT/asset_8.png' alt='logo' style={{width:'250px'}}/>
+        <h1 className="logo">Photo Effects</h1>
       </div>
       {/* <p className="navlinks loginbutton">
         <i className="far fa-plus-square plus" /> New Project
@@ -32,14 +25,10 @@ export class Navbar extends Component {
     )
   }
 }
-
 export default Navbar
-
-
  // const filteredpics = photos.filter(photo =>
   //   photo.title.toLowerCase().includes(searchbar.toLowerCase())
   // );
-
   // useEffect(() => {
   //   const fetchpics = async () => {
   //     const res = await axios('http://jsonplaceholder.typicode.com/photos');
