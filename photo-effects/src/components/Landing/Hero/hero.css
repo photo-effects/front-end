@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-around;
   align-content: center;
-  padding-top: 120px;
+  padding-top: 100px;
   position: absolute;
   margin: auto;
   width: 100%;
@@ -24,9 +24,9 @@
 }
 
 .title{
-  font-size: 13rem;
+  font-size: 10.5rem;
   color: whitesmoke;
-  width: 30%;
+  width: 35%;
   text-shadow: -2px 1px 1px rgb(40, 5, 145);
 }
 
@@ -38,7 +38,11 @@
   height: 500px;
 }
 
+.cards:hover{
+  transition: transform .5s;
+  transform: scale(1.05);
 
+}
 
 
 /*  Media Queries */
