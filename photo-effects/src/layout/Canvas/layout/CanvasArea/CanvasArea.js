@@ -13,23 +13,10 @@ class CanvasArea extends Component {
 
   componentDidMount() {
     axios
-      .get('http://jsonplaceholder.typicode.com/photos')
+      .get('https://photo-effects-backend.herokuapp.com/api/projects')
       .then(res => {
-        let arr = [];
-        for(let i = 0; i < 10; i++) {
-          arr.push({
-            ...res.data[i],
-            x: 0,
-            y: 0,
-            height: 100,
-            width: 100,
-            id: i,
-            left: 0,
-            top: 0,
-            z: i
-          })
-        }
-        this.setState({ items: arr, top_id: arr.length - 1 })
+        console.log(res.data)
+        this.setState({ items: res.data })
       })
       .catch(err => console.log(err))
   }
@@ -52,7 +39,7 @@ class CanvasArea extends Component {
     this.setState({ items, top_id: item.id, top_z })
   }
 
-  render() {
+  render() { console.log(this.state.items)
     const { items } = this.state;
     return (
       <div style = { container }>
@@ -64,7 +51,7 @@ class CanvasArea extends Component {
                 item = { item }
                 top_id = { item.id === this.state.top_id }
                 top_z = { this.state.top_z }
-                setTop = { this.setTop }
+                // setTop = { this.setTop }
               />
             ))
           : items.length === 1 ?

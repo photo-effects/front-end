@@ -184,7 +184,7 @@ export default class CanvasItem extends Component {
         }
       >
         <img 
-          src = { item.url }
+          src = { item.secure_url }
           style = {{ height: '100%', width: '100%' }}
         />
         { this.resizers.map((resizer, i) => (

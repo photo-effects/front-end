@@ -41,8 +41,8 @@ export default class Box extends Component {
     this.setState({ 
       item, left, top, 
       z: top_z,
-      nodeWidth: width,
-      nodeHeight: height,
+      nodeWidth: width || 100,
+      nodeHeight: height || 100,
       max_x: parent.width,
       max_y: parent.height,
       overlay: {
@@ -118,7 +118,7 @@ export default class Box extends Component {
       window.removeEventListener('mouseup', mouseup);
     }
     this.setState({ dragging: true })
-    this.props.setTop(this.state.item)
+    // this.props.setTop(this.state.item)
     window.addEventListener('mouseup', mouseup);
   }
 
