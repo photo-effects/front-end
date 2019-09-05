@@ -14,7 +14,7 @@ export class Photolist extends Component {
           background: '#171544',
           width: '96%',
           borderRadius: '10px',
-          paddingTop: '70px',
+          paddingTop: '80px',
          
         }}
       >
@@ -27,7 +27,7 @@ export class Photolist extends Component {
                 alt="pic"
                 style={{
                   height: '300px',
-                  width: '200px', marginTop: index %2 === 0 ? '-100px': '0px' 
+                  width: '200px', marginTop: index %2 === 0 ? '-140px': '0px' 
                   // alignContent: 'stretch'
                 }}
               />
