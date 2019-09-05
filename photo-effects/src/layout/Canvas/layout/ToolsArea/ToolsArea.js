@@ -16,7 +16,7 @@ const ToolsArea = props => {
 
 const container = {
   height: '100%',
-  width: '20%',
+  width: '360px',
   borderRight: '2px solid black'
 };
 

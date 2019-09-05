@@ -4,10 +4,12 @@ import React, { Component } from "react";
 class Upload extends Component {
 
 
+
+
   render() {
     return (
         <div>
-        <input type='file' onChange={this.props.onChange} />
+        <input type='file' onChange={this.props.onChange} key={this.props.inputKey} />
       </div>
     );
   }
