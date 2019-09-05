@@ -167,7 +167,7 @@ export default class Dashboard extends Component {
       <div>
         <Logout logoutButton={this.logoutButton} />
        <h1>Welcome Username!</h1>
-       {(this.state.exist === 'true' && this.state.error === 'null')  ? 'This is the image you want?' : 
+       {(this.state.exist === 'true' && this.state.error === null)  ? 'This is the image you want?' : 
        (<Upload onChange={this.onChange} inputKey={this.state.inputKey} /> )}
        {this.state.error}
        <Image images={this.state.images} removeImage={this.removeImage} updateProject={this.updateProject}/>
