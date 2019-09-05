@@ -15,7 +15,9 @@ export default class Dashboard extends Component {
       images: [],
       projects:[],
       uploading: false,
-      error: null
+      error: null,
+      inputKey: Date.now(),
+      exist: 'false'
     };
   }
 
@@ -80,6 +82,7 @@ export default class Dashboard extends Component {
     .then(images => {
       this.setState({
         uploading: false, 
+        exist:'true',
         images
       })
     })
@@ -93,15 +96,23 @@ export default class Dashboard extends Component {
 
 
   // After "Choose File" this refers to "Choose another photo". Will delete from cloudinary db
+  // inputKey allows the "Choose File" to reset
+  // exist is used for conditional rendering for the <Upload /> Component
   removeImage = public_id => {
     axios
       .delete(`https://photo-effects-backend.herokuapp.com/image-delete`, { data: { public_id } })
       .then(res => {
-        this.setState({ images: [] })
+        this.setState({ 
+          images: [],
+          inputKey: Date.now(),
+          exist: 'false'
+         })
+         console.log(this.state.keys)
       })
       .catch(err => {
           console.log(err);
       })
+    
 }
 
 
@@ -153,7 +164,8 @@ export default class Dashboard extends Component {
       <div>
         <Logout logoutButton={this.logoutButton} />
        <h1>Welcome Username!</h1>
-       <Upload onChange={this.onChange} />
+       {(this.state.exist === 'true')  ? 'This is the image you want?' : 
+       (<Upload onChange={this.onChange} inputKey={this.state.inputKey} /> )}
        {this.state.error}
        <Image images={this.state.images} removeImage={this.removeImage} updateProject={this.updateProject}/>
        < Projects projects={this.state.projects} updateProject={this.updateProject} />

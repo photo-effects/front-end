@@ -35,6 +35,7 @@ export default class TopBar extends Component {
     <div style = { this.container }>
       { this.tools.map(tool => (
         <Tool 
+          key = { tool }
           tool = { tool }
           clickHandler = { this.clickHandler }
         />

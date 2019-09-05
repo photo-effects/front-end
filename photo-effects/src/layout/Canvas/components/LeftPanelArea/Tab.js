@@ -1,33 +1,59 @@
-import React from 'react';
+import React, {Component} from 'react';
+import TabContent from './TabContent';
+import arrow from './Tools/svg/arrow.svg';
 
-function Tab(props) {
-   let className = tabListItem;
-
-   if (props.activeTab === props.label) {
-      className = tabListActive;
+class Tab extends Component {
+   state = {
+      active: true
    }
 
-   return (
-      <div style={className} onClick={() => props.toggleTab(props.label)}>
-         {props.label}
-      </div>
-   );
+   toggleActiveTab = () => {
+      this.setState({ active: !this.state.active})
+   }
+
+   render() {
+      let className = tabListItem;
+
+      if (this.state.active === true) {
+         className = tabListActive;
+      }
+
+      return (
+         <div>
+            <div style={className} onClick={this.toggleActiveTab}><img style={arrowStyle} src={arrow} />{this.props.tabName}</div>
+            {this.state.active === true ? <TabContent tabContent={this.props.tabContent} /> : undefined}
+         </div>
+      );
+   }
 }
 
 const tabListItem = {
-   display: 'inline-block',
+   display: 'flex',
+   // borderTop: '1px solid #F0F4F8',
+   // borderBottom: '1px solid #F0F4F8',
    padding: '10px',
    cursor: 'pointer',
    width: '100%',
-   backgroundColor: "#ececec",
+   backgroundColor: "#1F2933",
+   color: '#F0F4F8',
+   
 }
 
 const tabListActive = {
-   display: 'inline-block',
+   display: 'flex',
+   // borderTop: '1px solid #F0F4F8',
+   // borderBottom: '1px solid #F0F4F8',
    padding: '10px',
    cursor: 'pointer',
    width: '100%',
-   backgroundColor: "#a7a7a7",
+   backgroundColor: "#3E4C59",
+   color: '#F0F4F8'
+}
+
+const arrowStyle = {
+   width: "18px",
+   height: "18px",
+   marginRight: "5px",
 }
 
 export default Tab;
