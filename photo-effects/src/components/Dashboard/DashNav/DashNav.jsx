@@ -10,7 +10,7 @@ export class DashNav extends Component {
 
   render() {
     return (
-      <nav classnname="dashNav">
+      <nav className="dashNav">
         <img style={{width:'250px'}} src="https://files.slack.com/files-pri/T4JUEB3ME-FMKCEGRQT/asset_8.png" alt="logo"/>
       {/* <div>
         <h1 className="logo">Photo Effects</h1>

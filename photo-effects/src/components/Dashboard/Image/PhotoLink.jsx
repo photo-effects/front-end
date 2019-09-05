@@ -59,12 +59,14 @@ render() {
     console.log(this.props.secure_url)
     return (
         <>
-        <div>
+        <div className="image-link">
         <img src={this.props.secure_url} />
         </div>
-        <div>
-        <button className='remove' onClick={() => this.props.removeImage(this.props.public_id)}>Choose A Different Image</button>
-        <button onClick={this.addProject}> Go To Canvas</button>
+        <div className="btn-center">
+        <div className="btn-flex">
+        <button className='btn' onClick={() => this.props.removeImage(this.props.public_id)}>No! Choose A Different Image</button>
+        <button className='btn' onClick={this.addProject}> Yes! Go To Canvas</button>
+        </div>
         </div>
         </>
     )

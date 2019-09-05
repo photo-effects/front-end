@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Logout from '../components/Dashboard/Logout';
 import Upload from '../components/Dashboard/Upload';
-import Image from '../components/Dashboard/Image';
+import Image from '../components/Dashboard/Image/Image';
 import Projects from '../components/Dashboard/Projects';
 import DashNav from '../components/Dashboard/DashNav/DashNav';
+import "../components/Dashboard/DashNav/dashNav.css";
 
 
 export default class Dashboard extends Component {
@@ -168,12 +168,15 @@ export default class Dashboard extends Component {
     return ( 
       <div>
         <DashNav />
-        <Logout logoutButton={this.logoutButton} />
+        <div className="welcome">
        <h1>Welcome Username!</h1>
-       {(this.state.exist === 'true' && this.state.error === null)  ? 'This is the image you want?' : 
+       </div>
+       <div className="center">
+       {(this.state.exist === 'true' && this.state.error === null)  ? <h2>Is this the image you want?</h2> : 
        (<Upload onChange={this.onChange} inputKey={this.state.inputKey} /> )}
        {this.state.error}
        <Image images={this.state.images} removeImage={this.removeImage} updateProject={this.updateProject}/>
+       </div>
        < Projects projects={this.state.projects} updateProject={this.updateProject} />
       </div>
     )
