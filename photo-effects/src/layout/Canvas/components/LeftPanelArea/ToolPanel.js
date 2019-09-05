@@ -2,30 +2,36 @@ import React from 'react';
 import Tabs from './Tabs';
 import UploadedPhotosTool from './Tools/UploadedPhotosTool';
 import TextEditorTool from './Tools/TextEditorTool';
-import LayersTool from './Tools/LayersTool';
+import Layers from './Tools/Layers';
 import GraphicsTool from './Tools/GraphicsTool';
 import StockPhotosTool from './Tools/StockPhotosTool';
+import PhotosPanel from './Tools/PhotosPanel';
 
 function ToolPanel() {
   return (
-    <div>
+    <div style={toolPanelStyle}>
       <Tabs>
         <div label="Photos">
-          <UploadedPhotosTool /> 
-          <StockPhotosTool />
+          <PhotosPanel />
+        </div>
+        <div label="Graphics">
+          <GraphicsTool />
         </div>
         <div label="Text">
           <TextEditorTool />
         </div>
         <div label="Layers">
-          <LayersTool />
-        </div>
-        <div label="Graphics">
-          <GraphicsTool />
+          <Layers />
         </div>
       </Tabs>
     </div>
   );
+}
+
+const toolPanelStyle = {
+  fontFamily: 'Arial',
+  fontSize: '16px',
+  minWidth: '360px'
 }
 
 export default ToolPanel;

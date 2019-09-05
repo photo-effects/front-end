@@ -1,20 +1,43 @@
 import React from 'react';
+import axios from 'axios';
+import stars from './svg/stars.svg';
+import summer from './svg/hellosummer.svg';
 
 export default function GraphicsTool() {
+   let stickers = [];
+
    return (
       <>
-         <ol>
-            <li style ={graphicContainer}>G</li>
-            <li style ={graphicContainer}>G</li>
-            <li style ={graphicContainer}>G</li>
-         </ol>
+         <div style={photoContainer}>
+            <img style = {photoStyle} src={stars} />
+            <img style = {photoStyle} src={summer} />
+            <img style = {photoStyle} src={stars} />
+            <img style = {photoStyle} src={summer} />
+            <img style = {photoStyle} src={stars} />
+            <img style = {photoStyle} src={summer} />
+            <img style = {photoStyle} src={stars} />
+            <img style = {photoStyle} src={summer} />
+            <img style = {photoStyle} src={stars} />
+            <img style = {photoStyle} src={summer} />
+            <img style = {photoStyle} src={stars} />
+            <img style = {photoStyle} src={summer} />
+         </div>
       </>
    )
 }
 
-const graphicContainer = {
-   width: '50px',
-   height: '50px',
-   border: '1px solid #000',
-   padding: '8px'
+const photoContainer = {
+   overflowY: 'auto',
+   height: '130px'
+}
+
+const photoStyle = {
+   flex: '0 0 auto',
+   width: '75px',
+   height: '75px',
+   border: '0px solid #000',
+   padding: '5px',
+   marginLeft: '3px',
+   borderRadius: '5px',
+   background: '#7B8794',
 }
