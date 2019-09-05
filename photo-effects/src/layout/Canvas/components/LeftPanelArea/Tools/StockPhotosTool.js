@@ -15,7 +15,6 @@ export default class StockPhotosTool extends Component {
          }
       })
       .then(res => this.setState({ photos: res.data.photos }))
-      // .then(res => console.log(res.data.photos))
       .catch(err => console.log(err));
    }
    

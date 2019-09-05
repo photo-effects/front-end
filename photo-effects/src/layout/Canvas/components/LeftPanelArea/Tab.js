@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import TabContent from './TabContent';
+import arrow from './Tools/svg/arrow.svg';
 
 class Tab extends Component {
    state = {
@@ -19,7 +20,7 @@ class Tab extends Component {
 
       return (
          <div>
-            <div style={className} onClick={this.toggleActiveTab}>{this.props.tabName}</div>
+            <div style={className} onClick={this.toggleActiveTab}><img style={arrowStyle} src={arrow} />{this.props.tabName}</div>
             {this.state.active === true ? <TabContent tabContent={this.props.tabContent} /> : undefined}
          </div>
       );
@@ -27,7 +28,7 @@ class Tab extends Component {
 }
 
 const tabListItem = {
-   display: 'inline-block',
+   display: 'flex',
    // borderTop: '1px solid #F0F4F8',
    // borderBottom: '1px solid #F0F4F8',
    padding: '10px',
@@ -35,10 +36,11 @@ const tabListItem = {
    width: '100%',
    backgroundColor: "#1F2933",
    color: '#F0F4F8',
+   
 }
 
 const tabListActive = {
-   display: 'inline-block',
+   display: 'flex',
    // borderTop: '1px solid #F0F4F8',
    // borderBottom: '1px solid #F0F4F8',
    padding: '10px',
@@ -46,6 +48,12 @@ const tabListActive = {
    width: '100%',
    backgroundColor: "#3E4C59",
    color: '#F0F4F8'
+}
+
+const arrowStyle = {
+   width: "18px",
+   height: "18px",
+   marginRight: "5px",
 }
 
 export default Tab;

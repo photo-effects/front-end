@@ -1,11 +1,11 @@
 import React from 'react';
 import axios from 'axios';
-import stars from './graphics/stars.svg';
-import summer from './graphics/hellosummer.svg';
+import stars from './svg/stars.svg';
+import summer from './svg/hellosummer.svg';
 
 export default function GraphicsTool() {
    let stickers = [];
-   
+
    return (
       <>
          <div style={photoContainer}>

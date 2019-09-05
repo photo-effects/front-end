@@ -32,9 +32,10 @@ const divStyle = {
    width: '45%',
    border: '0px solid #000',
    padding: '5px',
+   textAlign: 'center',
    marginRight: '6px',
    marginBottom: '6px',
    borderRadius: '5px',
-   background: '#7B8794',
+   background: '#1F2933',
    cursor: 'pointer',
 }
