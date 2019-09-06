@@ -10,7 +10,6 @@ export default class Canvas extends Component {
       <div style = { page }>
         <Tools auth={this.props.auth} />
         <CanvasArea />
-        <canvas></canvas>
       </div>
     )
   }

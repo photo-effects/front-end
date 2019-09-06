@@ -10,7 +10,6 @@ const ToolsArea = props => {
     <div style = { container }>
       <TopBar />
       {/* <ToolsContainer /> */}
-      {/* <SaveImage /> */}
       <SaveDOMtoImage />
       <ToolPanel />
     </div>
