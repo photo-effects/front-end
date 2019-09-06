@@ -42,7 +42,7 @@ class CanvasArea extends Component {
   render() { console.log(this.state.items)
     const { items } = this.state;
     return (
-      <div style = { container }>
+      <div id="canvasTarget" style = { container }>
         <Toolbar />
         { items.length > 1 ?
             this.state.items.map((item, i) => (
@@ -70,7 +70,8 @@ class CanvasArea extends Component {
 const container = {
   width: '80%',
   height: '100%',
-  position: 'relative'
+  position: 'relative',
+  backgroundColor: 'rgba(255, 255, 255, 1)'
 }
 
 export default CanvasArea;

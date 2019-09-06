@@ -34,10 +34,10 @@ const photoContainer = {
 
 const photoStyle = {
    flex: '0 0 auto',
-   width: '75px',
+   width: 'auto',
    height: '75px',
    border: '0px solid #000',
-   padding: '5px',
+   // padding: '5px',
    marginRight: '6px',
    marginBottom: '6px',
    borderRadius: '5px',
