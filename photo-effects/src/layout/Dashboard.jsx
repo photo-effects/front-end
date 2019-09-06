@@ -46,7 +46,8 @@ export default class Dashboard extends Component {
     files.forEach((file, i) => {
 
       if (types.every(type => file.type !== type)) {
-        errs.push(`'${file.type}' is not a supported format`)
+        // errs.push(`'${file.type}' is not a supported format`)
+        errs.push(`Sorry about that! We only accept JPG and PNG files! :(`)
       }
 
       if (file.size > 150000) {
@@ -118,7 +119,7 @@ export default class Dashboard extends Component {
     files.forEach((file, i) => {
 
       if (types.every(type => file.type !== type)) {
-        errs.push(`'${file.type}' is not a supported format`)
+        errs.push(`Sorry about that! We only accept JPG and PNG files! :(`)
       }
 
       if (file.size > 150000) {
@@ -246,7 +247,9 @@ export default class Dashboard extends Component {
        <div className="center">
        {(this.state.exist === 'true' && this.state.error === null)  ? <h2>Is this the image you want?</h2> : 
        (<Upload onChange={this.onChange} inputKey={this.state.inputKey} dropOnChange={this.dropOnChange} /> )}
+       <div className="errorBox">
        {this.state.error}
+       </div>
        <Image images={this.state.images} removeImage={this.removeImage} updateProject={this.updateProject}/>
        </div>
        < Projects projects={this.state.projects} updateProject={this.updateProject} />

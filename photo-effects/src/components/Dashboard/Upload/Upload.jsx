@@ -10,10 +10,10 @@ class Upload extends Component {
     return (
       <Dropzone onDrop= {this.props.dropOnChange}>
   {({getRootProps, getInputProps}) => (
-    <section className="hi">
+    <section className="uploadBox">
       <div {...getRootProps()}>
         <input {...getInputProps()} onChange={this.props.onChange} />
-        <p>Drag 'n' drop some files here, or click to select files</p>
+        <p className="dragBox">Drag 'n' drop a file here, or click to select a file!</p>
       </div>
     </section>
   )}
