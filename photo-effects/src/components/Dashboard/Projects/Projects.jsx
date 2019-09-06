@@ -44,12 +44,12 @@ class Projects extends Component {
 render() {
   return (
       <>
-    
+        <h1 className='projects-section-title'>Projects</h1>
         <div className='user-projects'>
         {this.props.projects.map(project => {
             return(
               <div className='project-container'> 
-                <h1 className='uploaded-img-title'>{project.title}</h1>
+                <h2 className='uploaded-img-title'>{project.title}</h2>
                 <div className='uploaded-img-container'>  
                   <img className='uploaded-img' src={project.secure_url} />
                 </div>  
