@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Upload from '../components/Dashboard/Upload/Upload';
 import Image from '../components/Dashboard/Image/Image';
-import Projects from '../components/Dashboard/Projects';
+import Projects from '../components/Dashboard/Projects/Projects';
 import DashNav from '../components/Dashboard/DashNav/DashNav';
 import "../components/Dashboard/DashNav/dashNav.css";
 
