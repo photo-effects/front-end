@@ -6,10 +6,10 @@ import WaterfallCont from '../components/waterfall/waterfallCont';
 import HeroBg from '../components/Landing/Hero/HeroBg'
 
 
-const Landing = () => {
+const Landing = (props) => {
   return (
     <div>
-      <Navbar />
+      <Navbar auth={props.auth}/>
       <div style={{ height: '5.5vh' }} />
       
       <Hero style={{position:'absolute', top:'0px', backgroundImage:'none'}} />
