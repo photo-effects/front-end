@@ -14,16 +14,16 @@ export class Navbar extends Component {
   render() {
     return (
       <nav>
+        <img style={{width:'250px'}} src="https://files.slack.com/files-pri/T4JUEB3ME-FMKCEGRQT/asset_8.png" alt="logo"/> 
       <div>
         <h1 className="logo">Photo Effects</h1>
       </div>
       {/* <p className="navlinks loginbutton">
         <i className="far fa-plus-square plus" /> New Project
       </p> */}
-      <div>
-        <i className="fas fa-search searchbtn" />
-    
-      </div>
+      {/*<div>
+        {/*<i className="fas fa-search searchbtn" />
+      </div>*/}
       <ul className="navlinks navright">
         <li className="smallnavlinks">Features</li>
         <li className="smallnavlinks">About</li>
