@@ -15,9 +15,8 @@ const ToolsArea = props => {
 };
 
 const container = {
-  height: '100%',
   width: '360px',
-  borderRight: '2px solid black'
+  background: '#323F4B',
 };
 
 export default ToolsArea;

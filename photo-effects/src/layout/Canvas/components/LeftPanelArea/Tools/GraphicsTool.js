@@ -28,7 +28,7 @@ export default function GraphicsTool() {
 
 const photoContainer = {
    overflowY: 'auto',
-   height: '130px'
+   height: '160px'
 }
 
 const photoStyle = {
@@ -37,7 +37,9 @@ const photoStyle = {
    height: '75px',
    border: '0px solid #000',
    padding: '5px',
-   marginLeft: '3px',
+   marginRight: '6px',
+   marginBottom: '6px',
    borderRadius: '5px',
    background: '#7B8794',
+   cursor: 'pointer',
 }

@@ -35,7 +35,7 @@ export default class StockPhotosTool extends Component {
 
 const photoContainer = {
    overflowY: 'auto',
-   height: '115px'
+   height: '160px'
 }
 
 const photoStyle = {

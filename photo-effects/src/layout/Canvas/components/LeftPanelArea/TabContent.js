@@ -12,7 +12,7 @@ function TabContent(props) {
 }
 
 const tabContentStyle = {
-   background: '#323F4B',
+   // background: '#323F4B',
    fontSize: '16px',
    color: '#fff',
    padding: '8px',

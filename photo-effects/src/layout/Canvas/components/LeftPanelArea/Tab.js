@@ -29,20 +29,15 @@ class Tab extends Component {
 
 const tabListItem = {
    display: 'flex',
-   // borderTop: '1px solid #F0F4F8',
-   // borderBottom: '1px solid #F0F4F8',
    padding: '10px',
    cursor: 'pointer',
    width: '100%',
    backgroundColor: "#1F2933",
    color: '#F0F4F8',
-   
 }
 
 const tabListActive = {
    display: 'flex',
-   // borderTop: '1px solid #F0F4F8',
-   // borderBottom: '1px solid #F0F4F8',
    padding: '10px',
    cursor: 'pointer',
    width: '100%',

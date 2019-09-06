@@ -10,8 +10,8 @@ class PhotosPanel extends Component {
    render() {
       return (
          <div style={photoContainer}>
-            <div style={divStyle} onClick={() => this.setState({currentComponent: 'Uploads'})}>Uploaded Photos</div>
-            <div style={divStyle} onClick={() => this.setState({currentComponent: 'Stock'})}>Stock Photos</div>
+            <div style={photoButtonStyle} onClick={() => this.setState({currentComponent: 'Uploads'})}>Uploaded Photos</div>
+            <div style={photoButtonStyle} onClick={() => this.setState({currentComponent: 'Stock'})}>Stock Photos</div>
 
             {this.state.currentComponent === 'Uploads' ? <UploadedPhotosTool /> : <StockPhotosTool />}
          </div>
@@ -27,7 +27,7 @@ const photoContainer = {
    // height: '500px'
 }
 
-const divStyle = {
+const photoButtonStyle = {
    display: 'inline-block',
    width: '45%',
    border: '0px solid #000',
