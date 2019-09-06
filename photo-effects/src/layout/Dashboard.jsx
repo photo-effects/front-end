@@ -18,7 +18,8 @@ export default class Dashboard extends Component {
       uploading: false,
       error: null,
       inputKey: Date.now(),
-      exist: 'false'
+      exist: 'false',
+      fileName : ''
     };
   }
 
@@ -30,6 +31,11 @@ export default class Dashboard extends Component {
   onChange = e => {
     const errs = [] 
     const files = Array.from(e.target.files)
+    const fileName = files.map(file => file.name)
+   
+
+    
+
 
 
     // this will clear the error message from the user screen
@@ -89,7 +95,8 @@ export default class Dashboard extends Component {
         uploading: false, 
         exist:'true',
         images,
-        error: null
+        error: null,
+        fileName: fileName[0]
       })
     })
     .catch(err => {
@@ -104,6 +111,8 @@ export default class Dashboard extends Component {
   dropOnChange = (e) => {
     const errs = [] 
     const files = Array.from(e)
+    const fileName = files.map(file => file.name)
+    console.log(fileName)
 
     // this will clear the error message from the user screen
     // this.setState({ error: null })
@@ -161,7 +170,8 @@ export default class Dashboard extends Component {
         uploading: false, 
         exist:'true',
         images,
-        error: null
+        error: null,
+        fileName: fileName[0]
       })
     })
     .catch(err => {
@@ -183,9 +193,9 @@ export default class Dashboard extends Component {
         this.setState({ 
           images: [],
           inputKey: Date.now(),
-          exist: 'false'
+          exist: 'false',
+          fileName: ''
          })
-         console.log(this.state.keys)
       })
       .catch(err => {
           console.log(err);
@@ -250,7 +260,7 @@ export default class Dashboard extends Component {
        <div className="errorBox">
        {this.state.error}
        </div>
-       <Image images={this.state.images} removeImage={this.removeImage} updateProject={this.updateProject}/>
+       <Image images={this.state.images} fileName={this.state.fileName} removeImage={this.removeImage} updateProject={this.updateProject}/>
        </div>
        < Projects projects={this.state.projects} updateProject={this.updateProject} />
       </div>
