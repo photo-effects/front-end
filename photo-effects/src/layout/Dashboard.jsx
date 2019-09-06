@@ -24,7 +24,7 @@ export default class Dashboard extends Component {
   }
 
   
-
+  //
   // When click "Choose File" and choosing a photo the code below will occur. First will check to make sure only using 1 files and will only accept /png /jgp
   // Code set up for multiple files but need to change for only a single file(using because works for now and gets job done)
 
