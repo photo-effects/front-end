@@ -1,0 +1,36 @@
+
+
+.uploadBox {
+    padding: 100px;
+}
+
+
+.hi {
+    font-size: 5rem;
+    border: 8px solid black;
+}
+
+/* 
+.inputFile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+} */
+
+/* .inputFile + label {
+    background-color: #fc5185;
+    padding: 12px;
+    border-radius: 8px;
+    color: whitesmoke;
+    box-shadow: -1px 1px 90px -2px rgba(240,240,240,1);
+    border: none;
+    font-size:2rem;
+    cursor: pointer;
+}
+
+.inputFile + label:hover {
+    filter: brightness(110%);
+} */

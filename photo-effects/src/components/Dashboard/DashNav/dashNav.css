@@ -59,6 +59,8 @@
   .welcome {
       padding-top: 16vh;
       font-size: 3.5rem;
+      width: 95%;
+      margin: 0 auto;
   }
 
   .center {
