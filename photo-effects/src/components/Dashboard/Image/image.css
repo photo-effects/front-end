@@ -1,7 +1,16 @@
 
 
+
 .image-link {
+    margin: 0 auto;
+    overflow: hidden;
     margin-top: 10px;
+    max-width: 600px;
+}
+
+.image-link img {
+    height: 500px;
+    max-width: 100%;
 }
 
 .btn-center {
