@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
+import './projects.css';
 
 
 class Projects extends Component {
@@ -40,26 +41,27 @@ class Projects extends Component {
 // }
 
 
-  render() {
-    return (
-        <>
-        <div className='box'>
-            User Projects:
-        </div>
-        <div>
+render() {
+  return (
+      <>
+    
+        <div className='user-projects'>
         {this.props.projects.map(project => {
             return(
-            <div>
-              <h1>Title:{project.title}</h1>
-              <img src={project.secure_url} />
-              <button onClick={() => this.deleteProject(project.id, project.public_id)}>Delete</button>
+              <div className='project-container'> 
+                <h1 className='uploaded-img-title'>{project.title}</h1>
+                <div className='uploaded-img-container'>  
+                  <img className='uploaded-img' src={project.secure_url} />
+                </div>  
+                <button className='project-delete-button' onClick={() => this.deleteProject(project.id, project.public_id)}>Delete</button>
               </div>
             )
           })}
-          </div>
-          </>
-    );
-  }
+        </div>
+      
+        </>
+  );
+}
 }
 
 
