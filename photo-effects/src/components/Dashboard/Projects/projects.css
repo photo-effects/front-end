@@ -8,14 +8,17 @@
     background: #1F2933;
     flex-wrap: wrap;
     width: 95%;
+    height: 100%;
     margin: 0 auto;
-    
+    margin-top: 100px;
+    padding-bottom: 5%;
+
 }
 
 .uploaded-img {
    flex: 0 0 auto;
-   width: 100px;
-   height: 100px;
+   width: 125px;
+   height: 125px;
    border: 0px solid #000;
    padding: 5px;
    margin-right: 6px;
@@ -39,8 +42,16 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 25%;
+    padding: 5% 0% 0% 0%;
+    padding-bottom: 0%;
 }
 
 .project-delete-button {
-
+    background-color: #fc5185;
+    border: none;
+    border-radius: 5px;;
+    padding: 2%;
+    color: whitesmoke;
+    cursor: pointer;
 }
