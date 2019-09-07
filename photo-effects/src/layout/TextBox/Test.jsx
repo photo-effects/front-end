@@ -7,7 +7,7 @@ import './textBox.css';
 const Test = () => {
   return (
     <div className="container"  >
-      
+      <TextToolbar/>
       <TextEdit/>
       
     </div>
