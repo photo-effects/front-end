@@ -12,7 +12,7 @@ class PhotoLink extends Component {
 
     this.state = {
         photoInfo: {
-            title: `I am test title ${this.props.public_id}`,
+            title: `${this.props.fileName}`,
             user_id: "1",
             secure_url: this.props.secure_url,
             public_id: this.props.public_id,
@@ -56,7 +56,6 @@ class PhotoLink extends Component {
 
 
 render() {
-    console.log(this.props.secure_url)
     return (
         <>
           <div className="image-link">

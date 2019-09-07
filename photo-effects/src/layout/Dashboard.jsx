@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Upload from '../components/Dashboard/Upload/Upload';
 import Image from '../components/Dashboard/Image/Image';
-import Projects from '../components/Dashboard/Projects';
+import Projects from '../components/Dashboard/Projects/Projects';
 import DashNav from '../components/Dashboard/DashNav/DashNav';
 import "../components/Dashboard/DashNav/dashNav.css";
 
@@ -18,18 +18,24 @@ export default class Dashboard extends Component {
       uploading: false,
       error: null,
       inputKey: Date.now(),
-      exist: 'false'
+      exist: 'false',
+      fileName : ''
     };
   }
 
   
-
+  //
   // When click "Choose File" and choosing a photo the code below will occur. First will check to make sure only using 1 files and will only accept /png /jgp
   // Code set up for multiple files but need to change for only a single file(using because works for now and gets job done)
 
   onChange = e => {
     const errs = [] 
     const files = Array.from(e.target.files)
+    const fileName = files.map(file => file.name)
+   
+
+    
+
 
 
     // this will clear the error message from the user screen
@@ -89,7 +95,8 @@ export default class Dashboard extends Component {
         uploading: false, 
         exist:'true',
         images,
-        error: null
+        error: null,
+        fileName: fileName[0]
       })
     })
     .catch(err => {
@@ -104,6 +111,8 @@ export default class Dashboard extends Component {
   dropOnChange = (e) => {
     const errs = [] 
     const files = Array.from(e)
+    const fileName = files.map(file => file.name)
+    console.log(fileName)
 
     // this will clear the error message from the user screen
     // this.setState({ error: null })
@@ -161,7 +170,8 @@ export default class Dashboard extends Component {
         uploading: false, 
         exist:'true',
         images,
-        error: null
+        error: null,
+        fileName: fileName[0]
       })
     })
     .catch(err => {
@@ -183,9 +193,9 @@ export default class Dashboard extends Component {
         this.setState({ 
           images: [],
           inputKey: Date.now(),
-          exist: 'false'
+          exist: 'false',
+          fileName: ''
          })
-         console.log(this.state.keys)
       })
       .catch(err => {
           console.log(err);
@@ -250,7 +260,7 @@ export default class Dashboard extends Component {
        <div className="errorBox">
        {this.state.error}
        </div>
-       <Image images={this.state.images} removeImage={this.removeImage} updateProject={this.updateProject}/>
+       <Image images={this.state.images} fileName={this.state.fileName} removeImage={this.removeImage} updateProject={this.updateProject}/>
        </div>
        < Projects projects={this.state.projects} updateProject={this.updateProject} />
       </div>
