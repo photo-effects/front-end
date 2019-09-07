@@ -19,33 +19,73 @@
 
 .bold {
     font-weight: bold;
+    font-size: 3rem;
+    background: #fc5185;
+    border:none;
+    padding: 10px;
+    width: 50px;
+    border-radius:10px
+
 }
 
 
 .italic {
-    font-style: italic;
+    font-weight: bold;
+    font-size: 3rem;
+    background: #43dde6;
+    border:none;
+    padding: 10px;
+    width: 50px;
+    border-radius:10px
 }
 
 .underline {
-    text-decoration: underline;
+    font-weight: bold;
+    font-size: 3rem;
+    background: #ffdb27;
+    border:none;
+    padding: 10px;
+    width: 50px;
+    border-radius:10px
 }
 
-.color-change-white {
+.white {
     color: white;
 }
 
-.color-change-black {
+.black {
     color: black;
 }
 
-.color-change-red {
+.red {
     color: red;
 }
 
-.color-change-blue {
+.blue {
     color: blue;
 }
 
-.color-change-green {
+.green {
     color: green;
+}
+
+
+.whitebg {
+    background: white;
+}
+
+.blackbg {
+    background: black;
+}
+
+.redbg {
+    background: red;
+}
+
+.bluebg {
+    background: blue;
+}
+
+.greenbg {
+    background: green;
 }
