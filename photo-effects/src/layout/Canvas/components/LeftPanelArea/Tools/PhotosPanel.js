@@ -4,14 +4,16 @@ import StockPhotosTool from './StockPhotosTool';
 
 class PhotosPanel extends Component {
    state = {
-      currentComponent: 'Uploads'
+      currentComponent: 'Stock'
    }
 
    render() {
       return (
-         <div style={photoContainer}>
-            <div style={photoButtonStyle} onClick={() => this.setState({currentComponent: 'Uploads'})}>Uploaded Photos</div>
-            <div style={photoButtonStyle} onClick={() => this.setState({currentComponent: 'Stock'})}>Stock Photos</div>
+         <div>
+            <div className="tab-content-subcontainer">
+               <span className="tab-content-button" onClick={() => this.setState({currentComponent: 'Uploads'})}>Uploads </span>
+               <span className="tab-content-button" onClick={() => this.setState({currentComponent: 'Stock'})}>Stock Photos</span>
+            </div>
 
             {this.state.currentComponent === 'Uploads' ? <UploadedPhotosTool /> : <StockPhotosTool />}
          </div>
@@ -21,21 +23,3 @@ class PhotosPanel extends Component {
 }
 
 export default PhotosPanel;
-
-const photoContainer = {
-   // overflowY: 'auto',
-   // height: '500px'
-}
-
-const photoButtonStyle = {
-   display: 'inline-block',
-   width: '45%',
-   border: '0px solid #000',
-   padding: '5px',
-   textAlign: 'center',
-   marginRight: '6px',
-   marginBottom: '6px',
-   borderRadius: '5px',
-   background: '#1F2933',
-   cursor: 'pointer',
-}

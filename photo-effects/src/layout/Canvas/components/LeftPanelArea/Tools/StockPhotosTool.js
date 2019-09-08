@@ -19,34 +19,15 @@ export default class StockPhotosTool extends Component {
    }
    
    render() {
-      console.log(this.state.photos)
       return (
-         <div style={photoContainer}>
+         <div className="tab-content-photos">
             {this.state.photos.map(photo => {
                return (
-                  <img style={photoStyle} src={photo.src.small} onClick={() => console.log(photo.src.original)}/>
+                  <img className="photo" src={photo.src.small} onClick={() => console.log(photo.src.original)}/>
                )
             })}
          </div>
          
       )
    }
-}
-
-const photoContainer = {
-   overflowY: 'auto',
-   height: '160px'
-}
-
-const photoStyle = {
-   flex: '0 0 auto',
-   width: 'auto',
-   height: '75px',
-   border: '0px solid #000',
-   // padding: '5px',
-   marginRight: '6px',
-   marginBottom: '6px',
-   borderRadius: '5px',
-   background: '#7B8794',
-   cursor: 'pointer',
 }
