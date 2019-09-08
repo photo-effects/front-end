@@ -19,6 +19,12 @@ nav {
   font-weight: bold;
 }
 
+.navbarLogo {
+  margin-left: 80px;
+  height: 60px;
+  width: 150px;
+}
+
 .navlinks {
   display: flex;
   justify-content: space-between;
@@ -28,6 +34,7 @@ nav {
 
 .navright{
   width: 400px;
+  margin-right: 82px;
 }
 
 .smallnavlinks {
@@ -42,7 +49,7 @@ nav {
   box-shadow: -1px 1px 90px -2px rgba(240,240,240,1);
   border: none;
   font-size:2rem;
-  cursor: pointer
+  cursor: pointer;
   
 }
 
