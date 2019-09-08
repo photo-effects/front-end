@@ -1,38 +1,45 @@
 import React, { Component } from 'react';
-import ContentEditable from 'react-contenteditable'
-
-
+import ContentEditable from 'react-contenteditable';
 
 export class TextEdit extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super();
     this.contentEditable = React.createRef();
-    this.state = {html: "<b>Hello <i>World</i></b>"};
-  };
- 
-  handleChange = evt => {
-    this.setState({html: evt.target.value});
-  };
- 
+    this.state = { html: '<b>Hello <i>World</i></b>' };
+  }
 
-  render = () => {
-    return <ContentEditable
-              innerRef={this.contentEditable}
-              html={this.state.html} // innerHTML of the editable div
-              disabled={false}       // use true to disable editing
-              onChange={this.handleChange} // handle innerHTML change
-              tagName='article' // Use a custom HTML tag (uses a div by default)
-            />
+  handleChange = evt => {
+    this.setState({ html: evt.target.value });
+  };
+
+  render = (props) => {
+    console.log(this.props.color)
+    console.log(this.props.background)
+    let color= this.props.color;
+    let background=this.props.background
+    console.log(color + ' , ' + background)
+    return (
+      <ContentEditable className={color + ' , ' + background}
+        style={{
+          margin:'auto',
+          padding: '10px',
+          width:'200px',
+          border: '1px blue solid',
+          textAlign: 'center',
+          fontSize: '3rem',
+          marginTop: '50px'
+        }}
+        innerRef={this.contentEditable}
+        html={this.state.html} // innerHTML of the editable div
+        disabled={false} // use true to disable editing
+        onChange={this.handleChange} // handle innerHTML change
+        tagName="article" // Use a custom HTML tag (uses a div by default)
+      />
+    );
   };
 }
 
-export default TextEdit
-
-
-
-
-
-
+export default TextEdit;
 
 // import React, { useState } from 'react';
 // import TextBox from './TextBox';
@@ -42,14 +49,13 @@ export default TextEdit
 
 //     const [input, setInput] = useState('');
 
-
 //     const handleInputChanges = e => {
 //       setInput(e.target.value);
 //     }
 
 //     console.log(input)
-  
-//   return (  
+
+//   return (
 //     <div style={{border:'1px solid black'}} >
 //      <form>
 //       <input className={ bold ? '.red': ''}
@@ -58,7 +64,7 @@ export default TextEdit
 //       placeholder='ENTER TEXT'
 //       value= {input}
 //       onChange={handleInputChanges}
-//       /> 
+//       />
 //      </form>
 //      <TextToolbar />
 //      <TextBox input={input} />

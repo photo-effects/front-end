@@ -1,45 +1,177 @@
-import React from 'react'
+import React, { useState } from 'react';
+import TextEdit from './TextEdit';
 
 const TextToolbar = () => {
+  const [color, setColor] = useState('');
+  const [background, setBackground] = useState('');
 
-//     const [bold, setBold] = useState(false);
-//     const [italic, setItalic] = useState(false);
-//     const [under, setUnder] = useState(false);
-//     const [white, setWhite] = useState(false);
-//     const [black, setBlack] = useState(false);
-//     const [red, setRed] = useState(false);
-//     const [blue, setBlue] = useState(false);
-//     const [green, setGreen] = useState(false);
+  return (
+    <div>
+      <div
+        style={{
+          padding: '10px',
+          fontSize: '3rem',
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-evenly',
+          width: '600px',
+          border: '1px solid hotpink',
+          marginBlock: '50px',
+          margin: 'auto'
+        }}
+      >
+        <EditButton cmd="bold" btnstyle="bold" />
+        <EditButton cmd="italic" btnstyle="italic" />
+        <EditButton cmd="underline" btnstyle="underline" />
 
-// style={{ padding:'10px', fontSize:'3rem',
-//          display:'flex', flexDirection:'row', 
-//          justifyContent:'space-evenly', width:'500px', 
-//          border:'1px hotpink solid', marginBottom: '50px}}
+        <div style={{display:'flex', marginTop:'20px'}}>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-evenly',
+              width: '230px'
+            }}
+          >
+            <p
+              style={{
+                fontSize: '1.8rem',
+                marginRight: '5px',
+                marginTop: '5px'
+              }}
+            >
+              Text Color:
+            </p>
+            <div
+             onClick={() => setColor('white')}
+              style={{
+                background: 'white',
+                border: 'black 1px solid',
+                width: '25px',
+                height: '25px'
+              }}
+            ></div>
+            <div
+             onClick={() => setColor('black')}
+              style={{
+                background: 'black',
+                border: 'black 1px solid',
+                width: '25px',
+                height: '25px'
+              }}
+            ></div>
+            <div
+              onClick={() => setColor('red')}
+              style={{
+                background: 'red',
+                border: 'black 1px solid',
+                width: '25px',
+                height: '25px'
+              }}
+            ></div>
+            <div
+             onClick={() => setColor('blue')}
+              style={{
+                background: 'blue',
+                border: 'black 1px solid',
+                width: '25px',
+                height: '25px'
+              }}
+            ></div>
+            <div
+             onClick={() => setColor('green')}
+              style={{
+                background: 'green',
+                border: 'black 1px solid',
+                width: '25px',
+                height: '25px'
+              }}
+            ></div>
+          </div>
 
 
-    return (
-        <div 
-        style= {{
-            padding: '10px',
-            fontSize: '3rem',
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-evenly',
-            width: '500px',
-            border: '1px solid hotpink',
-            marginBlock: '50px'
-        }}>
-         
-             <i className="fas https://gobrief.zoom.us/j/215535944">  </i> 
-             <i className="fas fa-italic">  </i>
-             <i className="fas fa-underline">  </i>
-             <div style={{background:'white', border:'black 1px solid', width:'50px', height:'50px'}}> </div>
-             <div style={{background:'black', border:'black 1px solid', width:'50px', height:'50px'}}> </div>
-             <div style={{background:'red', border:'black 1px solid', width:'50px', height:'50px'}}> </div>
-             <div style={{background:'blue', border:'black 1px solid', width:'50px', height:'50px'}}> </div>
-           <div style={{background:'green', border:'black 1px solid', width:'50px', height:'50px'}}> </div>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-evenly',
+              width: '230px'
+            }}
+          >
+            <p
+              style={{
+                fontSize: '1.8rem',
+                marginRight: '5px',
+                marginTop: '5px'
+              }}
+            >
+              Background:
+            </p>
+            <div
+            onClick={() => setBackground('whitebg')}
+              style={{
+                background: 'white',
+                border: 'black 1px solid',
+                width: '25px',
+                height: '25px'
+              }}
+            ></div>
+            <div
+            onClick={() => setBackground('blackbg')}
+              style={{
+                background: 'black',
+                border: 'black 1px solid',
+                width: '25px',
+                height: '25px'
+              }}
+            ></div>
+            <div
+              onClick={() => setBackground('redbg')}
+              style={{
+                background: 'red',
+                border: 'black 1px solid',
+                width: '25px',
+                height: '25px'
+              }}
+            ></div>
+            <div
+            onClick={() => setBackground('bluebg')}
+              style={{
+                background: 'blue',
+                border: 'black 1px solid',
+                width: '25px',
+                height: '25px'
+              }}
+            ></div>
+            <div
+            onClick={() => setBackground('greenbg')}
+              style={{
+                background: 'green',
+                border: 'black 1px solid',
+                width: '25px',
+                height: '25px'
+              }}
+            ></div>
+          </div>
         </div>
-    )
-}
+      </div>
+      <TextEdit color={color} background={background} />
+    </div>
+  );
+};
 
-export default TextToolbar
+function EditButton(props) {
+  return (
+    <button
+      className={props.btnstyle}
+      key={props.cmd}
+      onMouseDown={evt => {
+        evt.preventDefault(); // Avoids loosing focus from the editable area
+        document.execCommand(props.cmd, false, props.arg); // Send the command to the browser
+      }}
+    >
+      <i className={'fas fa-' + props.cmd}> </i>
+    </button>
+  );
+}
+export default TextToolbar;
