@@ -19,11 +19,11 @@
 
 .bold {
     font-weight: bold;
-    font-size: 3rem;
+    font-size: 1.5rem;
     background: #fc5185;
     border:none;
     padding: 10px;
-    width: 50px;
+
     border-radius:10px
 
 }
@@ -31,21 +31,19 @@
 
 .italic {
     font-weight: bold;
-    font-size: 3rem;
+    font-size: 1.5rem;
     background: #43dde6;
     border:none;
     padding: 10px;
-    width: 50px;
     border-radius:10px
 }
 
 .underline {
     font-weight: bold;
-    font-size: 3rem;
+    font-size: 1.5rem;
     background: #ffdb27;
     border:none;
     padding: 10px;
-    width: 50px;
     border-radius:10px
 }
 

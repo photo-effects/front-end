@@ -24,8 +24,8 @@ export class TextEdit extends Component {
         style={{
           margin:'auto',
           padding: '10px',
-          width:'500px',
-          height:'500px',
+          width:'50%',
+          // height:'500px',
           border: '1px blue solid',
           textAlign: 'center',
           fontSize: this.props.slider,
