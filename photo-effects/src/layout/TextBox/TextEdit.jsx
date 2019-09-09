@@ -29,7 +29,7 @@ export class TextEdit extends Component {
           border: '1px blue solid',
           textAlign: 'center',
           fontSize: this.props.slider,
-          marginTop: '50px'
+          marginTop: '100px'
         }}
         innerRef={this.contentEditable}
         html={this.state.html} // innerHTML of the editable div

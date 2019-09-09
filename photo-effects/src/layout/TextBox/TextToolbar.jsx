@@ -10,6 +10,7 @@ const TextToolbar = () => {
   const [background, setBackground] = useState('');
   const [slider, setSlider] = useState('')
   const [txtcolor, setTxtcolor] = useState(false)
+  const [bgcolor, setBgcolor] = useState(false)
     
 const sliderValue =(value)=>{
 // console.log(value)
@@ -24,18 +25,21 @@ const sliderValue =(value)=>{
         style={toolbarStyle}
       >
 
-        <div>
-        <div style={{width:'100px'}}>
+        <div style={{display:'flex', flexDirection:'row', alightItems:'center'}}>
+        <div style={{width:'100px', marginTop:'15px'}}>
         <EditButton cmd="bold" btnstyle='bold' />
         <EditButton cmd="italic" btnstyle="italic" />
         <EditButton cmd="underline" btnstyle="underline" />
         </div>
+
+        <div className='dropMenus' style={{display:'flex', flexDirection:'row', justifyContent:'center', width:'120px', marginTop:'30px'}}>
         <div
             style={ buiButtons}
           >
           
-              <i className="fas fa-font" style={{background:'white', color:'#FC5185', padding:'10px', borderRadius:'8px'}}></i>
-            
+              <p onClick={()=>setTxtcolor(!txtcolor)} style={{background:'white', color:'#FC5185', padding:'8px 10px', borderRadius:'8px', fontSize:'2rem', textDecoration:'underline', position:'relative',bottom:'19px', left:'-20px'}}>A</p>
+              { txtcolor ? 
+            <div style={{position:'absolute', top:'65px', left:'196px'}} >
             <div
              onClick={() => setColor('white')}
               style={whitetxt}
@@ -56,23 +60,19 @@ const sliderValue =(value)=>{
              onClick={() => setColor('green')}
               style={greentxt}
             ></div>
+            </div> : ''}
           </div>
-
-          </div>
-
-        <Slider sliderValue={sliderValue}  />
-        <div style={txtcontainer}>
-          
-
-
           <div
             style={bgcontainer}
           >
             <p
-              style={bgcolor}
+            onClick={()=>setBgcolor(!bgcolor)}
+              style={{background:'white', color:'#FC5185', padding:'8px 9px', borderRadius:'8px', fontSize:'2rem', textDecoration:'underline',position:'relative',bottom:'18px', left:'-30px', }}
             >
-              Background:
+              Bg
             </p>
+            { bgcolor ?
+            <div style={{position:'absolute', top:'65px', left:'249px'}} >
             <div
             onClick={() => setBackground('whitebg')}
               style={whitebg}
@@ -93,8 +93,13 @@ const sliderValue =(value)=>{
             onClick={() => setBackground('greenbg')}
               style={greenbg}
             ></div>
+          </div> : ''
+          }
           </div>
-        </div>
+          </div>
+         <p style={{paddingTop:'20px', paddingRight:'5px'}}>Font:</p> 
+          <Slider sliderValue={sliderValue}  />
+          </div>
       </div>
       <TextEdit color={color} background={background} slider={slider} />
     </div>
@@ -125,7 +130,7 @@ const toolbarStyle = {
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'space-between',
-  width: '1200px',
+  width: '800px',
   border: '1px solid hotpink',
   marginBlock: '50px',
   margin: 'auto',
@@ -152,6 +157,7 @@ const whitetxt={
   border: 'black 1px solid',
   width: '25px',
   height: '25px',
+  borderRadius:'6px'
   
 }
 
@@ -159,37 +165,42 @@ const blacktxt={
   background: 'black',
   border: 'black 1px solid',
   width: '25px',
-  height: '25px'
+  height: '25px',
+  borderRadius:'6px'
 }
 
 const redtxt={
   background: 'red',
   border: 'black 1px solid',
   width: '25px',
-  height: '25px'
+  height: '25px',
+  borderRadius:'6px'
 }
 
 const bluetxt={
   background: 'blue',
   border: 'black 1px solid',
   width: '25px',
-  height: '25px'
+  height: '25px',
+  borderRadius:'6px'
 }
 
 const greentxt={
   background: 'green',
   border: 'black 1px solid',
   width: '25px',
-  height: '25px'
+  height: '25px',
+  borderRadius:'6px'
 }
 
 const txtcontainer ={display:'flex', marginTop:'20px'}
 
 const bgcontainer ={
   display: 'flex',
-  flexDirection: 'row',
+  flexDirection: 'column',
   justifyContent: 'space-evenly',
-  width: '230px'
+  alignItems:'center'
+  // width: '230px'
 }
 
 const bgcolor={
@@ -202,33 +213,39 @@ const whitebg={
   background: 'white',
   border: 'black 1px solid',
   width: '25px',
-  height: '25px'
+  height: '25px',
+  borderRadius:'6px'
 }
 
 const blackbg={
   background: 'black',
   border: 'black 1px solid',
   width: '25px',
-  height: '25px'
+  height: '25px',
+  borderRadius:'6px'
+
 }
 
 const redbg={
   background: 'red',
   border: 'black 1px solid',
   width: '25px',
-  height: '25px'
+  height: '25px',
+  borderRadius:'6px'
 }
 
 const bluebg={
   background: 'blue',
   border: 'black 1px solid',
   width: '25px',
-  height: '25px'
+  height: '25px',
+  borderRadius:'6px'
 }
 
 const greenbg={
   background: 'green',
   border: 'black 1px solid',
   width: '25px',
-  height: '25px'
+  height: '25px',
+  borderRadius:'6px'
 }

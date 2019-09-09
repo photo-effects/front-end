@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 import Photolist from '../../waterfall/Photolist';
 import TagsCont from '../../Landing/Tags/TagsCont';
 import './nav.css';
@@ -18,8 +19,8 @@ export class Navbar extends Component {
       </p> */}
    
       <ul className="navlinks navright">
-        <li className="smallnavlinks">Features</li>
-        <li className="smallnavlinks">About</li>
+        <li className="smallnavlinks"><Link to='/dashboard'>Dashboard</Link></li>
+        <li className="smallnavlinks"><Link to='/canvas'>Canvas</Link></li>
         <li ><button className="loginbutton" onClick={this.props.auth.login} >Login/Signup</button></li>
          {/* <li ><button className="loginbutton" onClick={this.props.auth.logout} >Logout</button></li> */}
         
