@@ -9,6 +9,7 @@ const TextToolbar = () => {
   const [color, setColor] = useState('');
   const [background, setBackground] = useState('');
   const [slider, setSlider] = useState('')
+  const [txtcolor, setTxtcolor] = useState(false)
     
 const sliderValue =(value)=>{
 // console.log(value)
@@ -22,20 +23,19 @@ const sliderValue =(value)=>{
       <div
         style={toolbarStyle}
       >
-        <EditButton cmd="bold" btnstyle="bold" />
+
+        <div>
+        <div style={{width:'100px'}}>
+        <EditButton cmd="bold" btnstyle='bold' />
         <EditButton cmd="italic" btnstyle="italic" />
         <EditButton cmd="underline" btnstyle="underline" />
-
-        <Slider sliderValue={sliderValue}  />
-        <div style={txtcontainer}>
-          <div
+        </div>
+        <div
             style={ buiButtons}
           >
-            <p
-              style={txtColor}
-            >
-              Text Color:
-            </p>
+          
+              <i className="fas fa-font" style={{background:'white', color:'#FC5185', padding:'10px', borderRadius:'8px'}}></i>
+            
             <div
              onClick={() => setColor('white')}
               style={whitetxt}
@@ -58,6 +58,12 @@ const sliderValue =(value)=>{
             ></div>
           </div>
 
+          </div>
+
+        <Slider sliderValue={sliderValue}  />
+        <div style={txtcontainer}>
+          
+
 
           <div
             style={bgcontainer}
@@ -77,30 +83,15 @@ const sliderValue =(value)=>{
             ></div>
             <div
               onClick={() => setBackground('redbg')}
-              style={{
-                background: 'red',
-                border: 'black 1px solid',
-                width: '25px',
-                height: '25px'
-              }}
+              style={redbg}
             ></div>
             <div
             onClick={() => setBackground('bluebg')}
-              style={{
-                background: 'blue',
-                border: 'black 1px solid',
-                width: '25px',
-                height: '25px'
-              }}
+              style={bluebg}
             ></div>
             <div
             onClick={() => setBackground('greenbg')}
-              style={{
-                background: 'green',
-                border: 'black 1px solid',
-                width: '25px',
-                height: '25px'
-              }}
+              style={greenbg}
             ></div>
           </div>
         </div>
@@ -126,21 +117,26 @@ const sliderValue =(value)=>{
 // }
 export default TextToolbar;
 
+
+
 const toolbarStyle = {
   padding: '10px',
   fontSize: '3rem',
   display: 'flex',
   flexDirection: 'row',
-  justifyContent: 'space-evenly',
+  justifyContent: 'space-between',
   width: '1200px',
   border: '1px solid hotpink',
   marginBlock: '50px',
-  margin: 'auto'
+  margin: 'auto',
+  backgroundColor:'#364F6B',
+  color:'white'
 }
 
 const buiButtons={
   display: 'flex',
-  flexDirection: 'row',
+  flexDirection: 'column',
+  alignItems:'center',
   justifyContent: 'space-evenly',
   width: '230px'
 }
@@ -155,7 +151,8 @@ const whitetxt={
   background: 'white',
   border: 'black 1px solid',
   width: '25px',
-  height: '25px'
+  height: '25px',
+  
 }
 
 const blacktxt={
@@ -210,6 +207,27 @@ const whitebg={
 
 const blackbg={
   background: 'black',
+  border: 'black 1px solid',
+  width: '25px',
+  height: '25px'
+}
+
+const redbg={
+  background: 'red',
+  border: 'black 1px solid',
+  width: '25px',
+  height: '25px'
+}
+
+const bluebg={
+  background: 'blue',
+  border: 'black 1px solid',
+  width: '25px',
+  height: '25px'
+}
+
+const greenbg={
+  background: 'green',
   border: 'black 1px solid',
   width: '25px',
   height: '25px'
