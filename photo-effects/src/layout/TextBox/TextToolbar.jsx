@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
+
 import TextEdit from './TextEdit';
+import EditButton from './editbutton';
+import Slider from './Slider';
+
 
 const TextToolbar = () => {
   const [color, setColor] = useState('');
@@ -8,102 +12,50 @@ const TextToolbar = () => {
   return (
     <div>
       <div
-        style={{
-          padding: '10px',
-          fontSize: '3rem',
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-evenly',
-          width: '600px',
-          border: '1px solid hotpink',
-          marginBlock: '50px',
-          margin: 'auto'
-        }}
+        style={toolbarStyle}
       >
         <EditButton cmd="bold" btnstyle="bold" />
         <EditButton cmd="italic" btnstyle="italic" />
         <EditButton cmd="underline" btnstyle="underline" />
 
-        <div style={{display:'flex', marginTop:'20px'}}>
+        <Slider />
+        <div style={txtcontainer}>
           <div
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'space-evenly',
-              width: '230px'
-            }}
+            style={ buiButtons}
           >
             <p
-              style={{
-                fontSize: '1.8rem',
-                marginRight: '5px',
-                marginTop: '5px'
-              }}
+              style={txtColor}
             >
               Text Color:
             </p>
             <div
              onClick={() => setColor('white')}
-              style={{
-                background: 'white',
-                border: 'black 1px solid',
-                width: '25px',
-                height: '25px'
-              }}
+              style={whitetxt}
             ></div>
             <div
              onClick={() => setColor('black')}
-              style={{
-                background: 'black',
-                border: 'black 1px solid',
-                width: '25px',
-                height: '25px'
-              }}
+              style={blacktxt}
             ></div>
             <div
               onClick={() => setColor('red')}
-              style={{
-                background: 'red',
-                border: 'black 1px solid',
-                width: '25px',
-                height: '25px'
-              }}
+              style={redtxt}
             ></div>
             <div
              onClick={() => setColor('blue')}
-              style={{
-                background: 'blue',
-                border: 'black 1px solid',
-                width: '25px',
-                height: '25px'
-              }}
+              style={bluetxt}
             ></div>
             <div
              onClick={() => setColor('green')}
-              style={{
-                background: 'green',
-                border: 'black 1px solid',
-                width: '25px',
-                height: '25px'
-              }}
+              style={greentxt}
             ></div>
           </div>
 
 
           <div
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'space-evenly',
-              width: '230px'
-            }}
+            style={bgcontainer}
           >
             <p
-              style={{
-                fontSize: '1.8rem',
-                marginRight: '5px',
-                marginTop: '5px'
-              }}
+              style={bgcolor}
             >
               Background:
             </p>
@@ -160,18 +112,93 @@ const TextToolbar = () => {
   );
 };
 
-function EditButton(props) {
-  return (
-    <button
-      className={props.btnstyle}
-      key={props.cmd}
-      onMouseDown={evt => {
-        evt.preventDefault(); // Avoids loosing focus from the editable area
-        document.execCommand(props.cmd, false, props.arg); // Send the command to the browser
-      }}
-    >
-      <i className={'fas fa-' + props.cmd}> </i>
-    </button>
-  );
-}
+// function EditButton(props) {
+//   return (
+//     <button
+//       className={props.btnstyle}
+//       key={props.cmd}
+//       onMouseDown={evt => {
+//         evt.preventDefault(); // Avoids loosing focus from the editable area
+//         document.execCommand(props.cmd, false, props.arg); // Send the command to the browser
+//       }}
+//     >
+//       <i className={'fas fa-' + props.cmd}> </i>
+//     </button>
+//   );
+// }
 export default TextToolbar;
+
+const toolbarStyle = {
+  padding: '10px',
+  fontSize: '3rem',
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-evenly',
+  width: '1200px',
+  border: '1px solid hotpink',
+  marginBlock: '50px',
+  margin: 'auto'
+}
+
+const buiButtons={
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-evenly',
+  width: '230px'
+}
+
+const txtColor= {
+  fontSize: '1.8rem',
+  marginRight: '5px',
+  marginTop: '5px'
+}
+
+const whitetxt={
+  background: 'white',
+  border: 'black 1px solid',
+  width: '25px',
+  height: '25px'
+}
+
+const blacktxt={
+  background: 'black',
+  border: 'black 1px solid',
+  width: '25px',
+  height: '25px'
+}
+
+const redtxt={
+  background: 'red',
+  border: 'black 1px solid',
+  width: '25px',
+  height: '25px'
+}
+
+const bluetxt={
+  background: 'blue',
+  border: 'black 1px solid',
+  width: '25px',
+  height: '25px'
+}
+
+const greentxt={
+  background: 'green',
+  border: 'black 1px solid',
+  width: '25px',
+  height: '25px'
+}
+
+const txtcontainer ={display:'flex', marginTop:'20px'}
+
+const bgcontainer ={
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-evenly',
+  width: '230px'
+}
+
+const bgcolor={
+  fontSize: '1.8rem',
+  marginRight: '5px',
+  marginTop: '5px'
+}
