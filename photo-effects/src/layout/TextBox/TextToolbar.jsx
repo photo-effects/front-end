@@ -8,7 +8,15 @@ import Slider from './Slider';
 const TextToolbar = () => {
   const [color, setColor] = useState('');
   const [background, setBackground] = useState('');
+  const [slider, setSlider] = useState('')
+    
+const sliderValue =(value)=>{
+// console.log(value)
 
+  setSlider(value)
+
+}
+ 
   return (
     <div>
       <div
@@ -18,7 +26,7 @@ const TextToolbar = () => {
         <EditButton cmd="italic" btnstyle="italic" />
         <EditButton cmd="underline" btnstyle="underline" />
 
-        <Slider />
+        <Slider sliderValue={sliderValue}  />
         <div style={txtcontainer}>
           <div
             style={ buiButtons}
@@ -61,21 +69,11 @@ const TextToolbar = () => {
             </p>
             <div
             onClick={() => setBackground('whitebg')}
-              style={{
-                background: 'white',
-                border: 'black 1px solid',
-                width: '25px',
-                height: '25px'
-              }}
+              style={whitebg}
             ></div>
             <div
             onClick={() => setBackground('blackbg')}
-              style={{
-                background: 'black',
-                border: 'black 1px solid',
-                width: '25px',
-                height: '25px'
-              }}
+              style={blackbg}
             ></div>
             <div
               onClick={() => setBackground('redbg')}
@@ -107,7 +105,7 @@ const TextToolbar = () => {
           </div>
         </div>
       </div>
-      <TextEdit color={color} background={background} />
+      <TextEdit color={color} background={background} slider={slider} />
     </div>
   );
 };
@@ -201,4 +199,18 @@ const bgcolor={
   fontSize: '1.8rem',
   marginRight: '5px',
   marginTop: '5px'
+}
+
+const whitebg={
+  background: 'white',
+  border: 'black 1px solid',
+  width: '25px',
+  height: '25px'
+}
+
+const blackbg={
+  background: 'black',
+  border: 'black 1px solid',
+  width: '25px',
+  height: '25px'
 }

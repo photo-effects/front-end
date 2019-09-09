@@ -9,20 +9,24 @@ export class Slider extends Component {
         super(props);
 
         this.state = {
-            value: 5
+            value: 30
         };
     }
 
+    getValue=value=>{
+        this.setState({value})
+        this.props.sliderValue(value)
+    }
     
     render() {
         return (
             <div style={{marginTop: '30px', height: '50px', width: '200px',display: 'flex', flexDirection: 'column', }}>
                 <InputRange
-                    maxValue={100}
+                    maxValue={180}
                     minValue={0}
                     value={this.state.value}
-                    onChange={value => this.setState({ value })}
-                    onChangeComplete={value => console.log(value)}
+                    onChange={value => this.getValue( value )}
+                    onChangeComplete={value => this.getValue(value) }
 
             
                 />

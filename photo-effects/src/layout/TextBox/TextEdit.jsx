@@ -15,6 +15,7 @@ export class TextEdit extends Component {
   render = (props) => {
     console.log(this.props.color)
     console.log(this.props.background)
+    console.log(this.props.slider)
     let color= this.props.color;
     let background=this.props.background
     console.log(color + ' , ' + background)
@@ -23,10 +24,11 @@ export class TextEdit extends Component {
         style={{
           margin:'auto',
           padding: '10px',
-          width:'200px',
+          width:'500px',
+          height:'500px',
           border: '1px blue solid',
           textAlign: 'center',
-          fontSize: '3rem',
+          fontSize: this.props.slider,
           marginTop: '50px'
         }}
         innerRef={this.contentEditable}
