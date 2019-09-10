@@ -1,4 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+
+
+// import TextToolbar from '../../../TextBox/TextToolbar';
 
 export default class Toolbar extends Component {
   state = {
@@ -19,12 +22,13 @@ export default class Toolbar extends Component {
   render() {
     return (
       <div style = { this.container(this.state.open) }>
-        Toolbar
+        {/* <TextToolbar /> */}
         <div 
           style = { openBtn }
           onClick = { () => this.setState({ open: !this.state.open }) }
         >
           open
+          
         </div>
       </div>
     )
