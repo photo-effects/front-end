@@ -7,7 +7,7 @@ import ToolPanel from '../../components/LeftPanelArea/ToolPanel';
 const ToolsArea = props => {
   return (
     <div style = { container }>
-      <TopBar auth={this.props.auth} />
+      <TopBar/>
       {/* <ToolsContainer /> */}
       <ToolPanel 
         addText = { props.addText }
