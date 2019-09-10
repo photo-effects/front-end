@@ -26,9 +26,7 @@ class Projects extends Component {
       });
   };
 
-  sorting = () => {
-    console.log(this.props.projects);
-  }
+ 
 
 
   // staging
@@ -55,7 +53,8 @@ class Projects extends Component {
        <>
        <h1 className="projects-section-title">Projects</h1>
        <button onClick={this.sorting} className="sort"> Sort</button>
-          <div className="user-projects"> 
+          <div className="user-projects">
+
           {this.props.projects.map(project => {
             return (
               <div className="project-container">

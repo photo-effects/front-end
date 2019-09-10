@@ -13,11 +13,13 @@ export default class Dashboard extends Component {
       users: [],
       images: [],
       projects: [],
+      projectSort: [],
       uploading: false,
       error: null,
       inputKey: Date.now(),
       exist: "false",
-      fileName: ""
+      fileName: "",
+      sort: false
     };
   }
 
@@ -195,10 +197,9 @@ export default class Dashboard extends Component {
   // will update state for user projects when adding/deleting for now.
   updateProject = (e, newProject) => {
     this.setState({
-       projects: newProject
-       })
+      projects: newProject
+    });
   };
-
 
   // logout
   logoutButton = e => {
@@ -206,7 +207,6 @@ export default class Dashboard extends Component {
     console.log(this.props);
     this.props.history.push("/home");
   };
-
 
   componentDidMount() {
     // sets users in state
@@ -221,6 +221,12 @@ export default class Dashboard extends Component {
       .then(res => this.setState({ projects: res.data }))
       .catch(err => console.log(err));
 
+    axios
+      // .get("https://photo-effects-backend.herokuapp.com/api/projects/sort")
+      .get("http://localhost:5000/api/projects/sort")
+      .then(res => this.setState({ projectSort: res.data }))
+      .catch(err => console.log(err));
+
     // staging
     // axios
     // .get('https://photo-effects-backend-stage-1.herokuapp.com/api/users')
@@ -231,6 +237,10 @@ export default class Dashboard extends Component {
     // .get('https://photo-effects-backend-stage-1.herokuapp.com/api/projects')
     // .then(res => this.setState({ projects: res.data }))
     // .catch(err => console.log(err));
+  }
+
+  toggleSort = () => {
+    this.setState({sort: !this.state.sort})
   }
 
   render() {
@@ -258,12 +268,17 @@ export default class Dashboard extends Component {
             updateProject={this.updateProject}
           />
         </div>
+        <button onClick={this.toggleSort}>Toggle Sort</button>
         <Projects
           projects={this.state.projects}
+          // projectSort={this.state.projectSort}
+
+          projects={this.state.sort === false ? this.state.projects : this.state.projectSort}
+
+          // sort={this.state.sort}
           updateProject={this.updateProject}
           // loading={this.state.loading}
         />
-
       </div>
     );
   }
