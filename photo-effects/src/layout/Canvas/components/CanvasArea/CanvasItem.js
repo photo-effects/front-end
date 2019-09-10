@@ -165,6 +165,7 @@ export default class CanvasItem extends Component {
   render() {
     const { 
       resizing,
+      dragging,
       getPosition,
       item
     } = this.props;
@@ -180,13 +181,21 @@ export default class CanvasItem extends Component {
           e => this.setOverlayCover(e) 
         }
         onMouseOut = { 
-          !resizing ? e => this.setOverlayContain(e) : null 
+          !resizing && !dragging ? e => this.setOverlayContain(e) : null 
         }
       >
-        <img 
-          src = { item.secure_url }
-          style = {{ height: '100%', width: '100%' }}
-        />
+        {/* {
+          item === 'text' ?
+            <div contenteditable="true" style = {{ border: '2px solid red', height: '100%', width: '100%' }}>
+              textarea
+            </div>
+          :
+            <img 
+              src = { item.secure_url }
+              style = {{ height: '100%', width: '100%' }}
+            />
+        } */}
+        { item }
         { this.resizers.map((resizer, i) => (
             <Resizer 
               resizer = { resizer }

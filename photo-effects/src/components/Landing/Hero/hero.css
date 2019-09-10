@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-around;
   align-content: center;
-  padding-top: 120px;
+  padding-top: 100px;
   position: absolute;
   margin: auto;
   width: 100%;
@@ -13,7 +13,7 @@
 }
 
 .herobg{
-  height: 700px;
+  height: 600px;
 
 
 }
@@ -24,9 +24,10 @@
 }
 
 .title{
-  font-size: 13rem;
+  margin-top: 50px;
+  font-size: 8rem;
   color: whitesmoke;
-  width: 30%;
+  width: 35%;
   text-shadow: -2px 1px 1px rgb(40, 5, 145);
 }
 
@@ -35,10 +36,14 @@
   border: whitesmoke 1px solid;
   border-radius: 8px;
   width:40%;
-  height: 500px;
+  height: 350px;
 }
 
+.cards:hover{
+  transition: transform .5s;
+  transform: scale(1.05);
 
+}
 
 
 /*  Media Queries */
@@ -49,7 +54,7 @@
 
 @media (max-width: 1615px) {
   .title {
-    font-size: 10rem;
+    font-size: 8rem;
   }
 }
 

@@ -6,10 +6,15 @@ import ToolsTopArea from './ToolsTopArea';
 
 const ToolsArea = props => {
   return (
-    <div className="panel-container">
-      {/* <TopBar /> */}
-      <ToolsTopArea />
-      <ToolPanel />
+
+    <div  className="panel-container">
+      
+      {/* <ToolsContainer /> */}
+     <ToolsTopArea />
+      <ToolPanel 
+        addText = { props.addText }
+      />
+
     </div>
   );
 };
