@@ -9,7 +9,9 @@ const ToolsArea = props => {
     <div style = { container }>
       <TopBar auth={this.props.auth} />
       {/* <ToolsContainer /> */}
-      <ToolPanel />
+      <ToolPanel 
+        addText = { props.addText }
+      />
     </div>
   );
 };

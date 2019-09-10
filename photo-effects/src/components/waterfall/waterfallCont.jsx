@@ -2,11 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Photolist from './Photolist';
 import './waterfall.css';
 import axios from 'axios';
-
 const WaterfallCont = () => {
-
   const [pics, setPics] = useState([]);
-
   useEffect(() => {
     axios.get('http://jsonplaceholder.typicode.com/photos?_limit=100')
       .then(res => {
@@ -14,7 +11,6 @@ const WaterfallCont = () => {
         setPics(res.data);
       });
   }, []);
-
   return (
     <div className="waterfallcont" >
       <Photolist pics={pics}/>
@@ -22,5 +18,4 @@ const WaterfallCont = () => {
     </div>
   );
 };
-
 export default WaterfallCont;

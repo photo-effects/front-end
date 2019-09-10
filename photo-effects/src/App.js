@@ -16,6 +16,7 @@ import Auth from './components/Auth/AuthOne/Auth';
 import Home from './components/Auth/Home';
 import Callback from './components/Auth/Callback';
 
+import Test from './layout/TextBox/Test';
 
 
 
@@ -55,7 +56,8 @@ export default class App extends Component {
         <Route exact path="/canvas" 
         render = {props => <Canvas auth={this.auth} {...props} />}
         />
-        
+        <Route exact path='/textbox' component={Test} />
+
         <Route component={Notfound} />
       </Switch>
       {/* </Router> */}

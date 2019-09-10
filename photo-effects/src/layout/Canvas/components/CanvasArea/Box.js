@@ -9,7 +9,6 @@ export default class Box extends Component {
     resizing: false,
     x: 0,
     y: 0,
-    z: 0,
     nodeX: 0,
     nodeY: 0,
     nodeWidth: 0,
@@ -31,7 +30,7 @@ export default class Box extends Component {
   }
 
   componentDidMount() {
-    const { item, top_z } = this.props;
+    const { item } = this.props;
     const { width, height } = item;
 
     const _this = ReactDOM.findDOMNode(this);
@@ -39,8 +38,7 @@ export default class Box extends Component {
     const { left, top } = parent;
 
     this.setState({ 
-      item, left, top, 
-      z: top_z,
+      item, left, top,
       nodeWidth: width || 100,
       nodeHeight: height || 100,
       max_x: parent.width,
@@ -48,8 +46,8 @@ export default class Box extends Component {
       overlay: {
         top: 0,
         left: 0,
-        width: width + 12,
-        height: height + 12
+        width: width + 12 || 112,
+        height: height + 12 || 112
       }
     })
   }
@@ -78,7 +76,7 @@ export default class Box extends Component {
       top: top,
       left: left,
       border: '2px solid blue',
-      zIndex: this.state.z 
+      zIndex: hover ? 1000000000 : this.state.item.props.style.zIndex
     }
   }
 
@@ -112,6 +110,7 @@ export default class Box extends Component {
 
   getPosition = e => {
     e.preventDefault();
+    this.props.bringToTop(this.state.item.props.id)
 
     const mouseup = () => {
       this.setState({ dragging: false })
