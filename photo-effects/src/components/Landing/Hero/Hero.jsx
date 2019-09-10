@@ -11,7 +11,7 @@ const Hero = () => {
          
       <div className="hero">
    
-        <div className="title">Make your Next Design A Breeze!</div>
+        <div className="title">Make your Next Design <br /> A Breeze!</div>
         <Iframe
           url="https://www.youtube.com/embed/FUqfZnF-NNQ"
           width="100%"
