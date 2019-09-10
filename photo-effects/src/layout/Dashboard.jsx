@@ -223,7 +223,7 @@ export default class Dashboard extends Component {
 
     axios
       // .get("https://photo-effects-backend.herokuapp.com/api/projects/sort")
-      .get("http://localhost:5000/api/projects/sort")
+      .get("https://photo-effects-backend.herokuapp.com/api/projects/sort")
       .then(res => this.setState({ projectSort: res.data }))
       .catch(err => console.log(err));
 
