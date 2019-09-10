@@ -239,9 +239,10 @@ export default class Dashboard extends Component {
     // .catch(err => console.log(err));
   }
 
+  // Toggle
   toggleSort = () => {
-    this.setState({sort: !this.state.sort})
-  }
+    this.setState({ sort: !this.state.sort });
+  };
 
   render() {
     return (
@@ -268,16 +269,15 @@ export default class Dashboard extends Component {
             updateProject={this.updateProject}
           />
         </div>
-        <button onClick={this.toggleSort}>Toggle Sort</button>
         <Projects
           projects={this.state.projects}
-          // projectSort={this.state.projectSort}
-
-          projects={this.state.sort === false ? this.state.projects : this.state.projectSort}
-
-          // sort={this.state.sort}
+          projects={
+            this.state.sort === false
+              ? this.state.projects
+              : this.state.projectSort
+          }
           updateProject={this.updateProject}
-          // loading={this.state.loading}
+          toggleSort={this.toggleSort}
         />
       </div>
     );
