@@ -25,7 +25,7 @@ export default class TopBar extends Component {
         // do something
         break;
       case 'Logout': 
-        return this.props.auth.logout
+        return this.props.auth.logout();
 
       default: return;
     }
