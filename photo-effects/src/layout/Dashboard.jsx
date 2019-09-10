@@ -250,7 +250,7 @@ export default class Dashboard extends Component {
   render() {
     return ( 
       <div>
-        <DashNav />
+        <DashNav auth={this.props.auth}/>
         <div className="welcome">
        <h1>Welcome Username!</h1>
        </div>
