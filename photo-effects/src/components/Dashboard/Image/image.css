@@ -1,0 +1,44 @@
+
+
+
+.image-link {
+    margin: 0 auto;
+    overflow: hidden;
+    margin-top: 10px;
+    max-width: 600px;
+}
+
+.image-link img {
+    height: 500px;
+    max-width: 100%;
+}
+
+.btn-center {
+   display: flex;
+   justify-content: center;
+   margin-top: 10px;
+
+}
+
+.btn-flex {
+    /* border: 1px solid black; */
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+}
+
+.btn {
+    background-color: #fc5185;
+    padding: 11px;
+    border-radius: 8px;
+    color: whitesmoke;
+    box-shadow: -1px 1px 90px -2px rgba(240,240,240,1);
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+.btn:hover {
+    filter: brightness(110%);
+    transform: scale(1.1);
+    transition: ease-in-out 0.1s
+}

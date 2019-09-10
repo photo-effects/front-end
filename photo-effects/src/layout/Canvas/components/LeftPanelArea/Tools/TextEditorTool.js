@@ -1,11 +1,14 @@
 import React from 'react';
 
-export default function TextEditorTool() {
+export default function TextEditorTool(props) {
    return (
       <ol>
-         <li style={textS1}>Add heading</li>
-         <li style={textS2}>Add subheading</li>
-         <li style={textS3}>Add text</li>
+         {/* <li style={textS1}>Add heading</li>
+         <li style={textS2}>Add subheading</li> */}
+         <li 
+            style={textS3}
+            onClick = { () => props.addText() }
+         >Add text</li>
       </ol>
    )
 }
