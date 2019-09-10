@@ -26,6 +26,10 @@ class Projects extends Component {
       });
   };
 
+  sorting = () => {
+    console.log(this.props.projects);
+  }
+
 
   // staging
   //   deleteProject = (id, public_id) => {
@@ -50,6 +54,7 @@ class Projects extends Component {
      {this.props.projects === undefined ? <h1>Loading...</h1> : ( 
        <>
        <h1 className="projects-section-title">Projects</h1>
+       <button onClick={this.sorting} className="sort"> Sort</button>
           <div className="user-projects"> 
           {this.props.projects.map(project => {
             return (

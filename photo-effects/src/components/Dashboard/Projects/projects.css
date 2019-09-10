@@ -13,6 +13,17 @@
     padding-bottom: 5%;
 }
 
+.sort {
+    background-color: #fc5185;
+    padding: 12px;
+    border-radius: 8px;
+    color: whitesmoke;
+    box-shadow: -1px 1px 90px -2px rgba(240,240,240,1);
+    border: none;
+    font-size:2rem;
+    cursor: pointer;
+}
+
 .projects-section-title {
     color: #364f6b;
     background: #ffdb27;
