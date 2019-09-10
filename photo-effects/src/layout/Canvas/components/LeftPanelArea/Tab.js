@@ -7,7 +7,6 @@ import text from '../../layout/ToolsArea/icons/icon-text.svg';
 import layers from '../../layout/ToolsArea/icons/icon-layers.svg';
 import chevron from '../../layout/ToolsArea/icons/icon-chevron.svg';
 
-
 class Tab extends Component {
    state = {
       active: true
@@ -18,12 +17,6 @@ class Tab extends Component {
    }
 
    render() {
-      let className = tabListItem;
-
-      if (this.state.active === true) {
-         className = tabListActive;
-      }
-
       return (
          <div>
             <div className={this.state.active ? "panel-tab panel-tab-active" : "panel-tab"} onClick={this.toggleActiveTab}>
@@ -48,24 +41,6 @@ class Tab extends Component {
          </div>
       );
    }
-}
-
-const tabListItem = {
-   display: 'flex',
-   padding: '10px',
-   cursor: 'pointer',
-   width: '100%',
-   backgroundColor: "#1F2933",
-   color: '#F0F4F8',
-}
-
-const tabListActive = {
-   display: 'flex',
-   padding: '10px',
-   cursor: 'pointer',
-   width: '100%',
-   backgroundColor: "#3E4C59",
-   color: '#F0F4F8'
 }
 
 export default Tab;

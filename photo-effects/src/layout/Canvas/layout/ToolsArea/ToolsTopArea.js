@@ -7,9 +7,10 @@ import cog from './icons/icon-cog.svg';
 import download from './icons/icon-download.svg';
 import edit from './icons/icon-edit.svg';
 
-class SaveImage extends Component {
+class ToolsTopArea extends Component {
    state = {
-      projectName: 'Untitled Design'
+      projectName: 'Untitled Design',
+      focus: false
    }
 
    handleScreenshot = () => {
@@ -30,16 +31,20 @@ class SaveImage extends Component {
         ...this.state,
         projectName: e.target.value
       });
-    };
+   };
+
+   toggleInputFocus = () => {
+      
+   }
 
    render() {
       return (
-         <div className="panel-container">
+         <div className="panel-toparea-container">
             <div className="panel-toparea">
                <div className="panel-options">
-                  <div className="panelbutton home">
+                  <a href="/dashboard" className="panelbutton home">
                      <img src={home} />
-                  </div>
+                  </a>
                   <div className="panel-logo-container">
                      <img src={logo} />
                   </div>
@@ -56,12 +61,13 @@ class SaveImage extends Component {
             </div>
 
             <div className="panel-projectname">
-               <img src={edit} />
+               <img src={edit} style={{cursor: "pointer"}} onClick={() => this.setState({focus: true})}/>
                <input
                   type="text"
                   value={this.state.projectName}
                   placeholder="Untitled Design"
                   onChange={this.handleChange}
+                  autoFocus={this.state.focus ? true : false}
                />
             </div>
          </div>
@@ -69,4 +75,4 @@ class SaveImage extends Component {
    }
 }
 
-export default SaveImage;
+export default ToolsTopArea;

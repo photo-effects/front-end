@@ -4,22 +4,21 @@ import StockPhotosTool from './StockPhotosTool';
 
 class PhotosPanel extends Component {
    state = {
-      currentComponent: 'Stock'
+      photoRoute: 'Uploads'
    }
 
    render() {
       return (
          <div>
             <div className="tab-content-subcontainer">
-               <span className="tab-content-button" onClick={() => this.setState({currentComponent: 'Uploads'})}>Uploads </span>
-               <span className="tab-content-button" onClick={() => this.setState({currentComponent: 'Stock'})}>Stock Photos</span>
+               <span className={this.state.photoRoute === 'Uploads' ? "tab-content-button tab-content-button-active" : "tab-content-button"} onClick={() => this.setState({photoRoute: 'Uploads'})}>Uploads </span>
+               <span className={this.state.photoRoute === 'Stock' ? "tab-content-button tab-content-button-active" : "tab-content-button"} onClick={() => this.setState({photoRoute: 'Stock'})}>Stock Photos</span>
             </div>
 
-            {this.state.currentComponent === 'Uploads' ? <UploadedPhotosTool /> : <StockPhotosTool />}
+            {this.state.photoRoute === 'Uploads' ? <UploadedPhotosTool /> : <StockPhotosTool />}
          </div>
       )
    }
-   
 }
 
 export default PhotosPanel;

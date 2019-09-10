@@ -16,21 +16,10 @@ export default class Layers extends Component {
          <ol>
             {this.state.layers.map(layer => {
                return (
-                  <li key={layer} style={layerStyle}>{layer}</li>
+                  <li key={layer} className="panel-layer">{layer}</li>
                )
             })}
          </ol>
       )
    }
-}
-
-const layerStyle = {
-   width: '100%',
-   border: '0px solid #000',
-   padding: '15px',
-   marginBottom: '5px',
-   borderRadius: '5px',
-   background: '#7B8794',
-   fontSize: '14px',
-   fontWeight: '400'
 }

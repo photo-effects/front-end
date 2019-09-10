@@ -4,28 +4,43 @@ import { Spring } from 'react-spring/renderprops';
 
 export default class StockPhotosTool extends Component {
    state = { 
-      photos: []
+      photos: [],
+      isFetching: true
    }
 
    componentDidMount() {
-      axios
-      .get('https://api.pexels.com/v1/curated?per_page=15&page=1', {
-         headers: {
-            Authorization: '563492ad6f917000010000014867b6499ef7493dadf228acfc7c3c35' // Pexels API Key
-         }
-      })
-      .then(res => this.setState({ photos: res.data.photos }))
-      .catch(err => console.log(err));
+      setTimeout(() => {
+         axios
+            .get('https://api.pexels.com/v1/curated?per_page=15&page=1', {
+               headers: {
+                  Authorization: '563492ad6f917000010000014867b6499ef7493dadf228acfc7c3c35' // Pexels API Key
+               }
+            })
+            .then(res => this.setState({ photos: res.data.photos, isFetching: false }))
+            .catch(err => console.log(err));
+       }, 100);
    }
    
    render() {
       return (
          <div className="tab-content-photos">
-            {this.state.photos.map(photo => {
-               return (
-                  <img className="photo" src={photo.src.small} onClick={() => console.log(photo.src.original)}/>
-               )
-            })}
+            {this.state.isFetching === true ? 
+               <>
+                  <div className="photo-loading cyan"></div> 
+                  <div className="photo-loading pink"></div> 
+                  <div className="photo-loading yellow"></div> 
+               </>
+               : 
+               <>
+                  {this.state.photos.map(photo => {
+                     return (
+                        <div className="photo">
+                           <img className="" src={photo.src.small} onClick={() => console.log(photo.src.original)}/>
+                        </div>
+                     )
+                  })}
+               </>
+            }  
          </div>
          
       )

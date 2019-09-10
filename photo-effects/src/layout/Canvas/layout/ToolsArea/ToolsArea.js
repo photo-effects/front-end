@@ -2,20 +2,16 @@ import React from 'react';
 
 import TopBar from './TopBar';
 import ToolPanel from '../../components/LeftPanelArea/ToolPanel';
-import SaveImage from './SaveImage';
+import ToolsTopArea from './ToolsTopArea';
 
 const ToolsArea = props => {
   return (
-    <div style = { container }>
+    <div className="panel-container">
       {/* <TopBar /> */}
-      <SaveImage />
+      <ToolsTopArea />
       <ToolPanel />
     </div>
   );
-};
-
-const container = {
-  width: '340px',
 };
 
 export default ToolsArea;
