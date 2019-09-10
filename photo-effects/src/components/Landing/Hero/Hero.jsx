@@ -13,7 +13,7 @@ const Hero = () => {
    
         <div className="title">Make your Next Design <br /> A Breeze!</div>
         <Iframe
-          url="https://www.youtube.com/embed/FUqfZnF-NNQ"
+          url="https://www.youtube.com/embed/M7g7Pfx6zjg"
           width="100%"
           height="100%"
           className="video"
