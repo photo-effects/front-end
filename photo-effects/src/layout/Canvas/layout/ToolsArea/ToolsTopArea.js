@@ -3,7 +3,7 @@ import domtoimage from 'dom-to-image';
 import './ToolPanel.css';
 import logo from './icons/logo2x.png';
 import home from './icons/icon-arrow-circle-left.svg';
-import cog from './icons/icon-cog.svg';
+import exit from './icons/icon-door-exit.svg';
 import download from './icons/icon-download.svg';
 import edit from './icons/icon-edit.svg';
 
@@ -49,7 +49,7 @@ class ToolsTopArea extends Component {
                      <img src={logo} />
                   </div>
                   <div className="panelbutton settings">
-                     <img src={cog} />
+                     <img src={exit} />
                   </div>
                   <div className="panelbutton download">
                      <div onClick={this.handleScreenshot}>
