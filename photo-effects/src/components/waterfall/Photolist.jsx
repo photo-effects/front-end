@@ -14,7 +14,7 @@ export class Photolist extends Component {
       >
         {this.props.pics.map((pic, id) => (
           <Fade bottom cascade>
-            <Link to={`/card/${id}`} >
+            
             <div className="cards" style={cardstyle}>
               <div style={{ height: '100px' }}>
                 <h4
@@ -47,7 +47,7 @@ export class Photolist extends Component {
               
               }/>
             </div>
-            </Link>
+            
           </Fade>
         ))}
         
