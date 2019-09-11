@@ -7,7 +7,7 @@ import GraphicsTool from './Tools/GraphicsTool';
 import StockPhotosTool from './Tools/StockPhotosTool';
 import PhotosPanel from './Tools/PhotosPanel';
 
-function ToolPanel() {
+function ToolPanel(props) {
   return (
     <div>
       <Tabs>
@@ -18,11 +18,13 @@ function ToolPanel() {
           <GraphicsTool />
         </div>
         <div label="Text">
-          <TextEditorTool />
+          <TextEditorTool 
+            addText = { props.addText }
+          />
         </div>
-        <div label="Layers">
+        {/* <div label="Layers">
           <Layers />
-        </div>
+        </div> */}
       </Tabs>
     </div>
   );
