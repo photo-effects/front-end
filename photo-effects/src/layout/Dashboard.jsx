@@ -4,6 +4,7 @@ import Logout from '../components/Dashboard/Logout';
 import Upload from '../components/Dashboard/Upload';
 import Image from '../components/Dashboard/Image';
 import Projects from '../components/Dashboard/Projects';
+import Footer from '../components/Landing/Footer/Footer';
 
 
 export default class Dashboard extends Component {
