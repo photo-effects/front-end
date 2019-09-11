@@ -5,7 +5,7 @@ import Image from '../components/Dashboard/Image/Image';
 import Projects from '../components/Dashboard/Projects/Projects';
 import DashNav from '../components/Dashboard/DashNav/DashNav';
 import "../components/Dashboard/DashNav/dashNav.css";
-
+import Footer from '../components/Landing/Footer/Footer';
 
 export default class Dashboard extends Component {
 
@@ -249,7 +249,7 @@ export default class Dashboard extends Component {
 
   render() {
     return ( 
-      <div>
+      <div style= {{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
         <DashNav />
         <div className="welcome">
        <h1>Welcome Username!</h1>
@@ -263,6 +263,7 @@ export default class Dashboard extends Component {
        <Image images={this.state.images} fileName={this.state.fileName} removeImage={this.removeImage} updateProject={this.updateProject}/>
        </div>
        < Projects projects={this.state.projects} updateProject={this.updateProject} />
+       <Footer  />
       </div>
     )
   }
