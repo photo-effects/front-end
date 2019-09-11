@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Photolist from './Photolist';
 import './waterfall.css';
 import axios from 'axios';
+
+import Footer from '../Landing/Footer/Footer';
 const WaterfallCont = () => {
   const [pics, setPics] = useState([]);
   useEffect(() => {
@@ -14,6 +16,7 @@ const WaterfallCont = () => {
   return (
     <div className="waterfallcont" >
       <Photolist pics={pics}/>
+      <Footer />
      
     </div>
   );
