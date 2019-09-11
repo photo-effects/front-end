@@ -23,7 +23,7 @@ export class DashNav extends Component {
       <NavLink exact to="/">
         <li className="home">Home</li>
         </NavLink>
-         <li ><button className="dashLogout" >Logout</button></li>
+         <li ><button className="dashLogout" onClick={this.props.auth.logout}>Logout</button></li>
       </ul>
       </div>
     </nav>

@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "react-contenteditable": "^3.3.2",
+    "react-input-range": "^1.3.0"
+  }
+}

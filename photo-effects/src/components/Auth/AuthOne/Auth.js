@@ -1,4 +1,5 @@
 import auth0 from "auth0-js";
+import jwtDecode from "jwt-decode";
 
 export default class Auth {
     constructor(history) {
@@ -11,6 +12,15 @@ export default class Auth {
             responseType: "token id_token",
             scope: "openid profile email"
         });
+    }
+
+    getProfile = () => {
+        if(localStorage.getItem("id_token")) {
+            return jwtDecode(localStorage.getItem("id_token"))
+        }
+        else {
+            return {};
+        }
     }
 
     login = () => {

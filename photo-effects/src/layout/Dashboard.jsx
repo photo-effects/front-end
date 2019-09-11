@@ -247,38 +247,42 @@ export default class Dashboard extends Component {
   render() {
     return (
       <div className="background">
-        <DashNav />
-        <div className="welcome">
-          <h1>Welcome Username!</h1>
-        </div>
-        <div className="center">
-          {this.state.exist === "true" && this.state.error === null ? (
-            <h2>Is this the image you want?</h2>
-          ) : (
-            <Upload
-              onChange={this.onChange}
-              inputKey={this.state.inputKey}
-              dropOnChange={this.dropOnChange}
+        <div>
+          <DashNav auth={this.props.auth} />
+          <div className="welcome">
+            <h1>
+              Welcome {this.props.auth.getProfile().given_name || "User"}!
+            </h1>
+          </div>
+          <div className="center">
+            {this.state.exist === "true" && this.state.error === null ? (
+              <h2>Is this the image you want?</h2>
+            ) : (
+              <Upload
+                onChange={this.onChange}
+                inputKey={this.state.inputKey}
+                dropOnChange={this.dropOnChange}
+              />
+            )}
+            <div className="errorBox">{this.state.error}</div>
+            <Image
+              images={this.state.images}
+              fileName={this.state.fileName}
+              removeImage={this.removeImage}
+              updateProject={this.updateProject}
             />
-          )}
-          <div className="errorBox">{this.state.error}</div>
-          <Image
-            images={this.state.images}
-            fileName={this.state.fileName}
-            removeImage={this.removeImage}
+          </div>
+          <Projects
+            projects={this.state.projects}
+            projects={
+              this.state.sort === false
+                ? this.state.projects
+                : this.state.projectSort
+            }
             updateProject={this.updateProject}
+            toggleSort={this.toggleSort}
           />
         </div>
-        <Projects
-          projects={this.state.projects}
-          projects={
-            this.state.sort === false
-              ? this.state.projects
-              : this.state.projectSort
-          }
-          updateProject={this.updateProject}
-          toggleSort={this.toggleSort}
-        />
       </div>
     );
   }
