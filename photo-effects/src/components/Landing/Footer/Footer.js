@@ -1,6 +1,7 @@
 import React from 'react';
 
-import './Footer.css'
+import './Footer.css';
+import navLogo from '../../../assetts/photoLogo.png';
 
 const Footer = () => {
     return (
@@ -14,6 +15,8 @@ const Footer = () => {
                     <p> Canvas </p>
                     
                 </div>
+
+                <img src= {navLogo} alt="navbar logo" className="navbarLogoFooter" />
 
                 <div className="footerLinks">
                     <p> 

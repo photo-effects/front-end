@@ -249,7 +249,7 @@ export default class Dashboard extends Component {
 
   render() {
     return ( 
-      <div>
+      <div style= {{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
         <DashNav />
         <div className="welcome">
        <h1>Welcome Username!</h1>
@@ -263,6 +263,7 @@ export default class Dashboard extends Component {
        <Image images={this.state.images} fileName={this.state.fileName} removeImage={this.removeImage} updateProject={this.updateProject}/>
        </div>
        < Projects projects={this.state.projects} updateProject={this.updateProject} />
+       <Footer  />
       </div>
     )
   }

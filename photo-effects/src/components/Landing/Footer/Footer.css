@@ -6,7 +6,7 @@
     border-radius: 7px;
     border-top-left-radius: 7px;
     height: 200px;
-    width: 96%;
+    width: 95%;
     margin-top: 1%;
     margin-bottom: 1%;
 }
@@ -14,7 +14,7 @@
 .footerCard {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     text-align: left;
     
@@ -29,9 +29,10 @@
 
 .footerLinks {
 
-    border-right: 1px solid white;
+    
     padding-right: 5px;
     margin-left: 2%;
+    margin-right: 2%;
 }
 
 .footerLinks p {
@@ -45,4 +46,15 @@
 
 .fab {
     margin-right: 5px;
+}
+
+.navbarLogoFooter {
+    
+    width: 250px;
+}
+
+.navbarLogoFooter:hover {
+    cursor: pointer;
+    
+    filter: drop-shadow(2px 2px 2px #55d3dd);
 }

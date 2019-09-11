@@ -75,7 +75,7 @@ const cardContainer ={
   justifyContent: 'center',
   margin: 'auto',
   background: '#364f6b',
-  width: '96%',
+  width: '95%',
   borderRadius: '10px',
   paddingTop: '15px'
 }
