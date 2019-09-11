@@ -244,12 +244,14 @@ export default class Dashboard extends Component {
     this.setState({ sort: !this.state.sort });
   };
 
+
   render() {
-    return (
+    
+   return (
       <div>
         <DashNav auth={this.props.auth}/>
         <div className="welcome">
-          <h1>Welcome Username!</h1>
+          <h1>Welcome {this.props.auth.getProfile().given_name || "User"}!</h1>
         </div>
         <div className="center">
           {this.state.exist === "true" && this.state.error === null ? (
