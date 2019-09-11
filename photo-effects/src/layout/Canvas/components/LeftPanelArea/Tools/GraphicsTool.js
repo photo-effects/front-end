@@ -21,7 +21,7 @@ export default class GraphicsTool extends Component {
          <div className="tab-content-photos">
             {this.state.stickers.map(sticker => {
                return (
-                  <div className="photo">
+                  <div className="photo" key={sticker.images.fixed_height_small.url}>
                      <img className="" src={sticker.images.fixed_height_small.url} />
                   </div>
                )

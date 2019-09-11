@@ -6,13 +6,11 @@ function Tabs(props) {
       <div>
         {props.children.map(child => {
           return (
-            <>
-                <Tab
-                  key={child.props.label}   
-                  tabName={child.props.label}
-                  tabContent={child.props.children}
-                />
-            </>
+              <Tab
+                key={child.props.label}   
+                tabName={child.props.label}
+                tabContent={child.props.children}
+              />
           );
         })}
       </div>

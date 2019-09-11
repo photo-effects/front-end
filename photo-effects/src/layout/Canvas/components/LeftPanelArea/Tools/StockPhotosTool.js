@@ -35,7 +35,7 @@ export default class StockPhotosTool extends Component {
                   {this.state.photos.map(photo => {
                      return (
                         <div className="photo">
-                           <img className="" src={photo.src.small} onClick={() => console.log(photo.src.original)}/>
+                           <img className="" key={photo.src.small} src={photo.src.small} onClick={() => console.log(photo.src.original)}/>
                         </div>
                      )
                   })}

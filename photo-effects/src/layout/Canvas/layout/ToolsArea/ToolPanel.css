@@ -37,6 +37,7 @@
 .panelbutton.home:hover {
   background: #626262;
   opacity: 0.9;
+  scale: 1;
 }
 .panelbutton.settings {
   width: 92px;

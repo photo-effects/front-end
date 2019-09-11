@@ -19,7 +19,7 @@ export default class UploadedPhotosTool extends Component {
          <div className="tab-content-photos">
             {this.state.uploads.map(upload => {
                return (
-                  <div className="photo">
+                  <div className="photo" key={upload.secure_url}>
                      <img className="" src={upload.secure_url} onClick={() => console.log(upload.secure_url)}/>
                   </div>
                )

@@ -55,7 +55,8 @@ $accent-yellow: #FFDB27;
 
       &:hover {
          background: $panel-gray-08;
-         opacity: .9
+         opacity: .9;
+         scale: 1;
       }
    }
 
