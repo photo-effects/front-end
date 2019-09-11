@@ -1,43 +1,21 @@
 import React from 'react';
 
+import TextEdit from './TextBox/TextEdit';
+
 export default function TextEditorTool(props) {
    return (
       <ol>
          {/* <li style={textS1}>Add heading</li>
          <li style={textS2}>Add subheading</li> */}
          <li 
-            style={textS3}
-            onClick = { () => props.addText() }
+            style={text}
+            onClick = { () => props.addItem(<TextEdit />) }
          >Add text</li>
       </ol>
    )
 }
 
-const textS1 = {
-   width: '100%',
-   border: '0px solid #000',
-   padding: '10px',
-   marginBottom: '5px',
-   borderRadius: '5px',
-   background: '#7B8794',
-   textAlign: 'center',
-   fontSize: '20px',
-   fontWeight: '700'
-}
-
-const textS2 = {
-   width: '100%',
-   border: '0px solid #000',
-   padding: '10px',
-   marginBottom: '5px',
-   borderRadius: '5px',
-   background: '#7B8794',
-   textAlign: 'center',
-   fontSize: '16px',
-   fontWeight: '400'
-}
-
-const textS3 = {
+const text = {
    width: '100%',
    border: '0px solid #000',
    padding: '10px',

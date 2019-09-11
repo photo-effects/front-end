@@ -1,26 +1,31 @@
 import React from 'react';
-import axios from 'axios';
 import stars from './svg/stars.svg';
 import summer from './svg/hellosummer.svg';
 
-export default function GraphicsTool() {
+export default function GraphicsTool(props) {
    let stickers = [];
+
+   for(let i = 0; i < 12; i++) {
+      stickers.push(i % 2 === 0 ? stars : summer)
+   }
 
    return (
       <>
          <div style={photoContainer}>
-            <img style = {photoStyle} src={stars} />
-            <img style = {photoStyle} src={summer} />
-            <img style = {photoStyle} src={stars} />
-            <img style = {photoStyle} src={summer} />
-            <img style = {photoStyle} src={stars} />
-            <img style = {photoStyle} src={summer} />
-            <img style = {photoStyle} src={stars} />
-            <img style = {photoStyle} src={summer} />
-            <img style = {photoStyle} src={stars} />
-            <img style = {photoStyle} src={summer} />
-            <img style = {photoStyle} src={stars} />
-            <img style = {photoStyle} src={summer} />
+            { stickers.map((sticker, i) => (
+               <img 
+                  style = { photoStyle } 
+                  alt = { sticker.toString() }
+                  src = { sticker } 
+                  key = { i }
+                  onClick = { () => props.addItem(
+                     <img 
+                        src = { sticker }
+                        alt = { sticker.toString() }
+                     />
+                  ) }
+               />
+            )) }
          </div>
       </>
    )
@@ -40,4 +45,5 @@ const photoStyle = {
    marginLeft: '3px',
    borderRadius: '5px',
    background: '#7B8794',
+   cursor: 'pointer'
 }

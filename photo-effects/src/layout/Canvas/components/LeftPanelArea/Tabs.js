@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Tab from "./Tab";
 
 function Tabs(props) {
@@ -7,13 +7,11 @@ function Tabs(props) {
         <div style={tabList}>
           {props.children.map(child => {
             return (
-              <>
-                 <Tab
-                   key={child.props.label}   
-                   tabName={child.props.label}
-                   tabContent={child.props.children}
-                 />
-              </>
+              <Tab
+                key={child.props.label} 
+                tabName={child.props.label}
+                tabContent={child.props.children}
+              />
             );
           })}
         </div>

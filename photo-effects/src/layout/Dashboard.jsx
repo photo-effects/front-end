@@ -42,8 +42,8 @@ export default class Dashboard extends Component {
     // this.setState({ error: null })
 
     if (files.length > 1) {
-      const msg = 'Only 1 images can be uploaded at a time'
-      return console.log('No more than 1') 
+      // const msg = "Only 1 images can be uploaded at a time";
+      return console.log("No more than 1");
     }
 
     const formData = new FormData()
@@ -118,8 +118,8 @@ export default class Dashboard extends Component {
     // this.setState({ error: null })
 
     if (files.length > 1) {
-      const msg = 'Only 1 images can be uploaded at a time'
-      return console.log('No more than 1') 
+      // const msg = "Only 1 images can be uploaded at a time";
+      return console.log("No more than 1");
     }
 
     const formData = new FormData()

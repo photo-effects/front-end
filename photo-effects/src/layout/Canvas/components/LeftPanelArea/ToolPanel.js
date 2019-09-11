@@ -1,10 +1,10 @@
 import React from 'react';
 import Tabs from './Tabs';
-import UploadedPhotosTool from './Tools/UploadedPhotosTool';
+// import UploadedPhotosTool from './Tools/UploadedPhotosTool';
 import TextEditorTool from './Tools/TextEditorTool';
-import Layers from './Tools/Layers';
+// import Layers from './Tools/Layers';
 import GraphicsTool from './Tools/GraphicsTool';
-import StockPhotosTool from './Tools/StockPhotosTool';
+// import StockPhotosTool from './Tools/StockPhotosTool';
 import PhotosPanel from './Tools/PhotosPanel';
 
 function ToolPanel(props) {
@@ -12,14 +12,18 @@ function ToolPanel(props) {
     <div style={toolPanelStyle}>
       <Tabs>
         <div label="Photos">
-          <PhotosPanel />
+          <PhotosPanel 
+            addItem = { props.addItem }
+          />
         </div>
         <div label="Graphics">
-          <GraphicsTool />
+          <GraphicsTool 
+            addItem = { props.addItem }
+          />
         </div>
         <div label="Text">
           <TextEditorTool 
-            addText = { props.addText }
+            addItem = { props.addItem }
           />
         </div>
         {/* <div label="Layers">

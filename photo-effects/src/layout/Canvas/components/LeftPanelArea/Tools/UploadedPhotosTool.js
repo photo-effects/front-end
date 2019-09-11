@@ -26,7 +26,18 @@ export default class UploadedPhotosTool extends Component {
                   <div style={photoContainer}>
                      {this.state.uploads.map(upload => {
                         return (
-                           <img style={photoStyle} src={upload.secure_url} onClick={() => console.log(upload.secure_url)}/>
+                           <img 
+                              style={photoStyle} 
+                              key = { upload.secure_url }
+                              src={upload.secure_url}
+                              alt = { upload.title } 
+                              onClick={() => this.props.addItem(
+                                 <img
+                                    src = { upload.secure_url }
+                                    alt = { upload.title }
+                                 />
+                              )}
+                           />
                         )
                      })}
                   </div>

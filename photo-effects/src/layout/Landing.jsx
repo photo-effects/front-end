@@ -23,9 +23,9 @@ const Landing = (props) => {
 
 export default Landing;
 
-const landing = {
-  paddingTop: '14vh',
+// const landing = {
+//   paddingTop: '14vh',
 
-  color: 'white',
-  fontSize: '3rem'
-};
+//   color: 'white',
+//   fontSize: '3rem'
+// };

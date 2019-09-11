@@ -59,7 +59,7 @@ render() {
     return (
         <>
           <div className="image-link">
-            <img src={this.props.secure_url} />
+            <img src={this.props.secure_url}  alt = { this.props.title } />
           </div>
          <div className="btn-center">
            <div className="btn-flex">

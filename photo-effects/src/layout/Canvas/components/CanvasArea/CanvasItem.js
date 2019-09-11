@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
+import TextEdit from '../LeftPanelArea/Tools/TextBox/TextEdit';
+
 export default class CanvasItem extends Component {
   state = {
     resizing: false,
@@ -17,7 +19,7 @@ export default class CanvasItem extends Component {
     const { left, top } = node;
     const parent = _this.offsetParent.getBoundingClientRect();
     const { width, height } = parent;
-    const { nodeWidth, nodeHeight, item, z } = this.props; 
+    const { nodeWidth, nodeHeight, item } = this.props; 
 
     this.setState({ 
       max_x: width - nodeWidth,
@@ -170,7 +172,42 @@ export default class CanvasItem extends Component {
       item
     } = this.props;
     
+    if(item.type === TextEdit) {
     return (
+      <div
+      style = { this.item() }
+          onMouseOver = { 
+            e => this.setOverlayCover(e) 
+          }
+          onMouseOut = { 
+            !resizing && !dragging ? e => this.setOverlayContain(e) : null 
+          }
+        >
+          <TextEdit 
+            textbox = { this.props.textbox }
+          />
+          <div
+        draggable
+        onMouseDown = { 
+          !resizing ? e => getPosition(e) : null 
+        }
+        style = { textEditMove }
+          >
+            X
+          </div>
+            <Resizer 
+              resizer = { {
+                right: -5,
+                bottom: -5,
+                name: 'bottom-right'
+              } }
+              cursor = { 'nwse-resize' }
+              resize = { this.resize }
+              hover = { this.state.hover }
+            />
+        </div>
+      )
+    } else return (
       <div
         draggable
         onMouseDown = { 
@@ -184,30 +221,40 @@ export default class CanvasItem extends Component {
           !resizing && !dragging ? e => this.setOverlayContain(e) : null 
         }
       >
-        {/* {
-          item === 'text' ?
-            <div contenteditable="true" style = {{ border: '2px solid red', height: '100%', width: '100%' }}>
-              textarea
-            </div>
-          :
-            <img 
-              src = { item.secure_url }
-              style = {{ height: '100%', width: '100%' }}
-            />
-        } */}
-        { item }
-        { this.resizers.map((resizer, i) => (
+        <item.type 
+          { ...item.props }
+          style = {{
+            ...item.style,
+            height: '100%',
+            width: '100%'
+          }}
+        />
             <Resizer 
-              resizer = { resizer }
-              key = { i }
-              cursor = { `${i % 2 === 0 ? 'nwse' : 'nesw'}-resize` }
+              resizer = { {
+                right: -5,
+                bottom: -5,
+                name: 'bottom-right'
+              } }
+              cursor = { 'nwse-resize' }              
               resize = { this.resize }
               hover = { this.state.hover }
             />
-          )) }
       </div>
     )
   }
+}
+
+const textEditMove = {
+  border: '2px solid red',
+  position: 'absolute',
+  right: 'calc(50% - 10px)',
+  bottom: 'calc(50% - 10px)',
+  zIndex: 10000,
+  width: '20px',
+  height: '20px',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center'
 }
 
 const Resizer = props => {

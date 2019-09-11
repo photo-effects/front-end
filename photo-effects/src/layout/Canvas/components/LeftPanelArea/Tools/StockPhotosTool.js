@@ -19,7 +19,6 @@ export default class StockPhotosTool extends Component {
    }
    
    render() {
-      console.log(this.state.photos)
       return (
          <Spring 
             from = {{ height: 0 }} 
@@ -31,7 +30,18 @@ export default class StockPhotosTool extends Component {
                   <div style={photoContainer}>
                      {this.state.photos.map(photo => {
                         return (
-                           <img style={photoStyle} src={photo.src.small} onClick={() => console.log(photo.src.original)}/>
+                           <img 
+                              style={photoStyle} 
+                              src={photo.src.small} 
+                              key = { photo.src }
+                              alt = { photo.photographer }
+                              onClick={() => this.props.addItem(
+                                 <img
+                                    src = { photo.src.original }
+                                    alt = { photo.photographer }
+                                 />
+                              )}
+                           />
                         )
                      })}
                   </div>

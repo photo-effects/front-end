@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {
-  BrowserRouter as Router,
+  /* BrowserRouter as Router, */
   Route,
   Switch,
-  NavLink
+  /* NavLink */
 } from 'react-router-dom';
 
 import Notfound from './layout/Notfound';
@@ -11,9 +11,9 @@ import Landing from './layout/Landing';
 import Dashboard from './layout/Dashboard';
 import Canvas from './layout/Canvas/Canvas';
 
-import Users from './components/Auth/Users';
+// import Users from './components/Auth/Users';
 import Auth from './components/Auth/AuthOne/Auth';
-import Home from './components/Auth/Home';
+// import Home from './components/Auth/Home';
 import Callback from './components/Auth/Callback';
 
 
@@ -55,7 +55,8 @@ export default class App extends Component {
         <Route exact path="/canvas" 
         render = {props => <Canvas auth={this.auth} {...props} />}
         />
-        
+        {/* <Route exact path='/textbox' component={Test} /> */}
+
         <Route component={Notfound} />
       </Switch>
       {/* </Router> */}

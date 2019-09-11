@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-
-import Photolist from '../../waterfall/Photolist';
-import TagsCont from '../../Landing/Tags/TagsCont';
+import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
+// import Photolist from '../../waterfall/Photolist';
+// import TagsCont from '../../Landing/Tags/TagsCont';
 import './nav.css';
 
 

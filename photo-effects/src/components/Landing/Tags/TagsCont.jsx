@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {/* useState */} from 'react';
 import Swiper from 'react-id-swiper';
 // css
 import 'react-id-swiper/lib/styles/css/swiper.css';
@@ -45,7 +45,7 @@ const TagsCont = (props) => {
     }
   };
 
-  const [sortedpics, setSortedpics] = useState('')
+  // const [sortedpics, setSortedpics] = useState('')
 
   console.log(props.pics)
 

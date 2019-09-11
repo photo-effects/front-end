@@ -20,7 +20,7 @@ class Tab extends Component {
 
       return (
          <div>
-            <div style={className} onClick={this.toggleActiveTab}><img style={arrowStyle} src={arrow} />{this.props.tabName}</div>
+            <div style={className} onClick={this.toggleActiveTab}><img style={arrowStyle} src={arrow} alt="arrow" />{this.props.tabName}</div>
             {this.state.active === true ? <TabContent tabContent={this.props.tabContent} /> : undefined}
          </div>
       );

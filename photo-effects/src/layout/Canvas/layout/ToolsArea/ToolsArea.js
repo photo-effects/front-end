@@ -1,7 +1,7 @@
 import React from 'react';
 
 import TopBar from './TopBar';
-import ToolsContainer from './ToolsContainer';
+// import ToolsContainer from './ToolsContainer';
 import ToolPanel from '../../components/LeftPanelArea/ToolPanel';
 
 const ToolsArea = props => {
@@ -10,7 +10,7 @@ const ToolsArea = props => {
       <TopBar />
       {/* <ToolsContainer /> */}
       <ToolPanel 
-        addText = { props.addText }
+        addItem = { props.addItem }
       />
     </div>
   );
@@ -18,7 +18,7 @@ const ToolsArea = props => {
 
 const container = {
   height: '100%',
-  width: '360px',
+  width: '20%',
   borderRight: '2px solid black'
 };
 

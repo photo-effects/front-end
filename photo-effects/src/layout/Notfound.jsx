@@ -66,7 +66,7 @@ const Notfound = () => {
             }
           }
         }}
-        style={{ position: 'absolute', top:'0px', height: '100%', width: '100%', zIndex:'-2', backgroundImage:'linear-gradient(to right bottom, #6600d6, #5800d5, #4700d5, #3100d4, #0000d3)', height:'100%' }}
+        style={{ position: 'absolute', top:'0px', height: '100%', width: '100%', zIndex:'-2', backgroundImage:'linear-gradient(to right bottom, #6600d6, #5800d5, #4700d5, #3100d4, #0000d3)' }}
       />
       
     
