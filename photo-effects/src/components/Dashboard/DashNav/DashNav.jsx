@@ -13,7 +13,7 @@ export class DashNav extends Component {
     return (
       <nav className="dashNav">
       <NavLink to="/">
-        <img style={{width:'250px'}} src="https://files.slack.com/files-pri/T4JUEB3ME-FMKCEGRQT/asset_8.png" alt="logo"/>
+        <img style={{width:'150px'}} src="https://files.slack.com/files-pri/T4JUEB3ME-FMKCEGRQT/asset_8.png" alt="logo"/>
         </NavLink>
       {/* <div>
         <h1 className="logo">Photo Effects</h1>

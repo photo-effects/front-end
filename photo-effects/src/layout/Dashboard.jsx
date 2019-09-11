@@ -246,7 +246,7 @@ export default class Dashboard extends Component {
 
   render() {
     return (
-      <div>
+      <div className="background">
         <DashNav />
         <div className="welcome">
           <h1>Welcome Username!</h1>

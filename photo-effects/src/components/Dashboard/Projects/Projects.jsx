@@ -52,7 +52,10 @@ class Projects extends Component {
      {this.props.projects === undefined ? <h1>Loading...</h1> : ( 
        <>
        <h1 className="projects-section-title">Projects</h1>
-       <button onClick={this.props.toggleSort} className="sort">Name</button>
+       <div className="sortBox">
+       
+       <button onClick={this.props.toggleSort} className="sort">Name <i className="fas fa-sort"></i></button>
+       </div>
           <div className="user-projects">
 
           {this.props.projects.map(project => {
