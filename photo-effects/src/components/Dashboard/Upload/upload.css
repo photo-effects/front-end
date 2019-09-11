@@ -14,7 +14,7 @@
     font-size: 3rem;
     border: 1px dashed black;
     border-radius: 5px;
-    background: whitesmoke;
+    background: lightgrey;
 }
 
 .dragBox:hover {

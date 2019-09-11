@@ -57,7 +57,6 @@ class Projects extends Component {
        <button onClick={this.props.toggleSort} className="sort">Name <i className="fas fa-sort"></i></button>
        </div>
           <div className="user-projects">
-
           {this.props.projects.map(project => {
             return (
               <div className="project-container">

@@ -11,8 +11,8 @@
     height: 100%;
     margin: 0 auto;
     padding-bottom: 5%;
-    border-radius: 8px;
-    
+    padding-top: 65px;
+    border-radius: 8px;  
 }
 
 .sortBox {
@@ -40,9 +40,11 @@
 }
 
 .projects-section-title {
-    color: #364f6b;
-    background: #ffdb27;
-    width: 15%;
+    position: relative;
+    top: 100px;
+    color: whitesmoke;
+    background: #fc5185;
+    width: 130px;
     height: 35px;;
     display: flex;
     justify-content: center;
@@ -51,8 +53,11 @@
     margin: 0 auto;
     margin-top: 50px;
     margin-bottom: 10px;
+    padding: 20px;
     font-size: 3.0rem;
     border-radius: 7px;
+    text-decoration: underline;
+    border: 1px solid whitesmoke;
 }
 
 .uploaded-img {
@@ -90,9 +95,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 25%;
-    padding: 5% 0% 0% 0%;
-    padding-bottom: 0%;
+    width: 275px;
+    padding: 15px;
+    margin: 10px;
+    background: linear-gradient(to bottom, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa4e9, #7aaeef, #6bb7f1, #56c2f4, #44cbf3, #3bd5ee, #43dde6);
+    border-radius: 8px;
+    box-shadow: whitesmoke -1px 1px 5px 2px;
 }
 
 
