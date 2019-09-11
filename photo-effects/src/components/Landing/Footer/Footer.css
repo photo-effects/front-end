@@ -1,0 +1,48 @@
+.footerContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:  #364f6b;
+    border-radius: 7px;
+    border-top-left-radius: 7px;
+    height: 200px;
+    width: 96%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.footerCard {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: left;
+    
+    height: 70%;
+    width: 95%;
+    background-color: #fc5185;
+    color: white;
+    border-radius: 7px;
+
+    font-size: 16px;
+}
+
+.footerLinks {
+
+    border-right: 1px solid white;
+    padding-right: 5px;
+    margin-left: 2%;
+}
+
+.footerLinks p {
+    padding: 3px;
+}
+
+.footerLinks p:hover {
+    color: #55d3dd;
+    cursor: pointer;
+}
+
+.fab {
+    margin-right: 5px;
+}
