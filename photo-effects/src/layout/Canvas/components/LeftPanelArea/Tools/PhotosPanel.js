@@ -22,15 +22,7 @@ class PhotosPanel extends Component {
                addItem = { this.props.addItem }
             /> 
 
-        // <div>
-           // <div className="tab-content-subcontainer">
-             //  <span className={this.state.photoRoute === 'Uploads' ? "tab-content-button tab-content-button-active" : "tab-content-button"} onClick={() => this.setState({photoRoute: 'Uploads'})}>Uploads </span>
-             //  <span className={this.state.photoRoute === 'Stock' ? "tab-content-button tab-content-button-active" : "tab-content-button"} onClick={() => this.setState({photoRoute: 'Stock'})}>Stock Photos</span>
-            // </div>
-
-            //{this.state.photoRoute === 'Uploads' ? <UploadedPhotosTool /> : <StockPhotosTool />}
-
-         //</div>
+         </div>
       )
    }
  }
