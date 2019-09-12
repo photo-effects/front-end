@@ -23,7 +23,7 @@ export default class GraphicsTool extends Component {
             {this.state.stickers.map(sticker => {
                return (
                   <div className="photo" key={sticker.images.fixed_height_small.url}>
-                     <img onClick = { () => props.addItem(
+                     <img onClick = { () => this.props.addItem(
                      <img 
                         src = { sticker.images.fixed_height }
                         alt = { sticker.toString() }
