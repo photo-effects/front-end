@@ -20,7 +20,10 @@ class CanvasArea extends Component {
     const { items } = this.state;
 
     return (
-      <div style = { container }>
+
+      <div id="canvasTarget" style = { container }>
+        
+
         { items.length > 1 ?
             this.state.items.map((item, i) => (
               <Box
@@ -46,10 +49,12 @@ class CanvasArea extends Component {
 
 const container = {
   width: '80%',
+
   height: 'calc(100% - 72px)',
   position: 'absolute',
   bottom: 0,
-  right: 0
+  right: 0,
+   backgroundColor: 'rgba(255, 255, 255, 1)'
 }
 
 export default CanvasArea;

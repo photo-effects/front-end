@@ -4,23 +4,37 @@ import StockPhotosTool from './StockPhotosTool';
 
 class PhotosPanel extends Component {
    state = {
+
       currentComponent: UploadedPhotosTool
+
+      // photoRoute: 'Uploads'
+
    }
 
    render() {
       return (
+
          <div style={photoContainer}>
-            <div style={divStyle} onClick={() => this.setState({currentComponent: UploadedPhotosTool})}>Uploaded Photos</div>
-            <div style={divStyle} onClick={() => this.setState({currentComponent: StockPhotosTool})}>Stock Photos</div>
+            <div style={divStyle}  onClick={() => this.setState({currentComponent: UploadedPhotosTool})}><span className={this.state.photoRoute === 'Uploads' ? "tab-content-button tab-content-button-active" : "tab-content-button"}>Uploaded Photos</span></div>
+            <div style={divStyle} onClick={() => this.setState({currentComponent: StockPhotosTool})}> <span className={this.state.photoRoute === 'Stock' ? "tab-content-button tab-content-button-active" : "tab-content-button"}> Stock Photos </span></div>
 
             <this.state.currentComponent 
                addItem = { this.props.addItem }
             /> 
-         </div>
+
+        // <div>
+           // <div className="tab-content-subcontainer">
+             //  <span className={this.state.photoRoute === 'Uploads' ? "tab-content-button tab-content-button-active" : "tab-content-button"} onClick={() => this.setState({photoRoute: 'Uploads'})}>Uploads </span>
+             //  <span className={this.state.photoRoute === 'Stock' ? "tab-content-button tab-content-button-active" : "tab-content-button"} onClick={() => this.setState({photoRoute: 'Stock'})}>Stock Photos</span>
+            // </div>
+
+            //{this.state.photoRoute === 'Uploads' ? <UploadedPhotosTool /> : <StockPhotosTool />}
+
+         //</div>
       )
    }
-   
-}
+ }
+
 
 export default PhotosPanel;
 
@@ -91,3 +105,4 @@ const divStyle = {
 //    background: '#1F2933',
 //    cursor: 'pointer',
 // }
+

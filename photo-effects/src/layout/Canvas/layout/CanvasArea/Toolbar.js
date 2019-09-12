@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 
+
 import TextEdit from '../../components/LeftPanelArea/Tools/TextBox/TextEdit';
 import TextToolbar from '../../components/LeftPanelArea/Tools/TextBox/TextToolbar';
+
 
 export default class Toolbar extends Component {
   state = {
@@ -33,6 +35,7 @@ export default class Toolbar extends Component {
   render() { 
     return (
       <div style = { this.container(this.state.open) }>
+
         { this.state.item ? 
           this.state.item.type === TextEdit ? <TextToolbar 
             setTextbox = { this.props.setTextbox }
@@ -43,12 +46,7 @@ export default class Toolbar extends Component {
         :
           null
         }
-        {/* <div 
-          style = { openBtn }
-          onClick = { () => this.setState({ open: !this.state.open }) }
-        >
-          open
-        </div> */}
+
       </div>
     )
   } 

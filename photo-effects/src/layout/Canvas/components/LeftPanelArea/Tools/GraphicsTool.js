@@ -1,49 +1,40 @@
-import React from 'react';
+
+import React, {Component} from 'react';
+import axios from 'axios';
 import stars from './svg/stars.svg';
 import summer from './svg/hellosummer.svg';
 
-export default function GraphicsTool(props) {
-   let stickers = [];
+export default class GraphicsTool extends Component {
+   state = {
+      stickers: []
+   } 
 
-   for(let i = 0; i < 12; i++) {
-      stickers.push(i % 2 === 0 ? stars : summer)
+   componentDidMount() {
+      axios
+      .get('https://api.mojilala.com/v1/stickers/trending?api_key=dc6zaTOxFJmzC')
+      .then(res => this.setState({ stickers: res.data.data }))
+      .catch(err => console.log(err));
    }
 
-   return (
-      <>
-         <div style={photoContainer}>
-            { stickers.map((sticker, i) => (
-               <img 
-                  style = { photoStyle } 
-                  alt = { sticker.toString() }
-                  src = { sticker } 
-                  key = { i }
-                  onClick = { () => props.addItem(
+   render() {
+      console.log(this.state.stickers)
+      return (
+         <div className="tab-content-photos">
+            {this.state.stickers.map(sticker => {
+               return (
+                  <div className="photo" key={sticker.images.fixed_height_small.url}>
+                     <img onClick = { () => props.addItem(
                      <img 
-                        src = { sticker }
+                        src = { sticker.images.fixed_height }
                         alt = { sticker.toString() }
                      />
-                  ) }
-               />
-            )) }
+                  ) } />
+                  </div>
+               )
+            })}
          </div>
-      </>
-   )
-}
+      )
+   }
+   
 
-const photoContainer = {
-   overflowY: 'auto',
-   height: '130px'
-}
-
-const photoStyle = {
-   flex: '0 0 auto',
-   width: '75px',
-   height: '75px',
-   border: '0px solid #000',
-   padding: '5px',
-   marginLeft: '3px',
-   borderRadius: '5px',
-   background: '#7B8794',
-   cursor: 'pointer'
 }

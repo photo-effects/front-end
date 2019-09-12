@@ -9,10 +9,10 @@ export default class TopBar extends Component {
   }
 
   tools = [
-    'Share',
-    'Print',
-    'Save',
+    // 'Share',
+    // 'Print',
     'Home',
+    'Save',
     'Logout'
   ]
 
@@ -61,7 +61,8 @@ class Tool extends Component {
   render() {
     return (
       <div 
-        style = { this.btn(this.state.hover) }
+        // style = { this.btn(this.state.hover) }
+        style = {buttonStyle}
         onMouseEnter = { this.state.hover ? null : () => this.setState({ hover: true }) }
         onMouseLeave = { this.state.hover ? () => this.setState({ hover: false }) : null }
         onClick = { () => this.props.clickHandler(this.props.tool) }
@@ -70,4 +71,19 @@ class Tool extends Component {
       </div>
     )
   }
+}
+
+const buttonStyle = {
+  display: 'inline-block',
+  width: '45%',
+  border: '0px solid #000',
+  padding: '5px',
+  textAlign: 'center',
+  margin: '5px',
+  borderRadius: '5px',
+  background: '#43DDE6',
+  cursor: 'pointer',
+  color: '#2f2f2f',
+  fontSize: '16px',
+  fontWeight: '700',
 }
