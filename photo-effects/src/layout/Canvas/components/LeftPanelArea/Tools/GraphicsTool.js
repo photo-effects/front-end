@@ -1,43 +1,33 @@
-import React from 'react';
+import React, {Component} from 'react';
 import axios from 'axios';
 import stars from './svg/stars.svg';
 import summer from './svg/hellosummer.svg';
 
-export default function GraphicsTool() {
-   let stickers = [];
+export default class GraphicsTool extends Component {
+   state = {
+      stickers: []
+   } 
 
-   return (
-      <>
-         <div style={photoContainer}>
-            <img style = {photoStyle} src={stars} />
-            <img style = {photoStyle} src={summer} />
-            <img style = {photoStyle} src={stars} />
-            <img style = {photoStyle} src={summer} />
-            <img style = {photoStyle} src={stars} />
-            <img style = {photoStyle} src={summer} />
-            <img style = {photoStyle} src={stars} />
-            <img style = {photoStyle} src={summer} />
-            <img style = {photoStyle} src={stars} />
-            <img style = {photoStyle} src={summer} />
-            <img style = {photoStyle} src={stars} />
-            <img style = {photoStyle} src={summer} />
+   componentDidMount() {
+      axios
+      .get('https://api.mojilala.com/v1/stickers/trending?api_key=dc6zaTOxFJmzC')
+      .then(res => this.setState({ stickers: res.data.data }))
+      .catch(err => console.log(err));
+   }
+
+   render() {
+      console.log(this.state.stickers)
+      return (
+         <div className="tab-content-photos">
+            {this.state.stickers.map(sticker => {
+               return (
+                  <div className="photo" key={sticker.images.fixed_height_small.url}>
+                     <img className="" src={sticker.images.fixed_height_small.url} />
+                  </div>
+               )
+            })}
          </div>
-      </>
-   )
-}
-
-const photoContainer = {
-   overflowY: 'auto',
-   height: '130px'
-}
-
-const photoStyle = {
-   flex: '0 0 auto',
-   width: '75px',
-   height: '75px',
-   border: '0px solid #000',
-   padding: '5px',
-   marginLeft: '3px',
-   borderRadius: '5px',
-   background: '#7B8794',
+      )
+   }
+   
 }
