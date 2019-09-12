@@ -1,17 +1,19 @@
 import React from 'react';
+import add from '../../../layout/ToolsArea/icons/icon-add.svg';
 
 export default function TextEditorTool(props) {
    return (
       <ol>
-         {/* <li style={textS1}>Add heading</li>
-         <li style={textS2}>Add subheading</li> */}
-         <li 
-            style={textS3}
+
+         <li className="text-add"><img alt={""} src={add} />Add text</li>
+         <li
             onClick = { () => props.addText() }
          >Add text</li>
+
       </ol>
    )
 }
+
 
 const textS1 = {
    width: '100%',
@@ -48,5 +50,6 @@ const textS3 = {
    fontSize: '12px',
    fontWeight: '200'
 }
+
 
 
