@@ -16,7 +16,7 @@ export default class Toolbar extends Component {
     background: 'white',
     transition: 'margin-top 1s ease',
     position: 'relative',
-    zIndex: 100000
+    zIndex: 100001
   })
 
   render() {
