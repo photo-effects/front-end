@@ -9,7 +9,7 @@ import PhotosPanel from './Tools/PhotosPanel';
 
 function ToolPanel(props) {
   return (
-    <div style={toolPanelStyle}>
+    <div>
       <Tabs>
         <div label="Photos">
           <PhotosPanel />
@@ -28,12 +28,6 @@ function ToolPanel(props) {
       </Tabs>
     </div>
   );
-}
-
-const toolPanelStyle = {
-  fontFamily: 'Arial',
-  fontSize: '16px',
-  minWidth: '360px'
 }
 
 export default ToolPanel;
