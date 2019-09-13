@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Spring } from 'react-spring/renderprops';
+
+import Photo from './Photo';
+
+import { tab_content_photos } from './library';
 
 export default class UploadedPhotosTool extends Component {
    state = { 
@@ -16,53 +19,18 @@ export default class UploadedPhotosTool extends Component {
    
    render() {
       return (
-         <Spring 
-            from = {{ height: 0 }} 
-            to = {{ height: 100 }}
-            config = {{ delay: 3000 }}
-         >
-            {springProps => (
-               <div style={springProps}>
-                  <div style={photoContainer}>
-                     {this.state.uploads.map(upload => {
-                        return (
-                           <img 
-                              style={photoStyle} 
-                              key = { upload.secure_url }
-                              src={upload.secure_url}
-                              alt = { upload.title } 
-                              onClick={() => this.props.addItem(
-                                 <img
-                                    src = { upload.secure_url }
-                                    alt = { upload.title }
-                                 />
-                              )}
-                           />
-                        )
-                     })}
-                  </div>
-               </div>
-            )}
-         </Spring>
-         
+         <div style = { tab_content_photos }>
+            {this.state.uploads.map(upload => {
+               return (
+                  <Photo 
+                     key={upload.secure_url}
+                     url = { upload.secure_url }
+                     alt = { upload.title }
+                     addItem = { this.props.addItem }
+                  />
+               )
+            })}
+         </div>
       )
    }
-}
-
-const photoContainer = {
-   overflowY: 'auto',
-   height: '115px'
-}
-
-const photoStyle = {
-   flex: '0 0 auto',
-   width: '75px',
-   height: '75px',
-   border: '0px solid #000',
-   padding: '5px',
-   marginRight: '6px',
-   marginBottom: '6px',
-   borderRadius: '5px',
-   background: '#7B8794',
-   cursor: 'pointer',
 }

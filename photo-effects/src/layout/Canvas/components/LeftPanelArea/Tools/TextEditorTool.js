@@ -1,28 +1,36 @@
 import React from 'react';
+import add from '../../../layout/ToolsArea/icons/icon-add.svg';
 
 import TextEdit from './TextBox/TextEdit';
 
 export default function TextEditorTool(props) {
    return (
       <ol>
-         {/* <li style={textS1}>Add heading</li>
-         <li style={textS2}>Add subheading</li> */}
+​
          <li 
-            style={text}
+            style = { text_add } 
             onClick = { () => props.addItem(<TextEdit />) }
-         >Add text</li>
+         >
+            <img style = { taImg } alt={""} src={add} />
+            Add text
+         </li>
+​
       </ol>
    )
 }
 
-const text = {
+const text_add = {
    width: '100%',
-   border: '0px solid #000',
-   padding: '10px',
-   marginBottom: '5px',
-   borderRadius: '5px',
-   background: '#7B8794',
-   textAlign: 'center',
-   fontSize: '12px',
-   fontWeight: '200'
+   height: '25px',
+   background: '#44DDE6 0% 0% no-repeat padding-box',
+   borderRadius: '13px',
+   display: 'flex',
+   justifyContent: 'center',
+   alignItems: 'center',
+   font: 'Bold 12px/15px Helvetica Neue',
+   cursor: 'pointer',
+}
+
+const taImg = {
+   marginRight: '10px'
 }

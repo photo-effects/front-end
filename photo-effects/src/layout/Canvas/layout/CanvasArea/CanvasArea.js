@@ -45,7 +45,7 @@ class CanvasArea extends Component {
 }
 
 const container = {
-  width: '80%',
+  width: '75%',
   height: 'calc(100% - 72px)',
   position: 'absolute',
   bottom: 0,

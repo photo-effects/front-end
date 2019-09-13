@@ -4,43 +4,71 @@ import StockPhotosTool from './StockPhotosTool';
 
 class PhotosPanel extends Component {
    state = {
-      currentComponent: UploadedPhotosTool
+      photoRoute: 'Uploads'
    }
 
    render() {
       return (
-         <div style={photoContainer}>
-            <div style={divStyle} onClick={() => this.setState({currentComponent: UploadedPhotosTool})}>Uploaded Photos</div>
-            <div style={divStyle} onClick={() => this.setState({currentComponent: StockPhotosTool})}>Stock Photos</div>
-
-            <this.state.currentComponent 
-               addItem = { this.props.addItem }
-            /> 
+         <div>
+            <div style = { tab_content_subcontainer }>
+               <div onClick={() => this.setState({photoRoute: 'Uploads'})}> 
+                  <span 
+                     style = {this.state.photoRoute === 'Uploads' ? tab_content_button_active : tab_content_button } 
+                     onClick={() => this.setState({photoRoute: 'Uploads'})}
+                  >
+                     Uploads 
+                  </span>
+               </div>
+               <div onClick={() => this.setState({photoRoute: 'Stock'})}>
+                  <span 
+                     style= { this.state.photoRoute === 'Stock' ? tab_content_button_active : tab_content_button } 
+                     onClick={() => this.setState({photoRoute: 'Stock'})}
+                  >
+                     Stock Photos
+                  </span>
+               </div>
+            </div>
+​
+            { this.state.photoRoute === 'Uploads' ? 
+               <UploadedPhotosTool 
+                  addItem = { this.props.addItem }
+               /> 
+            : 
+               <StockPhotosTool 
+                  addItem = { this.props.addItem }
+               />
+            }
          </div>
       )
    }
-   
+}
+
+const tab_content_subcontainer = {
+   display: 'flex',
+   justifyContent: 'space-around',
+   marginBottom: '10px',
+}
+
+const tab_content_button = {
+   width: '112px',
+   height: '25px',
+   background: '#F4F4F4 0% 0% no-repeat padding-box',
+   boxShadow: '0px 0px 10px #d0d0d0',
+   borderRadius: '13px',
+   opacity: '1',
+   display: 'flex',
+   justifyContent: 'center',
+   alignItems: 'center',
+   font: 'Bold 12px/15px Helvetica Neue',
+   cursor: 'pointer',
+}
+
+const tab_content_button_active = {
+   ...tab_content_button,
+   background: '#FC5185'
 }
 
 export default PhotosPanel;
-
-const photoContainer = {
-   // overflowY: 'auto',
-   // height: '500px'
-}
-
-const divStyle = {
-   display: 'inline-block',
-   width: '45%',
-   border: '0px solid #000',
-   padding: '5px',
-   textAlign: 'center',
-   marginRight: '6px',
-   marginBottom: '6px',
-   borderRadius: '5px',
-   background: '#1F2933',
-   cursor: 'pointer',
-}
 
 // import React, {Component} from 'react';
 // import UploadedPhotosTool from './UploadedPhotosTool';
@@ -48,24 +76,18 @@ const divStyle = {
 
 // class PhotosPanel extends Component {
 //    state = {
-//       currentComponent: 'Uploads'
+//       currentComponent: UploadedPhotosTool
 //    }
 
 //    render() {
 //       return (
 //          <div style={photoContainer}>
-//             <div style={divStyle} onClick={() => this.setState({currentComponent: 'Uploads'})}>Uploaded Photos</div>
-//             <div style={divStyle} onClick={() => this.setState({currentComponent: 'Stock'})}>Stock Photos</div>
+//             <div style={divStyle} onClick={() => this.setState({currentComponent: UploadedPhotosTool})}>Uploaded Photos</div>
+//             <div style={divStyle} onClick={() => this.setState({currentComponent: StockPhotosTool})}>Stock Photos</div>
 
-//             { this.state.currentComponent === 'Uploads' ? 
-//                <UploadedPhotosTool 
-//                   addItem = { this.props.addItem }
-//                /> 
-//             : 
-//                <StockPhotosTool 
-//                   addItem = { this.props.addItem }
-//                />
-//             }
+//             <this.state.currentComponent 
+//                addItem = { this.props.addItem }
+//             /> 
 //          </div>
 //       )
 //    }
@@ -91,3 +113,53 @@ const divStyle = {
 //    background: '#1F2933',
 //    cursor: 'pointer',
 // }
+
+// // import React, {Component} from 'react';
+// // import UploadedPhotosTool from './UploadedPhotosTool';
+// // import StockPhotosTool from './StockPhotosTool';
+
+// // class PhotosPanel extends Component {
+// //    state = {
+// //       currentComponent: 'Uploads'
+// //    }
+
+// //    render() {
+// //       return (
+// //          <div style={photoContainer}>
+// //             <div style={divStyle} onClick={() => this.setState({currentComponent: 'Uploads'})}>Uploaded Photos</div>
+// //             <div style={divStyle} onClick={() => this.setState({currentComponent: 'Stock'})}>Stock Photos</div>
+
+// //             { this.state.currentComponent === 'Uploads' ? 
+// //                <UploadedPhotosTool 
+// //                   addItem = { this.props.addItem }
+// //                /> 
+// //             : 
+// //                <StockPhotosTool 
+// //                   addItem = { this.props.addItem }
+// //                />
+// //             }
+// //          </div>
+// //       )
+// //    }
+   
+// // }
+
+// // export default PhotosPanel;
+
+// // const photoContainer = {
+// //    // overflowY: 'auto',
+// //    // height: '500px'
+// // }
+
+// // const divStyle = {
+// //    display: 'inline-block',
+// //    width: '45%',
+// //    border: '0px solid #000',
+// //    padding: '5px',
+// //    textAlign: 'center',
+// //    marginRight: '6px',
+// //    marginBottom: '6px',
+// //    borderRadius: '5px',
+// //    background: '#1F2933',
+// //    cursor: 'pointer',
+// // }
