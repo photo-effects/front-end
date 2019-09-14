@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
-import Photolist from '../../waterfall/Photolist';
-import TagsCont from '../../Landing/Tags/TagsCont';
+// import Photolist from '../../waterfall/Photolist';
+// import TagsCont from '../../Landing/Tags/TagsCont';
 import './nav.css';
 import navLogo from '../../../assetts/photoLogo.png';
 export class Navbar extends Component {

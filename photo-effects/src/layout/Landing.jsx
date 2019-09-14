@@ -4,8 +4,6 @@ import TagsCont from '../components/Landing/Tags/TagsCont';
 import Hero from '../components/Landing/Hero/Hero';
 import WaterfallCont from '../components/waterfall/waterfallCont';
 import HeroBg from '../components/Landing/Hero/HeroBg'
-
-
 const Landing = (props) => {
   return (
     <div>
@@ -20,12 +18,9 @@ const Landing = (props) => {
     </div>
   );
 };
-
 export default Landing;
-
 const landing = {
   paddingTop: '14vh',
-
   color: 'white',
   fontSize: '3rem'
 };

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './waterfall.css';
-import { Route, Link } from 'react-router-dom';
-import Cardview from './Cardview';
+// import { Route, Link } from 'react-router-dom';
+// import Cardview from './Cardview';
 import Fade from 'react-reveal/Fade';
 
 
@@ -12,9 +12,8 @@ export class Photolist extends Component {
       <div
         style={cardContainer}
       >
-        {this.props.pics.map((pic, id) => (
+        {this.props.pics.map(pic => (
           <Fade bottom cascade>
-            
             <div className="cards" style={cardstyle}>
               <div style={{ height: '100px' }}>
                 <h4
@@ -44,7 +43,8 @@ export class Photolist extends Component {
               >
                <h3> Tags: {pic.tags}</h3>
               </p>
-              
+              {/* <Link to={`/photolist/${props.match.params.id}`}/>
+                <Route path={`/photolist/${props.match.params.id}`}  render={ props =>  <Cardview {...this.props} /> */}
               }/>
             </div>
             
@@ -80,7 +80,7 @@ const cardContainer ={
   justifyContent: 'center',
   margin: 'auto',
   background: '#364f6b',
-  width: '95%',
+  width: '96%',
   borderRadius: '10px',
   paddingTop: '15px'
 }

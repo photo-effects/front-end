@@ -1,8 +1,6 @@
 import React from 'react';
-
 import './Footer.css';
 import navLogo from '../../../assetts/photoLogo.png';
-
 const Footer = () => {
     return (
         <div className="footerContainer">
@@ -15,9 +13,7 @@ const Footer = () => {
                     <p> Canvas </p>
                     
                 </div>
-
                 <img src= {navLogo} alt="navbar logo" className="navbarLogoFooter" />
-
                 <div className="footerLinks">
                     <p> 
                         <i class="fab fa-facebook-square"> </i>
@@ -45,5 +41,4 @@ const Footer = () => {
         </div>
     )
 }
-
 export default Footer;
