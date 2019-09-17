@@ -1,13 +1,17 @@
 import React from 'react';
-import { useTransition, useState, animated } from 'react-spring';
-import { Spring, Transition } from 'react-spring/renderprops';
 
 function TabContent(props) {
    return (
-      <div className="tab-content">
+      <div style = { tab_content }>
          {props.tabContent}
       </div>
    )
+}
+
+const tab_content = {
+   background: '#f4f4f4',
+   padding: '10px 20px',
+   width: '100%',
 }
 
 export default TabContent;

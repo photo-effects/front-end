@@ -1,18 +1,26 @@
-// import React from 'react';
-// import {Route, Link} from 'react-router-dom';
+import React from 'react';
 
-// function Cardview(props) {
 
-//   const id = props.match.params.id;
-//   // const photo = props.pic.find(cardpic => `${cardpic.id}` === id);
-//   console.log (props)
-// return(
-//   <div>
-//     {/* <h2>cardpic.title</h2> */}
-//     {/* <img src={cardpic.url}/> */}
+function Cardview(props, {match}) {
+  const cardId = props.find(({id})=> id === match.params.id)
 
-//   </div>
-// )
-// }
+  // const photo = props.pic.find(cardpic => `${cardpic.id}` === id);
+  console.log(props);
+  return (
+    <div
+      style={{
+        backgroundColor: 'black',
+        opacity: '.4',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+      }}
+    >
+      <h2 style={{ color: 'hotpink', fontWeight: 'bold', fontSize: '4rem' }}>
+        {props.title}
+      </h2>
+    </div>
+  );
+}
 
-// export default Cardview
+export default Cardview;

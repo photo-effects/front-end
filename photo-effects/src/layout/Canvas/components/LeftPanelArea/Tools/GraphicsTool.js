@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import stars from './svg/stars.svg';
-import summer from './svg/hellosummer.svg';
+
+import Photo from './Photo';
+
+import { tab_content_photos, _photo } from './library';
 
 export default class GraphicsTool extends Component {
    state = {
@@ -16,18 +18,19 @@ export default class GraphicsTool extends Component {
    }
 
    render() {
-      console.log(this.state.stickers)
       return (
-         <div className="tab-content-photos">
+         <div style = { tab_content_photos }>
             {this.state.stickers.map(sticker => {
                return (
-                  <div className="photo" key={sticker.images.fixed_height_small.url}>
-                     <img className="" src={sticker.images.fixed_height_small.url} />
-                  </div>
+                  <Photo 
+                     addItem = { this.props.addItem }
+                     url = { sticker.images.fixed_height_small.url }
+                     alt = { sticker.id }
+                     key = { sticker.id }
+                  />
                )
             })}
          </div>
       )
    }
-   
 }

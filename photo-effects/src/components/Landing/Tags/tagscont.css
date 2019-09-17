@@ -6,12 +6,10 @@
   background-color: #364f6b;
   color: whitesmoke
 }
-
 .tagheader{
   margin: 0px 5px 25px;
   font-size: 2rem;
 }
-
 .swipecards{
  width: 50px;
  height: 50px;
@@ -21,7 +19,6 @@
  padding-top: 11px;
  border-radius: 8px
 }
-
 .greencard{
   background-color: #328D67
 }
@@ -37,11 +34,9 @@
 .ltbluecard{
   background-color: #93BDFF
 }
-
 .getouttheway{
   display: none
 }
-
 .chevrons{
   display: flex;
   justify-content: space-between;
@@ -52,7 +47,6 @@
   margin: auto
   
 }
-
 .swiper-button-next{
   background-image: url('https://img.icons8.com/nolan/2x/chevron-right.png');
   height: 30px;

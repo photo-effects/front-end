@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import PhotoLink from "./PhotoLink";
 
 // mapping over image that is displayed after clicking "choose file"

@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Spring } from 'react-spring/renderprops';
+
+import Photo from './Photo';
+
+import { tab_content_photos } from './library';
 
 export default class UploadedPhotosTool extends Component {
    state = { 
@@ -16,12 +19,15 @@ export default class UploadedPhotosTool extends Component {
    
    render() {
       return (
-         <div className="tab-content-photos">
+         <div style = { tab_content_photos }>
             {this.state.uploads.map(upload => {
                return (
-                  <div className="photo" key={upload.secure_url}>
-                     <img className="" src={upload.secure_url} onClick={() => console.log(upload.secure_url)}/>
-                  </div>
+                  <Photo 
+                     key={upload.secure_url}
+                     url = { upload.secure_url }
+                     alt = { upload.title }
+                     addItem = { this.props.addItem }
+                  />
                )
             })}
          </div>

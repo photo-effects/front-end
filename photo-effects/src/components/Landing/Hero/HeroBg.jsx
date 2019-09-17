@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Particles from 'react-particles-js';
 import './hero.css';
-
 export class HeroBg extends Component {
   render() {
     return (
@@ -68,5 +67,4 @@ export class HeroBg extends Component {
     );
   }
 }
-
 export default HeroBg;

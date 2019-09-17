@@ -26,7 +26,6 @@ class Projects extends Component {
       });
   };
 
-
   // staging
   //   deleteProject = (id, public_id) => {
   //     console.log(id, public_id);
@@ -50,7 +49,11 @@ class Projects extends Component {
      {this.props.projects === undefined ? <h1>Loading...</h1> : ( 
        <>
        <h1 className="projects-section-title">Projects</h1>
-          <div className="user-projects"> 
+       <div className="sortBox">
+       
+       <button onClick={this.props.toggleSort} className="sort">Name <i className="fas fa-sort"></i></button>
+       </div>
+          <div className="user-projects">
           {this.props.projects.map(project => {
             return (
               <div className="project-container">
@@ -73,5 +76,3 @@ class Projects extends Component {
 }
 
 export default withRouter(Projects);
-
-
