@@ -20,7 +20,10 @@ class CanvasArea extends Component {
     const { items } = this.state;
 
     return (
-      <div style = { container }>
+      <div 
+        style = { container }
+        id="canvasTarget"
+      >
         { items.length > 1 ?
             this.state.items.map((item, i) => (
               <Box
