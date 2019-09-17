@@ -57,8 +57,8 @@ export default class Box extends Component {
       overlay: {
         top: y,
         left: x,
-        width: width + 12 || 112,
-        height: height + 12 || 112
+        width: width || 100,
+        height: height || 100
       }
     })
   }
@@ -91,7 +91,6 @@ export default class Box extends Component {
       width: width,
       top: top,
       left: left,
-      border: '2px solid blue',
       zIndex: this.state.item.props.style.zIndex
     }
   }

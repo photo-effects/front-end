@@ -80,14 +80,14 @@ export default class CanvasItem extends Component {
       top = nodeY - (nodeHeight / 2)
     }
 
-    top = top < 4 ? 4 : top + height > max_y ? max_y - height - 8 : top;
-    left = left < 4 ? 4 : left + width > max_x ? max_x - width - 8 : left;
+    top = top < 0 ? 0 : top + height > max_y ? max_y - height : top;
+    left = left < 0 ? 0 : left + width > max_x ? max_x - width : left;
 
     return {
       position: 'absolute',
       cursor: 'pointer',
-      top: hover ? top : 4,
-      left: hover ? left : 4,
+      top: hover ? top : 0,
+      left: hover ? left : 0,
       color: 'black',
       width: nodeWidth,
       height: nodeHeight,
@@ -133,8 +133,8 @@ export default class CanvasItem extends Component {
     const { top, left, width, height } = _this;
 
     this.props.overlay(
-      (top - 4) - this.props.top,
-      (left - 4) - this.props.left,
+      top - this.props.top,
+      left - this.props.left,
       width + 12,
       height + 12,
       false

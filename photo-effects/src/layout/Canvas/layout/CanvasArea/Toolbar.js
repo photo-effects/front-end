@@ -39,7 +39,8 @@ export default class Toolbar extends Component {
             textbox = { this.props.textbox }
           /> 
         : 
-          <div style = {{ width: '30%', height: 'auto', marginTop: '15px', background: 'black', color: 'red', fontWeight: 'bold', fontSize: '3rem', textAlign: 'center' }}>{ this.props.id }</div>
+          <div style = {{ width: '100%', height: '100%', background: 'black', color: 'red', fontWeight: 'bold', fontSize: '3rem', display: 'flex',
+        justifyContent: 'center', alignItems: 'center' }}><span>{ this.props.id }</span></div>
         :
           null
         }

@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 import TabContent from './TabContent';
-import arrow from './Tools/svg/arrow.svg';
+import photo from './Tools/svg/icon-photo.svg'
+import attach from './Tools/svg/icon-attach.svg'
+import text from './Tools/svg/icon-text.svg'
+import layers from './Tools/svg/icon-layers.svg'
+import chevron from './Tools/svg/icon-chevron.svg'
 
 class Tab extends Component {
    state = {
@@ -14,7 +18,7 @@ class Tab extends Component {
    render() {
       return (
          <div>
-            <div 
+            <div
                style = { this.state.active ? panel_tab_active : panel_tab } onClick={this.toggleActiveTab}>
                <div style = { panel_tab_info }>
                   <img 
@@ -25,7 +29,7 @@ class Tab extends Component {
                            photo 
                         : (
                            this.props.tabName==="Graphics" ? 
-                              graphic 
+                              attach 
                            : (this.props.tabName==="Text" ? 
                               text 
                            : 
@@ -38,7 +42,9 @@ class Tab extends Component {
                </div>
 
                <div style = { panel_tab_arrow }>
-                  <Arrow />
+                  <Arrow 
+                     open = { this.state.active }
+                  />
                </div>
             </div>
 
@@ -55,6 +61,15 @@ class Arrow extends Component {
    state = {
       open: false
    }
+
+   static getDerivedStateFromProps(nextProps, prevState) {
+      if(nextProps.open !== prevState.open) {
+         return {
+            open: nextProps.open
+         }
+      }
+   }
+   
 
    arrowImg = open => ({
       transform: open ? 'rotate(180deg)' : 'rotate(270deg)',
