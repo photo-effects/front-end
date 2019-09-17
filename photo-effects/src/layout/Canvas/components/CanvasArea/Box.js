@@ -92,7 +92,7 @@ export default class Box extends Component {
       top: top,
       left: left,
       border: '2px solid blue',
-      zIndex: hover ? 1000000000 : this.state.item.props.style.zIndex
+      zIndex: this.state.item.props.style.zIndex
     }
   }
 

@@ -40,7 +40,9 @@ class ToolsTopArea extends Component {
             <div style = { panel_toparea }>
                <div style = { panel_options }>
                   <a href="/dashboard" style = { panelbutton_home }>
-                     <img src={home} />
+                     <img 
+                        src={home}
+                     />
                   </a>
                   <div style = { panel_logo_container }>
                      <img style = { plImg } src={logo} />
