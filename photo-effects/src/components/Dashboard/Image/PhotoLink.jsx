@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { withRouter } from 'react-router-dom';
+import './image.css';
 import axios from 'axios';
 
 
@@ -11,7 +12,7 @@ class PhotoLink extends Component {
 
     this.state = {
         photoInfo: {
-            title: `I am test title ${this.props.public_id}`,
+            title: `${this.props.fileName}`,
             user_id: "1",
             secure_url: this.props.secure_url,
             public_id: this.props.public_id,
@@ -55,16 +56,18 @@ class PhotoLink extends Component {
 
 
 render() {
-    console.log(this.props.secure_url)
     return (
         <>
-        <div>
-        <img src={this.props.secure_url} />
-        </div>
-        <div>
-        <button onClick={() => this.props.removeImage(this.props.public_id)}>Choose A Different Image</button>
-        <button onClick={this.addProject}> Go To Canvas</button>
-        </div>
+          <div className="image-link">
+            <img src={this.props.secure_url}  alt = { this.props.title } />
+          </div>
+         <div className="btn-center">
+           <div className="btn-flex">
+            <button className='btn' onClick={() => this.props.removeImage(this.props.public_id)}>No! Choose A Different Image</button>
+            <button className='btn' onClick={this.addProject}> Yes! Go To Canvas</button>
+         </div>
+          </div>
+          
         </>
     )
 }

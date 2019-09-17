@@ -1,23 +1,27 @@
 import React from 'react';
 
-import TopBar from './TopBar';
-import ToolsContainer from './ToolsContainer';
+// import TopBar from './TopBar';
+
 import ToolPanel from '../../components/LeftPanelArea/ToolPanel';
+import ToolsTopArea from './ToolsTopArea';
 
 const ToolsArea = props => {
   return (
-    <div style = { container }>
-      <TopBar />
+  <div style =  { panel_container }>
       {/* <ToolsContainer /> */}
-      <ToolPanel />
+     <ToolsTopArea />
+      <ToolPanel 
+        addItem = { props.addItem }
+      />
+
     </div>
   );
 };
 
-const container = {
-  height: '100%',
-  width: '360px',
-  borderRight: '2px solid black'
-};
+
+const panel_container = {
+  background: '#d0d0d0',
+  width: '25%'
+}
 
 export default ToolsArea;

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
+import Toolbar from '../../layout/CanvasArea/Toolbar';
 import CanvasItem from './CanvasItem';
 
 export default class Box extends Component {
@@ -9,7 +10,6 @@ export default class Box extends Component {
     resizing: false,
     x: 0,
     y: 0,
-    z: 0,
     nodeX: 0,
     nodeY: 0,
     nodeWidth: 0,
@@ -27,38 +27,52 @@ export default class Box extends Component {
       left: null,
       width: null,
       height: null
+    },
+    textbox: {
+      color: null,
+      background: null,
+      style: null,
+      weight: null,
+      decoration: null,
+      slider: null
     }
   }
 
   componentDidMount() {
-    const { item, top_z } = this.props;
-    const { width, height } = item;
+    const { item } = this.props;
+    const { width, height, x, y } = item.props;
 
     const _this = ReactDOM.findDOMNode(this);
     const parent = _this.offsetParent.getBoundingClientRect();
     const { left, top } = parent;
 
     this.setState({ 
-      item, left, top, 
-      z: top_z,
+      item, left, top,
       nodeWidth: width || 100,
       nodeHeight: height || 100,
       max_x: parent.width,
       max_y: parent.height,
+      nodeX: item.props.x + (width / 2),
+      nodeY: item.props.y + (height / 2),
       overlay: {
-        top: 0,
-        left: 0,
-        width: width + 12,
-        height: height + 12
+        top: y,
+        left: x,
+        width: width || 100,
+        height: height || 100
       }
     })
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
     if(nextProps.item !== prevState.item) {
-      console.log('new item')
       return {
-        item: nextProps.item
+        item: nextProps.item,
+        overlay: {
+          ...nextProps.overlay,
+          top: nextProps.item.y,
+          left: nextProps.item.x
+        }
+        
       }
     } if(nextProps.top_id) {
       return {
@@ -77,8 +91,7 @@ export default class Box extends Component {
       width: width,
       top: top,
       left: left,
-      border: '2px solid blue',
-      zIndex: this.state.z 
+      zIndex: this.state.item.props.style.zIndex
     }
   }
 
@@ -90,7 +103,6 @@ export default class Box extends Component {
     const y = clientY;
 
     if(resizing) {
-      console.log('resizing')
       this.setState({ 
         nodeWidth: (x - left) - (nodeLeft - left),
         nodeHeight: (y - top) - (nodeTop - top),
@@ -112,18 +124,21 @@ export default class Box extends Component {
 
   getPosition = e => {
     e.preventDefault();
+    this.props.bringToTop(this.state.item.props.id)
 
     const mouseup = () => {
       this.setState({ dragging: false })
+      const { item, nodeWidth, nodeHeight, nodeX, nodeY } = this.state;
+      const { id } = item.props
+      this.props.setItem(id, nodeWidth, nodeHeight, nodeX, nodeY)
       window.removeEventListener('mouseup', mouseup);
     }
     this.setState({ dragging: true })
-    // this.props.setTop(this.state.item)
     window.addEventListener('mouseup', mouseup);
   }
 
   resize = (bool, left, top) => {
-    const { x, nodeWidth, y, nodeHeight } = this.state;
+    const { x, y } = this.state;
 
     this.setState({ 
       resizing: bool,
@@ -132,10 +147,14 @@ export default class Box extends Component {
     })
 
     if(!bool) {
+      const { nodeWidth, nodeHeight } = this.state;
       this.setState({
         nodeX: x - (nodeWidth / 2),
         nodeY: y - (nodeHeight / 2)
       })
+      const { item, nodeX, nodeY } = this.state;
+      const { id } = item.props
+      this.props.setItem(id, nodeWidth, nodeHeight, nodeX, nodeY)
     }
   }
 
@@ -148,34 +167,52 @@ export default class Box extends Component {
     })
   }
 
-  render() {
+  setTextbox = (set, val) => {
+    this.setState({
+      textbox: {
+        ...this.state.textbox,
+        [set]: val
+      }
+    })
+  }
+
+  render() { 
     return (
-      <div
-        style = { this.container() }
-        onMouseMove = { e => this.onMouseMove(e) }
-      >
-        <CanvasItem 
-          item = { this.state.item }
-          new_x = { this.state.x }
-          new_y = { this.state.y }
-          max_x = { this.state.max_x }
-          max_y = { this.state.max_y }
-          x = { this.state.nodeX }
-          y = { this.state.nodeY }
-          left = { this.state.left }
-          top = { this.state.top }
-          nodeWidth = { this.state.nodeWidth }
-          nodeHeight = { this.state.nodeHeight }
-          nodeX = { this.state.nodeX }
-          nodeY = { this.state.nodeY }
-          resize = { this.resize }
-          resizing = { this.state.resizing }
-          overlay = { this.overlay }
-          hover = { this.state.hover }
-          getPosition = { this.getPosition }
-          dragging = { this.state.dragging }
-        />
-      </div>
+      <>
+      <Toolbar 
+        item = { this.state.item }
+        id = { this.state.item.props.id }
+        setTextbox = { this.setTextbox }
+        textbox = { this.state.textbox }
+      />
+        <div
+          style = { this.container() }
+          onMouseMove = { e => this.onMouseMove(e) }
+        >
+          <CanvasItem 
+            item = { this.state.item }
+            new_x = { this.state.x }
+            new_y = { this.state.y }
+            max_x = { this.state.max_x }
+            max_y = { this.state.max_y }
+            x = { this.state.nodeX }
+            y = { this.state.nodeY }
+            left = { this.state.left }
+            top = { this.state.top }
+            nodeWidth = { this.state.nodeWidth }
+            nodeHeight = { this.state.nodeHeight }
+            nodeX = { this.state.nodeX }
+            nodeY = { this.state.nodeY }
+            resize = { this.resize }
+            resizing = { this.state.resizing }
+            overlay = { this.overlay }
+            hover = { this.state.hover }
+            getPosition = { this.getPosition }
+            dragging = { this.state.dragging }
+            textbox = { this.state.textbox }
+          />
+        </div>
+      </>
     )
   }
 }
