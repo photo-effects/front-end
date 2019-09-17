@@ -4,8 +4,10 @@ import './waterfall.css';
 // import Cardview from './Cardview';
 import Fade from 'react-reveal/Fade';
 
+
+
 export class Photolist extends Component {
-  render() {
+  render(props) {
     return (
       <div
         style={cardContainer}
@@ -45,8 +47,10 @@ export class Photolist extends Component {
                 <Route path={`/photolist/${props.match.params.id}`}  render={ props =>  <Cardview {...this.props} /> */}
               }/>
             </div>
+            
           </Fade>
         ))}
+        
       </div>
     );
   }

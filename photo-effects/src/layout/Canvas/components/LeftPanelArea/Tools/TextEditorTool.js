@@ -6,7 +6,6 @@ import TextEdit from './TextBox/TextEdit';
 export default function TextEditorTool(props) {
    return (
       <ol>
-​
          <li 
             style = { text_add } 
             onClick = { () => props.addItem(<TextEdit />) }
@@ -14,7 +13,6 @@ export default function TextEditorTool(props) {
             <img style = { taImg } alt={""} src={add} />
             Add text
          </li>
-​
       </ol>
    )
 }

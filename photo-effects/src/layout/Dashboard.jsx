@@ -5,6 +5,7 @@ import Image from "../components/Dashboard/Image/Image";
 import Projects from "../components/Dashboard/Projects/Projects";
 import DashNav from "../components/Dashboard/DashNav/DashNav";
 import "../components/Dashboard/DashNav/dashNav.css";
+
 export default class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -28,6 +29,7 @@ export default class Dashboard extends Component {
     const errs = [];
     const files = Array.from(e.target.files);
     const fileName = files.map(file => file.name);
+
     // this will clear the error message from the user screen
     // this.setState({ error: null })
     if (files.length > 1) {
@@ -36,6 +38,7 @@ export default class Dashboard extends Component {
     }
     const formData = new FormData();
     const types = ["image/png", "image/jpeg"];
+
     files.forEach((file, i) => {
       if (types.every(type => file.type !== type)) {
         // errs.push(`'${file.type}' is not a supported format`)
@@ -44,13 +47,16 @@ export default class Dashboard extends Component {
       if (file.size > 150000) {
         errs.push(`'${file.name}' is too large, please pick a smaller file`);
       }
+
       formData.append(i, file);
     });
+
     // will display error to user
     if (errs.length) {
       return errs.forEach(err => this.setState({ ...this.state, error: err }));
     }
     this.setState({ uploading: true });
+
     // staging
     // fetch(`https://photo-effects-backend-stage-1.herokuapp.com/image-upload`, {
     //   method: 'POST',
@@ -85,12 +91,14 @@ export default class Dashboard extends Component {
         });
       });
   };
+
   // Same as above but if user uses drag n drop to upload a file.
   dropOnChange = e => {
     const errs = [];
     const files = Array.from(e);
     const fileName = files.map(file => file.name);
     console.log(fileName);
+
     // this will clear the error message from the user screen
     // this.setState({ error: null })
     if (files.length > 1) {
@@ -99,6 +107,7 @@ export default class Dashboard extends Component {
     }
     const formData = new FormData();
     const types = ["image/png", "image/jpeg"];
+
     files.forEach((file, i) => {
       if (types.every(type => file.type !== type)) {
         errs.push(`Sorry about that! We only accept JPG and PNG files! :(`);
@@ -106,6 +115,7 @@ export default class Dashboard extends Component {
       if (file.size > 150000) {
         errs.push(`'${file.name}' is too large, please pick a smaller file`);
       }
+
       formData.append(i, file);
     });
     // will display error to user
@@ -147,6 +157,7 @@ export default class Dashboard extends Component {
         });
       });
   };
+
   // After "Choose File" this refers to "Choose another photo". Will delete from cloudinary db
   // inputKey allows the "Choose File" to reset
   // exist is used for conditional rendering for the <Upload /> Component
@@ -167,6 +178,7 @@ export default class Dashboard extends Component {
         console.log(err);
       });
   };
+
   // Update
   // will update state for user projects when adding/deleting for now.
   updateProject = (e, newProject) => {
@@ -174,33 +186,39 @@ export default class Dashboard extends Component {
       projects: newProject
     });
   };
+
   // logout
   logoutButton = e => {
     e.preventDefault();
     console.log(this.props);
     this.props.history.push("/home");
   };
+
   componentDidMount() {
     // sets users in state
     axios
       .get("https://photo-effects-backend.herokuapp.com/api/users")
       .then(res => this.setState({ users: res.data }))
       .catch(err => console.log(err));
+
     // sets projects in state
     axios
       .get("https://photo-effects-backend.herokuapp.com/api/projects")
       .then(res => this.setState({ projects: res.data }))
       .catch(err => console.log(err));
+
     axios
       // .get("https://photo-effects-backend.herokuapp.com/api/projects/sort")
       .get("https://photo-effects-backend.herokuapp.com/api/projects/sort")
       .then(res => this.setState({ projectSort: res.data }))
       .catch(err => console.log(err));
+
     // staging
     // axios
     // .get('https://photo-effects-backend-stage-1.herokuapp.com/api/users')
     // .then(res => this.setState({ users: res.data }))
     // .catch(err => console.log(err));
+
     // axios
     // .get('https://photo-effects-backend-stage-1.herokuapp.com/api/projects')
     // .then(res => this.setState({ projects: res.data }))
