@@ -1,50 +1,34 @@
 import React from 'react';
+import add from '../../../layout/ToolsArea/icons/icon-add.svg';
+
+import TextEdit from './TextBox/TextEdit';
 
 export default function TextEditorTool(props) {
    return (
       <ol>
-         {/* <li style={textS1}>Add heading</li>
-         <li style={textS2}>Add subheading</li> */}
          <li 
-            style={textS3}
-            onClick = { () => props.addText() }
-         >Add text</li>
+            style = { text_add } 
+            onClick = { () => props.addItem(<TextEdit />) }
+         >
+            <img style = { taImg } alt={""} src={add} />
+            Add text
+         </li>
       </ol>
    )
 }
 
-const textS1 = {
+const text_add = {
    width: '100%',
-   border: '0px solid #000',
-   padding: '10px',
-   marginBottom: '5px',
-   borderRadius: '5px',
-   background: '#7B8794',
-   textAlign: 'center',
-   fontSize: '20px',
-   fontWeight: '700'
+   height: '25px',
+   background: '#44DDE6 0% 0% no-repeat padding-box',
+   borderRadius: '13px',
+   display: 'flex',
+   justifyContent: 'center',
+   alignItems: 'center',
+   font: 'Bold 12px/15px Helvetica Neue',
+   cursor: 'pointer',
 }
 
-const textS2 = {
-   width: '100%',
-   border: '0px solid #000',
-   padding: '10px',
-   marginBottom: '5px',
-   borderRadius: '5px',
-   background: '#7B8794',
-   textAlign: 'center',
-   fontSize: '16px',
-   fontWeight: '400'
-}
-
-const textS3 = {
-   width: '100%',
-   border: '0px solid #000',
-   padding: '10px',
-   marginBottom: '5px',
-   borderRadius: '5px',
-   background: '#7B8794',
-   textAlign: 'center',
-   fontSize: '12px',
-   fontWeight: '200'
+const taImg = {
+   marginRight: '10px'
 }

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
+import TextEdit from '../LeftPanelArea/Tools/TextBox/TextEdit';
+
 export default class CanvasItem extends Component {
   state = {
     resizing: false,
@@ -17,7 +19,7 @@ export default class CanvasItem extends Component {
     const { left, top } = node;
     const parent = _this.offsetParent.getBoundingClientRect();
     const { width, height } = parent;
-    const { nodeWidth, nodeHeight, item, z } = this.props; 
+    const { nodeWidth, nodeHeight, item } = this.props; 
 
     this.setState({ 
       max_x: width - nodeWidth,
@@ -78,14 +80,14 @@ export default class CanvasItem extends Component {
       top = nodeY - (nodeHeight / 2)
     }
 
-    top = top < 4 ? 4 : top + height > max_y ? max_y - height - 8 : top;
-    left = left < 4 ? 4 : left + width > max_x ? max_x - width - 8 : left;
+    top = top < 0 ? 0 : top + height > max_y ? max_y - height : top;
+    left = left < 0 ? 0 : left + width > max_x ? max_x - width : left;
 
     return {
       position: 'absolute',
       cursor: 'pointer',
-      top: hover ? top : 4,
-      left: hover ? left : 4,
+      top: hover ? top : 0,
+      left: hover ? left : 0,
       color: 'black',
       width: nodeWidth,
       height: nodeHeight,
@@ -131,8 +133,8 @@ export default class CanvasItem extends Component {
     const { top, left, width, height } = _this;
 
     this.props.overlay(
-      (top - 4) - this.props.top,
-      (left - 4) - this.props.left,
+      top - this.props.top,
+      left - this.props.left,
       width + 12,
       height + 12,
       false
@@ -170,7 +172,42 @@ export default class CanvasItem extends Component {
       item
     } = this.props;
     
+    if(item.type === TextEdit) {
     return (
+      <div
+      style = { this.item() }
+          onMouseOver = { 
+            e => this.setOverlayCover(e) 
+          }
+          onMouseOut = { 
+            !resizing && !dragging ? e => this.setOverlayContain(e) : null 
+          }
+        >
+          <TextEdit 
+            textbox = { this.props.textbox }
+          />
+          <div
+        draggable
+        onMouseDown = { 
+          !resizing ? e => getPosition(e) : null 
+        }
+        style = { textEditMove }
+          >
+            X
+          </div>
+            <Resizer 
+              resizer = { {
+                right: -5,
+                bottom: -5,
+                name: 'bottom-right'
+              } }
+              cursor = { 'nwse-resize' }
+              resize = { this.resize }
+              hover = { this.state.hover }
+            />
+        </div>
+      )
+    } else return (
       <div
         draggable
         onMouseDown = { 
@@ -184,30 +221,40 @@ export default class CanvasItem extends Component {
           !resizing && !dragging ? e => this.setOverlayContain(e) : null 
         }
       >
-        {/* {
-          item === 'text' ?
-            <div contenteditable="true" style = {{ border: '2px solid red', height: '100%', width: '100%' }}>
-              textarea
-            </div>
-          :
-            <img 
-              src = { item.secure_url }
-              style = {{ height: '100%', width: '100%' }}
-            />
-        } */}
-        { item }
-        { this.resizers.map((resizer, i) => (
+        <item.type 
+          { ...item.props }
+          style = {{
+            ...item.style,
+            height: '100%',
+            width: '100%'
+          }}
+        />
             <Resizer 
-              resizer = { resizer }
-              key = { i }
-              cursor = { `${i % 2 === 0 ? 'nwse' : 'nesw'}-resize` }
+              resizer = { {
+                right: -5,
+                bottom: -5,
+                name: 'bottom-right'
+              } }
+              cursor = { 'nwse-resize' }              
               resize = { this.resize }
               hover = { this.state.hover }
             />
-          )) }
       </div>
     )
   }
+}
+
+const textEditMove = {
+  border: '2px solid red',
+  position: 'absolute',
+  right: 'calc(50% - 10px)',
+  bottom: 'calc(50% - 10px)',
+  zIndex: 10000,
+  width: '20px',
+  height: '20px',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center'
 }
 
 const Resizer = props => {
