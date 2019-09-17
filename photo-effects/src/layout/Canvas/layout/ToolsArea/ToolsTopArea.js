@@ -10,8 +10,6 @@ class ToolsTopArea extends Component {
    state = {
       projectName: 'Untitled Design',
       focus: false
-      // TODO hover
-      //      focus      
    }
 
    handleScreenshot = () => {

@@ -26,9 +26,6 @@ class Projects extends Component {
       });
   };
 
- 
-
-
   // staging
   //   deleteProject = (id, public_id) => {
   //     console.log(id, public_id);
