@@ -20,14 +20,14 @@
   margin-top: 50px;
   font-size: 8rem;
   color: whitesmoke;
-  width: 35%;
+  width: 45%;
   text-shadow: -2px 1px 1px rgb(40, 5, 145);
 }
 .video{
   box-shadow: -2px 1px 3px rgb(40, 5, 145);
   border: whitesmoke 1px solid;
   border-radius: 8px;
-  width:40%;
+  width:45%;
   height: 350px;
 }
 .cards:hover{
@@ -46,7 +46,7 @@
   .hero {
     display: flex;
     flex-direction: column;
-    padding-top: 78px;
+    padding-top: 15px;
   }
 .title {
 font-size: 4.5rem;
@@ -56,8 +56,8 @@ text-align: center;
 }
 .video {
   margin:auto;
-width: 95%;
-height: 275px;
+width: 85%;
+height: 255px;
 }
 .herobg{
   height: 475px;
