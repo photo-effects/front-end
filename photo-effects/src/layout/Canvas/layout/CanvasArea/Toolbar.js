@@ -37,6 +37,8 @@ export default class Toolbar extends Component {
           this.state.item.type === TextEdit ? <TextToolbar 
             setTextbox = { this.props.setTextbox }
             textbox = { this.props.textbox }
+            item = { this.state.item }
+            removeImage= { this.props.removeImage }
           /> 
         : 
           <div style = {{ width: '100%', height: '100%', background: 'black', color: 'red', fontWeight: 'bold', fontSize: '3rem', display: 'flex',

@@ -25,7 +25,7 @@ const TextEdit = props => {
       contentEditable = { true }
       suppressContentEditableWarning = { true }
     >
-      placeholder text
+      Add some text!
     </div>
   );
 }

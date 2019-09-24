@@ -115,7 +115,7 @@ class TextToolbar extends Component {
           <p>Font:</p> 
           <Slider sliderValue = { this.sliderValue }  />
         </div>
-
+        <button onClick={() => this.props.removeImage(this.props.item.props.id)}>Delete</button>
       </div>
     );
   }
