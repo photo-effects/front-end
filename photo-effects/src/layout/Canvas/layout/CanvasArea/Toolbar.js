@@ -40,7 +40,11 @@ export default class Toolbar extends Component {
           /> 
         : 
           <div style = {{ width: '100%', height: '100%', background: 'black', color: 'red', fontWeight: 'bold', fontSize: '3rem', display: 'flex',
-        justifyContent: 'center', alignItems: 'center' }}><span>{ this.props.id }</span></div>
+        justifyContent: 'center', alignItems: 'center' }}>
+          <span>{ this.props.id }</span>
+          <button onClick={() => this.props.removeImage(this.props.id)}>Delete</button>
+          </div>
+          
         :
           null
         }
