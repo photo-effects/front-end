@@ -45,7 +45,9 @@ class ToolsTopArea extends Component {
                   <div style = { panel_logo_container }>
                      <img style = { plImg } src={logo} />
                   </div>
-                  <div style = { panelbutton_settings }>
+                  <div 
+                     onClick={this.props.auth.logout}
+                     style = { panelbutton_settings }>
                      <img src={exit} />
                   </div>
                   <div style = { panelbutton_download }>
