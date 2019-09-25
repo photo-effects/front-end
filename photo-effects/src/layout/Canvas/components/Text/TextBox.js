@@ -37,6 +37,7 @@ export class TextBox extends Component {
     return (
       <div>
         text area placeholder
+        this will be deleted!
       </div>
     )
   }

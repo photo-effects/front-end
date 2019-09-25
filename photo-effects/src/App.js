@@ -53,9 +53,12 @@ export default class App extends Component {
           render={props => <Dashboard auth={this.auth} {...props} />}
         />
 
-        <Route exact path="/canvas" 
-        render = {props => <Canvas auth={this.auth} {...props} />}
+        {/* Douglas commenting to explain canvas */}
+        <Route 
+          exact path="/canvas" 
+          render = {props => <Canvas auth={this.auth} {...props} />}
         />
+
         {/* <Route exact path='/textbox' component={Test} /> */}
 
         <Route component={Notfound} />
