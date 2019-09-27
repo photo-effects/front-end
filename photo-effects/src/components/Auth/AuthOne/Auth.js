@@ -1,7 +1,15 @@
 import auth0 from "auth0-js";
 import jwtDecode from "jwt-decode";
+import axios from 'axios';
 
 export default class Auth {
+
+    state={
+       
+    }
+
+
+    
     constructor(history) {
         this.history = history;
 
@@ -38,6 +46,8 @@ export default class Auth {
         this.auth0.parseHash((err, authResult) => {
             if(authResult && authResult.accessToken && authResult.idToken) {
                 this.setSession(authResult);
+                 this.getIds()
+                //  this.getProjectIds()
                 this.history.push("/dashboard");
             } else if (err) {
                 this.history.push("/");
@@ -47,6 +57,44 @@ export default class Auth {
         });
     };
 
+    getIds=()=> {
+
+        const newUser = { 
+            email: this.getProfile().email ,
+            user_id: this.getProfile().sub ,
+            name: this.getProfile().name}
+       
+        axios.post('https://photo-effects-backend-stage-1.herokuapp.com/users', newUser)
+          .then(res=>{
+              console.log('new user added')
+          })
+          .catch(error => {
+           
+            error.response.data.code === "23505" && 
+                console.log('user exists')
+                localStorage.setItem('userId', this.getProfile().sub)
+                this.history.push("/dashboard"); 
+          });   
+      }
+
+    
+    //   getProjectIds=()=> {
+       
+    //     axios.get('https://photo-effects-backend-stage-1.herokuapp.com/users')
+    //       .then(res=>{
+    //           console.log('new user added')
+    //       })
+    //       .catch(error => {
+           
+    //         error.response.data.code === "23505" && 
+    //             console.log('user exists')
+    //             localStorage.setItem('userId', this.getProfile().sub)
+    //             this.history.push("/dashboard"); 
+    //       });   
+    //   }
+
+
+      
     setSession = authResult => {
         //set the time that the access token will expire
         const expiresAt = JSON.stringify(authResult.expiresIn * 1000 + new Date().getTime())
