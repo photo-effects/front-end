@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Photolist from './Photolist';
 import './waterfall.css';
 import axios from 'axios';
+
 const WaterfallCont = props => {
   const [pics, setPics] = useState([]);
   useEffect(() => {
@@ -20,6 +21,8 @@ const WaterfallCont = props => {
     <div className="waterfallcont">
       <Photolist pics={filteredpics.length === 0 ? pics : filteredpics} />
     </div>
+
+   
   );
 };
 export default WaterfallCont;
