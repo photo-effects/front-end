@@ -17,24 +17,51 @@ const dashNav = {
     zIndex: "+3" ,
 }
 
+const navBarLogo = {
+  marginLeft: "80px" ,
+  height: "60px" ,
+  width: "150px" 
+}
+
+const dashNavLinks = {
+  display: "flex" ,
+  alignItems: "baseline" ,
+  justifyContent: "space-evenly" ,
+  margin: "8px" ,
+  marginRight: "30px" ,
+  padding: "0 25px"
+}
+
+const dashLogout = {
+  backgroundColor: "#fc5185" ,
+  padding: "12px" ,
+  paddingLeft: "10px" ,
+  borderRadius: "8px" ,
+  color: "whitesmoke" ,
+  boxShadow:" -1px 1px 90px -2px rgba(240,240,240,1)" ,
+  border: "none" ,
+  fontSize: "2rem" ,
+  cursor: "pointer"
+}
+
+
 export class DashNav extends Component {
 
 
-  
-
+ 
 //push to landing
 
   render() {
     return (
-      <nav className="dashNav">
+      <nav style={dashNav}>
       <NavLink to="/">
-        <img className="navBarLogo" src="https://files.slack.com/files-pri/T4JUEB3ME-FMKCEGRQT/asset_8.png" alt="logo"/>
+        <img style={navBarLogo} src="https://files.slack.com/files-pri/T4JUEB3ME-FMKCEGRQT/asset_8.png" alt="logo"/>
         </NavLink>
       {/* <div>
         <h1 className="logo">Photo Effects</h1>
       </div> */}
       <div className='navWrap'>
-      <ul className="dashNavLinks dashNavRight">
+      <ul style={dashNavLinks} className="dashNavRight">
       <NavLink exact to="/">
         <li className="home">Home</li>
         </NavLink>
@@ -42,7 +69,7 @@ export class DashNav extends Component {
       <NavLink exact to="/canvas">
         <li classHame="canvasDash"> Canvas </li>
       </NavLink>
-         <li ><button className="dashLogout" onClick={this.props.auth.logout} >Logout</button></li>
+         <li style={{paddingLeft: "15px"}}><button style={dashLogout} onClick={this.props.auth.logout} >Logout</button></li>
       </ul>
       </div>
     </nav>
