@@ -258,8 +258,6 @@ export default class Dashboard extends Component {
             fileName={this.state.fileName}
             removeImage={this.removeImage}
             updateProject={this.updateProject}
-            setBgImage={this.props.setBgImage}
-        
           />
         </div>
         <Projects

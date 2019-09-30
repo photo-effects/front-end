@@ -16,8 +16,6 @@ const Image = props => {
               removeImage={props.removeImage}
               updateProject={props.updateProject}
               fileName={props.fileName}
-              setBgImage={props.setBgImage}
-              
             />
           </>
         );

@@ -30,7 +30,6 @@ class PhotoLink extends Component {
             .then(res => {
                 this.props.history.push('/canvas')
                 this.props.updateProject(res.data)
-                // this.props.setBgImage(this.state.photoInfo.secure_url);
                 console.log('adding to backend');
             })
             .catch(err => {
