@@ -102,7 +102,7 @@ const flexBox2 = {
   border: '1px solid green',
   margin: '0 auto',
   overflow: 'hidden',
-  maxWidth: '600px'
+  maxWidth: '600px',
 }
 
 
@@ -112,7 +112,7 @@ const imgSize = {
   alignSelf: 'center',
   border: '1px solid yellow',
   height: '600px',
-  width: '100%',
+  minWidth: '100%',
 }
 
 
