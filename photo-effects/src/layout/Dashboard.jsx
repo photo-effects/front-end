@@ -84,6 +84,9 @@ export default class Dashboard extends Component {
           error: null,
           fileName: fileName[0]
         });
+        images.map(image => {
+          this.props.setBgImage(image.url)
+        })
       })
       .catch(err => {
         err.json().then(e => {
@@ -150,6 +153,9 @@ export default class Dashboard extends Component {
           error: null,
           fileName: fileName[0]
         });
+        images.map(image => {
+          this.props.setBgImage(image.url)
+        })
       })
       .catch(err => {
         err.json().then(e => {
@@ -252,6 +258,8 @@ export default class Dashboard extends Component {
             fileName={this.state.fileName}
             removeImage={this.removeImage}
             updateProject={this.updateProject}
+            setBgImage={this.props.setBgImage}
+        
           />
         </div>
         <Projects
@@ -263,6 +271,7 @@ export default class Dashboard extends Component {
           }
           updateProject={this.updateProject}
           toggleSort={this.toggleSort}
+          setBgImage={this.props.setBgImage}
         />
       </div>
     );

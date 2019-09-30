@@ -20,9 +20,10 @@ export default class Canvas extends Component {
   componentDidMount() {
     this.setState({ w: (ReactDOM.findDOMNode(this).getBoundingClientRect().width / 4) * 3 })
   }
-  
-  
 
+  // this.setState({ items: JSON.parse("[{\"type\":\"img\",\"key\":null,\"ref\":null,\"props\":{\"height\":492,\"width\":293.875,\"x\":270.8125,\"y\":-27,\"style\":{\"zIndex\":1},\"id\":\"88b2af17-a46e-4c04-bba2-30508737c444\",\"src\":\"https://res.cloudinary.com/dn94qw6w7/image/upload/v1567202073/rv8qvq2siyxqpbtwnl4i.jpg\"},\"_owner\":null,\"_store\":{}}]") })
+  
+  
   // This method changes the zIndex for the selected item, and places it as the top-level element. The selected item is whatever item is currently being dragged. The selected item's ID is passed as a parameter to this function.
   bringToTop = id => {
 
@@ -147,6 +148,7 @@ export default class Canvas extends Component {
           setItem = { this.setItem }
           getJsonData = { this.getJsonData }
           removeImage={this.removeImage}
+          image={this.props.image}
         />
       </div>
     )

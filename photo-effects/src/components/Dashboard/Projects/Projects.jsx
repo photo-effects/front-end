@@ -26,6 +26,14 @@ class Projects extends Component {
       });
   };
 
+
+  toCanvas = (project) => {
+    this.props.setBgImage(project.secure_url)
+    this.props.history.push('/canvas')
+  }
+
+
+
   // staging
   //   deleteProject = (id, public_id) => {
   //     console.log(id, public_id);
@@ -58,7 +66,7 @@ class Projects extends Component {
             return (
               <div className="project-container">
               <h2 className="uploaded-img-title">{project.title}</h2> 
-              <div className="uploaded-img-container">
+              <div onClick={() => this.toCanvas(project)} className="uploaded-img-container">
               <img className="uploaded-img" src={project.secure_url} /> 
               </div>
               <button className="project-delete-button" onClick={() => this.deleteProject(project.id, project.public_id)}>
