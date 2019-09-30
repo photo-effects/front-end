@@ -83,15 +83,20 @@ const container = {
   position: "absolute",
   bottom: 0,
   right: 0,
-  border: '1px solid black'
+  background: "rgb(208, 208, 208)",
+  border: '1px solid gray',
+  borderRadius: '5px'
 };
 
 const flexBox = {
  display: 'flex',
  justifyContent: 'center',
+ margin: '0 auto',
+ background: 'white',
  alignItems: 'center',
- border: '1px solid red',
- width: '100%',
+ border: '1px solid gray',
+ borderRadius: '5px',
+ width: '60%',
  height: '100%'
 }
 
@@ -99,7 +104,6 @@ const flexBox2 = {
   display: 'flex',
   justifyContent: 'center',
   alignContent: 'center',
-  border: '1px solid green',
   margin: '0 auto',
   overflow: 'hidden',
   maxWidth: '600px',
@@ -110,7 +114,7 @@ const imgSize = {
   display: 'flex',
   alignContent: 'center',
   alignSelf: 'center',
-  border: '1px solid yellow',
+  // border: '1px solid yellow',
   height: '600px',
   minWidth: '100%',
 }
