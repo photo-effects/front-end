@@ -55,7 +55,6 @@ export default class Canvas extends Component {
 
   // this method adds an item from the tools area to the canvas. this method takes the whole element and adds it to the items array in state. since elements in the tools area are simple images, this method adds all the properties before adding them to state.
   addItem = item => {
-
     // get top-level zIndex, same as above.
     let z = this.state.items.map(item => item.props.style.zIndex).sort((a, b) => b - a)[0]
     
@@ -84,7 +83,8 @@ export default class Canvas extends Component {
 
         // sets src and alt attributes if the item is an image
         src = { item.type === 'img' ? item.props.src : null }
-        alt = { item.type === 'img' ? item.props.title : null }
+        alt = { item.props }
+        // alt = { item.type === 'img' ? item.props.title : null }
       />
     ] })
   }
