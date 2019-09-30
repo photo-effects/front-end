@@ -96,7 +96,7 @@ const flexBox = {
  alignItems: 'center',
  border: '1px solid gray',
  borderRadius: '5px',
- width: '60%',
+ width: '75%',
  height: '100%'
 }
 
