@@ -27,10 +27,6 @@ export default class App extends Component {
   };
   auth = new Auth(this.props.history);
 
-  // setBgImage = () => {
-  //   this.setState({ imageSolo: this.state.image[this.state.image.length].secure_url })
-  //   console.log(this.state.image)
-  // };
 
   setBgImage = (item) => {
     this.setState({ image: item })

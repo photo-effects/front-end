@@ -222,7 +222,7 @@ export default class CanvasItem extends Component {
               onMouseDown={!resizing ? e => getPosition(e) : null}
               style={textEditMove}
             >
-              X
+              <i class="fas fa-arrows-alt"></i>
             </div>
             <Resizer
               resizer={{
@@ -275,7 +275,7 @@ export default class CanvasItem extends Component {
 
 // stupid little dumb-looking box to move the textboxes, since we need to be able to click within the box to manipulate its text
 const textEditMove = {
-  border: "2px solid red",
+  cursor: 'grab',
   position: "absolute",
   right: "calc(50% - 10px)",
   bottom: "calc(50% - 10px)",
@@ -284,7 +284,8 @@ const textEditMove = {
   height: "20px",
   display: "flex",
   alignItems: "center",
-  justifyContent: "center"
+  justifyContent: "center",
+  fontSize: '2rem'
 };
 
 // the resizer. lil circle that can be clicked and dragged
@@ -296,8 +297,8 @@ const Resizer = props => {
     zIndex: 10,
     border: "2px solid red",
     borderRadius: "100%",
-    height: "10px",
-    width: "10px",
+    height: "12px",
+    width: "12px",
     position: "absolute",
     visibility: hover ? "visible" : "hidden",
     cursor,

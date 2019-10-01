@@ -109,6 +109,7 @@ const flexBox2 = {
 }
 
 
+
 const imgSize = { 
   display: 'flex',
   alignContent: 'center',
