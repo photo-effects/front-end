@@ -1,14 +1,4 @@
-.hero{
-  display: flex;
-  justify-content: space-around;
-  align-content: center;
-  padding-top: 100px;
-  position: absolute;
-  margin: auto;
-  width: 100%;
-  top:60px
-  
-}
+
 .herobg{
   height: 600px;
 }
@@ -16,20 +6,7 @@
   height: 100%;
   z-index:-1;
 }
-.title{
-  margin-top: 50px;
-  font-size: 8rem;
-  color: whitesmoke;
-  width: 45%;
-  text-shadow: -2px 1px 1px rgb(40, 5, 145);
-}
-.video{
-  box-shadow: -2px 1px 3px rgb(40, 5, 145);
-  border: whitesmoke 1px solid;
-  border-radius: 8px;
-  width:45%;
-  height: 350px;
-}
+
 .cards:hover{
   transition: transform .5s;
   transform: scale(1.05);
