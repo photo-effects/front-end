@@ -8,7 +8,7 @@ export default class Auth {
         this.auth0 = new auth0.WebAuth({
             domain: process.env.REACT_APP_AUTH0_DOMAIN,
             clientID: process.env.REACT_APP_AUTH0_CLIENT_ID,
-            redirectURL: process.env.REACT_APP_AUTH0_CALLBACK,
+            redirectUri: process.env.REACT_APP_AUTH0_CALLBACK,
             responseType: "token id_token",
             scope: "openid profile email"
         });
@@ -28,9 +28,10 @@ export default class Auth {
     };
 
     logout = () => {
-        localStorage.removeItem("access_token");
-        localStorage.removeItem("id_token");
-        localStorage.removeItem("expires_at");
+        // localStorage.removeItem("access_token");
+        // localStorage.removeItem("id_token");
+        // localStorage.removeItem("expires_at");
+        this.auth0.logout();
         this.history.push("/");
     }
 
