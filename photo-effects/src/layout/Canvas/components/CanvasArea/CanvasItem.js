@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
 
-import TextEdit from '../LeftPanelArea/Tools/TextBox/TextEdit';
+import TextEdit from "../LeftPanelArea/Tools/TextBox/TextEdit";
 
 export default class CanvasItem extends Component {
   state = {
@@ -10,8 +10,8 @@ export default class CanvasItem extends Component {
     y: 0,
     max_x: 0,
     max_y: 0,
-    item: {}
-  }
+    item: {},
+  };
 
   // i think this whole CDM is unneeded lol
   componentDidMount() { 
@@ -25,7 +25,7 @@ export default class CanvasItem extends Component {
 
     // this would be the canvas's width and height
     const { width, height } = parent;
-    const { nodeWidth, nodeHeight, item } = this.props; 
+    const { nodeWidth, nodeHeight, item } = this.props;
 
     this.setState({ 
       // since positioning is tracked based on the top and left values, if we set max_x and max_y to just the width and height of the canvas, you'd be able to drag the element off screen by it's full width and height. so we subtract the width and height of the element to set the maximum values so the element stops when it hits the edge of the canvas
@@ -34,20 +34,22 @@ export default class CanvasItem extends Component {
 
       // not sure that i needed to set left and top here
       item: {
-        ...item, left, top
+        ...item,
+        left,
+        top
       }
-    })
+    });
   }
 
   // this makes sure the item's width and height are only updated on this component's state when we're NOT resizing. if the state was updated while resizing, the element would grow outward from it's center, rather than maintaining it's top and left positioning and growing at a 1:1 ratio with the mouse movement. while growing outward from the center looks cool, the UX is just inappropriate for this particular app.
   static getDerivedStateFromProps(nextProps, prevState) {
-    if(!nextProps.resizing) {
+    if (!nextProps.resizing) {
       return {
         item: {
           width: nextProps.nodeWidth,
           height: nextProps.nodeHeight
         }
-      }
+      };
     } else return null;
   }
   
@@ -60,10 +62,10 @@ export default class CanvasItem extends Component {
       new_x, 
       new_y,
       max_x,
-      max_y, 
+      max_y,
       nodeX,
       nodeY,
-      nodeWidth, 
+      nodeWidth,
       nodeHeight,
       hover
     } = this.props;
@@ -108,12 +110,14 @@ export default class CanvasItem extends Component {
       // if the element is being hovered, it's overlay Box is the full width and height of the canvas, so the top and left position correlate to top and left defined above. if not, the overlay Box is the size of the element and positioned at the element's current position within canvas, so we place the item at the 0,0 corner of its overlay box.
       top: hover ? top : 0,
       left: hover ? left : 0,
-      color: 'black',
+      color: "black",
       width: nodeWidth,
       height: nodeHeight,
-      zIndex: this.props.z
-    }
-  }
+      zIndex: this.props.z,
+      boxShadow: hover ? "2px 2px 15px black" : null
+      // border: "3px solid black"
+    };
+  };
 
   // this correlates to the resize function on the Box component. this is where those left and top values get passed in.
   resize = e => {
@@ -122,9 +126,9 @@ export default class CanvasItem extends Component {
 
     // mouseup on window for fluidity/avoiding bad mouseup calls
     const mouseup = () => {
-      this.props.resize(false)
-      window.removeEventListener('mouseup', mouseup);
-    }
+      this.props.resize(false);
+      window.removeEventListener("mouseup", mouseup);
+    };
 
     // getting bouding rect values
     const _this = ReactDOM.findDOMNode(this);
@@ -144,10 +148,8 @@ export default class CanvasItem extends Component {
     // happens when we hover over the element
     this.setState({ hover: true })
 
-    this.props.overlay(
-      0, 0, '100%', '100%', true
-    )
-  }
+    this.props.overlay(0, 0, "100%", "100%", true);
+  };
 
   // this sets the overlay box to be the size and position of the element. 
   setOverlayContain = e => {
@@ -168,33 +170,33 @@ export default class CanvasItem extends Component {
       width,
       height,
       false
-    )
-  }
+    );
+  };
 
   // just using the bottom-right for now. need to work out some trigonomotry for the others.
   resizers = [
     {
       top: -5,
       left: -5,
-      name: 'top-left'
+      name: "top-left"
     },
     {
       top: -5,
       right: -5,
-      name: 'top-right'
+      name: "top-right"
     },
     {
       right: -5,
       bottom: -5,
-      name: 'bottom-right'
+      name: "bottom-right"
     },
     {
       left: -5,
       bottom: -5,
-      name: 'bottom-left'
+      name: "bottom-left"
     }
-  ]
- 
+  ];
+
   render() {
     const { 
       resizing,
@@ -215,27 +217,23 @@ export default class CanvasItem extends Component {
             !resizing && !dragging ? e => this.setOverlayContain(e) : null 
           }
         >
-          <TextEdit 
-            textbox = { this.props.textbox }
-          />
-          <div
-        draggable
-        onMouseDown = { 
-          !resizing ? e => getPosition(e) : null 
-        }
-        style = { textEditMove }
-          >
-            X
-          </div>
-            <Resizer 
-              resizer = { {
+            <TextEdit textbox={this.props.textbox} />
+             <div
+              draggable
+              onMouseDown={!resizing ? e => getPosition(e) : null}
+              style={textEditMove}
+            >
+              <i class="fas fa-arrows-alt"></i>
+            </div>
+            <Resizer
+              resizer={{
                 right: -5,
                 bottom: -5,
-                name: 'bottom-right'
-              } }
-              cursor = { 'nwse-resize' }
-              resize = { this.resize }
-              hover = { this.state.hover }
+                name: "bottom-right"
+              }}
+              cursor={"nwse-resize"}
+              resize={this.resize}
+              hover={this.state.hover}
             />
         </div>
       )
@@ -265,30 +263,31 @@ export default class CanvasItem extends Component {
               resizer = { {
                 right: -5,
                 bottom: -5,
-                name: 'bottom-right'
-              } }
-              cursor = { 'nwse-resize' }              
-              resize = { this.resize }
-              hover = { this.state.hover }
+                name: "bottom-right"
+              }}
+              cursor={"nwse-resize"}
+              resize={this.resize}
+              hover={this.state.hover}
             />
-      </div>
-    )
+          </div>
+      );
   }
 }
 
 // stupid little dumb-looking box to move the textboxes, since we need to be able to click within the box to manipulate its text
 const textEditMove = {
-  border: '2px solid red',
-  position: 'absolute',
-  right: 'calc(50% - 10px)',
-  bottom: 'calc(50% - 10px)',
+  cursor: 'grab',
+  position: "absolute",
+  right: "calc(50% - 10px)",
+  bottom: "calc(50% - 10px)",
   zIndex: 10000,
-  width: '20px',
-  height: '20px',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center'
-}
+  width: "20px",
+  height: "20px",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  fontSize: '2rem'
+};
 
 // the resizer. lil circle that can be clicked and dragged
 const Resizer = props => {
@@ -297,19 +296,19 @@ const Resizer = props => {
 
   const style = () => ({
     zIndex: 10,
-    border: '2px solid red',
-    borderRadius: '100%',
-    height: '10px',
-    width: '10px',
-    position: 'absolute',
-    visibility: hover ? 'visible' : 'hidden',
-    cursor, top, left, right, bottom
-  })
+    border: "2px solid red",
+    borderRadius: "100%",
+    height: "12px",
+    width: "12px",
+    position: "absolute",
+    visibility: hover ? "visible" : "hidden",
+    cursor,
+    top,
+    left,
+    right,
+    bottom
+  });
 
-  return (
-    <div 
-      style = { style() }
-      onMouseDown = { e => resize(e) }
-    ></div>
-  )
-}
+  return <div style={style()} onMouseDown={e => resize(e)}></div>;
+};
+

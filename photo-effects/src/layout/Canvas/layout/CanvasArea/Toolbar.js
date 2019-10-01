@@ -27,7 +27,8 @@ export default class Toolbar extends Component {
     position: 'absolute',
     top: 0,
     left: 0,
-    zIndex: this.state.item.props.style.zIndex
+    zIndex: this.state.item.props.style.zIndex,
+    
   })
 
   render() { 
@@ -37,10 +38,16 @@ export default class Toolbar extends Component {
           this.state.item.type === TextEdit ? <TextToolbar 
             setTextbox = { this.props.setTextbox }
             textbox = { this.props.textbox }
+            item = { this.state.item }
+            removeImage= { this.props.removeImage }
           /> 
         : 
-          <div style = {{ width: '100%', height: '100%', background: 'black', color: 'red', fontWeight: 'bold', fontSize: '3rem', display: 'flex',
-        justifyContent: 'center', alignItems: 'center' }}><span>{ this.props.id }</span></div>
+          <div style = {{ width: '100%', height: '100%', background: 'white', color: 'black', fontWeight: 'bold', fontSize: '2rem', display: 'flex',
+        justifyContent: 'center', alignItems: 'center' }}>
+          <span>{ this.props.alt }</span>
+          <button style={btnBackground} onClick={() => this.props.removeImage(this.props.id)}><i class="far fa-trash-alt fa-fw fa-3x"></i></button>
+          </div>
+          
         :
           null
         }
@@ -54,6 +61,12 @@ export default class Toolbar extends Component {
     )
   } 
 }
+
+const btnBackground = {
+  background:'white',
+  border: 'none'
+}
+
 
 // const openBtn = {
 //   position: 'absolute',

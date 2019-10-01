@@ -8,7 +8,6 @@ const TextEdit = props => {
     return {
       margin:'auto',
       padding: '10px',
-      border: '1px blue solid',
       textAlign: 'center',
       color: color,
       backgroundColor: background,
@@ -25,7 +24,7 @@ const TextEdit = props => {
       contentEditable = { true }
       suppressContentEditableWarning = { true }
     >
-      placeholder text
+      Add some text!
     </div>
   );
 }

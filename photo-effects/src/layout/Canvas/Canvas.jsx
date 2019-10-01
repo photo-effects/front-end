@@ -20,9 +20,10 @@ export default class Canvas extends Component {
   componentDidMount() {
     this.setState({ w: (ReactDOM.findDOMNode(this).getBoundingClientRect().width / 4) * 3 })
   }
-  
-  
 
+  // this.setState({ items: JSON.parse("[{\"type\":\"img\",\"key\":null,\"ref\":null,\"props\":{\"height\":492,\"width\":293.875,\"x\":270.8125,\"y\":-27,\"style\":{\"zIndex\":1},\"id\":\"88b2af17-a46e-4c04-bba2-30508737c444\",\"src\":\"https://res.cloudinary.com/dn94qw6w7/image/upload/v1567202073/rv8qvq2siyxqpbtwnl4i.jpg\"},\"_owner\":null,\"_store\":{}}]") })
+  
+  
   // This method changes the zIndex for the selected item, and places it as the top-level element. The selected item is whatever item is currently being dragged. The selected item's ID is passed as a parameter to this function.
   bringToTop = id => {
 
@@ -35,18 +36,18 @@ export default class Canvas extends Component {
         return (
           // The 'item.type', as of now, will either return 'img' or 'div', which is why this syntax works.
           <item.type
-            { ...item.props }
-            style = {{
+            {...item.props}
+            style={{
               ...item.props.style,
               // applying the zIndex.
               zIndex: z + 1
             }}
           >
-          { item.props.children }
+            {item.props.children}
           </item.type>
         )
       } else return item;
-    })
+    });
 
     // last step is to just update the state with the new items array that has the updated zIndex 
     this.setState({ items })
@@ -54,7 +55,6 @@ export default class Canvas extends Component {
 
   // this method adds an item from the tools area to the canvas. this method takes the whole element and adds it to the items array in state. since elements in the tools area are simple images, this method adds all the properties before adding them to state.
   addItem = item => {
-
     // get top-level zIndex, same as above.
     let z = this.state.items.map(item => item.props.style.zIndex).sort((a, b) => b - a)[0]
     
@@ -83,10 +83,22 @@ export default class Canvas extends Component {
 
         // sets src and alt attributes if the item is an image
         src = { item.type === 'img' ? item.props.src : null }
-        alt = { item.type === 'img' ? item.props.title : null }
+        alt = { item.props }
+        // alt = { item.type === 'img' ? item.props.title : null }
       />
     ] })
   }
+
+   // Filter
+   filter = id => {
+    return this.state.items.filter(item => item.props.id !== id);
+  };
+
+  // Remove pic from state using filter
+  removeImage = id => {
+    this.setState({ items: this.filter(id) });
+    console.log(this.state.items);
+  };
 
   // this method sets the size and coordinates for each element in state, so their values are maintained when new items are added. this method is called when the mouseup event is triggered after an element is done being dragged.
   // id is the id of the element that's being dragged. w is width, h is height, x and y are the coordinates.
@@ -94,7 +106,7 @@ export default class Canvas extends Component {
     
     // gets all the elements in the items array in state, sets them in a new array, then sets the w, h, x, and y values for that element.
     let items = this.state.items.map(item => {
-      if(item.props.id === id) {
+      if (item.props.id === id) {
         return (
           <item.type
             // maintain all previous props, changing what's needed below
@@ -108,11 +120,11 @@ export default class Canvas extends Component {
             x = { this.state.items.length === 1 ? x - (w / 2) : x }
             y = { this.state.items.length === 1 ? y - (h / 2) : y }
           >
-            { item.props.children }
+            {item.props.children}
           </item.type>
-        )
-      } else return item
-    })
+        );
+      } else return item;
+    });
 
     // set the items on state
     this.setState({ items })
@@ -135,6 +147,8 @@ export default class Canvas extends Component {
           bringToTop = { this.bringToTop }
           setItem = { this.setItem }
           getJsonData = { this.getJsonData }
+          removeImage={this.removeImage}
+          image={this.props.image}
         />
       </div>
     )
