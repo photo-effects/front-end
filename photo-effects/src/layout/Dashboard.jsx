@@ -86,6 +86,9 @@ export default class Dashboard extends Component {
           error: null,
           fileName: fileName[0]
         });
+        images.map(image => {
+          this.props.setBgImage(image.url)
+        })
       })
       .catch(err => {
         err.json().then(e => {
@@ -152,6 +155,9 @@ export default class Dashboard extends Component {
           error: null,
           fileName: fileName[0]
         });
+        images.map(image => {
+          this.props.setBgImage(image.url)
+        })
       })
       .catch(err => {
         err.json().then(e => {
@@ -253,8 +259,9 @@ export default class Dashboard extends Component {
       <div>
         <DashNav auth={this.props.auth}/>
         <div className="welcome">
-          <h1>Welcome {this.props.auth.getProfile().user_id || "User"}!</h1>
-          
+
+         
+          <h1>Welcome {this.props.auth.getProfile().name || "User"}!</h1>
         </div>
         <div className="center">
           {this.state.exist === "true" && this.state.error === null ? (
@@ -290,6 +297,7 @@ export default class Dashboard extends Component {
           }
           updateProject={this.updateProject}
           toggleSort={this.toggleSort}
+          setBgImage={this.props.setBgImage}
         />
       </div>
     );

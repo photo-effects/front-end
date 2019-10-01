@@ -115,7 +115,9 @@ class TextToolbar extends Component {
           <p>Font:</p> 
           <Slider sliderValue = { this.sliderValue }  />
         </div>
-
+        <div style={ btnBox }>
+        <button style={ btnBackground } onClick={() => this.props.removeImage(this.props.item.props.id)}><i class="far fa-trash-alt fa-3x"></i></button>
+        </div>
       </div>
     );
   }
@@ -183,5 +185,14 @@ const bgDropdown = {
 
 const sliderContainer = {
   ...spaceEvenly,
-  width: '40%'
+  width: '40%',
+}
+
+const btnBox = {
+  padding: '20px'
+}
+
+const btnBackground = {
+  background:'#364F6B',
+  border: 'none'
 }

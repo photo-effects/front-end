@@ -1,32 +1,7 @@
-
-.dashNav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    height: 14vh;
-    background-color: #364f6b;
-    color: whitesmoke;
-    font-size: 2rem;
-    position: fixed;
-    z-index: +3
-  }
-
-  .dashLogo {
-    font-size: 3rem;
-    font-weight: bold;
-  }
-
-  .dashNavLinks {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    margin: 8px;
-  }
-
   .dashNavLinks a {
     text-decoration: none;
     color: white;
+    padding: 0 10px;
   }
   
   .dashNavRight{
@@ -43,16 +18,7 @@
       transition: ease-in-out 0.1s;
   }
   
-  .dashLogout {
-    background-color: #fc5185;
-    padding: 12px;
-    border-radius: 8px;
-    color: whitesmoke;
-    box-shadow: -1px 1px 90px -2px rgba(240,240,240,1);
-    border: none;
-    font-size:2rem;
-    cursor: pointer;
-  }
+  
 
   .dashLogout:hover {
       filter: brightness(110%);
