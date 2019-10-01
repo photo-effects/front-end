@@ -9,7 +9,7 @@ const ToolsArea = props => {
   return (
   <div style =  { panel_container }>
       {/* <ToolsContainer /> */}
-     <ToolsTopArea />
+     <ToolsTopArea auth = { props.auth } />
       <ToolPanel 
         addItem = { props.addItem }
       />

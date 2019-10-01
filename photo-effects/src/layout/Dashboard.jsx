@@ -6,6 +6,7 @@ import Projects from "../components/Dashboard/Projects/Projects";
 import DashNav from "../components/Dashboard/DashNav/DashNav";
 import "../components/Dashboard/DashNav/dashNav.css";
 
+
 export default class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -19,7 +20,8 @@ export default class Dashboard extends Component {
       inputKey: Date.now(),
       exist: "false",
       fileName: "",
-      sort: false
+      sort: false,
+      canvasprojects: []
     };
   }
   //
@@ -84,6 +86,9 @@ export default class Dashboard extends Component {
           error: null,
           fileName: fileName[0]
         });
+        images.map(image => {
+          this.props.setBgImage(image.url)
+        })
       })
       .catch(err => {
         err.json().then(e => {
@@ -150,6 +155,9 @@ export default class Dashboard extends Component {
           error: null,
           fileName: fileName[0]
         });
+        images.map(image => {
+          this.props.setBgImage(image.url)
+        })
       })
       .catch(err => {
         err.json().then(e => {
@@ -223,6 +231,18 @@ export default class Dashboard extends Component {
     // .get('https://photo-effects-backend-stage-1.herokuapp.com/api/projects')
     // .then(res => this.setState({ projects: res.data }))
     // .catch(err => console.log(err));
+
+    axios
+      .get("https://photo-effects-backend-stage-1.herokuapp.com/canvas/")
+      .then(res => this.setState({ canvasprojects: res.data }))
+      .catch(err => console.log(err));
+
+    
+
+    axios
+      .get(`https://photo-effects-backend-stage-1.herokuapp.com/users/1/projects`)
+      .then(res => this.setState({ canvasprojects: res.data }))
+      .catch(err => console.log(err));
   }
   // Toggle
   toggleSort = () => {
@@ -230,11 +250,18 @@ export default class Dashboard extends Component {
   };
   render() {
     
+    const filteredProjects = this.state.canvasprojects.filter(project => project.user_id === localStorage.getItem("userId"))
+
+    console.log(filteredProjects)
+    console.log(this.state.canvasprojects)
+
    return (
       <div>
         <DashNav auth={this.props.auth}/>
         <div className="welcome">
-          <h1>Welcome {this.props.auth.getProfile().given_name || "User"}!</h1>
+
+         
+          <h1>Welcome {this.props.auth.getProfile().name || "User"}!</h1>
         </div>
         <div className="center">
           {this.state.exist === "true" && this.state.error === null ? (
@@ -254,6 +281,13 @@ export default class Dashboard extends Component {
             updateProject={this.updateProject}
           />
         </div>
+
+        {filteredProjects.map(project => {
+          return (
+            <div>{project.p_name}</div>
+          )
+        })}
+
         <Projects
           // projects={this.state.projects}
           projects={
@@ -263,6 +297,7 @@ export default class Dashboard extends Component {
           }
           updateProject={this.updateProject}
           toggleSort={this.toggleSort}
+          setBgImage={this.props.setBgImage}
         />
       </div>
     );
