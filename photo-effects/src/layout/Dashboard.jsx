@@ -240,7 +240,7 @@ export default class Dashboard extends Component {
       <div>
         <DashNav auth={this.props.auth}/>
         <div className="welcome">
-          <h1>Welcome {this.props.auth.getProfile().given_name || "User"}!</h1>
+          <h1>Welcome {this.props.auth.getProfile().name || "User"}!</h1>
         </div>
         <div className="center">
           {this.state.exist === "true" && this.state.error === null ? (
