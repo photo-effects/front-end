@@ -10,7 +10,7 @@ export default class CanvasItem extends Component {
     y: 0,
     max_x: 0,
     max_y: 0,
-    item: {}
+    item: {},
   };
 
   // i think this whole CDM is unneeded lol
@@ -113,7 +113,8 @@ export default class CanvasItem extends Component {
       color: "black",
       width: nodeWidth,
       height: nodeHeight,
-      zIndex: this.props.z
+      zIndex: this.props.z,
+      boxShadow: hover ? "2px 2px 15px black" : null
       // border: "3px solid black"
     };
   };
@@ -217,7 +218,7 @@ export default class CanvasItem extends Component {
           }
         >
             <TextEdit textbox={this.props.textbox} />
-            <div
+             <div
               draggable
               onMouseDown={!resizing ? e => getPosition(e) : null}
               style={textEditMove}

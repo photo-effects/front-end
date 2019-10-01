@@ -70,9 +70,11 @@ export default class Box extends Component {
     // extracting just what we need from these methods.
     const { left, top } = parent;
 
-    this.setState({ 
+    this.setState({
       // sets the item from props, and the left and top position from the item's props.
-      item, left, top,
+      item,
+      left,
+      top,
 
       // sets nodeWidth and nodeHeight from the item's props
       nodeWidth: width,
@@ -83,8 +85,8 @@ export default class Box extends Component {
       max_y: parent.height,
 
       // we want our cursor to be dragging the element from its center. to do this, we take the x and y values (initial) from the item's props, then add 1/2 its width and 1/2 its height. the reason for this is that absolute positioning is applied from the top-left corner. to push the position into the middle, we just need to add 1/2 the width and height
-      nodeX: x + (width / 2),
-      nodeY: y + (height / 2),
+      nodeX: x + width / 2,
+      nodeY: y + height / 2,
 
       // sets the top position at the item's y prop, left at item's x, width and height are the same as the item.
       overlay: {
@@ -106,13 +108,12 @@ export default class Box extends Component {
           top: nextProps.item.y,
           left: nextProps.item.x
         }
-      }
+      };
     } else return null;
   }
 
   // this is the styles for the overlay container
   container = () => {
-
     // get overlay from state
     const { overlay } = this.state;
 
@@ -143,16 +144,16 @@ export default class Box extends Component {
     const y = clientY;
 
     // a little arithmetic for when an item is resized. the left and top values indicate the canvas position on within the window. nodeLeft and nodeTop indicate the element's position within the window. x and y are the mouse position within the window. by subtracting the left and top values from both the element and mouse positions, it simulates the element being at x: 0 and y: 0. in order to resize an element, the mouse will be at the bottom-right corner. in effect, the mouse's x and y position are at the element's width and height values. since the x and y values now correlate to the element's width and height, changing the mouse x and mouse y position will change the width and height as well.
-    if(resizing) {
-      this.setState({ 
-        nodeWidth: (x - left) - (nodeLeft - left),
-        nodeHeight: (y - top) - (nodeTop - top),
-      })
+    if (resizing) {
+      this.setState({
+        nodeWidth: x - left - (nodeLeft - left),
+        nodeHeight: y - top - (nodeTop - top)
+      });
     }
 
     // the nodeX and nodeY positions are the element's position within the canvas at its top-left corner (getting the drag position in the center of the element happens later). in order to get this position, we have to simply subtract the mouse's x and y position from the canvas's top and left position on the screen. this simulates the canvas being at x: 0, y: 0, so the nodeX and nodeY position will automatically correlate to the mouse's position within the canvas. since the mouse needs to be within the element to drag it, anywhere the mouse moves while dragging will correlate to a new x and y position at its top-left corner.
-    if(dragging) {
-      this.setState({ 
+    if (dragging) {
+      this.setState({
         nodeX: x - left,
         nodeY: y - top
       });
@@ -170,51 +171,50 @@ export default class Box extends Component {
     e.preventDefault();
 
     // function that changes zIndex values to bring the item being manipulated to the top.
-    this.props.bringToTop(this.state.item.props.id)
+    this.props.bringToTop(this.state.item.props.id);
 
     // mouseup function called when the mouseup event is fired on the window. applying the mouseup event listener to the window allows for more fluid dragging motion. also, if mouseup was applied to the element, it can accidentally be called if the mouse leaves the element.
     const mouseup = () => {
       // sets dragging to false, locking in the final x and y values.
-      this.setState({ dragging: false })
+      this.setState({ dragging: false });
 
       // gather element's properties from state.
       const { item, nodeWidth, nodeHeight, nodeX, nodeY } = this.state;
       // get its id so we can apply these values to the proper item in Canvas.jsx state.
-      const { id } = item.props
+      const { id } = item.props;
       // call setItem, and pass in its position and size so they're maintained when a new element is added, since all of these items are the result of prop drilling.
-      this.props.setItem(id, nodeWidth, nodeHeight, nodeX, nodeY)
+      this.props.setItem(id, nodeWidth, nodeHeight, nodeX, nodeY);
 
       // remove event listener from the window
-      window.removeEventListener('mouseup', mouseup);
-    }
+      window.removeEventListener("mouseup", mouseup);
+    };
 
     // set state dragging to true and add the mouseup event listener to the window
-    this.setState({ dragging: true })
-    window.addEventListener('mouseup', mouseup);
-  }
+    this.setState({ dragging: true });
+    window.addEventListener("mouseup", mouseup);
+  };
 
-  // the resizer needs this special function to work properly. bool says if we're resizing or not. left and top are gathered when the resizer is manipulated, and passed in as properties here. they correlate to the item's x and y position, minus 1/2 its width and height. 
+  // the resizer needs this special function to work properly. bool says if we're resizing or not. left and top are gathered when the resizer is manipulated, and passed in as properties here. they correlate to the item's x and y position, minus 1/2 its width and height.
   resize = (bool, left, top) => {
-
     // gather mouse's x and y position within the canvas
     const { x, y } = this.state;
 
     // resizing property on state gets set to whatever the boolean value is that's passed in as a parameter. nodeLeft and nodeTop get set as the item is being resized to avoid it 'springing' back to a position that correlates to its previous left and top position.
-    this.setState({ 
+    this.setState({
       resizing: bool,
       nodeLeft: left,
       nodeTop: top
     });
 
     // when we're done resizing, we have to set the element's size and position in Canvas.jsx-level state same way as above
-    if(!bool) {
+    if (!bool) {
       const { nodeWidth, nodeHeight } = this.state;
 
       // this sets the nodeX and nodeY position to the center of the element
       this.setState({
-        nodeX: x - (nodeWidth / 2),
-        nodeY: y - (nodeHeight / 2)
-      })
+        nodeX: x - nodeWidth / 2,
+        nodeY: y - nodeHeight / 2
+      });
 
       const { item, nodeX, nodeY } = this.state;
       const { id } = item.props;
@@ -251,43 +251,44 @@ export default class Box extends Component {
   render() {
     return (
       <>
-      <Toolbar 
-        item = { this.state.item }
-        id = { this.state.item.props.id }
-        setTextbox = { this.setTextbox }
-        textbox = { this.state.textbox }
-        removeImage={this.props.removeImage}
-        alt = { this.state.item.props.alt.alt }
-      />
+        <Toolbar
+          item={this.state.item}
+          id={this.state.item.props.id}
+          setTextbox={this.setTextbox}
+          textbox={this.state.textbox}
+          removeImage={this.props.removeImage}
+          alt={this.state.item.props.alt.alt}
+        />
         <div
-          style = { this.container() }
-          onMouseMove = { e => this.onMouseMove(e) }
-          
+          style={this.container()}
+          onMouseMove={e => this.onMouseMove(e)}
           // temporary. this is for when we implement saving in-progress projects and save as HTML
-          onClick = { () => this.props.getJsonData(ReactDOM.findDOMNode(this).offsetParent) }
+          onClick={() =>
+            this.props.getJsonData(ReactDOM.findDOMNode(this).offsetParent)
+          }
         >
-          <CanvasItem 
+          <CanvasItem
             // just throwing everything on it. TODO: reorder by type (f() or state val)
-            item = { this.state.item }
-            new_x = { this.state.x }
-            new_y = { this.state.y }
-            max_x = { this.state.max_x }
-            max_y = { this.state.max_y }
-            x = { this.state.nodeX }
-            y = { this.state.nodeY }
-            left = { this.state.left }
-            top = { this.state.top }
-            nodeWidth = { this.state.nodeWidth }
-            nodeHeight = { this.state.nodeHeight }
-            nodeX = { this.state.nodeX }
-            nodeY = { this.state.nodeY }
-            resize = { this.resize }
-            resizing = { this.state.resizing }
-            overlay = { this.overlay }
-            hover = { this.state.hover }
-            getPosition = { this.getPosition }
-            dragging = { this.state.dragging }
-            textbox = { this.state.textbox }
+            item={this.state.item}
+            new_x={this.state.x}
+            new_y={this.state.y}
+            max_x={this.state.max_x}
+            max_y={this.state.max_y}
+            x={this.state.nodeX}
+            y={this.state.nodeY}
+            left={this.state.left}
+            top={this.state.top}
+            nodeWidth={this.state.nodeWidth}
+            nodeHeight={this.state.nodeHeight}
+            nodeX={this.state.nodeX}
+            nodeY={this.state.nodeY}
+            resize={this.resize}
+            resizing={this.state.resizing}
+            overlay={this.overlay}
+            hover={this.state.hover}
+            getPosition={this.getPosition}
+            dragging={this.state.dragging}
+            textbox={this.state.textbox}
             removeImage={this.props.removeImage}
           />
         </div>

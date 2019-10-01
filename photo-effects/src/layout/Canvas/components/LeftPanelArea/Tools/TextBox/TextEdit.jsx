@@ -8,7 +8,6 @@ const TextEdit = props => {
     return {
       margin:'auto',
       padding: '10px',
-      border: '1px blue solid',
       textAlign: 'center',
       color: color,
       backgroundColor: background,
