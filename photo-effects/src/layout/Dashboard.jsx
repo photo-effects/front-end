@@ -1,11 +1,10 @@
-import React, { Component } from "react";
-import axios from "axios";
-import Upload from "../components/Dashboard/Upload/Upload";
-import Image from "../components/Dashboard/Image/Image";
-import Projects from "../components/Dashboard/Projects/Projects";
-import DashNav from "../components/Dashboard/DashNav/DashNav";
-import "../components/Dashboard/DashNav/dashNav.css";
-
+import React, { Component } from 'react';
+import axios from 'axios';
+import Upload from '../components/Dashboard/Upload/Upload';
+import Image from '../components/Dashboard/Image/Image';
+import Projects from '../components/Dashboard/Projects/Projects';
+import DashNav from '../components/Dashboard/DashNav/DashNav';
+import '../components/Dashboard/DashNav/dashNav.css';
 
 export default class Dashboard extends Component {
   constructor(props) {
@@ -18,8 +17,8 @@ export default class Dashboard extends Component {
       uploading: false,
       error: null,
       inputKey: Date.now(),
-      exist: "false",
-      fileName: "",
+      exist: 'false',
+      fileName: '',
       sort: false,
       canvasprojects: []
     };
@@ -36,10 +35,10 @@ export default class Dashboard extends Component {
     // this.setState({ error: null })
     if (files.length > 1) {
       // const msg = "Only 1 images can be uploaded at a time";
-      return console.log("No more than 1");
+      return console.log('No more than 1');
     }
     const formData = new FormData();
-    const types = ["image/png", "image/jpeg"];
+    const types = ['image/png', 'image/jpeg'];
 
     files.forEach((file, i) => {
       if (types.every(type => file.type !== type)) {
@@ -67,7 +66,7 @@ export default class Dashboard extends Component {
     // master
     // This will push code to cloudinary db
     fetch(`https://photo-effects-backend.herokuapp.com/image-upload`, {
-      method: "POST",
+      method: 'POST',
       body: formData
     })
       .then(res => {
@@ -81,14 +80,14 @@ export default class Dashboard extends Component {
       .then(images => {
         this.setState({
           uploading: false,
-          exist: "true",
+          exist: 'true',
           images,
           error: null,
           fileName: fileName[0]
         });
         images.map(image => {
-          this.props.setBgImage(image.url)
-        })
+          this.props.setBgImage(image.url);
+        });
       })
       .catch(err => {
         err.json().then(e => {
@@ -108,10 +107,10 @@ export default class Dashboard extends Component {
     // this.setState({ error: null })
     if (files.length > 1) {
       // const msg = "Only 1 images can be uploaded at a time";
-      return console.log("No more than 1");
+      return console.log('No more than 1');
     }
     const formData = new FormData();
-    const types = ["image/png", "image/jpeg"];
+    const types = ['image/png', 'image/jpeg'];
 
     files.forEach((file, i) => {
       if (types.every(type => file.type !== type)) {
@@ -136,7 +135,7 @@ export default class Dashboard extends Component {
     // master
     // This will push code to cloudinary db
     fetch(`https://photo-effects-backend.herokuapp.com/image-upload`, {
-      method: "POST",
+      method: 'POST',
       body: formData
     })
       .then(res => {
@@ -150,14 +149,14 @@ export default class Dashboard extends Component {
       .then(images => {
         this.setState({
           uploading: false,
-          exist: "true",
+          exist: 'true',
           images,
           error: null,
           fileName: fileName[0]
         });
         images.map(image => {
-          this.props.setBgImage(image.url)
-        })
+          this.props.setBgImage(image.url);
+        });
       })
       .catch(err => {
         err.json().then(e => {
@@ -178,8 +177,8 @@ export default class Dashboard extends Component {
         this.setState({
           images: [],
           inputKey: Date.now(),
-          exist: "false",
-          fileName: ""
+          exist: 'false',
+          fileName: ''
         });
       })
       .catch(err => {
@@ -199,25 +198,26 @@ export default class Dashboard extends Component {
   logoutButton = e => {
     e.preventDefault();
     console.log(this.props);
-    this.props.history.push("/home");
+    this.props.history.push('/home');
   };
 
   componentDidMount() {
     // sets users in state
     axios
-      .get("https://photo-effects-backend.herokuapp.com/api/users")
+      .get('https://photo-effects-backend.herokuapp.com/api/users')
       .then(res => this.setState({ users: res.data }))
+      .then(this.props.auth.getdbId())
       .catch(err => console.log(err));
 
     // sets projects in state
     axios
-      .get("https://photo-effects-backend.herokuapp.com/api/projects")
+      .get('https://photo-effects-backend.herokuapp.com/api/projects')
       .then(res => this.setState({ projects: res.data }))
       .catch(err => console.log(err));
 
     axios
       // .get("https://photo-effects-backend.herokuapp.com/api/projects/sort")
-      .get("https://photo-effects-backend.herokuapp.com/api/projects/sort")
+      .get('https://photo-effects-backend.herokuapp.com/api/projects/sort')
       .then(res => this.setState({ projectSort: res.data }))
       .catch(err => console.log(err));
 
@@ -233,14 +233,16 @@ export default class Dashboard extends Component {
     // .catch(err => console.log(err));
 
     axios
-      .get("https://photo-effects-backend-stage-1.herokuapp.com/canvas/")
+      .get('https://photo-effects-backend-stage-1.herokuapp.com/canvas/')
       .then(res => this.setState({ canvasprojects: res.data }))
       .catch(err => console.log(err));
 
-    
-
     axios
-      .get(`https://photo-effects-backend-stage-1.herokuapp.com/users/1/projects`)
+      .get(
+        `https://photo-effects-backend-stage-1.herokuapp.com/users/google/${localStorage.getItem(
+          'userId'
+        )}/projects`
+      )
       .then(res => this.setState({ canvasprojects: res.data }))
       .catch(err => console.log(err));
   }
@@ -249,22 +251,20 @@ export default class Dashboard extends Component {
     this.setState({ sort: !this.state.sort });
   };
   render() {
-    
-    const filteredProjects = this.state.canvasprojects.filter(project => project.user_id === localStorage.getItem("userId"))
+    // const filteredProjects = this.state.canvasprojects.filter(project => project.user_id === localStorage.getItem("userId"))
 
-    console.log(filteredProjects)
-    console.log(this.state.canvasprojects)
+    // console.log(filteredProjects)
+    console.log(this.state.canvasprojects);
+    console.log(localStorage.getItem('userId'));
 
-   return (
+    return (
       <div>
-        <DashNav auth={this.props.auth}/>
+        <DashNav auth={this.props.auth} />
         <div className="welcome">
-
-         
-          <h1>Welcome {this.props.auth.getProfile().name || "User"}!</h1>
+          <h1>Welcome {this.props.auth.getProfile().name || 'User'}!</h1>
         </div>
         <div className="center">
-          {this.state.exist === "true" && this.state.error === null ? (
+          {this.state.exist === 'true' && this.state.error === null ? (
             <h2>Is this the image you want?</h2>
           ) : (
             <Upload
@@ -282,10 +282,8 @@ export default class Dashboard extends Component {
           />
         </div>
 
-        {filteredProjects.map(project => {
-          return (
-            <div>{project.p_name}</div>
-          )
+        {this.state.canvasprojects.map(plzwork => {
+          return <p>{plzwork.p_name}</p>;
         })}
 
         <Projects
