@@ -322,12 +322,12 @@ export default class Dashboard extends Component {
         })}
 
         <Projects
-          // projects={this.state.projects}
-          projects={
-            this.state.sort === false
-              ? this.state.projects
-              : this.state.projectSort
-          }
+          projects={this.state.canvasprojects}
+          // projects={
+          //   this.state.sort === false
+          //     ? this.state.projects
+          //     : this.state.projectSort
+          // }
           updateProject={this.updateProject}
           toggleSort={this.toggleSort}
           setBgImage={this.props.setBgImage}
