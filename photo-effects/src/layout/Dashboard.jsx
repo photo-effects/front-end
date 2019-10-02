@@ -211,12 +211,23 @@ export default class Dashboard extends Component {
   //       console.log(user)
   // };
 
- 
+  getProjects = () => {
+    axios
+      .get(
+        `https://photo-effects-backend-stage-1.herokuapp.com/users/google/${localStorage.getItem(
+          'userId'
+        )}/projects`
+      )
+      .then(res => this.setState({ canvasprojects: res.data }))
+      .then(console.log(this.state.canvasprojects))
+    .catch(err => console.log(err)); 
+}
 
   componentDidMount() {
 
-   setTimeout(()=>this.props.auth.getdbId(), 2000 )
-    
+  
+    setTimeout(()=>this.props.auth.getdbId(), 2000 )
+   
 
     // sets users in state
     axios
@@ -253,20 +264,26 @@ export default class Dashboard extends Component {
       .then(res => this.setState({ canvasprojects: res.data }))
       .catch(err => console.log(err));
 
-    axios
-      .get(
-        `https://photo-effects-backend-stage-1.herokuapp.com/users/google/${localStorage.getItem(
-          'userId'
-        )}/projects`
-      )
-      .then(res => this.setState({ canvasprojects: res.data }));
-
+    // axios
+    //   .get(
+    //     `https://photo-effects-backend-stage-1.herokuapp.com/users/google/${localStorage.getItem(
+    //       'userId'
+    //     )}/projects`
+    //   )
+    //   .then(res => this.setState({ canvasprojects: res.data }))
+    //   .then(console.log(this.state.canvasprojects))
     // .catch(err => console.log(err));
+
+    
   }
 
+
+  
   // Toggle
   toggleSort = () => {
     this.setState({ sort: !this.state.sort });
+
+   
   };
   render() {
     // const filteredProjects = this.state.canvasprojects.filter(project => project.user_id === localStorage.getItem("userId"))
@@ -299,7 +316,7 @@ export default class Dashboard extends Component {
             updateProject={this.updateProject}
           />
         </div>
-
+        {this.state.canvasprojects=== undefined ? <p>loading projects</p> : this.getProjects()}
         {this.state.canvasprojects.map(plzwork => {
           return <p>{plzwork.p_name}</p>;
         })}
