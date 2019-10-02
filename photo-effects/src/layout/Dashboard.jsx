@@ -201,12 +201,28 @@ export default class Dashboard extends Component {
     this.props.history.push('/home');
   };
 
+  // getdbId = async () => {
+  //   let dbUser = await axios.get(`https://photo-effects-backend-stage-1.herokuapp.com/users/google/${localStorage.getItem(
+  //     'userId'
+  //   )}
+  //       `);
+
+  //       let user = dbUser.data[0].id
+  //       console.log(user)
+  // };
+
+ 
+
   componentDidMount() {
+
+   setTimeout(()=>this.props.auth.getdbId(), 2000 )
+    
+
     // sets users in state
     axios
       .get('https://photo-effects-backend.herokuapp.com/api/users')
+
       .then(res => this.setState({ users: res.data }))
-      .then(this.props.auth.getdbId())
       .catch(err => console.log(err));
 
     // sets projects in state
@@ -243,9 +259,11 @@ export default class Dashboard extends Component {
           'userId'
         )}/projects`
       )
-      .then(res => this.setState({ canvasprojects: res.data }))
-      .catch(err => console.log(err));
+      .then(res => this.setState({ canvasprojects: res.data }));
+
+    // .catch(err => console.log(err));
   }
+
   // Toggle
   toggleSort = () => {
     this.setState({ sort: !this.state.sort });
