@@ -130,9 +130,12 @@ export default class Canvas extends Component {
     this.setState({ items })
   }
 
+//add project to backend
+
   // phony method as of now to get the html data to save a project as an html doc, or return to an in-progress project
   getJsonData = () => {
     console.log(JSON.stringify(this.state.items))
+    //call post to backend.
   }
 
   render() { 
