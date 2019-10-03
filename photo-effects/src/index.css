@@ -55,6 +55,8 @@ table {
 :root{
 	font-size:62.5%
 }
-html {
-	/* overflow: hidden; */
+
+.mobile {
+	overflow: hidden !important;
+	max-height: 100vh !important;
 }
