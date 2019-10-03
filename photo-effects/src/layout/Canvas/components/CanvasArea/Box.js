@@ -257,7 +257,7 @@ export default class Box extends Component {
           setTextbox={this.setTextbox}
           textbox={this.state.textbox}
           removeImage={this.props.removeImage}
-          alt={this.state.item.props.alt.alt}
+          // alt={this.state.item.props.alt.alt}
         />
         <div
           style={this.container()}

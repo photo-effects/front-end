@@ -9,19 +9,23 @@ import ToolsArea from './layout/ToolsArea/ToolsArea';
 
 // The Canvas Area holds the canvas and toolbar. The canvas holds each element, and allows them to be dragged, resized, and relayered. The toolbar is distinct for each element, and will only show the toolbar for the element currently being manipulated, or the last element added to the canvas.
 import CanvasArea from './layout/CanvasArea/CanvasArea';
+import axios from 'axios';
 
 export default class Canvas extends Component {
   state = {
     // These are the items that get added to the canvas via the setItem method.
     items: [],
-    w: 0
+    w: 0,
+    saved: false
   }
 
   componentDidMount() {
     this.setState({ w: (ReactDOM.findDOMNode(this).getBoundingClientRect().width / 4) * 3 })
+
+    // this.setState({ items: JSON.parse("[{\"type\":\"img\",\"key\":null,\"ref\":null,\"props\":{\"height\":492,\"width\":293.875,\"x\":270.8125,\"y\":-27,\"style\":{\"zIndex\":1},\"id\":\"88b2af17-a46e-4c04-bba2-30508737c444\",\"src\":\"https://res.cloudinary.com/dn94qw6w7/image/upload/v1567202073/rv8qvq2siyxqpbtwnl4i.jpg\"},\"_owner\":null,\"_store\":{}}]") })
   }
 
-  // this.setState({ items: JSON.parse("[{\"type\":\"img\",\"key\":null,\"ref\":null,\"props\":{\"height\":492,\"width\":293.875,\"x\":270.8125,\"y\":-27,\"style\":{\"zIndex\":1},\"id\":\"88b2af17-a46e-4c04-bba2-30508737c444\",\"src\":\"https://res.cloudinary.com/dn94qw6w7/image/upload/v1567202073/rv8qvq2siyxqpbtwnl4i.jpg\"},\"_owner\":null,\"_store\":{}}]") })
+  
   
   
   // This method changes the zIndex for the selected item, and places it as the top-level element. The selected item is whatever item is currently being dragged. The selected item's ID is passed as a parameter to this function.
@@ -132,7 +136,37 @@ export default class Canvas extends Component {
 
   // phony method as of now to get the html data to save a project as an html doc, or return to an in-progress project
   getJsonData = () => {
-    console.log(JSON.stringify(this.state.items))
+    console.log('hello', JSON.stringify(this.state.items))
+
+    const canvasProjectData = JSON.stringify(this.state.items);
+    console.log("stringified", canvasProjectData);
+
+    const canvasProject = {
+        "p_name": "Project from App",
+        "p_description": "Image project description",
+        "user_created_id": 1,
+        "user_created_google_id": "google-oauth2|113561531601298466202",
+        "p_created_at": null,
+        "p_data": `${canvasProjectData}`,
+        "p_likes": 5,
+        "p_published": false
+    }
+
+    if (!this.state.saved) {
+      axios.post("https://photo-effects-backend-stage-1.herokuapp.com/canvas", canvasProject)
+      .then(res => {
+        console.log(this.state.saved)
+        console.log("SAVED", res.data[0].id);
+        localStorage.setItem("currentCanvasProject", res.data[0].id)
+        this.setState({saved: true})
+        console.log(this.state.saved)
+      })
+    } else {
+      axios.put(`https://photo-effects-backend-stage-1.herokuapp.com/canvas/${localStorage.getItem("currentCanvasProject")}`, canvasProject)
+      .then(res => {
+        console.log(res.data)
+      })
+    }
   }
 
   render() { 

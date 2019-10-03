@@ -26,7 +26,7 @@ class CanvasArea extends Component {
       <div 
         style={ container }
         // dom-to-image. try to do this organically
-        id="canvasTarget"
+        // id="canvasTarget"
       >
         {// this checks the amount of items in state. since you can't map over an array of 0 or 1 values, we have to set different code blocks for each of these conditions
 
@@ -64,7 +64,7 @@ class CanvasArea extends Component {
           <div></div>
         )}
         <div style={ flexBox }>
-          <div style={ flexBox2 }>
+          <div style={ flexBox2 } id="canvasTarget">
             {/* <div style={{backgroundImage: `url('${this.props.image}')`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', width: '100%', height: 'auto', border: '1px solid yellow'}}>  */}
         <img style={ imgSize } src={this.props.image} />
         </div>
