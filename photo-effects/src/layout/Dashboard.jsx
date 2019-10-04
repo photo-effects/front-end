@@ -68,7 +68,7 @@ export default class Dashboard extends Component {
     // This will push code to cloudinary db
     fetch(`https://photo-effects-backend.herokuapp.com/image-upload`, {
       method: "POST",
-      body: formData
+      body: localStorage.getItem('savedImg')
     })
       .then(res => {
         if (!res.ok) {
@@ -202,6 +202,19 @@ export default class Dashboard extends Component {
     this.props.history.push("/home");
   };
 
+
+//   testBtn = () => {
+//    axios.post('https://photo-effects-backend-stage-1.herokuapp.com/cloudinary/upload',
+//    JSON.stringify(localStorage.getItem('savedImg'))
+      
+// )
+    
+//     console.log(JSON.stringify(localStorage.getItem('savedImg')));
+   
+//   }
+
+  
+  
   componentDidMount() {
     // sets users in state
     axios
@@ -280,6 +293,7 @@ export default class Dashboard extends Component {
             removeImage={this.removeImage}
             updateProject={this.updateProject}
           />
+          <button onClick={this.testBtn}>Test Cloud!</button>
         </div>
 
         {filteredProjects.map(project => {
@@ -288,6 +302,7 @@ export default class Dashboard extends Component {
           )
         })}
 
+       
         <Projects
           // projects={this.state.projects}
           projects={

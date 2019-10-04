@@ -5,6 +5,7 @@ import home from './icons/icon-arrow-circle-left.svg';
 import exit from './icons/icon-door-exit.svg';
 import download from './icons/icon-download.svg';
 import edit from './icons/icon-edit.svg';
+import axios from 'axios';
 
 class ToolsTopArea extends Component {
    state = {
@@ -19,9 +20,10 @@ class ToolsTopArea extends Component {
     })
         .then(dataUrl => {
             var link = document.createElement('a');
-            link.download = this.state.projectName + '.jpeg';
+            // link.download = this.state.projectName + '.jpeg';
             link.href = dataUrl;
-            link.click();
+            localStorage.setItem("savedImg", dataUrl)
+            // link.click();
         });
    }
 

@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 // The Canvas exists as 3 main parts: The Tools Area, the canvas itself, and the toolbar associated with each element.
 
 import React, { Component } from 'react';
@@ -153,6 +155,9 @@ export default class Canvas extends Component {
           removeImage={this.removeImage}
           image={this.props.image}
         />
+        {/* <img style={{position:'absolute'}} src={localStorage.getItem('savedImg')} alt="" /> */}
+
+
       </div>
     )
   }
