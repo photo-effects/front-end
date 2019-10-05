@@ -22,7 +22,9 @@ export default class Canvas extends Component {
   componentDidMount() {
     this.setState({ w: (ReactDOM.findDOMNode(this).getBoundingClientRect().width / 4) * 3 })
 
-    // this.setState({ items: JSON.parse("[{\"type\":\"img\",\"key\":null,\"ref\":null,\"props\":{\"height\":492,\"width\":293.875,\"x\":270.8125,\"y\":-27,\"style\":{\"zIndex\":1},\"id\":\"88b2af17-a46e-4c04-bba2-30508737c444\",\"src\":\"https://res.cloudinary.com/dn94qw6w7/image/upload/v1567202073/rv8qvq2siyxqpbtwnl4i.jpg\"},\"_owner\":null,\"_store\":{}}]") })
+    // this.setState(
+    //   { items: JSON.parse("[{\"type\":\"img\",\"key\":null,\"ref\":null,\"props\":{\"height\":492,\"width\":293.875,\"x\":270.8125,\"y\":-27,\"style\":{\"zIndex\":1},\"id\":\"88b2af17-a46e-4c04-bba2-30508737c444\",\"src\":\"https://res.cloudinary.com/dn94qw6w7/image/upload/v1567202073/rv8qvq2siyxqpbtwnl4i.jpg\"},\"_owner\":null,\"_store\":{}}]") }
+    // )
   }
 
   
@@ -136,10 +138,11 @@ export default class Canvas extends Component {
 
   // phony method as of now to get the html data to save a project as an html doc, or return to an in-progress project
   getJsonData = () => {
+    console.log(this.state.items)
     console.log('hello', JSON.stringify(this.state.items))
 
     const canvasProjectData = JSON.stringify(this.state.items);
-    console.log("stringified", canvasProjectData);
+    console.log("stringified", JSON.stringify(canvasProjectData));
 
     const canvasProject = {
         "p_name": "Project from App",
@@ -147,7 +150,7 @@ export default class Canvas extends Component {
         "user_created_id": 1,
         "user_created_google_id": "google-oauth2|113561531601298466202",
         "p_created_at": null,
-        "p_data": `${canvasProjectData}`,
+        "p_data": `data`,
         "p_likes": 5,
         "p_published": false
     }

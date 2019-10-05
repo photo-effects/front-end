@@ -5,6 +5,7 @@ import Image from "../components/Dashboard/Image/Image";
 import Projects from "../components/Dashboard/Projects/Projects";
 import DashNav from "../components/Dashboard/DashNav/DashNav";
 import "../components/Dashboard/DashNav/dashNav.css";
+import domtoimage from 'dom-to-image';
 
 
 export default class Dashboard extends Component {
@@ -50,6 +51,22 @@ export default class Dashboard extends Component {
         errs.push(`'${file.name}' is too large, please pick a smaller file`);
       }
 
+      console.log(file);
+
+
+      domtoimage.toJpeg(document.getElementById('dashboardTarget'), { 
+        quality: 1.0,
+        filter: node => node.tagName !== 'a'
+      })
+        .then(dataUrl => {
+           var link = document.createElement('a');
+           link.download = 'dashboard.jpeg';
+           link.href = dataUrl;
+           link.click();
+           console.log('this is dataUrl', dataUrl)
+       });
+
+      console.log('this is file', file)
       formData.append(i, file);
     });
 
@@ -88,6 +105,7 @@ export default class Dashboard extends Component {
         });
         images.map(image => {
           this.props.setBgImage(image.url)
+          console.log(image)
         })
       })
       .catch(err => {
@@ -258,6 +276,8 @@ export default class Dashboard extends Component {
    return (
       <div>
         <DashNav auth={this.props.auth}/>
+
+        <div id="dashboardTarget"><h3 style={{color:'#fff', maxWidth: '100px', height: '100px'}}>Hello</h3><p>please print</p></div>
         <div className="welcome">
 
          

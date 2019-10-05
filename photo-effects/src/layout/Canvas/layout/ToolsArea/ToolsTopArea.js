@@ -16,7 +16,7 @@ class ToolsTopArea extends Component {
       domtoimage.toJpeg(document.getElementById('canvasTarget'), { 
          quality: 1.0,
          filter: node => node.tagName !== 'a'
-    })
+      })
         .then(dataUrl => {
             var link = document.createElement('a');
             link.download = this.state.projectName + '.jpeg';
