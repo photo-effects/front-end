@@ -5,7 +5,8 @@ import Box from '../../components/CanvasArea/Box';
 class CanvasArea extends Component {
   state = {
     // set the items from Cavnas.jsx into app-level state in the canvas area.
-    items: []
+    items: [],
+    showPreview: true
   };
 
   // this method sets the items from props onto state if they're different than the ones on state previously. Ensures no uneccessary re-renders happen.
@@ -17,6 +18,15 @@ class CanvasArea extends Component {
     }
   }
 
+  componentDidMount() {
+    this.setState({ showPreview: true });
+  }
+
+  clear = () => {
+    this.setState({ showPreview: false });
+    localStorage.removeItem('savedImg');
+  };
+
   render() {
     const { items } = this.state;
 
@@ -25,14 +35,14 @@ class CanvasArea extends Component {
         style={container}
         // dom-to-image. try to do this organically
       >
-        <div style={{ width: '90%', height: '90%', margin: 'auto' }}>
+        <div style={{ width: '100%', height: '100%', margin: 'auto' }}>
           <div
             style={{
               backgroundImage: `url('${this.props.image}')`,
               backgroundRepeat: 'no-repeat',
               backgroundSize: '100% 100%',
-              width: '100%',
-              height: '100%',
+              width: '500px',
+              height: '500px',
               margin: 'auto',
               border: '1px red solid'
             }}
@@ -83,20 +93,47 @@ class CanvasArea extends Component {
             // }}
             >
               <div
-                // style={{
-                //   backgroundImage: `url('${this.props.image}')`,
-                //   backgroundRepeat: 'no-repeat',
-                //   backgroundSize: 'cover',
-                //   width: '100%',
-                //   height: 'auto',
-                //   border: '1px solid yellow'
-                // }}
+              // style={{
+              //   backgroundImage: `url('${this.props.image}')`,
+              //   backgroundRepeat: 'no-repeat',
+              //   backgroundSize: 'cover',
+              //   width: '100%',
+              //   height: 'auto',
+              //   border: '1px solid yellow'
+              // }}
               >
                 {/* <img style={imgSize} src={this.props.image} alt="" /> */}
               </div>
             </div>
           </div>
         </div>
+
+        {/* preview box */}
+        {this.state.showPreview && (
+          <div
+            style={{
+              position: 'absolute',
+              top: '60%',
+              left: '-30%',
+              border: '2px solid red',
+              width: '250px',
+              height: '250px',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}
+          >
+            <img
+              onClick={this.clear}
+              style={{
+                width: '100%',
+                height: '100%'
+              }}
+              src={this.props.preview}
+              alt=""
+            />
+          </div>
+        )}
       </div>
     );
   }
@@ -105,8 +142,9 @@ class CanvasArea extends Component {
 // simple styles. height is 72px less than the full height of the app to account for the toolbar, which has a height of 72px
 const container = {
   display: 'flex',
-  width: '75%',
-  height: 'calc(100% - 72px)',
+  width: '800px',
+  // height: 'calc(100% - 72px)',
+  height: '800px',
   position: 'absolute',
   bottom: 0,
   right: 0,

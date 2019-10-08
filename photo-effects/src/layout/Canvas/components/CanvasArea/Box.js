@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import ReactDOM from "react-dom";
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 
-import Toolbar from "../../layout/CanvasArea/Toolbar";
-import CanvasItem from "./CanvasItem";
+import Toolbar from '../../layout/CanvasArea/Toolbar';
+import CanvasItem from './CanvasItem';
 
 export default class Box extends Component {
   // plenty of values to go over. these are to capture certain element properties so we can use them in positioning and sizing later
@@ -122,7 +122,7 @@ export default class Box extends Component {
 
     // sets absolute positioning, values gathered above, and sets the zIndex to the item's style on state when that item is being manipulated. Doing it this way ensures the Box maintains the positioning, size, and layer of the item it holds, since the methods that change these values effect the item higher up. The reason for this, is because all Boxes are the same, but all the elements within them hold distinct values, which will come in handy for saving and returning to an in-progress project, or downloading a project as HTML
     return {
-      position: "absolute",
+      position: 'absolute',
       height: height,
       width: width,
       top: top,
@@ -186,12 +186,12 @@ export default class Box extends Component {
       this.props.setItem(id, nodeWidth, nodeHeight, nodeX, nodeY);
 
       // remove event listener from the window
-      window.removeEventListener("mouseup", mouseup);
+      window.removeEventListener('mouseup', mouseup);
     };
 
     // set state dragging to true and add the mouseup event listener to the window
     this.setState({ dragging: true });
-    window.addEventListener("mouseup", mouseup);
+    window.addEventListener('mouseup', mouseup);
   };
 
   // the resizer needs this special function to work properly. bool says if we're resizing or not. left and top are gathered when the resizer is manipulated, and passed in as properties here. they correlate to the item's x and y position, minus 1/2 its width and height.

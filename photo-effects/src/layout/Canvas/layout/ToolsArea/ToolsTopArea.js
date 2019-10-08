@@ -54,9 +54,10 @@ class ToolsTopArea extends Component {
                   </div>
                   <div style = { panelbutton_download }>
                      <div 
-                     onClick={this.handleScreenshot}
+                     onClick={this.props.saveImg}
                      style = { dlDiv }
                      >
+                       <div style={{marginRight:'15px', marginLeft:'-22px'}}><p  onClick={this.props.saveImg}>save</p></div> 
                         <img src={download} />
                         <span style = { dlSpan }>Download</span>
                      </div>

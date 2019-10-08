@@ -7,21 +7,17 @@ import ToolsTopArea from './ToolsTopArea';
 
 const ToolsArea = props => {
   return (
-  <div style =  { panel_container }>
+    <div style={panel_container}>
       {/* <ToolsContainer /> */}
-     <ToolsTopArea auth = { props.auth } />
-      <ToolPanel 
-        addItem = { props.addItem }
-      />
-
+      <ToolsTopArea auth={props.auth} saveImg={props.saveImg} />
+      <ToolPanel addItem={props.addItem} />
     </div>
   );
 };
 
-
 const panel_container = {
   background: '#d0d0d0',
   width: '25%'
-}
+};
 
 export default ToolsArea;

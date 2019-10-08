@@ -204,15 +204,49 @@ export default class Dashboard extends Component {
 
 
 //   testBtn = () => {
-//    axios.post('https://photo-effects-backend-stage-1.herokuapp.com/cloudinary/upload',
-//    JSON.stringify(localStorage.getItem('savedImg'))
+//     let storageImg = localStorage.getItem('savedImg');
+//   console.log({image:storageImg})
+//    axios.post('https://photo-effects-backend-stage-1.herokuapp.com/cloudinary/upload2',
+//   storageImg
       
 // )
-    
-//     console.log(JSON.stringify(localStorage.getItem('savedImg')));
-   
+// .then(res => console.log(res))
+// .catch(err => console.log(err))
 //   }
 
+// async testBtn() {
+//   let storageImg = localStorage.getItem('savedImg');
+
+//   let response = () => {
+//     return new Promise(function(resolve, reject) {
+//       axios.post('http://photo-effects-backend-stage-1.herokuapp.com/cloudinary/upload2', storageImg).then(response => {
+//         resolve(response);
+//       }).catch(err => console.log(err));
+//     });
+//   };
+//   let responseData = await response();
+//   console.log(responseData.data);
+// }
+
+
+  testBtn = () => {
+  const formData = new FormData();
+  let storageImg = localStorage.getItem("savedImg");
+  formData.append("image", storageImg);
+
+    axios
+      .post(
+        `https://photo-effects-backend-stage-1.herokuapp.com/cloudinary/upload2`,
+        formData
+      )
+      .then(res => {
+        if (!res.ok) {
+          console.log(formData);
+          throw res;
+        }
+        return res.json();
+      });
+  }; 
   
   
   componentDidMount() {
