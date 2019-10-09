@@ -3,6 +3,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import uuidv4 from 'uuid/v4';
+import withAuth from '../../components/Auth/AuthOne/withAuth';
+
 
 // The Tools Area holds all the elements that can be added to the canvas images, (graphics, text, etc). When an element is clicked from the tools area, it gets added to the canvas.
 import ToolsArea from './layout/ToolsArea/ToolsArea';
@@ -10,7 +12,7 @@ import ToolsArea from './layout/ToolsArea/ToolsArea';
 // The Canvas Area holds the canvas and toolbar. The canvas holds each element, and allows them to be dragged, resized, and relayered. The toolbar is distinct for each element, and will only show the toolbar for the element currently being manipulated, or the last element added to the canvas.
 import CanvasArea from './layout/CanvasArea/CanvasArea';
 
-export default class Canvas extends Component {
+export class Canvas extends Component {
   state = {
     // These are the items that get added to the canvas via the setItem method.
     items: [],
@@ -154,6 +156,8 @@ export default class Canvas extends Component {
     )
   }
 }
+
+export default withAuth(Canvas);
 
 const page = {
   height: '100vh',

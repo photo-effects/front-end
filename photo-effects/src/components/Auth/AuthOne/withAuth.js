@@ -3,7 +3,7 @@ import {withRouter } from 'react-router-dom'
 
 function withAuth(Component) {
     const Auth =(props) => {
-        const isAuth = Boolean(localStorage.getItem('access_token'));
+        const isAuth = Boolean(localStorage.getItem('access_token') && localStorage.getItem('userId'));
 
         if (!isAuth) {
             props.history.push('/')

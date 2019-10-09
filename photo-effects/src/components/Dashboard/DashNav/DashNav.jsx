@@ -47,11 +47,10 @@ const dashLogout = {
 
 export class DashNav extends Component {
 
-
- 
 //push to landing
 
   render() {
+
     return (
       <nav style={dashNav}>
       <NavLink to="/">

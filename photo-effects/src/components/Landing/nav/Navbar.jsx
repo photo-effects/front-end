@@ -4,9 +4,16 @@ import {Link} from 'react-router-dom';
 // import TagsCont from '../../Landing/Tags/TagsCont';
 import './nav.css';
 import navLogo from '../../../assetts/photoLogo.png';
+
+
+
 export class Navbar extends Component {
 //push to landing
-  render() {
+
+render() {
+   
+    const isLoggedIn = Boolean(localStorage.getItem('access_token'));
+   
     return (
       <nav>
        
@@ -24,8 +31,12 @@ export class Navbar extends Component {
       <ul className="navlinks navright">
         <li className="smallnavlinks"><Link to='/dashboard'>Dashboard</Link></li>
         <li className="smallnavlinks"><Link to='/canvas'>Canvas</Link></li>
-        <li ><button className="loginbutton" onClick={this.props.auth.login} >Login/Signup</button></li>
-         {/* <li ><button className="loginbutton" onClick={this.props.auth.logout} >Logout</button></li> */}
+        {/*<li><button className="loginbutton" onClick={this.props.auth.login}>Login/SignUp</button></li>*/}
+        
+        {!isLoggedIn ? <li><button className="loginbutton" onClick={this.props.auth.login}>Login / SignUp</button></li> : 
+                       <li><button className="loginbutton" onClick={this.props.auth.logout}>Logout</button></li>}
+
+         {/* <li><button className="loginbutton" onClick={this.props.auth.logout} >Logout</button></li> */}
         
       </ul>
     </nav>

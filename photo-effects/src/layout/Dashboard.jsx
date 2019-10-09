@@ -5,9 +5,10 @@ import Image from "../components/Dashboard/Image/Image";
 import Projects from "../components/Dashboard/Projects/Projects";
 import DashNav from "../components/Dashboard/DashNav/DashNav";
 import "../components/Dashboard/DashNav/dashNav.css";
+import withAuth from "../components/Auth/AuthOne/withAuth";
 
 
-export default class Dashboard extends Component {
+export class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -303,3 +304,5 @@ export default class Dashboard extends Component {
     );
   }
 }
+
+export default withAuth(Dashboard);
