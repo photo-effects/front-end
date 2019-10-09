@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import axios from 'axios';
+
 
 import {
   /* BrowserRouter as Router, */
@@ -18,19 +18,16 @@ import Auth from "./components/Auth/AuthOne/Auth";
 // import Home from './components/Auth/Home';
 import Callback from "./components/Auth/Callback";
 
-import Test from "./layout/TextBox/Test";
-
 export default class App extends Component {
   state = {
-    image: [],
- 
+    image: []
   };
+
   auth = new Auth(this.props.history);
 
 
   setBgImage = (item) => {
     this.setState({ image: item })
-    console.log(this.state.image)
   }
 
   // componentDidMount() {

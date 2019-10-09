@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import ReactDOM from "react-dom";
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 
-import Toolbar from "../../layout/CanvasArea/Toolbar";
-import CanvasItem from "./CanvasItem";
+import Toolbar from '../../layout/CanvasArea/Toolbar';
+import CanvasItem from './CanvasItem';
 
 export default class Box extends Component {
   // plenty of values to go over. these are to capture certain element properties so we can use them in positioning and sizing later
@@ -65,7 +65,9 @@ export default class Box extends Component {
     const _this = ReactDOM.findDOMNode(this);
 
     // this method gets the parent of the dom node and gets the values for it, such as its size and position.
-    const parent = _this.offsetParent.getBoundingClientRect();
+    // const parent = _this.offsetParent.getBoundingClientRect();
+    const parent = this.props.parent.getBoundingClientRect();
+    const grand = this.props.parent.offsetParent.getBoundingClientRect();
 
     // extracting just what we need from these methods.
     const { left, top } = parent;
@@ -85,8 +87,8 @@ export default class Box extends Component {
       max_y: parent.height,
 
       // we want our cursor to be dragging the element from its center. to do this, we take the x and y values (initial) from the item's props, then add 1/2 its width and 1/2 its height. the reason for this is that absolute positioning is applied from the top-left corner. to push the position into the middle, we just need to add 1/2 the width and height
-      nodeX: x + width / 2,
-      nodeY: y + height / 2,
+      nodeX: (x + width / 2) - (parent.left - grand.left),
+      nodeY: (y + height / 2) - (parent.top - grand.top),
 
       // sets the top position at the item's y prop, left at item's x, width and height are the same as the item.
       overlay: {
@@ -122,12 +124,13 @@ export default class Box extends Component {
 
     // sets absolute positioning, values gathered above, and sets the zIndex to the item's style on state when that item is being manipulated. Doing it this way ensures the Box maintains the positioning, size, and layer of the item it holds, since the methods that change these values effect the item higher up. The reason for this, is because all Boxes are the same, but all the elements within them hold distinct values, which will come in handy for saving and returning to an in-progress project, or downloading a project as HTML
     return {
-      position: "absolute",
+      position: 'absolute',
       height: height,
       width: width,
       top: top,
       left: left,
-      zIndex: this.state.item.props.style.zIndex
+      zIndex: this.state.item.props.style.zIndex,
+      border: '2px solid blue'
     };
   };
 
@@ -186,12 +189,12 @@ export default class Box extends Component {
       this.props.setItem(id, nodeWidth, nodeHeight, nodeX, nodeY);
 
       // remove event listener from the window
-      window.removeEventListener("mouseup", mouseup);
+      window.removeEventListener('mouseup', mouseup);
     };
 
     // set state dragging to true and add the mouseup event listener to the window
     this.setState({ dragging: true });
-    window.addEventListener("mouseup", mouseup);
+    window.addEventListener('mouseup', mouseup);
   };
 
   // the resizer needs this special function to work properly. bool says if we're resizing or not. left and top are gathered when the resizer is manipulated, and passed in as properties here. they correlate to the item's x and y position, minus 1/2 its width and height.
@@ -261,6 +264,7 @@ export default class Box extends Component {
         />
         <div
           style={this.container()}
+          ref="box"
           onMouseMove={e => this.onMouseMove(e)}
           // temporary. this is for when we implement saving in-progress projects and save as HTML
           onClick={() =>
@@ -290,6 +294,7 @@ export default class Box extends Component {
             dragging={this.state.dragging}
             textbox={this.state.textbox}
             removeImage={this.props.removeImage}
+            parent={this.props.parent}
           />
         </div>
       </>
