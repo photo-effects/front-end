@@ -160,13 +160,15 @@ class Projects extends Component {
        <button onClick={this.props.toggleSort} style={sort}>Name <i className="fas fa-sort"></i></button>
        </div>
           <div style={userProjects}>
+      {this.props.projects.length===0 ? <div style={{display:'flex', flexDirection:'column', justifyContent:'center', color:'white'}}> <h4 style={{ fontSize:'3rem'}}>Quack! No Projects!</h4><h4 style={{margin:'auto',fontSize:'5rem'}}>\</h4><img src="http://www.pngnames.com/files/4/Rubber-Duck-PNG-Background.png" alt='duck'/> </div> :
+<>
           {this.props.projects.map(project => {
             return (
 
               <div style={projectContainer}>
-              <h2 style={uploadedImgTitle}>{project.title}</h2> 
+              <h2 style={uploadedImgTitle}>{project.p_name}</h2> 
               <div onClick={() => this.toCanvas(project)} className="uploaded-img-container">
-              <img style={uploadedImg} src={project.secure_url} /> 
+            {project.secure_url === undefined? <i className="fas fa-image" style={{fontSize:'10rem'}}></i> : <img style={uploadedImg} src={project.secure_url} alt='pic' /> }
 
               </div>
               <button style={projectDeleteButton} onClick={() => this.deleteProject(project.id, project.public_id)}>
@@ -175,6 +177,7 @@ class Projects extends Component {
               </div>
             )
           })}
+          </>}
           </div>
         </>
      )}

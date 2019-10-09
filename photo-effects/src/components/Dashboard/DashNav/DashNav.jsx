@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom';
+import Logo from '../../../assetts/photoLogo.png'
 import './dashNav.css';
 
 
@@ -54,7 +55,7 @@ export class DashNav extends Component {
     return (
       <nav style={dashNav}>
       <NavLink to="/">
-        <img style={navBarLogo} src="https://files.slack.com/files-pri/T4JUEB3ME-FMKCEGRQT/asset_8.png" alt="logo"/>
+        <img style={navBarLogo} src={Logo} alt="logo"/>
         </NavLink>
       {/* <div>
         <h1 className="logo">Photo Effects</h1>

@@ -35,12 +35,12 @@ export default class Auth {
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
     localStorage.removeItem('userId');
+    localStorage.removeItem('Id');
     localStorage.removeItem('dbId');
     this.auth0.logout();
     this.history.push('/');
   };
 
-  
 
   handleAuthentication = () => {
     this.auth0.parseHash((err, authResult) => {
@@ -88,14 +88,13 @@ export default class Auth {
         )}`
       )
       .then(res => {
-        // console.log(localStorage.getItem('userId'));
-        console.log(res.data);
-        // localStorage.setItem('dbid', res.data.id);
+        console.log(localStorage.getItem('userId'));
+        // console.log(res.data[0].id);
+        localStorage.setItem('dbId', res.data[0].id);
         // localStorage.setItem('dbId', );
-      });
-    // .catch(error => {
-
-    // });
+      }).catch(error => {
+console.log(error)
+    });
   };
 
   //   getProjectIds=()=> {
