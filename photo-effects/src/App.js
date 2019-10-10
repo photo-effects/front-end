@@ -8,9 +8,9 @@ import {
   /* NavLink */
 } from "react-router-dom";
 
-import Notfound from "./layout/Notfound";
-import Landing from "./layout/Landing";
-import Dashboard from "./layout/Dashboard";
+import Notfound from "./Pages/NotFound/Notfound";
+import Landing from "./Pages/Landing/Landing";
+import Dashboard from "./Pages/Dashboard/Dashboard";
 import Canvas from "./layout/Canvas/Canvas";
 
 // import Users from './components/Auth/Users';
