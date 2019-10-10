@@ -12,6 +12,7 @@ import Notfound from "./Pages/NotFound/Notfound";
 import Landing from "./Pages/Landing/Landing";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import Canvas from "./layout/Canvas/Canvas";
+import Test from './Pages/Test/Test'
 
 // import Users from './components/Auth/Users';
 import Auth from "./components/Auth/AuthOne/Auth";
@@ -80,7 +81,7 @@ export default class App extends Component {
           render={props => <Canvas auth={this.auth} image={this.state.image} {...props} />}
         />
 
-        {/* <Route exact path='/textbox' component={Test} /> */}
+        <Route exact path='/test' component={Test} />
 
         <Route component={Notfound} />
       </Switch>

@@ -3,6 +3,7 @@ import Navbar from './components/nav/Navbar';
 import TagsCont from './components/Tags/TagsCont';
 import Hero from './components/Hero/Hero';
 import HeroBg from './components/Hero/HeroBg'
+
 const Landing = (props) => {
   return (
     <div>
