@@ -32,6 +32,9 @@ export class Canvas extends Component {
       const image = canvas
         .toDataURL('image/png')
         .replace('image/png', 'image/octet-stream');
+      
+      this.setState({ preview: image })
+
       const link = document.createElement('a');
       link.download = this.state.projectName + '.png';
       link.href = image;
