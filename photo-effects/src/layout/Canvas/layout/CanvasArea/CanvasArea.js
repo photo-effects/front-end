@@ -8,8 +8,6 @@ class CanvasArea extends Component {
     items: []
   };
 
-
-
   // this method sets the items from props onto state if they're different than the ones on state previously. Ensures no uneccessary re-renders happen.
   static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps.items !== prevState.items) {
@@ -23,8 +21,8 @@ class CanvasArea extends Component {
     const { items } = this.state;
 
     return (
-      <div 
-        style={ container }
+      <div
+        style={container}
         // dom-to-image. try to do this organically
         id="canvasTarget"
       >
@@ -46,7 +44,6 @@ class CanvasArea extends Component {
               // temp
               getJsonData={this.props.getJsonData}
               removeImage={this.props.removeImage}
-             
             />
           ))
         ) : // if only 1 item is present, we can't map over the array. so we just take the element at position 0 (the only element) and do the same as above
@@ -63,12 +60,21 @@ class CanvasArea extends Component {
           // prevents content reflow
           <div></div>
         )}
-        <div style={ flexBox }>
-          <div style={ flexBox2 }>
-            {/* <div style={{backgroundImage: `url('${this.props.image}')`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', width: '100%', height: 'auto', border: '1px solid yellow'}}>  */}
-        <img style={ imgSize } src={this.props.image} />
-        </div>
-        {/* </div> */}
+        <div style={flexBox}>
+          <div
+            id="canvasTarget"
+            style={{
+              backgroundImage: `url('${this.props.image}')`,
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "100% 100%",
+              width: "100%",
+              border: "1px solid red"
+            }}
+          >
+            {/* <div style={{backgroundImage: `url('${this.props.image}')`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', width: '100%', height: '100%', border: '1px solid yellow'}}>  */}
+            {/* <img style={ imgSize } src={this.props.image} /> */}
+            {/* </div> */}
+          </div>
         </div>
       </div>
     );
@@ -77,48 +83,44 @@ class CanvasArea extends Component {
 
 // simple styles. height is 72px less than the full height of the app to account for the toolbar, which has a height of 72px
 const container = {
-  display: 'flex',
+  display: "flex",
   width: "75%",
   height: "calc(100% - 72px)",
   position: "absolute",
   bottom: 0,
   right: 0,
   background: "whitesmoke",
-  border: '1px solid gray',
+  border: "1px solid gray"
 };
 
 const flexBox = {
- display: 'flex',
- alignSelf: 'center',
- justifyContent: 'center',
- margin: '0 auto',
- background: 'white',
- border: '1px solid gray',
- width: '60%',
- height: '80%',
-
-}
+  display: "flex",
+  alignSelf: "center",
+  justifyContent: "center",
+  margin: "0 auto",
+  background: "white",
+  border: "1px solid gray",
+  width: "60%",
+  height: "90%"
+};
 
 const flexBox2 = {
-  display: 'flex',
-  justifyContent: 'center',
-  alignContent: 'center',
-  margin: '0 auto',
-  overflow: 'hidden',
-  width: '100%'
-}
+  display: "flex",
+  justifyContent: "center",
+  alignContent: "center",
+  margin: "0 auto",
+  overflow: "hidden",
+  maxWidth: "100%"
+};
 
-
-
-const imgSize = { 
-  display: 'flex',
-  alignContent: 'center',
-  alignSelf: 'center',
-  // border: '1px solid yellow',
-  height: '600px',
-  minWidth: '100%',
-}
-
-
+// const imgSize = {
+//   display: 'flex',
+//   alignContent: 'center',
+//   alignSelf: 'center',
+//   border: '1px solid yellow',
+//   height: '600px',
+//   height: '100%',
+//   minWidth: '100%',
+// }
 
 export default CanvasArea;

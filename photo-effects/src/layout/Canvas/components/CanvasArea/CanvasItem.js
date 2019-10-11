@@ -114,8 +114,8 @@ export default class CanvasItem extends Component {
       width: nodeWidth,
       height: nodeHeight,
       zIndex: this.props.z,
-      boxShadow: hover ? "2px 2px 15px black" : null
-      // border: "3px solid black"
+      boxShadow: hover ? "2px 2px 15px black" : null,
+      // border: "3px solid green"
     };
   };
 
@@ -286,7 +286,8 @@ const textEditMove = {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  fontSize: '2rem'
+  fontSize: '2rem',
+  // border: '1px solid black'
 };
 
 // the resizer. lil circle that can be clicked and dragged

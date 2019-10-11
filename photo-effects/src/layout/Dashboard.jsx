@@ -6,7 +6,6 @@ import Projects from "../components/Dashboard/Projects/Projects";
 import DashNav from "../components/Dashboard/DashNav/DashNav";
 import "../components/Dashboard/DashNav/dashNav.css";
 
-
 export default class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -46,10 +45,13 @@ export default class Dashboard extends Component {
         // errs.push(`'${file.type}' is not a supported format`)
         errs.push(`Sorry about that! We only accept JPG and PNG files! :(`);
       }
-      if (file.size > 150000) {
-        errs.push(`'${file.name}' is too large, please pick a smaller file`);
+      // Will accept 10 MB which cloudinary allows for free version
+      if (file.size > 10000000) {
+        errs.push(
+          `'${file.name}' is too large, please pick a smaller file less than 10 Megabytes`
+        );
+        console.log(file.size);
       }
-
       formData.append(i, file);
     });
 
@@ -86,9 +88,10 @@ export default class Dashboard extends Component {
           error: null,
           fileName: fileName[0]
         });
+        console.log(this.state.images);
         images.map(image => {
-          this.props.setBgImage(image.url)
-        })
+          this.props.setBgImage(image.url);
+        });
       })
       .catch(err => {
         err.json().then(e => {
@@ -156,8 +159,8 @@ export default class Dashboard extends Component {
           fileName: fileName[0]
         });
         images.map(image => {
-          this.props.setBgImage(image.url)
-        })
+          this.props.setBgImage(image.url);
+        });
       })
       .catch(err => {
         err.json().then(e => {
@@ -237,10 +240,10 @@ export default class Dashboard extends Component {
       .then(res => this.setState({ canvasprojects: res.data }))
       .catch(err => console.log(err));
 
-    
-
     axios
-      .get(`https://photo-effects-backend-stage-1.herokuapp.com/users/1/projects`)
+      .get(
+        `https://photo-effects-backend-stage-1.herokuapp.com/users/1/projects`
+      )
       .then(res => this.setState({ canvasprojects: res.data }))
       .catch(err => console.log(err));
   }
@@ -249,18 +252,17 @@ export default class Dashboard extends Component {
     this.setState({ sort: !this.state.sort });
   };
   render() {
-    
-    const filteredProjects = this.state.canvasprojects.filter(project => project.user_id === localStorage.getItem("userId"))
+    const filteredProjects = this.state.canvasprojects.filter(
+      project => project.user_id === localStorage.getItem("userId")
+    );
 
-    console.log(filteredProjects)
-    console.log(this.state.canvasprojects)
+    console.log(filteredProjects);
+    console.log(this.state.canvasprojects);
 
-   return (
+    return (
       <div>
-        <DashNav auth={this.props.auth}/>
+        <DashNav auth={this.props.auth} />
         <div className="welcome">
-
-         
           <h1>Welcome {this.props.auth.getProfile().name || "User"}!</h1>
         </div>
         <div className="center">
@@ -283,9 +285,7 @@ export default class Dashboard extends Component {
         </div>
 
         {filteredProjects.map(project => {
-          return (
-            <div>{project.p_name}</div>
-          )
+          return <div>{project.p_name}</div>;
         })}
 
         <Projects
