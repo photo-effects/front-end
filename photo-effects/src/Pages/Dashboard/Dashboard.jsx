@@ -46,7 +46,7 @@ export default class Dashboard extends Component {
         // errs.push(`'${file.type}' is not a supported format`)
         errs.push(`Sorry about that! We only accept JPG and PNG files! :(`);
       }
-      if (file.size > 150000) {
+      if (file.size > 10000000) {
         errs.push(`'${file.name}' is too large, please pick a smaller file`);
       }
 
@@ -117,7 +117,7 @@ export default class Dashboard extends Component {
       if (types.every(type => file.type !== type)) {
         errs.push(`Sorry about that! We only accept JPG and PNG files! :(`);
       }
-      if (file.size > 150000) {
+      if (file.size > 10000000) {
         errs.push(`'${file.name}' is too large, please pick a smaller file`);
       }
 

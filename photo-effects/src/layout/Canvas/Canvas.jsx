@@ -43,6 +43,7 @@ export class Canvas extends Component {
   };
 
   saveImg = () => {
+    console.log('saveImg has been clicked')
     const formData = new FormData();
     formData.append('image', this.state.preview);
 
