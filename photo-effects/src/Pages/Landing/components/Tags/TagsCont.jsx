@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Swiper from 'react-id-swiper';
-import WaterfallCont from '../../waterfall/waterfallCont';
+import WaterfallCont from './waterfall/waterfallCont';
 // css
 import 'react-id-swiper/lib/styles/css/swiper.css';
 import './tagscont.css';
@@ -51,12 +51,6 @@ const TagsCont = props => {
     <div className="swiper">
       <h2 className="tagheader">Browse Tags</h2>
       <Swiper {...params}>
-        {/* <div
-          onClick={() => setSortedpics('')}
-          className="swipecards greencard"
-        >
-          All
-        </div> */}
         <div
           onClick={() => setSortedpics('Animals')}
           className="swipecards greencard"

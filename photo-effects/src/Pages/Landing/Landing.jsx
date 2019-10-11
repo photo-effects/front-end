@@ -1,9 +1,9 @@
 import React from 'react';
-import Navbar from '../components/Landing/nav/Navbar';
-import TagsCont from '../components/Landing/Tags/TagsCont';
-import Hero from '../components/Landing/Hero/Hero';
-import WaterfallCont from '../components/waterfall/waterfallCont';
-import HeroBg from '../components/Landing/Hero/HeroBg'
+import Navbar from './components/nav/Navbar';
+import TagsCont from './components/Tags/TagsCont';
+import Hero from './components/Hero/Hero';
+import HeroBg from './components/Hero/HeroBg'
+
 const Landing = (props) => {
   return (
     <div>

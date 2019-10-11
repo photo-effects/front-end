@@ -1,7 +1,4 @@
 import React from 'react';
-// import Iframe from 'react-iframe';
-// import HeroBg from './HeroBg'
-import './hero.css';
 
 const hero ={
   display: "flex" ,

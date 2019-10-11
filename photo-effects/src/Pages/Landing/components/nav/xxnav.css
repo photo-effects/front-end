@@ -1,4 +1,4 @@
-nav {
+/* nav {
   border-bottom: 1px solid #ffdb27;
   padding: 10px;
   display: flex;
@@ -12,7 +12,7 @@ nav {
   font-size: 2rem;
   position: fixed;
   z-index: +3
-}
+} */
 
 .logo {
   font-size: 3rem;
