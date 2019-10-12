@@ -11,7 +11,7 @@ import {
 import Notfound from "./Pages/NotFound/Notfound";
 import Landing from "./Pages/Landing/Landing";
 import Dashboard from "./Pages/Dashboard/Dashboard";
-import Canvas from "./layout/Canvas/Canvas";
+import Canvas from "./Pages/Canvas/Canvas";
 import Test from './Pages/Test/Test'
 
 // import Users from './components/Auth/Users';
@@ -21,7 +21,7 @@ import Callback from "./components/Auth/Callback";
 
 export default class App extends Component {
   state = {
-    image: []
+    image: null
   };
 
   auth = new Auth(this.props.history);

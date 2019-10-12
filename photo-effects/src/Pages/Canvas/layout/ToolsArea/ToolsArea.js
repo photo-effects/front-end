@@ -1,23 +1,19 @@
 import React from 'react';
 
-// import TopBar from './TopBar';
-
 import ToolPanel from '../../components/LeftPanelArea/ToolPanel';
 import ToolsTopArea from './ToolsTopArea';
 
 const ToolsArea = props => {
   return (
-  <div style =  { panel_container }>
-      {/* <ToolsContainer /> */}
-     <ToolsTopArea 
-      auth = { props.auth } 
-      saveImg={props.saveImg}
-      handleScreenshot = { props.handleScreenshot }
-     />
+    <div style =  { panel_container }>
+      <ToolsTopArea 
+        auth = { props.auth } 
+        saveImg={props.saveImg}
+        handleScreenshot = { props.handleScreenshot }
+      />
       <ToolPanel 
         addItem = { props.addItem }
       />
-
     </div>
   );
 };

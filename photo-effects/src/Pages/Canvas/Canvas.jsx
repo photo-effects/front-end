@@ -13,7 +13,7 @@ export class Canvas extends Component {
   state = {
     items: [],
     w: 0,
-    image: [],
+    image: null,
     imgUrl: []
   };
 
@@ -98,10 +98,18 @@ export class Canvas extends Component {
       .map(item => item.props.style.zIndex)
       .sort((a, b) => b - a)[0];
 
-    this.setState({
-      items: [
-        ...this.state.items,
+    let add_item;
 
+    if(item === 'Paint') {
+      add_item = () => ({
+        type: 'Paint',
+        props: {
+          id: uuidv4(),
+          style: { zIndex: this.state.items.length ? z * 100 + 1 : 100 }
+        }
+      })
+    } else {
+      add_item = () => (
         <item.type
           height={100}
           width={100}
@@ -114,8 +122,12 @@ export class Canvas extends Component {
           src={item.type === 'img' ? item.props.src : null}
           alt={item.type === 'img' ? item.props.title : null}
         />
-      ]
-    });
+      )
+    }
+
+    const items = this.state.items.length === 0 && item === 'Paint' ? [<div style = {{ zIndex: 0 }}></div>, add_item()] : [...this.state.items, add_item()]
+
+    this.setState({ items });
   };
 
   filter = id => {
