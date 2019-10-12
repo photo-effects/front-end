@@ -46,7 +46,7 @@ export default class Auth {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
         this.getIds();
-        //  this.getProjectIds()
+        
 
         this.history.push('/dashboard');
       } else if (err) {
@@ -70,6 +70,7 @@ export default class Auth {
         newUser
       )
       .then(res => {
+        this.getdbId()
         console.log('new user added');
       })
       .catch(error => {
