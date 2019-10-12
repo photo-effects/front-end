@@ -12,8 +12,7 @@ class PhotoLink extends Component {
 
     this.state = {
         photoInfo: {
-            title: `${this.props.fileName}`,
-            user_id: "1",
+            user_id: localStorage.getItem('dbId'),
             secure_url: this.props.secure_url,
             public_id: this.props.public_id,
         }
@@ -24,17 +23,38 @@ class PhotoLink extends Component {
    // when adding project will push info from component state to our backend in postgreSQL
    // doing props.history.push as a bandaid fix until fix error that occurs after clicking "Add To Backend"
     addProject = e => {
-        e.preventDefault();
-        axios
-          .post('https://photo-effects-backend.herokuapp.com/api/projects', this.state.photoInfo)
+        // e.preventDefault();
+        // axios
+        //   .post('https://photo-effects-backend.herokuapp.com/api/projects', this.state.photoInfo)
+        //     .then(res => {
+        //         this.props.history.push('/canvas')
+        //         this.props.updateProject(res.data)
+        //         console.log('adding to backend');
+        //     })
+        //     .catch(err => {
+        //         console.log(err);
+        //     })
+        const newProject = {
+            "p_name": "Untitled Design",
+            "p_description": "",
+            "user_created_id": this.state.photoInfo.user_id,
+            "user_created_google_id": localStorage.getItem('userId'),
+            "p_created_at": null,
+            "p_data": "",
+            "p_likes": 0,
+            "p_published": false,
+            "p_image": this.state.photoInfo.secure_url
+        }
+    
+        axios.post('https://photo-effects-backend-stage-1.herokuapp.com/canvas', newProject)
             .then(res => {
+                localStorage.setItem('projectId', res.data[0].id)
+                console.log(res.data)
+            })
+            .then(
                 this.props.history.push('/canvas')
-                this.props.updateProject(res.data)
-                console.log('adding to backend');
-            })
-            .catch(err => {
-                console.log(err);
-            })
+            )
+            .catch(err => console.log(err))
     }
 
 

@@ -203,32 +203,7 @@ export default class Dashboard extends Component {
     this.props.history.push('/home');
   };
 
-  // getdbId = async () => {
-  //   let dbUser = await axios.get(`https://photo-effects-backend-stage-1.herokuapp.com/users/google/${localStorage.getItem(
-  //     'userId'
-  //   )}
-  //       `);
 
-  //       let user = dbUser.data[0].id
-  //       console.log(user)
-  // };
-
-//   getdbId = () => {
-//     axios
-//       .get(
-//         `https://photo-effects-backend-stage-1.herokuapp.com/users/google/${localStorage.getItem(
-//           'userId'
-//         )}`
-//       )
-//       .then(res => {
-//         console.log(localStorage.getItem('userId'));
-//         // console.log(res.data[0].id);
-//         localStorage.setItem('dbId', res.data[0].id);
-//         // localStorage.setItem('dbId', );
-//       }).catch(error => {
-// console.log(error)
-//     });
-//   };
 
   getProjects = () => {
     axios
@@ -238,7 +213,7 @@ export default class Dashboard extends Component {
         )}/projects`
       )
       .then(res => this.setState({ canvasprojects: res.data }))
-      .then(console.log(this.state.canvasprojects))
+      // .then(console.log(this.state.canvasprojects))
     .catch(err => console.log(err)); 
 }
 
@@ -283,38 +258,9 @@ export default class Dashboard extends Component {
       .then(res => this.setState({ canvasprojects: res.data }))
       .catch(err => console.log(err));
 
-    // axios
-    //   .get(
-    //     `https://photo-effects-backend-stage-1.herokuapp.com/users/google/${localStorage.getItem(
-    //       'userId'
-    //     )}/projects`
-    //   )
-    //   .then(res => this.setState({ canvasprojects: res.data }))
-    //   .then(console.log(this.state.canvasprojects))
-    // .catch(err => console.log(err));
-
     
   }
 
-  createProject = () => {
-    const newProject = {
-      "p_name": "Untitled Design",
-      "p_description": "",
-      "user_created_id": localStorage.getItem('dbId'),
-      "user_created_google_id": localStorage.getitem('userId'),
-      "p_created_at": null,
-      "p_data": "",
-      "p_likes": 0,
-      "p_published": false,
-      "p_image": ""
-    }
-
-    axios.post('https://photo-effects-backend-stage-1.herokuapp.com/canvas', newProject)
-      .then(res => console.log(res.data))
-      .catch(err => console.log(err))
-  }
-
-  
   // Toggle
   toggleSort = () => {
     this.setState({ sort: !this.state.sort });
@@ -325,8 +271,7 @@ export default class Dashboard extends Component {
     // const filteredProjects = this.state.canvasprojects.filter(project => project.user_id === localStorage.getItem("userId"))
 
     // console.log(filteredProjects)
-    console.log(this.state.canvasprojects);
-    console.log(localStorage.getItem('userId'));
+    // console.log(localStorage.getItem('userId'));
 
     return (
       <div>
@@ -350,6 +295,7 @@ export default class Dashboard extends Component {
             fileName={this.state.fileName}
             removeImage={this.removeImage}
             updateProject={this.updateProject}
+            createProject={this.createProject}
           />
         </div>
         {this.state.canvasprojects=== undefined ? <p>loading projects</p> : this.getProjects()}
