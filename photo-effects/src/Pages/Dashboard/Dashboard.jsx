@@ -208,8 +208,8 @@ export default class Dashboard extends Component {
   getProjects = () => {
     axios
       .get(
-        `https://photo-effects-backend-stage-1.herokuapp.com/users/google/${localStorage.getItem(
-          'userId'
+        `https://photo-effects-backend-stage-1.herokuapp.com/users/${localStorage.getItem(
+          'dbId'
         )}/projects`
       )
       .then(res => this.setState({ canvasprojects: res.data }))

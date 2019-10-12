@@ -126,7 +126,8 @@ class Projects extends Component {
 
 
   toCanvas = (project) => {
-    this.props.setBgImage(project.secure_url)
+    localStorage.setItem('projectId', project.id)
+    this.props.setBgImage(project.p_image)
     this.props.history.push('/canvas')
   }
 
@@ -150,6 +151,7 @@ class Projects extends Component {
 
 
   render() {
+    // console.log(this.props.projects)
     
     return (
      <>
@@ -168,6 +170,7 @@ class Projects extends Component {
 
               <div style={projectContainer}>
               <h2 style={uploadedImgTitle}>{project.p_name}</h2> 
+              <p>{project.index}</p>
               <div onClick={() => this.toCanvas(project)} className="uploaded-img-container">
             {project.p_image === undefined? <i className="fas fa-image" style={{fontSize:'10rem'}}></i> : <img style={uploadedImg} src={project.p_image} alt='pic' /> }
 

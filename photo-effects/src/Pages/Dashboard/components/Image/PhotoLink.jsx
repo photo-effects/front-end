@@ -22,18 +22,7 @@ class PhotoLink extends Component {
    // master
    // when adding project will push info from component state to our backend in postgreSQL
    // doing props.history.push as a bandaid fix until fix error that occurs after clicking "Add To Backend"
-    addProject = e => {
-        // e.preventDefault();
-        // axios
-        //   .post('https://photo-effects-backend.herokuapp.com/api/projects', this.state.photoInfo)
-        //     .then(res => {
-        //         this.props.history.push('/canvas')
-        //         this.props.updateProject(res.data)
-        //         console.log('adding to backend');
-        //     })
-        //     .catch(err => {
-        //         console.log(err);
-        //     })
+    addProject = () => {
         const newProject = {
             "p_name": "Untitled Design",
             "p_description": "",
@@ -49,6 +38,7 @@ class PhotoLink extends Component {
         axios.post('https://photo-effects-backend-stage-1.herokuapp.com/canvas', newProject)
             .then(res => {
                 localStorage.setItem('projectId', res.data[0].id)
+                localStorage.setItem('publicId', this.props.public_id)
                 console.log(res.data)
             })
             .then(
