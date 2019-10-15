@@ -15,6 +15,7 @@ export class Canvas extends Component {
     w: 0,
     image: [],
     imgUrl: [],
+    preview: null
   };
 
   componentDidMount() {

@@ -46,6 +46,18 @@ export default class Toolbar extends Component {
         justifyContent: 'center', alignItems: 'center' }}>
           <span>{ this.props.alt }</span>       
           <button style={btnBackground} onClick={() => this.props.removeImage(this.props.id)}><i class="far fa-trash-alt fa-fw fa-3x"></i></button>
+          Opacity:
+          <select>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+          </select>
           </div> 
         :
          null
