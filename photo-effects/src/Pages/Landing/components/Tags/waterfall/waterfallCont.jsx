@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Photolist from './Photolist';
+import Footer from '../../../components/Footer/Footer'
 import './waterfall.css';
 import axios from 'axios';
 
@@ -12,7 +13,8 @@ const waterfallCont = {
   fontSize: "5rem" ,
   opacity: "0.9" ,
   height: "100%" ,
-  paddingTop: "40px" 
+  paddingTop: "40px" ,
+  borderTop:'#364F6B 1px solid',
   
 }
 
@@ -33,6 +35,7 @@ const WaterfallCont = props => {
   return (
     <div style={waterfallCont}>
       <Photolist pics={filteredpics.length === 0 ? pics : filteredpics} />
+      <Footer />
     </div>
 
    

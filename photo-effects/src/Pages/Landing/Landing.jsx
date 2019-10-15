@@ -12,7 +12,7 @@ const Landing = (props) => {
       
       <Hero style={{position:'absolute', top:'0px', backgroundImage:'none'}} />
       <HeroBg style={{zIndex:'-2', position:'absolute', top:'10px'}}/>
-      <TagsCont />
+      <TagsCont/>
     
    
     </div>

@@ -80,7 +80,7 @@ class CanvasArea extends Component {
           ) : (
             <div></div>
           )}
-          <img ref="image" src={this.props.image} style={hidden} />
+          <img ref="image" src={this.props.image} style={hidden} alt='img' />
         </div>
       </div>
     );

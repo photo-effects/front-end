@@ -48,9 +48,9 @@ const TagsCont = props => {
   const [sortedpics, setSortedpics] = useState('');
   console.log(sortedpics);
   return (
-    <div className="swiper">
+    <div >
       <h2 className="tagheader">Browse Tags</h2>
-      <Swiper {...params}>
+      <Swiper {...params} >
         <div
           onClick={() => setSortedpics('Animals')}
           className="swipecards greencard"
@@ -175,7 +175,7 @@ const TagsCont = props => {
         </div>
       </Swiper>
       <WaterfallCont sortBy={sortedpics}/>
-      <Footer />
+      
     </div>
   );
 };
