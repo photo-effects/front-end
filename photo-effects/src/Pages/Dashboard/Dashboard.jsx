@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import axios from 'axios';
 import Upload from './components/Upload/Upload';
@@ -6,6 +7,7 @@ import Projects from './components/Projects/Projects';
 import DashNav from './components/DashNav/DashNav';
 import './components/DashNav/dashNav.css';
 import withAuth from '../../components/Auth/AuthOne/withAuth';
+import Footer from '../../Pages/Landing/components/Footer/Footer'
 
 export default class Dashboard extends Component {
   constructor(props) {
@@ -189,11 +191,11 @@ export default class Dashboard extends Component {
 
   // Update
   // will update state for user projects when adding/deleting for now.
-  updateProject = (e, newProject) => {
-    this.setState({
-      projects: newProject
-    });
-  };
+  // updateProject = (e, newProject) => {
+  //   this.setState({
+  //     projects: newProject
+  //   });
+  // };
 
   // logout
   logoutButton = e => {
@@ -202,32 +204,23 @@ export default class Dashboard extends Component {
     this.props.history.push('/home');
   };
 
-  // getdbId = async () => {
-  //   let dbUser = await axios.get(`https://photo-effects-backend-stage-1.herokuapp.com/users/google/${localStorage.getItem(
-  //     'userId'
-  //   )}
-  //       `);
-
-  //       let user = dbUser.data[0].id
-  //       console.log(user)
-  // };
 
   getProjects = () => {
     axios
       .get(
-        `https://photo-effects-backend-stage-1.herokuapp.com/users/google/${localStorage.getItem(
-          'userId'
+        `https://photo-effects-backend-stage-1.herokuapp.com/users/${localStorage.getItem(
+          'dbId'
         )}/projects`
       )
       .then(res => this.setState({ canvasprojects: res.data }))
-      .then(console.log(this.state.canvasprojects))
+      // .then(console.log(this.state.canvasprojects))
     .catch(err => console.log(err)); 
 }
 
   componentDidMount() {
 
   
-    // setTimeout(()=>this.props.auth.getdbId(), 2000 )
+    setTimeout(()=>this.props.auth.getdbId(), 2000 )
    
 
     // sets users in state
@@ -265,21 +258,9 @@ export default class Dashboard extends Component {
       .then(res => this.setState({ canvasprojects: res.data }))
       .catch(err => console.log(err));
 
-    // axios
-    //   .get(
-    //     `https://photo-effects-backend-stage-1.herokuapp.com/users/google/${localStorage.getItem(
-    //       'userId'
-    //     )}/projects`
-    //   )
-    //   .then(res => this.setState({ canvasprojects: res.data }))
-    //   .then(console.log(this.state.canvasprojects))
-    // .catch(err => console.log(err));
-
     
   }
 
-
-  
   // Toggle
   toggleSort = () => {
     this.setState({ sort: !this.state.sort });
@@ -290,8 +271,7 @@ export default class Dashboard extends Component {
     // const filteredProjects = this.state.canvasprojects.filter(project => project.user_id === localStorage.getItem("userId"))
 
     // console.log(filteredProjects)
-    console.log(this.state.canvasprojects);
-    console.log(localStorage.getItem('userId'));
+    // console.log(localStorage.getItem('userId'));
 
     return (
       <div>
@@ -315,6 +295,7 @@ export default class Dashboard extends Component {
             fileName={this.state.fileName}
             removeImage={this.removeImage}
             updateProject={this.updateProject}
+            createProject={this.createProject}
           />
         </div>
         {this.state.canvasprojects=== undefined ? <p>loading projects</p> : this.getProjects()}
@@ -333,6 +314,7 @@ export default class Dashboard extends Component {
           toggleSort={this.toggleSort}
           setBgImage={this.props.setBgImage}
         />
+        <Footer/>
       </div>
     );
   }

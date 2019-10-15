@@ -24,29 +24,39 @@ class ToolsTopArea extends Component {
         <div style={panel_toparea}>
           <div style={panel_options}>
             <a href="/dashboard" style={panelbutton_home}>
-              <img src={home} />
+              <img src={home} alt="home" />
             </a>
+
             <div style={panel_logo_container}>
-              <img style={plImg} src={logo} alt='logo'/>
+              <img style={plImg} src={logo} alt="logo" />
             </div>
-            <div onClick={this.props.auth.logout} style={panelbutton_settings}>
-              <img src={exit} alt='exit' />
+
+            <div onClick={this.props.auth.logout} style={panelbutton_logout}>
+              <img src={exit} alt="exit" />
             </div>
-            <div style={panelbutton_download}>
-              <div onClick={() => this.props.handleScreenshot()} style={dlDiv}>
-                <img src={download} alt='download'/>
-                <span style={dlSpan}>Download</span>
+
+            <div style={panelbutton_save} onClick={this.props.updateProject}>
+              <i className="far fa-save" onClick={this.props.saveImg}></i>
+            </div>
+
+            <div style={panelbutton_download} onClick={() => this.props.handleScreenshot()}>
+              <div style={dlDiv}>
+                <img src={download} alt="download" />
+                <span style={dlSpan}></span>
               </div>
             </div>
           </div>
-          <div style={{fontSize: '20px', cursor:'pointer'}}>
-            <h1 > Save</h1><i className="far fa-save" onClick={this.props.saveImg}></i>
-          </div>
+
+          {/* <div style={{ fontSize: '40px', cursor: 'pointer' }}>
+            <h1>Save</h1>
+            <i className="far fa-save" onClick={this.props.saveImg}></i>
+          </div> */}
         </div>
 
         <div style={panel_projectname}>
           <img
             src={edit}
+            alt=""
             style={{ cursor: 'pointer' }}
             onClick={() => this.setState({ focus: true })}
           />
@@ -113,7 +123,7 @@ const panel_logo_container = {
   borderRadius: '50%',
   opacity: '1',
   padding: '12px',
-  marginLeft: '-45px',
+  marginLeft: '-40px',
   zIndex: '1'
 };
 
@@ -122,25 +132,42 @@ const plImg = {
 };
 
 // hover
-const panelbutton_settings = {
+const panelbutton_logout = {
   ...panelbutton,
-  width: '92px',
+  width: '60px',
   height: '46px',
   background: '#3B3F42 0% 0% no-repeat padding-box',
   opacity: '1',
   paddingLeft: '60px',
-  marginLeft: '-45px'
+  paddingRight: '30px',
+  marginLeft: '-45px',
+  border: '1px solid green'
+};
+
+const panelbutton_save = {
+  ...panelbutton,
+  width: '50px',
+  height: '46px',
+  background: '#3B3F42 0% 0% no-repeat padding-box',
+  opacity: '1',
+  border: '1px solid blue',
+  display: 'flex',
+  justifyContent: 'center',
+  fontSize: '23px',
+  cursor: 'pointer',
+  color: '#EAEAEA'
 };
 
 // hover
 const panelbutton_download = {
   ...panelbutton,
-  width: '108px',
+  width: '50px',
   height: '46px',
   background: '#3B3F42 0% 0% no-repeat padding-box',
   borderRadius: '0px 23px 23px 0px',
   opacity: '1',
-  paddingLeft: '16px'
+  paddingLeft: '10px',
+  border: '1px solid red'
 };
 
 const dlDiv = {

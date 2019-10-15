@@ -62,19 +62,49 @@ export class Navbar extends Component {
       }
     ];
 
+    const loggedInLinks = [
+      {
+        name: 'About',
+        element: 'link'
+      },
+      {
+        name: 'Features',
+        element: 'link'
+      },
+      {
+        name: 'auth',
+        element: 'button'
+      }
+    ];
+
     return (
       <nav style={nav}>
         <img src={navLogo} alt="navbar logo" style={navbarLogo} />
 
         <ul style={navlinks}>
-          {links.map(link => (
-            <A
-              link={link}
-              isLoggedIn={isLoggedIn}
-              login={this.props.auth.login}
-              logout={this.props.auth.logout}
-            />
-          ))}
+          {isLoggedIn ? (
+            <>
+              {links.map(link => (
+                <A
+                  link={link}
+                  isLoggedIn={isLoggedIn}
+                  login={this.props.auth.login}
+                  logout={this.props.auth.logout}
+                />
+              ))}
+            </>
+          ) : (
+            <>
+              {loggedInLinks.map(link => (
+                <A
+                  link={link}
+                  isLoggedIn={isLoggedIn}
+                  login={this.props.auth.login}
+                  logout={this.props.auth.logout}
+                />
+              ))}
+            </>
+          )}
         </ul>
 
         {/* <ul style={navlinks}>
@@ -148,7 +178,7 @@ class A extends Component {
           }
           onClick={isLoggedIn ? this.props.logout : this.props.login}
         >
-          {isLoggedIn ? 'Logout' : 'Login / SignUp'}
+          {isLoggedIn ? 'Logout' : 'Login / Signup'}
         </button>
       </li>
     ) : (
