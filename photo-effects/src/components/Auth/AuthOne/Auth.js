@@ -31,12 +31,14 @@ export default class Auth {
   };
 
   logout = () => {
-    localStorage.removeItem('access_token');
+    localStorage.removeItem('access_token'); 
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
-    localStorage.removeItem('userId');
-    localStorage.removeItem('Id');
-    localStorage.removeItem('dbId');
+    localStorage.removeItem('userId'); //google Id
+    // localStorage.removeItem('Id'); 
+    localStorage.removeItem('dbId'); //Database Id
+    localStorage.removeItem('projectId'); //project Id
+    localStorage.removeItem('publicId'); //Cloudinary Id of main picture
     this.auth0.logout();
     this.history.push('/');
   };

@@ -35,8 +35,7 @@ class CanvasArea extends Component {
 
     const bg = {
       width: image ? 'auto' : '100%',
-      height: image ? 'auto' : '100%',
-      border: '2px solid blue',
+      height: image ? 'auto' : '100%'
     };
 
     const hidden = {
@@ -48,40 +47,36 @@ class CanvasArea extends Component {
     return (
       <div style={container}>
         <div ref="parent" id="capture" style={bg}>
-          { items.length > 1 ? (
+          {items.length > 1 ? (
             this.state.items.map((item, i) => {
-              if(item.type === 'Paint') {
-                return <Paint 
-                  z = { item.props.style.zIndex }
-                  id = { item.props.id }
-                />
-              } else return (
+              if (item.type === 'Paint') {
+                return <Paint z={item.props.style.zIndex} id={item.props.id} setPaint = { this.props.setPaint } bringToTop = { this.props.bringToTop } />;
+              } else
+                return (
+                  <Box
+                    key={i}
+                    item={item}
+                    bringToTop={this.props.bringToTop}
+                    setItem={this.props.setItem}
+                    getJsonData={this.props.getJsonData}
+                    removeImage={this.props.removeImage}
+                    parent={this.refs.parent}
+                  />
+                );
+            })
+          ) : items.length === 1 ? (
+            items[0].type === 'Paint' ? (
+              <Paint z={items[0].props.style.zIndex} id={items[0].props.id} setPaint = { this.props.setPaint } bringToTop = { this.props.bringToTop } />
+            ) : (
               <Box
-                key={i}
-                item={item}
+                item={items[0]}
                 bringToTop={this.props.bringToTop}
                 setItem={this.props.setItem}
                 getJsonData={this.props.getJsonData}
                 removeImage={this.props.removeImage}
                 parent={this.refs.parent}
               />
-              )
-            })
-          ) : items.length === 1 ? 
-            items[0].type === 'Paint' ? 
-              <Paint 
-                z = { items[0].props.style.zIndex }
-                id = { items[0].props.id }
-              />
-            : (
-            <Box
-              item={items[0]}
-              bringToTop={this.props.bringToTop}
-              setItem={this.props.setItem}
-              getJsonData={this.props.getJsonData}
-              removeImage={this.props.removeImage}
-              parent={this.refs.parent}
-            />
+            )
           ) : (
             <div></div>
           )}

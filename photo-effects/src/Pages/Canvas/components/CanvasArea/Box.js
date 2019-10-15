@@ -35,7 +35,10 @@ export default class Box extends Component {
       weight: null,
       decoration: null,
       slider: null
-    }
+    },
+      blur: 0,
+      opacity: 1,
+      grayscale: 0
   };
 
   componentDidMount() {
@@ -91,9 +94,15 @@ export default class Box extends Component {
       top: top,
       left: left,
       zIndex: this.state.item.props.style.zIndex,
-      border: '2px solid blue'
+      opacity: this.state.opacity,
+      filter: `blur(${this.state.blur}px)`,
+      filter: `contrast(${this.state.contrast}%)`,
+      filter: `grayscale(${this.state.grayscale}%)`
     };
   };
+
+
+  
 
   onMouseMove = e => {
     e.stopPropagation();
@@ -185,6 +194,18 @@ export default class Box extends Component {
     });
   };
 
+  changeBlur = blur => {
+    this.setState({ blur: blur });
+  };
+
+  changeOpacity = opacity => {
+    this.setState({ opacity: opacity });
+  };
+
+  changeGrayscale = grayscale => {
+    this.setState({ grayscale: grayscale });
+  };
+
   render() {
     return (
       <>
@@ -194,7 +215,14 @@ export default class Box extends Component {
           setTextbox={this.setTextbox}
           textbox={this.state.textbox}
           removeImage={this.props.removeImage}
-        />
+          changeOpacity={this.changeOpacity}
+          opacity={this.state.opacity}
+          blur={this.state.blur}
+          changeBlur={this.changeBlur}
+          contrast={this.state.contrast}
+          grayscale={this.state.grayscale}
+          changeGrayscale={this.changeGrayscale}
+        /> 
         <div
           style={this.container()}
           ref="box"

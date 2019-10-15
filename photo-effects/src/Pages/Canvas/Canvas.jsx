@@ -14,7 +14,9 @@ export class Canvas extends Component {
     items: [],
     w: 0,
     image: null,
-    imgUrl: []
+    imgUrl: [],
+    preview: null,
+    projectTitle: ''
   };
 
   componentDidMount() {
@@ -26,14 +28,14 @@ export class Canvas extends Component {
 
   handleScreenshot = () => {
     html2canvas(document.querySelector('#capture'), {
-      proxy: "https://photo-effects-backend-stage-1.herokuapp.com",
+      proxy: 'https://photo-effects-backend-stage-1.herokuapp.com',
       useCORS: true
     }).then(canvas => {
       const image = canvas
         .toDataURL('image/png')
         .replace('image/png', 'image/octet-stream');
-      
-      this.setState({ preview: image })
+
+      this.setState({ preview: image });
 
       const link = document.createElement('a');
       link.download = this.state.projectName + '.png';
@@ -42,9 +44,30 @@ export class Canvas extends Component {
     });
   };
 
+  updateProject = () => {
+    const updatedProject = {
+      p_name: this.state.projectTitle,
+      p_data: JSON.stringify(this.state.items),
+      p_image: this.state.imgUrl
+    };
+
+    axios
+      .put(
+        `https://photo-effects-backend-stage-1.herokuapp.com/canvas/${localStorage.getItem(
+          'projectId'
+        )}`,
+        updatedProject
+      )
+      .then(res => {
+        console.log('saved?', res.data)
+      })
+      .catch(err => console.log(err));
+  };
+
   saveImg = () => {
     const formData = new FormData();
     formData.append('image', this.state.preview);
+    console.log(this.state.preview);
 
     axios
       .post(
@@ -100,14 +123,14 @@ export class Canvas extends Component {
 
     let add_item;
 
-    if(item === 'Paint') {
+    if (item === 'Paint') {
       add_item = () => ({
         type: 'Paint',
         props: {
           id: uuidv4(),
           style: { zIndex: this.state.items.length ? z * 100 + 1 : 100 }
         }
-      })
+      });
     } else {
       add_item = () => (
         <item.type
@@ -122,10 +145,13 @@ export class Canvas extends Component {
           src={item.type === 'img' ? item.props.src : null}
           alt={item.type === 'img' ? item.props.title : null}
         />
-      )
+      );
     }
 
-    const items = this.state.items.length === 0 && item === 'Paint' ? [<div style = {{ zIndex: 0 }}></div>, add_item()] : [...this.state.items, add_item()]
+    let items =
+      this.state.items.length === 0 && item === 'Paint'
+        ? [<div style={{ zIndex: 0 }}></div>, add_item()]
+        : [...this.state.items, add_item()];
 
     this.setState({ items });
   };
@@ -160,17 +186,31 @@ export class Canvas extends Component {
     this.setState({ items });
   };
 
+  setPaint = (id, image, x, y, w, h) => {
+    let items = this.state.items.map(item => {
+      if (item.props.id === id) {
+        return (
+          <img {...item.props} width={w} height={h} x={x} y={y} src={image} />
+        );
+      } else return item;
+    });
+
+    this.setState({ items });
+  };
+
   getJsonData = () => {
     console.log(JSON.stringify(this.state.items));
   };
 
   render() {
+    console.log(this.state.items);
     return (
       <div style={page}>
         <ToolsArea
           auth={this.props.auth}
           addItem={this.addItem}
           handleScreenshot={this.handleScreenshot}
+          updateProject={this.updateProject}
           saveImg={this.saveImg}
         />
         <CanvasArea
@@ -181,6 +221,7 @@ export class Canvas extends Component {
           removeImage={this.removeImage}
           image={this.state.image}
           saveImg={this.state.saveImg}
+          setPaint={this.setPaint}
         />
       </div>
     );

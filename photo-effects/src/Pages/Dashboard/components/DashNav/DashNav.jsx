@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom';
 import './dashNav.css';
-
+import logo from '../../../../assetts/photoLogo.png' 
 
 
 const dashNav = {
@@ -9,12 +9,13 @@ const dashNav = {
     justifyContent: "space-between" ,
     alignItems: "center" ,
     width: "100%" ,
-    height: "14vh" ,
+    height: "13vh" ,
     backgroundColor: "#364f6b" ,
     color: "whitesmoke" ,
     fontSize: "2rem" ,
     position: "fixed" ,
     zIndex: "+3" ,
+    borderBottom:'1px solid yellow'
 }
 
 const navBarLogo = {
@@ -55,7 +56,7 @@ export class DashNav extends Component {
     return (
       <nav style={dashNav}>
       <NavLink to="/">
-        <img style={navBarLogo} src="https://files.slack.com/files-pri/T4JUEB3ME-FMKCEGRQT/asset_8.png" alt="logo"/>
+        <img style={navBarLogo} src={logo} alt="logo"/>
         </NavLink>
       {/* <div>
         <h1 className="logo">Photo Effects</h1>

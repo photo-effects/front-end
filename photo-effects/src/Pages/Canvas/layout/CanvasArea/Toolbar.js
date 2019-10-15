@@ -6,7 +6,8 @@ import TextToolbar from '../../components/LeftPanelArea/Tools/TextBox/TextToolba
 export default class Toolbar extends Component {
   state = {
     open: true,
-    item: {}
+    item: {},
+   
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -16,6 +17,10 @@ export default class Toolbar extends Component {
       }
     } else return null;
   }
+
+ 
+
+ 
 
   container = open => ({
     height: '72px',
@@ -31,6 +36,8 @@ export default class Toolbar extends Component {
     
   })
 
+  
+
   render() { 
     return (
       <div style = { this.container(this.state.open) }>
@@ -45,7 +52,36 @@ export default class Toolbar extends Component {
           <div style = {{ width: '100%', height: '100%', background: 'white', color: 'black', fontWeight: 'bold', fontSize: '2rem', display: 'flex',
         justifyContent: 'center', alignItems: 'center' }}>
           <span>{ this.props.alt }</span>
-          <button style={btnBackground} onClick={() => this.props.removeImage(this.props.id)}><i class="far fa-trash-alt fa-fw fa-3x"></i></button>
+          <form>
+        <span>Opacity: </span>
+        <input
+          type="range"
+          min="0"
+          max="1"
+          step='0.1'
+          value={this.props.opacity}
+          onChange={e => this.props.changeOpacity(e.target.value)}
+        />
+          <span>Blur: </span>
+        <input
+          type="range"
+          min="0"
+          max="10"
+          step='1'
+          value={this.props.blur}
+          onChange={e => this.props.changeBlur(e.target.value)}
+        />
+              <span>Grayscale: </span>
+        <input
+          type="range"
+          min="0"
+          max="100"
+          step='1'
+          value={this.props.grayscale}
+          onChange={e => this.props.changeGrayscale(e.target.value)}
+        />
+      </form>
+          <button style={btnBackground} onClick={() => this.props.removeImage(this.props.id)}><i className="far fa-trash-alt fa-fw fa-3x"></i></button>
           </div>
           
         :

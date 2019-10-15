@@ -5,6 +5,7 @@ import attach from './Tools/svg/icon-attach.svg'
 import text from './Tools/svg/icon-text.svg'
 import layers from './Tools/svg/icon-layers.svg'
 import chevron from './Tools/svg/icon-chevron.svg'
+import paint from './Tools/svg/icon-paint.svg'
 
 class Tab extends Component {
    state = {
@@ -33,7 +34,7 @@ class Tab extends Component {
                            : (this.props.tabName==="Text" ? 
                               text 
                            : 
-                              layers
+                              paint
                            )
                         )
                      }

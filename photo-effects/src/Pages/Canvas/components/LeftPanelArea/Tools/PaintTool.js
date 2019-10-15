@@ -1,7 +1,7 @@
 import React from 'react';
 import add from '../../../layout/ToolsArea/icons/icon-add.svg';
 
-import Paint from './Paint/Paint';
+// import Paint from './Paint/Paint';
 
 export default function PaintTool(props) {
    return (

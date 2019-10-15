@@ -7,9 +7,10 @@ const ToolsArea = props => {
   return (
     <div style =  { panel_container }>
       <ToolsTopArea 
-        auth = { props.auth } 
+        auth={props.auth} 
         saveImg={props.saveImg}
-        handleScreenshot = { props.handleScreenshot }
+        handleScreenshot={props.handleScreenshot}
+        updateProject={props.updateProject}
       />
       <ToolPanel 
         addItem = { props.addItem }

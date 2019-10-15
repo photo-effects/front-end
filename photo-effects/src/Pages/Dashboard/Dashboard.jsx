@@ -7,6 +7,7 @@ import Projects from './components/Projects/Projects';
 import DashNav from './components/DashNav/DashNav';
 import './components/DashNav/dashNav.css';
 import withAuth from '../../components/Auth/AuthOne/withAuth';
+import Footer from '../../Pages/Landing/components/Footer/Footer'
 
 export default class Dashboard extends Component {
   constructor(props) {
@@ -190,11 +191,11 @@ export default class Dashboard extends Component {
 
   // Update
   // will update state for user projects when adding/deleting for now.
-  updateProject = (e, newProject) => {
-    this.setState({
-      projects: newProject
-    });
-  };
+  // updateProject = (e, newProject) => {
+  //   this.setState({
+  //     projects: newProject
+  //   });
+  // };
 
   // logout
   logoutButton = e => {
@@ -314,6 +315,7 @@ export default class Dashboard extends Component {
           toggleSort={this.toggleSort}
           setBgImage={this.props.setBgImage}
         />
+        <Footer/>
       </div>
     );
   }
