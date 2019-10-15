@@ -154,7 +154,8 @@ const cardContainerModal = {
   background: 'blue',
   width: '96%',
   borderRadius: '10px',
-  paddingTop: '15px'
+  paddingTop: '15px',
+  zIndex:'+30'
 };
 
 let cardstyleModal = {
@@ -177,7 +178,7 @@ const modalstyle = {
   padding: '50px',
   border: '1px solid #888',
   minWidth: '800px',
-  maxWidth: '50%',
+  maxWidth: '45%',
   maxHeight:'85%',
   position: 'fixed',
   /* center the div */

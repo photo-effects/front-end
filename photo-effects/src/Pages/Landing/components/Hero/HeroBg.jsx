@@ -11,7 +11,7 @@ export class HeroBg extends Component {
       height: '100%',
       backgroundImage:
         'linear-gradient(to bottom, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa4e9, #7aaeef, #6bb7f1, #56c2f4, #44cbf3, #3bd5ee, #43dde6)',
-      zIndex: '-100'
+      zIndex: '-2'
     };
 
     return (

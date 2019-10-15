@@ -9,10 +9,12 @@ const Landing = (props) => {
     <div>
       <Navbar auth={props.auth}/>
       <div style={{ height: '5.5vh' }} />
-      
+     
       <Hero style={{position:'absolute', top:'0px', backgroundImage:'none'}} />
-      <HeroBg style={{zIndex:'-2', position:'absolute', top:'10px'}}/>
-      <TagsCont/>
+      <HeroBg style={{zIndex:'-20', position:'absolute', top:'10px'}}/>
+      
+      <TagsCont style={{zIndex:'+20', position:'absolute', top:'10px'}}/>
+      
     
    
     </div>
