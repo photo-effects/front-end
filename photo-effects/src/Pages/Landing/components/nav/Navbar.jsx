@@ -62,8 +62,7 @@ export class Navbar extends Component {
       }
     ];
 
-    const loggedInLinks = 
-    [
+    const loggedInLinks = [
       {
         name: 'About',
         element: 'link'
@@ -77,23 +76,35 @@ export class Navbar extends Component {
         element: 'button'
       }
     ];
-    
 
     return (
       <nav style={nav}>
         <img src={navLogo} alt="navbar logo" style={navbarLogo} />
 
         <ul style={navlinks}>
-
-          {links.map(link => (
-            <A
-              link={link}
-              isLoggedIn={isLoggedIn}
-              login={this.props.auth.login}
-              logout={this.props.auth.logout}
-            />
-          ))}
-
+          {isLoggedIn ? (
+            <>
+              {links.map(link => (
+                <A
+                  link={link}
+                  isLoggedIn={isLoggedIn}
+                  login={this.props.auth.login}
+                  logout={this.props.auth.logout}
+                />
+              ))}
+            </>
+          ) : (
+            <>
+              {loggedInLinks.map(link => (
+                <A
+                  link={link}
+                  isLoggedIn={isLoggedIn}
+                  login={this.props.auth.login}
+                  logout={this.props.auth.logout}
+                />
+              ))}
+            </>
+          )}
         </ul>
 
         {/* <ul style={navlinks}>
@@ -167,7 +178,6 @@ class A extends Component {
           }
           onClick={isLoggedIn ? this.props.logout : this.props.login}
         >
-
           {isLoggedIn ? 'Logout' : 'Login / Signup'}
         </button>
       </li>
@@ -183,7 +193,7 @@ class A extends Component {
             this.state.hover ? () => this.setState({ hover: false }) : null
           }
         >
-         {name}
+          {name}
         </Link>
       </li>
     );
