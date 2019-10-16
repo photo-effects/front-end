@@ -15,6 +15,7 @@ const waterfallCont = {
   height: "100%" ,
   paddingTop: "40px" ,
   borderTop:'#364F6B 1px solid',
+ 
   
 }
 

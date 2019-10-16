@@ -94,10 +94,7 @@ export class Photolist extends Component {
           </Fade>
         ))}
         <div style={cardContainerModal} >
-       
-          <div style={cardstyleModal}>
-           
-            <div className="cards"  style={modalstyle}>
+        <div className="cards"  style={modalstyle}>
             <i
             onClick={this.modalOn} 
               style={{
@@ -131,9 +128,11 @@ export class Photolist extends Component {
               >
                 <h3> Tags: {this.state.modalPic.tags}</h3>
               </p>
-              {/* <Link to={`/photolist/${props.match.params.id}`}/>
-                <Route path={`/photolist/${props.match.params.id}`}  render={ props =>  <Cardview {...this.props} /> */}
+          
             </div>
+          <div style={cardstyleModal}>
+           
+           
             </div>
            
           </div>
@@ -155,7 +154,8 @@ const cardContainerModal = {
   width: '96%',
   borderRadius: '10px',
   paddingTop: '15px',
-  zIndex:'+30'
+ 
+  // opacity: '.9'
 };
 
 let cardstyleModal = {
@@ -167,11 +167,12 @@ let cardstyleModal = {
   width: '100%',
   height: '100%',
   overflow: 'auto',
-
-  backgroundColor: 'rgba(0,0,0,0.5)' //lower opacity background
+  backgroundColor: 'rgba(0,0,0,.87)' //lower opacity background
+ 
 };
 
 const modalstyle = {
+ 
   backgroundColor: '#fefefe',
   marginTop: '7.5%',
   marginBottom:'10px',
@@ -184,9 +185,12 @@ const modalstyle = {
   /* center the div */
   right: '0',
   left: '0',
+  top: '20px',
   marginRight: 'auto',
   marginLeft: 'auto',
   borderRadius:'10px',
+  zIndex: '5',
+  opacity: '1'
  
 };
 

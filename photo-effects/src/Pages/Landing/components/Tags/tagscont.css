@@ -59,3 +59,7 @@
   height: 30px;
   top: 31px;
 }
+
+.swiper-container{
+  z-index: -5;
+}
