@@ -15,14 +15,27 @@ export class Canvas extends Component {
     w: 0,
     image: null,
     imgUrl: [],
-    preview: null,
+    imgPreview: null,
     projectTitle: ''
   };
 
   componentDidMount() {
     this.setState({
       w: (ReactDOM.findDOMNode(this).getBoundingClientRect().width / 4) * 3,
-      image: this.props.image
+      image: this.props.image,
+    });
+  }
+
+  saveImageToState = () => {
+    html2canvas(document.querySelector('#capture'), {
+      proxy: 'https://photo-effects-backend-stage-1.herokuapp.com',
+      useCORS: true
+    }).then(canvas => {
+      const image = canvas
+        .toDataURL('image/png')
+        .replace('image/png', 'image/octet-stream');
+
+      this.setState({ imgPreview: image });
     });
   }
 
@@ -35,7 +48,7 @@ export class Canvas extends Component {
         .toDataURL('image/png')
         .replace('image/png', 'image/octet-stream');
 
-      this.setState({ preview: image });
+      this.setState({ imgPreview: image });
 
       const link = document.createElement('a');
       link.download = this.state.projectName + '.png';
@@ -65,15 +78,32 @@ export class Canvas extends Component {
   };
 
   saveImg = () => {
-    const formData = new FormData();
-    formData.append('image', this.state.preview);
-    console.log(this.state.preview);
+
+    // const formData = new FormData();
+    // formData.append('image', `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAIAAAAmkwkpAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAWSURBVBhXY/xfr84AA0xQGgxwcRgYAFQWAa3rgm4EAAAAAElFTkSuQmCC`);
+    // formData.append('options',{
+    //   "format": "jpg",
+    //   "overwrite": "true",
+    //   "public_id": "z3nuz0gcn9qh5zuym16v"
+    // });
+
+    const form = {
+      image: this.state.imgPreview,
+      options: {
+        "format": "jpg",
+        "overwrite": "true",
+        "public_id": "fm6juhpd40vljotejd6n"
+      }
+    }
+    
+    console.log(this.state.imgPreview);
+    console.log(form);
+  
 
     axios
       .post(
         `https://photo-effects-backend-stage-1.herokuapp.com/cloudinary/upload2`,
-        formData
-      )
+        form)
       .then(res => {
         if (!res.ok) {
           throw res;
@@ -84,6 +114,7 @@ export class Canvas extends Component {
         this.setState({
           imgUrl
         });
+        localStorage.setItem('imgURL', this.state.imgURL)
       })
       .catch(err => {
         console.log(err);
@@ -172,10 +203,8 @@ export class Canvas extends Component {
             {...item.props}
             width={w}
             height={h}
-            // x={x}
-            // y={y}
-            x={this.state.items.length === 1 ? x - w / 2 : x}
-            y={this.state.items.length === 1 ? y - h / 2 : y}
+            x={x}
+            y={y}
           >
             {item.props.children}
           </item.type>
@@ -184,6 +213,7 @@ export class Canvas extends Component {
     });
 
     this.setState({ items });
+    this.saveImageToState();
   };
 
   setPaint = (id, image, x, y, w, h) => {

@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
 import Particles from 'react-particles-js';
+import './xxhero.css'
 
 export class HeroBg extends Component {
   render() {
     const container = {
-      height: '600px'
+      height: '600px',
+      background: '#42DDE5'
     };
 
     const particles = {
-      height: '100%',
+      position:'absolute',
+      zIndex:'0',
+     
       backgroundImage:
         'linear-gradient(to bottom, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa4e9, #7aaeef, #6bb7f1, #56c2f4, #44cbf3, #3bd5ee, #43dde6)',
-      zIndex: '-2'
+      
     };
 
     return (

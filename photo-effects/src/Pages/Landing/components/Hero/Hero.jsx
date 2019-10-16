@@ -8,7 +8,8 @@ const hero ={
   position: "absolute" ,
   margin: "auto" ,
   width: "100%" ,
-  top: "60px"
+  top: "60px",
+  zIndex:'1'
   
 }
 

@@ -4,7 +4,7 @@ import WaterfallCont from './waterfall/waterfallCont';
 // css
 import 'react-id-swiper/lib/styles/css/swiper.css';
 import './tagscont.css';
-import Footer from '../Footer/Footer'
+import Footer from '../Footer/Footer';
 const TagsCont = props => {
   const params = {
     slidesPerView: 13,
@@ -48,9 +48,9 @@ const TagsCont = props => {
   const [sortedpics, setSortedpics] = useState('');
   console.log(sortedpics);
   return (
-    <div >
-      <h2 className="tagheader">Browse Tags</h2>
-      <Swiper {...params} >
+    <div style={{background:'#42DDE5'}}>
+     
+      <Swiper {...params}>
         <div
           onClick={() => setSortedpics('Animals')}
           className="swipecards greencard"
@@ -129,7 +129,7 @@ const TagsCont = props => {
         >
           Politics
         </div>
-        
+
         <div
           onClick={() => setSortedpics('Wallpaper')}
           className="swipecards magentacard"
@@ -160,7 +160,7 @@ const TagsCont = props => {
         >
           Movies
         </div>
-     
+
         <div
           onClick={() => setSortedpics('Nature')}
           className="swipecards ltgreencard"
@@ -174,8 +174,9 @@ const TagsCont = props => {
           Dogs
         </div>
       </Swiper>
-      <WaterfallCont sortBy={sortedpics}/>
-      
+      <div style={{ position: 'relative' }}>
+        <WaterfallCont sortBy={sortedpics} />
+      </div>
     </div>
   );
 };

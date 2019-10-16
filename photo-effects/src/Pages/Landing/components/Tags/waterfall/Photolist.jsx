@@ -161,14 +161,14 @@ const cardContainerModal = {
 let cardstyleModal = {
   //display: 'none',
   position: 'fixed',
-
+  zIndex: '1',
   left: '0',
   top: '0',
   width: '100%',
   height: '100%',
   overflow: 'auto',
-  backgroundColor: 'rgba(0,0,0,.87)' //lower opacity background
- 
+  backgroundColor: 'rgba(0,0,0,.87)', //lower opacity background
+  //backgroundColor: 'rgb(0,0,0)'
 };
 
 const modalstyle = {
@@ -190,8 +190,8 @@ const modalstyle = {
   marginLeft: 'auto',
   borderRadius:'10px',
   zIndex: '5',
-  opacity: '1'
- 
+  opacity: '1',
+  overflow: 'auto',
 };
 
 
@@ -225,5 +225,6 @@ const cardContainer = {
   width: '96%',
   borderRadius: '10px',
   boxShadow: '2px 2px 4px 2px rgba(59,63,66, 0.8)',
-  paddingTop: '15px'
+  paddingTop: '15px',
+  
 };

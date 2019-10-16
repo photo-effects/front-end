@@ -35,7 +35,8 @@ class CanvasArea extends Component {
 
     const bg = {
       width: image ? 'auto' : '100%',
-      height: image ? 'auto' : '100%'
+      height: image ? 'auto' : '100%',
+      position: 'relative'
     };
 
     const hidden = {
@@ -80,7 +81,9 @@ class CanvasArea extends Component {
           ) : (
             <div></div>
           )}
-          <img ref="image" src={this.props.image} style={hidden} alt='img' />
+          { this.props.image ? 
+            <img ref="image" src={this.props.image} style={hidden} alt='img' />
+          : null }
         </div>
       </div>
     );

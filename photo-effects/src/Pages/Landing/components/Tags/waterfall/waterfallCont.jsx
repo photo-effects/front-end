@@ -11,11 +11,11 @@ const waterfallCont = {
   marginTop: "20px" ,
   textAlign: "center" ,
   fontSize: "5rem" ,
-  opacity: "0.9" ,
+  // opacity: "1" ,
   height: "100%" ,
   paddingTop: "40px" ,
   borderTop:'#364F6B 1px solid',
- 
+ zIndex:'25'
   
 }
 

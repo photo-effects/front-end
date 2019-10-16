@@ -6,7 +6,7 @@ import HeroBg from './components/Hero/HeroBg'
 
 const Landing = (props) => {
   return (
-    <div>
+    <div >
       <Navbar auth={props.auth}/>
       <div style={{ height: '5.5vh' }} />
      
