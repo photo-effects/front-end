@@ -4,7 +4,12 @@ import ReactDOM from 'react-dom';
 export default class Toolbar extends Component {
   state = {
     open: false,
-    preview: null
+    preview: null,
+    warning: {
+      message:
+        'Save each paint layer as an image before adding new elements, saving, or downloading!',
+      open: false
+    }
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -25,11 +30,12 @@ export default class Toolbar extends Component {
     const { currentTool } = this.props;
 
     const container = {
-      width: '100%',
-      height: '72px',
+      width: 'calc(100% + 4px)',
+      height: '74px',
       position: 'absolute',
-      top: -72,
-      left: 0,
+      top: -74,
+      left: -1,
+      border: '1px solid black',
       background: 'lightgray',
       display: 'flex',
       justifyContent: 'space-between',
@@ -48,6 +54,19 @@ export default class Toolbar extends Component {
       cursor: 'pointer'
     };
 
+    const warning = {
+      position: 'absolute',
+      border: '2px solid black',
+      height: '20px',
+      bottom: -24,
+      left: 0,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: '10px',
+      fontSize: '1.3rem'
+    };
+
     const tools = ['brush', 'line', 'rectangle', 'circle', 'eraser'];
 
     return (
@@ -60,15 +79,23 @@ export default class Toolbar extends Component {
           dropdown={dropdown}
         />
 
-        <img
-          src={this.props.preview}
-          style={{
+        { this.props.preview ? 
+          <img
+            src={this.props.preview}
+            style={{
+              border: '2px solid black',
+              height: '50px',
+              width: this.props.preview ? 'auto' : '50px'
+            }}
+            alt="preview"
+          />
+        :
+          <div style={{
             border: '2px solid black',
             height: '50px',
             width: this.props.preview ? 'auto' : '50px'
-          }}
-          alt="preview"
-        />
+          }}></div>
+        }
 
         <button onClick={() => this.props.saveLayer()}>
           save as image layer
@@ -90,6 +117,8 @@ export default class Toolbar extends Component {
           paintColor={this.props.paintColor}
           changePaintColor={this.props.changePaintColor}
         />
+
+        <div style={warning}>{this.state.warning.message}</div>
       </div>
     );
   }

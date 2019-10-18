@@ -3,13 +3,9 @@ import { withRouter } from 'react-router-dom';
 import './image.css';
 import axios from 'axios';
 
-
-
-
 class PhotoLink extends Component {
     constructor(props) {
     super(props);
-
     this.state = {
         photoInfo: {
             user_id: localStorage.getItem('dbId'),
@@ -32,7 +28,8 @@ class PhotoLink extends Component {
             "p_data": "",
             "p_likes": 0,
             "p_published": false,
-            "p_image": this.state.photoInfo.secure_url
+            "secure_url": this.state.photoInfo.secure_url,
+            "public_id": this.state.photoInfo.public_id
         }
     
         axios.post('https://photo-effects-backend-stage-1.herokuapp.com/canvas', newProject)
@@ -82,6 +79,4 @@ render() {
     )
 }
 }
-
-
 export default withRouter(PhotoLink);

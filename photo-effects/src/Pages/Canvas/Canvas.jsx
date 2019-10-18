@@ -4,9 +4,7 @@ import html2canvas from 'html2canvas';
 import uuidv4 from 'uuid/v4';
 import axios from 'axios';
 import withAuth from '../../components/Auth/AuthOne/withAuth';
-
 import ToolsArea from './layout/ToolsArea/ToolsArea';
-
 import CanvasArea from './layout/CanvasArea/CanvasArea';
 
 export class Canvas extends Component {
@@ -22,7 +20,7 @@ export class Canvas extends Component {
   componentDidMount() {
     this.setState({
       w: (ReactDOM.findDOMNode(this).getBoundingClientRect().width / 4) * 3,
-      image: this.props.image,
+      image: this.props.image
     });
   }
 
@@ -37,7 +35,7 @@ export class Canvas extends Component {
 
       this.setState({ imgPreview: image });
     });
-  }
+  };
 
   handleScreenshot = () => {
     html2canvas(document.querySelector('#capture'), {
@@ -58,10 +56,12 @@ export class Canvas extends Component {
   };
 
   updateProject = () => {
+    // this.saveImg();
+
     const updatedProject = {
       p_name: this.state.projectTitle,
       p_data: JSON.stringify(this.state.items),
-      p_image: this.state.imgUrl
+      secure_url: this.state.imgUrl
     };
 
     axios
@@ -72,53 +72,55 @@ export class Canvas extends Component {
         updatedProject
       )
       .then(res => {
-        console.log('saved?', res.data)
+        console.log('saved', res.data);
       })
       .catch(err => console.log(err));
   };
 
   saveImg = () => {
-
-    // const formData = new FormData();
-    // formData.append('image', `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAIAAAAmkwkpAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAWSURBVBhXY/xfr84AA0xQGgxwcRgYAFQWAa3rgm4EAAAAAElFTkSuQmCC`);
-    // formData.append('options',{
-    //   "format": "jpg",
-    //   "overwrite": "true",
-    //   "public_id": "z3nuz0gcn9qh5zuym16v"
-    // });
-
-    const form = {
+    const imgForm = {
+      // method: "upload",
       image: this.state.imgPreview,
       options: {
-        "format": "jpg",
-        "overwrite": "true",
-        "public_id": "fm6juhpd40vljotejd6n"
+        format: 'jpg',
+        overwrite: 'true',
+        public_id: localStorage.getItem('publicId')
       }
-    }
-    
-    console.log(this.state.imgPreview);
-    console.log(form);
-  
+    };
 
-    axios
-      .post(
-        `https://photo-effects-backend-stage-1.herokuapp.com/cloudinary/upload2`,
-        form)
-      .then(res => {
-        if (!res.ok) {
-          throw res;
-        }
-        return res.json();
-      })
-      .then(imgUrl => {
-        this.setState({
-          imgUrl
+    const imgFormEx = {
+      // method: "explicit",
+      image: this.state.imgPreview,
+      options: {
+        format: 'jpg',
+        overwrite: 'true',
+        invalidate: 'true',
+        public_id: localStorage.getItem('publicId')
+      }
+    };
+
+    console.log(`imgForm:`, imgForm);
+
+    setTimeout(() => {
+      axios
+        .post(
+          `https://photo-effects-backend-stage-1.herokuapp.com/cloudinary/upload2`,
+          imgForm
+        )
+        .then(res => {
+          if (!res.ok) {
+            throw res;
+          }
+          return res.json();
+        })
+        .then(imgUrl => {
+          this.setState({ imgUrl });
+          localStorage.setItem('imgUrl', this.state.imgUrl);
+        })
+        .catch(err => {
+          console.log(err);
         });
-        localStorage.setItem('imgURL', this.state.imgURL)
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    }, 500);
   };
 
   // this.setState({ items: JSON.parse("[{\"type\":\"img\",\"key\":null,\"ref\":null,\"props\":{\"height\":492,\"width\":293.875,\"x\":270.8125,\"y\":-27,\"style\":{\"zIndex\":1},\"id\":\"88b2af17-a46e-4c04-bba2-30508737c444\",\"src\":\"https://res.cloudinary.com/dn94qw6w7/image/upload/v1567202073/rv8qvq2siyxqpbtwnl4i.jpg\"},\"_owner\":null,\"_store\":{}}]") })
@@ -185,6 +187,7 @@ export class Canvas extends Component {
         : [...this.state.items, add_item()];
 
     this.setState({ items });
+    this.saveImageToState();
   };
 
   filter = id => {
@@ -196,21 +199,35 @@ export class Canvas extends Component {
   };
 
   setItem = (id, w, h, x, y) => {
-    let items = this.state.items.map(item => {
-      if (item.props.id === id) {
-        return (
-          <item.type
-            {...item.props}
-            width={w}
-            height={h}
-            x={x}
-            y={y}
-          >
-            {item.props.children}
-          </item.type>
-        );
-      } else return item;
-    });
+    let items;
+    if (id === 'textbox') {
+      items = this.state.items.map(item => {
+        if (item.props.id === w.id) {
+          return w
+        } else return item;
+      });
+    } else {
+      items = this.state.items.map(item => {
+        if (item.props.id === id) {
+          return (
+            <item.type
+              {...item.props}
+              width={w}
+              height={h}
+              x={x}
+              y={y}
+              style={{
+                ...item.props.style,
+                width: '100%',
+                height: '100%'
+              }}
+            >
+              {item.props.children}
+            </item.type>
+          );
+        } else return item;
+      });
+    }
 
     this.setState({ items });
     this.saveImageToState();
@@ -233,7 +250,7 @@ export class Canvas extends Component {
   };
 
   render() {
-    console.log(this.state.items);
+    console.log(this.state.imgPreview);
     return (
       <div style={page}>
         <ToolsArea

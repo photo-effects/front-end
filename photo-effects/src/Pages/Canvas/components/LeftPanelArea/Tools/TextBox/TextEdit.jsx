@@ -49,7 +49,7 @@ export default class TextEdit extends Component {
       textDecoration: decoration,
       fontSize: slider,
       cursor: editable ? 'text' : 'pointer',
-      padding: '2px'
+      padding: '10px'
     };
 
     const hidden = {
@@ -59,14 +59,16 @@ export default class TextEdit extends Component {
     };
 
     return (
-      <div 
+      <div
         contentEditable={editable}
-        style = { styles }
-        onMouseEnter = { e => e.preventDefault() }
-        onMouseLeave = { this.props.textboxFinish }
-        suppressContentEditableWarning = { true }
-      >{this.state.text}</div>
-    )
+        style={styles}
+        onMouseEnter={e => e.preventDefault()}
+        onMouseLeave={this.props.textboxFinish}
+        suppressContentEditableWarning={true}
+      >
+        {this.state.text}
+      </div>
+    );
   }
 }
 

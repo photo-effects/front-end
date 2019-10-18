@@ -25,13 +25,39 @@ export default class Box extends Component {
       slider: null,
       editable: false
     },
-    blur: 0,
     opacity: 1,
-    grayscale: 0
+    grayscale: 0,
+    transform: 0,
+    rotating: false,
+    flip: 1,
+    offsetLeft: 0,
+    offsetTop: 0,
+    toolbar: {
+      width: 0,
+      left: 0
+    }
   };
 
+  componentDidMount() {
+    const container = this.props.container.getBoundingClientRect();
+    const parent = this.props.parent.getBoundingClientRect();
+
+    const left = parent.left - container.left;
+    const top = parent.top - container.top;
+
+    this.setState({
+      offsetLeft: container.left,
+      offsetTop: container.top,
+      toolbar: {
+        width: container.width,
+        left,
+        top
+      }
+    });
+  }
+
   static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.item !== prevState.item) {
+    if (nextProps.item !== prevState.item && nextProps.item.type !== 'text') {
       return {
         item: nextProps.item,
         x: nextProps.item.props.x,
@@ -42,6 +68,10 @@ export default class Box extends Component {
       };
     } else return null;
   }
+
+  startResize = bool => {
+    this.setState({ capture: bool });
+  };
 
   onDown = (e, type) => {
     if (type === 'resizing') {
@@ -82,7 +112,15 @@ export default class Box extends Component {
       clicks: this.state.clicks + 1
     });
 
-    this.props.setItem(id, width, height, x, y);
+    if (item.type === TextEdit) {
+      this.props.setItem(
+        'textbox',
+        { ...this.state.textbox, id: id, x: x, y: y, type: 'text', style: {zIndex: this.state.z} },
+        null,
+        null,
+        null
+      );
+    } else this.props.setItem(id, width, height, x, y);
   };
 
   onMove = e => {
@@ -109,8 +147,8 @@ export default class Box extends Component {
       const { left, top } = this.getPosition(e);
 
       this.setState({
-        width: e.pageX - (this.state.x + left),
-        height: e.pageY - (this.state.y + top)
+        width: e.pageX - this.state.offsetLeft - (this.state.x + left),
+        height: e.pageY - this.state.offsetTop - (this.state.y + top)
       });
     }
   };
@@ -151,16 +189,26 @@ export default class Box extends Component {
     });
   };
 
-    changeBlur = blur => {
-    this.setState({ blur: blur });
-  };
-
   changeOpacity = opacity => {
     this.setState({ opacity: opacity });
   };
 
   changeGrayscale = grayscale => {
     this.setState({ grayscale: grayscale });
+  };
+
+  changeTransform = transform => {
+    this.setState({ transform: transform });
+  };
+
+  flipImage = e => {
+    e.preventDefault();
+    console.log('im click');
+    if (this.state.flip === 1) {
+      this.setState({ flip: -1 });
+    } else {
+      this.setState({ flip: 1 });
+    }
   };
 
   render() {
@@ -174,7 +222,15 @@ export default class Box extends Component {
       top: y,
       left: x,
       zIndex: z,
-      boxShadow: capture ? '2px 2px 15px black' : 'none'
+      boxShadow: capture ? '2px 2px 15px black' : 'none',
+      opacity: this.state.opacity,
+      filter: `grayscale(${this.state.grayscale}%)`,
+      transform: `rotate(${this.state.transform}deg) scaleX(${this.state.flip})`
+    };
+
+    const rotate = {
+      transform: `rotate(${this.state.transform}deg)`,
+      border: '1px solid black'
     };
 
     return (
@@ -187,10 +243,14 @@ export default class Box extends Component {
           removeImage={this.props.removeImage}
           changeOpacity={this.changeOpacity}
           opacity={this.state.opacity}
-          blur={this.state.blur}
-          changeBlur={this.changeBlur}
           grayscale={this.state.grayscale}
           changeGrayscale={this.changeGrayscale}
+          transform={this.state.transform}
+          changeTransform={this.changeTransform}
+          flipImage={this.flipImage}
+          width={this.state.toolbar.width}
+          left={this.state.toolbar.left}
+          top={this.state.toolbar.top}
         />
         <div
           style={overlay}
@@ -207,13 +267,56 @@ export default class Box extends Component {
               textboxFinish={this.textboxFinish}
             />
           ) : (
-            item
+            <>
+              {item}
+              <Resizer
+                bottom
+                gotCapture={this.gotCapture}
+                onPointerDown={e => this.onDown(e, 'resizing')}
+                onUp={this.onUp}
+                onMove={this.onMove}
+                startResize={this.startResize}
+              />
+            </>
           )}
         </div>
       </>
     );
   }
 }
+
+const Resizer = props => {
+  const style = type => ({
+    height: '25px',
+    width: '25px',
+    position: 'absolute',
+    top: type === 'top' ? -20 : null,
+    left: type === 'top' ? -20 : null,
+    right: type === 'bottom' ? -20 : null,
+    bottom: type === 'bottom' ? -20 : null,
+    borderLeft: type === 'top' ? '1px solid red' : null,
+    borderTop: type === 'top' ? '1px solid red' : null,
+    borderRight: type === 'bottom' ? '1px solid black' : null,
+    borderBottom: type === 'bottom' ? '1px solid black' : null,
+    zIndex: 1000000
+  });
+
+  if (props.top) {
+    return <div style={style('top')}></div>;
+  } else
+    return (
+      <div
+        style={style('bottom')}
+        onGotPointerCapture={() => props.startResize(true)}
+        onLostPointerCapture={() => props.startResize(false)}
+        onPointerDown={props.onPointerDown}
+        onPointerUp={props.onUp}
+        onPointerCancel={props.onUp}
+        onPointerMove={props.onMove}
+        // touch-action="none"
+      ></div>
+    );
+};
 
 // import React, { Component } from 'react';
 // import ReactDOM from 'react-dom';
