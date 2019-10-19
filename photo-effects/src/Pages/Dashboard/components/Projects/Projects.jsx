@@ -102,12 +102,14 @@ const projectDeleteButton = {
 class Projects extends Component {
   // master
   // Used to delete a project already in our backend and from cloudinary (handled in backend)
-  deleteProject = id => {
+  deleteProject = (e,id) => {
+
     axios
       .delete(`https://photo-effects-backend-stage-1.herokuapp.com/canvas/${id}`)
       .then(res => {
-        this.props.updateProject(res.data);
-        window.location.reload();
+        this.props.updateProject(e,res.data);
+        // window.location.reload();
+       
       })
       .catch(err => {
         console.log(err);
@@ -141,8 +143,8 @@ class Projects extends Component {
 
     return (
       <>
-        {this.props.projects === undefined ? (
-          <h1>Loading...</h1>
+        {this.props.projects === (undefined || null || []) ? (
+          <h1>Loading...</h1> 
         ) : (
           <>
             <h1 style={projectsSectionTitle}>Projects</h1>
@@ -180,7 +182,7 @@ class Projects extends Component {
                           onClick={() => this.toCanvas(project)}
                           className="uploaded-img-container"
                         >
-                          {project.p_image === undefined ? (
+                          {project.secure_url === undefined ? (
                             <i
                               className="fas fa-image"
                               style={{ fontSize: '10rem' }}
@@ -195,8 +197,8 @@ class Projects extends Component {
                         </div>
                         <button
                           style={projectDeleteButton}
-                          onClick={() =>
-                            this.deleteProject(project.id, project.public_id)
+                          onClick={(e) =>
+                            this.deleteProject(e, project.id, project.public_id)
                           }
                         >
                           Delete

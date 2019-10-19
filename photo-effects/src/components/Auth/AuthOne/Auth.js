@@ -3,9 +3,7 @@ import jwtDecode from 'jwt-decode';
 import axios from 'axios';
 
 export default class Auth {
-  state = {
-    
-  };
+  state = {};
   constructor(history) {
     this.history = history;
 
@@ -31,11 +29,11 @@ export default class Auth {
   };
 
   logout = () => {
-    localStorage.removeItem('access_token'); 
+    localStorage.removeItem('access_token');
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
     localStorage.removeItem('userId'); //google Id
-    // localStorage.removeItem('Id'); 
+    // localStorage.removeItem('Id');
     localStorage.removeItem('dbId'); //Database Id
     localStorage.removeItem('projectId'); //project Id
     localStorage.removeItem('publicId'); //Cloudinary Id of main picture
@@ -48,7 +46,6 @@ export default class Auth {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
         this.getIds();
-        
 
         this.history.push('/dashboard');
       } else if (err) {
@@ -72,7 +69,7 @@ export default class Auth {
         newUser
       )
       .then(res => {
-        this.getdbId()
+        this.getdbId();
         console.log('new user added');
       })
       .catch(error => {
@@ -82,24 +79,24 @@ export default class Auth {
       });
   };
 
-  getdbId = () => {
-    axios
-      .get(
-        `https://photo-effects-backend-stage-1.herokuapp.com/users/google/${localStorage.getItem(
-          'userId'
-        )}`
-      )
+  getdbId = async () => {
+      await axios.get(`https://photo-effects-backend-stage-1.herokuapp.com/users/google/${localStorage.getItem(
+        'userId'
+      )}`)
       .then(res => {
-        console.log(localStorage.getItem('userId'));
+        // console.log(localStorage.getItem('userId'));
         // console.log(res.data[0].id);
         localStorage.setItem('dbId', res.data[0].id);
         // localStorage.setItem('dbId', );
-      }).catch(error => {
-console.log(error)
-    });
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
-
+  // componentDidMount = () => {
+  //   this.getdbId();
+  // }
 
   //   getProjectIds=()=> {
 

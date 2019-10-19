@@ -67,6 +67,7 @@ export default class TextEdit extends Component {
         suppressContentEditableWarning={true}
       >
         {this.state.text}
+        
       </div>
     );
   }

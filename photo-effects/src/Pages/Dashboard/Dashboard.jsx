@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import axios from 'axios';
 import Upload from './components/Upload/Upload';
@@ -7,7 +6,7 @@ import Projects from './components/Projects/Projects';
 import DashNav from './components/DashNav/DashNav';
 import './components/DashNav/dashNav.css';
 import withAuth from '../../components/Auth/AuthOne/withAuth';
-import Footer from '../../Pages/Landing/components/Footer/Footer'
+import Footer from '../../Pages/Landing/components/Footer/Footer';
 
 export default class Dashboard extends Component {
   constructor(props) {
@@ -189,13 +188,20 @@ export default class Dashboard extends Component {
       });
   };
 
+ 
+
   // Update
   // will update state for user projects when adding/deleting for now.
   updateProject = (e, newProject) => {
+    e.preventDefault();
+    setTimeout(window.location.reload(), 2000)
     this.setState({
       canvasprojects: newProject
-    });
+    })
+  
   };
+
+
 
   // logout
   logoutButton = e => {
@@ -204,20 +210,36 @@ export default class Dashboard extends Component {
     this.props.history.push('/home');
   };
 
+  getDbId = () => {
+    // let result = await axios.get(`https://photo-effects-backend-stage-1.herokuapp.com/users/google/${localStorage.getItem(
+    //   'userId'
+    // )}`)
+    // localStorage.setItem('dbId', result.data[0].id);
+
+    axios.get(`https://photo-effects-backend-stage-1.herokuapp.com/users/google/${localStorage.getItem('userId')}`)
+    .then(res => {localStorage.setItem('dbId', res.data[0].id);})
+    .catch(error => {console.log(error)})
+  };
+
   getProjects = () => {
     axios.get(
-        `https://photo-effects-backend-stage-1.herokuapp.com/users/${localStorage.getItem(
-          'dbId'
-        )}/projects`
-      )
-      .then(res => this.setState({ canvasprojects: res.data }))
-      // .then(console.log(this.state.canvasprojects))
-    .catch(err => console.log(err)); 
-}
+      `https://photo-effects-backend-stage-1.herokuapp.com/users/${localStorage.getItem(
+        'dbId'
+      )}/projects`
+    )
+    .then(res => this.setState({ canvasprojects: res.data }))
+    // .then(console.log(this.state.canvasprojects))
+    .catch(err => console.log(err))
+    
+  };
 
-  componentDidMount() {
-    setTimeout(()=>this.props.auth.getdbId(), 2000 )
-   
+ 
+  componentDidMount () {
+
+    setTimeout(()=>this.getDbId(), 500)
+    
+   setTimeout(()=>this.getProjects(), 1000) 
+    
     // sets users in state
     axios
       .get('https://photo-effects-backend.herokuapp.com/api/users')
@@ -225,33 +247,16 @@ export default class Dashboard extends Component {
       .then(res => this.setState({ users: res.data }))
       .catch(err => console.log(err));
 
-    // sets projects in state
-    axios
-      .get('https://photo-effects-backend.herokuapp.com/api/projects')
-      .then(res => this.setState({ projects: res.data }))
-      .catch(err => console.log(err));
-
-    axios
-      // .get("https://photo-effects-backend.herokuapp.com/api/projects/sort")
-      .get('https://photo-effects-backend.herokuapp.com/api/projects/sort')
-      .then(res => this.setState({ projectSort: res.data }))
-      .catch(err => console.log(err));
-
-    // staging
     // axios
-    // .get('https://photo-effects-backend-stage-1.herokuapp.com/api/users')
-    // .then(res => this.setState({ users: res.data }))
-    // .catch(err => console.log(err));
+    //   // .get("https://photo-effects-backend.herokuapp.com/api/projects/sort")
+    //   .get('https://photo-effects-backend.herokuapp.com/api/projects/sort')
+    //   .then(res => this.setState({ projectSort: res.data }))
+    //   .catch(err => console.log(err));
 
     // axios
-    // .get('https://photo-effects-backend-stage-1.herokuapp.com/api/projects')
-    // .then(res => this.setState({ projects: res.data }))
-    // .catch(err => console.log(err));
-
-    axios
-      .get('https://photo-effects-backend-stage-1.herokuapp.com/canvas/')
-      .then(res => this.setState({ canvasprojects: res.data }))
-      .catch(err => console.log(err));
+    //   .get('https://photo-effects-backend-stage-1.herokuapp.com/canvas/')
+    //   .then(res => this.setState({ canvasprojects: res.data }))
+    //   .catch(err => console.log(err));
   }
 
   // Toggle
@@ -289,10 +294,6 @@ export default class Dashboard extends Component {
             createProject={this.createProject}
           />
         </div>
-        {this.state.canvasprojects=== undefined ? <p>loading projects</p> : this.getProjects()}
-        {this.state.canvasprojects.map(plzwork => {
-          return <p>{plzwork.p_name}</p>;
-        })}
 
         <Projects
           projects={this.state.canvasprojects}
@@ -305,7 +306,8 @@ export default class Dashboard extends Component {
           toggleSort={this.toggleSort}
           setBgImage={this.props.setBgImage}
         />
-        <Footer/>
+
+        <Footer />
       </div>
     );
   }
