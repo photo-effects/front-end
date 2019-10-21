@@ -95,11 +95,15 @@ export default class Box extends Component {
       left: left,
       zIndex: this.state.item.props.style.zIndex,
       opacity: this.state.opacity,
-      filter: `blur(${this.state.blur}px)`,
-      filter: `contrast(${this.state.contrast}%)`,
-      filter: `grayscale(${this.state.grayscale}%)`
+      filter: `grayscale(${this.state.grayscale}%)`,
     };
   };
+
+  blurBox = () => {
+    return {
+      filter: `blur(${this.state.blur}px)`,
+    }
+  }
 
 
   
@@ -219,10 +223,9 @@ export default class Box extends Component {
           opacity={this.state.opacity}
           blur={this.state.blur}
           changeBlur={this.changeBlur}
-          contrast={this.state.contrast}
           grayscale={this.state.grayscale}
           changeGrayscale={this.changeGrayscale}
-        /> 
+        />
         <div
           style={this.container()}
           ref="box"
