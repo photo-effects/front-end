@@ -32,6 +32,7 @@ export class Navbar extends Component {
       marginLeft: "80px",
       height: "60px",
       width: "150px",
+      cursor: 'pointer'
     };
 
     const navlinks = {
