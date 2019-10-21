@@ -6,6 +6,8 @@ export class Navbar extends Component {
   state = {
     hover: false
   };
+
+
   //push to landing
   render() {
     const { hover } = this.state;
@@ -82,9 +84,13 @@ export class Navbar extends Component {
       }
     ];
 
+  
+
     return (
       <nav style={nav}>
-        <img src={navLogo} alt="navbar logo" style={navbarLogo} />
+       <Link to="/"> 
+       <img src={navLogo}  alt="navbar logo" style={navbarLogo} />
+       </Link>
         {isLoggedIn ?
                <ul style={navlinks} >
                  <>
