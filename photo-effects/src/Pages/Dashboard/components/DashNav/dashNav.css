@@ -1,19 +1,12 @@
-  .dashNavLinks a {
-    text-decoration: none;
-    color: white;
-    padding: 0 10px;
-  }
-  
-  .dashNavRight{
-    width: 200px;
-  }
 
-  .home {
+
+  .links {
       cursor: pointer;
       padding: 5px;
+     
   }
 
-  .home:hover {
+  .links:hover {
       transform: scale(1.2);
       transition: ease-in-out 0.1s;
   }
