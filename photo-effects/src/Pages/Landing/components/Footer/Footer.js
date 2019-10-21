@@ -36,7 +36,8 @@ const Footer = () => {
     height: '200px',
     width: '95%',
     margin: '1% 0',
-    marginLeft: '38px'
+    marginLeft: '38px',
+    marginBottom:'15px'
   };
   
   const footerCard = {
@@ -52,7 +53,7 @@ const Footer = () => {
     borderRadius: '7px',
     fontSize: '16px'
   };
-
+//C3D1D3
   return (
     <div style={footerContainer}>
       <div style={footerCard}>

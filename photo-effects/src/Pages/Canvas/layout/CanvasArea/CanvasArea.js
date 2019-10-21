@@ -35,7 +35,8 @@ class CanvasArea extends Component {
 
     const bg = {
       width: image ? 'auto' : '100%',
-      height: image ? 'auto' : '100%'
+      height: image ? 'auto' : '100%',
+      position: 'relative'
     };
 
     const hidden = {
@@ -45,12 +46,19 @@ class CanvasArea extends Component {
     };
 
     return (
-      <div style={container}>
+      <div style={container} ref="container">
         <div ref="parent" id="capture" style={bg}>
           {items.length > 1 ? (
             this.state.items.map((item, i) => {
               if (item.type === 'Paint') {
-                return <Paint z={item.props.style.zIndex} id={item.props.id} setPaint = { this.props.setPaint } bringToTop = { this.props.bringToTop } />;
+                return (
+                  <Paint
+                    z={item.props.style.zIndex}
+                    id={item.props.id}
+                    setPaint={this.props.setPaint}
+                    bringToTop={this.props.bringToTop}
+                  />
+                );
               } else
                 return (
                   <Box
@@ -61,12 +69,18 @@ class CanvasArea extends Component {
                     getJsonData={this.props.getJsonData}
                     removeImage={this.props.removeImage}
                     parent={this.refs.parent}
+                    container={this.refs.container}
                   />
                 );
             })
           ) : items.length === 1 ? (
             items[0].type === 'Paint' ? (
-              <Paint z={items[0].props.style.zIndex} id={items[0].props.id} setPaint = { this.props.setPaint } bringToTop = { this.props.bringToTop } />
+              <Paint
+                z={items[0].props.style.zIndex}
+                id={items[0].props.id}
+                setPaint={this.props.setPaint}
+                bringToTop={this.props.bringToTop}
+              />
             ) : (
               <Box
                 item={items[0]}
@@ -75,12 +89,15 @@ class CanvasArea extends Component {
                 getJsonData={this.props.getJsonData}
                 removeImage={this.props.removeImage}
                 parent={this.refs.parent}
+                container={this.refs.container}
               />
             )
           ) : (
             <div></div>
           )}
-          <img ref="image" src={this.props.image} style={hidden} />
+          {this.props.image ? (
+            <img ref="image" src={this.props.image} style={hidden} alt="img" />
+          ) : null}
         </div>
       </div>
     );

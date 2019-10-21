@@ -35,8 +35,8 @@ class ToolsTopArea extends Component {
               <img src={exit} alt="exit" />
             </div>
 
-            <div style={panelbutton_save} onClick={this.props.updateProject}>
-              <i className="far fa-save" onClick={this.props.saveImg}></i>
+            <div style={panelbutton_save} onClick={this.props.saveImg}>
+              <i className="far fa-save"></i>
             </div>
 
             <div style={panelbutton_download} onClick={() => this.props.handleScreenshot()}>
