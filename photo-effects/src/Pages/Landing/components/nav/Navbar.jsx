@@ -8,6 +8,7 @@ export class Navbar extends Component {
   };
   //push to landing
   render() {
+    const { hover } = this.state;
     const isLoggedIn = Boolean(localStorage.getItem("access_token"));
 
     const nav = {
@@ -28,16 +29,20 @@ export class Navbar extends Component {
     const navbarLogo = {
       marginLeft: "80px",
       height: "60px",
-      width: "150px"
+      width: "150px",
     };
 
     const navlinks = {
       display: "flex",
       justifyContent: "space-between",
-      margin: "8px",
       width: "600px",
-      marginRight: "82px"
     };
+
+    const navLinksLoggedOut = {
+      display: "flex",
+      justifyContent: "space-between",
+      width: '400px',
+    }
 
     const links = [
       {
@@ -80,20 +85,22 @@ export class Navbar extends Component {
     return (
       <nav style={nav}>
         <img src={navLogo} alt="navbar logo" style={navbarLogo} />
-
-        <ul style={navlinks}>
-          {isLoggedIn ? (
-            <>
-              {links.map(link => (
-                <A
-                  link={link}
-                  isLoggedIn={isLoggedIn}
-                  login={this.props.auth.login}
-                  logout={this.props.auth.logout}
-                />
-              ))}
-            </>
-          ) : (
+        {isLoggedIn ?
+               <ul style={navlinks} >
+                 <>
+                   {links.map(link => (
+                     <A
+                       link={link}
+                       isLoggedIn={isLoggedIn}
+                       login={this.props.auth.login}
+                       logout={this.props.auth.logout}
+                     />
+                   ))}
+                 </>
+                 </ul>
+         :
+         (
+          <ul style={navLinksLoggedOut}>
             <>
               {loggedOutLinks.map(link => (
                 <A
@@ -104,32 +111,8 @@ export class Navbar extends Component {
                 />
               ))}
             </>
+            </ul>
           )}
-        </ul>
-
-        {/* <ul style={navlinks}>
-          <li style={smallnavlinks}>
-            <Link to="/about" style = {linkStyle}>About</Link>
-          </li>
-          <li style={smallnavlinks}></li>
-            <Link to="/features" style = {linkStyle}>Features</Link>
-          </li>
-          <li style={loginbutton}>
-                <Link to="/dashboard" style = {linkStyle}><i className="far fa-plus-square"></i>New Image</Link>
-              </li>
-          {!isLoggedIn ? (
-            <li >
-              <button style={loginbutton} onClick={this.props.auth.login}>
-                Login / SignUp
-              </button>
-            </li>
-          ) : (
-              <button style={loginbutton} onClick={this.props.auth.logout} onMouseOver={()=>this.setState({ hover: !this.state.hover})} onMouseOut={()=>this.setState({ hover: !this.state.hover})}>
-                Logout
-              </button>
-          
-          )}
-        </ul> */}
       </nav>
     );
   }
@@ -159,7 +142,9 @@ class A extends Component {
     };
 
     const smallnavlinks = {
-      marginTop: "10px"
+      marginTop: "10px",
+      transform: hover ? "scale(1.1)" : "scale(1)",
+      transition: hover ? "ease-in-out 0.1s" : "null",
     };
 
     const linkStyle = {
