@@ -14,9 +14,10 @@ export class Canvas extends Component {
     items: [],
     w: 0,
     image: null,
-    imgUrl: [],
+    // imgUrl: [],
     imgPreview: null,
-    projectTitle: ''
+    projectTitle: '',
+    projectSecureUrl: ''
   };
 
   componentDidMount() {
@@ -57,37 +58,17 @@ export class Canvas extends Component {
     });
   };
 
-  updateProject = () => {
-    // this.saveImg();
-
-    const updatedProject = {
-      p_name: this.state.projectTitle,
-      p_data: JSON.stringify(this.state.items),
-      secure_url: this.state.imgUrl
-    };
-
-    axios
-      .put(
-        `https://photo-effects-backend-stage-1.herokuapp.com/canvas/${localStorage.getItem(
-          'projectId'
-        )}`,
-        updatedProject
-      )
-      .then(res => {
-        console.log('saved', res.data);
-      })
-      .catch(err => console.log(err));
-  };
-
   saveImg = () => {
+    const public_id = localStorage.getItem('publicId');
+
     const imgForm = {
       // method: "upload",
       image: this.state.imgPreview,
       options: {
-        format: 'jpg',
+        format: 'png',
         overwrite: 'true',
-        public_id: localStorage.getItem('publicId'),
-        timeout: 60000
+        public_id
+        // timeout: 2000
       }
     };
 
@@ -99,22 +80,45 @@ export class Canvas extends Component {
           `https://photo-effects-backend-stage-1.herokuapp.com/cloudinary/upload2`,
           imgForm
         )
-        // .then(res => {
-        //   if (!res.ok) {
-        //     throw res;
-        //   }
-        //   return res.json();
-        // })
         .then(res => {
-          // this.setState({ imgUrl: data.secure_url });
-          // localStorage.setItem('imgUrl', this.state.imgUrl);
           console.log(res);
+          this.setState({ projectSecureUrl: res.data.secure_url });
           console.log(res.data.secure_url);
+
+          this.updateProject();
         })
         .catch(err => {
           console.log(err);
         });
     }, 500);
+
+    // axios.post(
+    //   `https://api.cloudinary.com/v1_1/dn94qw6w7/image/upload`,
+    //   imgForm
+    // );
+  };
+
+  updateProject = () => {
+    console.log('update called!');
+    const updatedProject = {
+      p_name: this.state.projectTitle,
+      // p_data: JSON.stringify(this.state.items),
+      secure_url: this.state.projectSecureUrl
+    };
+
+    console.log(updatedProject);
+
+    axios
+      .put(
+        `https://photo-effects-backend-stage-1.herokuapp.com/canvas/${localStorage.getItem(
+          'projectId'
+        )}`,
+        updatedProject
+      )
+      .then(res => {
+        console.log('Project updated', res.data);
+      })
+      .catch(err => console.log('error'));
   };
 
   // this.setState({ items: JSON.parse("[{\"type\":\"img\",\"key\":null,\"ref\":null,\"props\":{\"height\":492,\"width\":293.875,\"x\":270.8125,\"y\":-27,\"style\":{\"zIndex\":1},\"id\":\"88b2af17-a46e-4c04-bba2-30508737c444\",\"src\":\"https://res.cloudinary.com/dn94qw6w7/image/upload/v1567202073/rv8qvq2siyxqpbtwnl4i.jpg\"},\"_owner\":null,\"_store\":{}}]") })

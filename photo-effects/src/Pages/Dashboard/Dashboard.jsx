@@ -47,7 +47,7 @@ export default class Dashboard extends Component {
         // errs.push(`'${file.type}' is not a supported format`)
         errs.push(`Sorry about that! We only accept JPG and PNG files! :(`);
       }
-      if (file.size > 10000000) {
+      if (file.size > 6000000) {
         errs.push(`'${file.name}' is too large, please pick a smaller file`);
       }
 
@@ -118,7 +118,7 @@ export default class Dashboard extends Component {
       if (types.every(type => file.type !== type)) {
         errs.push(`Sorry about that! We only accept JPG and PNG files! :(`);
       }
-      if (file.size > 10000000) {
+      if (file.size > 6000000) {
         errs.push(`'${file.name}' is too large, please pick a smaller file`);
       }
 
@@ -188,20 +188,15 @@ export default class Dashboard extends Component {
       });
   };
 
- 
-
   // Update
   // will update state for user projects when adding/deleting for now.
   updateProject = (e, newProject) => {
     e.preventDefault();
-    setTimeout(window.location.reload(), 2000)
+    setTimeout(window.location.reload(), 2000);
     this.setState({
       canvasprojects: newProject
-    })
-  
+    });
   };
-
-
 
   // logout
   logoutButton = e => {
@@ -216,30 +211,37 @@ export default class Dashboard extends Component {
     // )}`)
     // localStorage.setItem('dbId', result.data[0].id);
 
-    axios.get(`https://photo-effects-backend-stage-1.herokuapp.com/users/google/${localStorage.getItem('userId')}`)
-    .then(res => {localStorage.setItem('dbId', res.data[0].id);})
-    .catch(error => {console.log(error)})
+    axios
+      .get(
+        `https://photo-effects-backend-stage-1.herokuapp.com/users/google/${localStorage.getItem(
+          'userId'
+        )}`
+      )
+      .then(res => {
+        localStorage.setItem('dbId', res.data[0].id);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   getProjects = () => {
-    axios.get(
-      `https://photo-effects-backend-stage-1.herokuapp.com/users/${localStorage.getItem(
-        'dbId'
-      )}/projects`
-    )
-    .then(res => this.setState({ canvasprojects: res.data }))
-    // .then(console.log(this.state.canvasprojects))
-    .catch(err => console.log(err))
-    
+    axios
+      .get(
+        `https://photo-effects-backend-stage-1.herokuapp.com/users/${localStorage.getItem(
+          'dbId'
+        )}/projects`
+      )
+      .then(res => this.setState({ canvasprojects: res.data }))
+      // .then(console.log(this.state.canvasprojects))
+      .catch(err => console.log(err));
   };
 
- 
-  componentDidMount () {
+  componentDidMount() {
+    setTimeout(() => this.getDbId(), 500);
 
-    setTimeout(()=>this.getDbId(), 500)
-    
-   setTimeout(()=>this.getProjects(), 1000) 
-    
+    setTimeout(() => this.getProjects(), 1000);
+
     // sets users in state
     axios
       .get('https://photo-effects-backend.herokuapp.com/api/users')

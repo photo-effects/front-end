@@ -28,13 +28,13 @@ export default class Toolbar extends Component {
   render() {
     const { open } = this.state;
     const { currentTool, toolbar } = this.props;
-    const { width, left } = toolbar;
+    const { width, left, top } = toolbar;
 
     const container = {
       width,
       height: '74px',
       position: 'absolute',
-      top: -74,
+      top: top * -1 - 72,
       left: left * -1,
       border: '1px solid black',
       background: 'lightgray',

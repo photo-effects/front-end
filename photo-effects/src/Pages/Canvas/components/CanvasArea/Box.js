@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Toolbar from '../../layout/CanvasArea/Toolbar';
 import TextEdit from '../LeftPanelArea/Tools/TextBox/TextEdit';
+import Paint from '../LeftPanelArea/Tools/Paint/Paint';
 
 export default class Box extends Component {
   state = {
@@ -49,8 +50,8 @@ export default class Box extends Component {
     const top = parent.top - container.top;
 
     this.setState({
-      offsetLeft: container.left,
-      offsetTop: container.top,
+      offsetLeft: parent.left,
+      offsetTop: parent.top,
       toolbar: {
         width: container.width,
         left,
@@ -142,10 +143,11 @@ export default class Box extends Component {
       });
     } else if (this.state.resizing) {
       const { left, top } = this.getPosition(e);
+      const { offsetLeft, offsetTop } = this.state;
 
       this.setState({
-        width: e.pageX - this.state.offsetLeft - (this.state.x + left),
-        height: e.pageY - this.state.offsetTop - (this.state.y + top)
+        width: e.pageX - offsetLeft - (this.state.x + left),
+        height: e.pageY - offsetTop - (this.state.y + top)
       });
     }
   };
@@ -265,14 +267,17 @@ export default class Box extends Component {
           ) : (
             <>
               {item}
-              <Resizer
-                bottom
-                gotCapture={this.gotCapture}
-                onPointerDown={e => this.onDown(e, 'resizing')}
-                onUp={this.onUp}
-                onMove={this.onMove}
-                startResize={this.startResize}
-              />
+              {(item.type !== Paint || item.type !== 'div') &&
+              this.state.capture ? (
+                <Resizer
+                  bottom
+                  gotCapture={this.gotCapture}
+                  onPointerDown={e => this.onDown(e, 'resizing')}
+                  onUp={this.onUp}
+                  onMove={this.onMove}
+                  startResize={this.startResize}
+                />
+              ) : null}
             </>
           )}
         </div>

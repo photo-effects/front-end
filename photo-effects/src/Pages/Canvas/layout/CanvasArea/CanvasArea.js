@@ -5,8 +5,14 @@ import Paint from '../../components/LeftPanelArea/Tools/Paint/Paint';
 
 class CanvasArea extends Component {
   state = {
-    items: []
+    items: [],
+    maxHeight: 0
   };
+
+  componentDidMount() {
+    const container = this.refs.container.getBoundingClientRect();
+    this.setState({ maxHeight: container.height - 72 });
+  }
 
   static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps.items !== prevState.items) {
@@ -17,7 +23,7 @@ class CanvasArea extends Component {
   }
 
   render() {
-    const { items } = this.state;
+    const { items, maxHeight } = this.state;
     const { image } = this.props;
 
     const container = {
@@ -40,7 +46,7 @@ class CanvasArea extends Component {
     };
 
     const hidden = {
-      height: 'auto',
+      maxHeight,
       width: 'auto',
       zIndex: -1000000000
     };
