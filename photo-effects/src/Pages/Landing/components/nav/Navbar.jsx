@@ -10,7 +10,6 @@ export class Navbar extends Component {
 
   //push to landing
   render() {
-    const { hover } = this.state;
     const isLoggedIn = Boolean(localStorage.getItem("access_token"));
 
     const nav = {
