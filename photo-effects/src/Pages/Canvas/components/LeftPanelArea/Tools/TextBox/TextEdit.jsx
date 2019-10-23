@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 export default class TextEdit extends Component {
   state = {
-    text: 'text',
+    text: '',
     height: ''
   };
 
@@ -10,10 +10,8 @@ export default class TextEdit extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  onSubmit = e => {
-    e.preventDefault();
-    this.setState({});
-    this.props.textboxFinish();
+  textboxFinish = () => {
+    this.props.setTextbox('text', this.refs.text.innerHTML);
   };
 
   render() {
@@ -24,7 +22,8 @@ export default class TextEdit extends Component {
       weight,
       decoration,
       slider,
-      editable
+      editable,
+      text
     } = this.props.textbox;
 
     const { height, width } = this.state;
@@ -60,14 +59,14 @@ export default class TextEdit extends Component {
 
     return (
       <div
-        contentEditable={editable}
+        ref="text"
+        contentEditable={true}
         style={styles}
         onMouseEnter={e => e.preventDefault()}
-        onMouseLeave={this.props.textboxFinish}
+        onMouseLeave={() => this.textboxFinish()}
         suppressContentEditableWarning={true}
       >
-        {this.state.text}
-        
+        {text}
       </div>
     );
   }

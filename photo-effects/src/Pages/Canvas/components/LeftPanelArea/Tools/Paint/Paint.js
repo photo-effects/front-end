@@ -28,18 +28,28 @@ export default class Paint extends Component {
     removed: [],
     start: { x: 0, y: 0 },
     end: { x: 0, y: 0 },
-    preview: null
+    preview: null,
+    toolbar: {}
   };
 
   componentDidMount() {
     const node = ReactDOM.findDOMNode(this.refs.canvas);
-    const parent = node.offsetParent.getBoundingClientRect();
+    const parent = this.props.parent.getBoundingClientRect();
+    const container = this.props.container.getBoundingClientRect();
+
+    const left = parent.left - container.left;
+    const top = parent.top - container.top;
 
     this.setState({
       height: parent.height / 2,
       width: parent.width / 2,
       left: parent.width / 2 / 2,
-      id: this.props.id
+      id: this.props.id,
+      toolbar: {
+        width: container.width,
+        left,
+        top
+      }
     });
   }
 
@@ -298,7 +308,8 @@ export default class Paint extends Component {
       undo: this.toolbar.undo,
       redo: this.toolbar.redo,
       saveLayer: this.saveLayer,
-      z: this.props.z + 1
+      z: this.props.z + 1,
+      toolbar: this.state.toolbar
     };
 
     const canvasProps = temp => ({
@@ -319,10 +330,12 @@ export default class Paint extends Component {
       onClick: e => this.actions(e).click()
     });
 
-    return _('div', { style: { zIndex: 1000000 } }, [
+    return _(React.Fragment, null, [
       _(Toolbar, toolbar_props, null),
-      _('canvas', canvasProps(false), null),
-      _('canvas', canvasProps(true), null)
+      _('div', { style: { zIndex: 1000000 } }, [
+        _('canvas', canvasProps(false), null),
+        _('canvas', canvasProps(true), null)
+      ])
     ]);
   }
 }

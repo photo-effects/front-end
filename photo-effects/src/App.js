@@ -58,6 +58,12 @@ export default class App extends Component {
         />
 
         <Route
+          path="/about"
+          exact
+          render={props => <About auth={this.auth} {...props} />}
+        />
+
+        <Route
           path="/callback"
           render={props => <Callback auth={this.auth} {...props} />}
         />

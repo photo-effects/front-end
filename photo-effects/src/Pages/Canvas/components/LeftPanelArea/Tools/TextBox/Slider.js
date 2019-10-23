@@ -4,45 +4,49 @@ import InputRange from 'react-input-range';
 
 import 'react-input-range/lib/css/index.css';
 
-import './SliderStyle.css'
+import './SliderStyle.css';
 
 export class Slider extends Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.state = {
-            value: 30
-        };
-    }
+    this.state = {
+      value: 30
+    };
+  }
 
-    getValue=value=>{
-        this.setState({value})
-        this.props.sliderValue(value)
-    }
-    
-    render() {
-        return (
-            <div style={ container }>
-                <InputRange
-                    maxValue={150}
-                    minValue={0}
-                    value={this.state.value}
-                    onChange={value => this.getValue( value )}
-                    onChangeComplete={value => this.getValue(value) }
-                />
-           </div>
-        )
-    }
+  componentDidMount() {
+    this.setState({
+      value: this.props.initialValue ? this.props.initialValue : 15
+    });
+  }
+
+  getValue = value => {
+    this.setState({ value });
+    this.props.sliderValue(value);
+  };
+
+  render() {
+    return (
+      <div style={container}>
+        <InputRange
+          maxValue={150}
+          minValue={0}
+          value={this.state.value}
+          onChange={value => this.getValue(value)}
+          onChangeComplete={value => this.getValue(value)}
+        />
+      </div>
+    );
+  }
 }
 
 const container = {
-    marginTop: '30px', 
-    height: '50px', 
-    width: '80%',
-    display: 'flex', 
-    flexDirection: 'column'
-}
+  marginTop: '30px',
+  height: '50px',
+  width: '80%',
+  display: 'flex',
+  flexDirection: 'column'
+};
 
-export default Slider
-
-
+export default Slider;

@@ -17,13 +17,15 @@ export default class Box extends Component {
     y: 0,
     clicks: 0,
     textbox: {
-      color: null,
-      background: null,
-      style: null,
-      weight: null,
-      decoration: null,
-      slider: null,
-      editable: false
+      color: '',
+      background: '',
+      style: '',
+      weight: '',
+      decoration: '',
+      slider: 0,
+      editable: false,
+      text: '',
+      hold: false
     },
     opacity: 1,
     grayscale: 0,
@@ -34,7 +36,8 @@ export default class Box extends Component {
     offsetTop: 0,
     toolbar: {
       width: 0,
-      left: 0
+      left: 0,
+      top: 0
     }
   };
 
@@ -57,13 +60,21 @@ export default class Box extends Component {
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.item !== prevState.item && nextProps.item.type !== 'text') {
+    if (nextProps.item !== prevState.item && nextProps.item.type !== TextEdit) {
       return {
         item: nextProps.item,
         x: nextProps.item.props.x,
         y: nextProps.item.props.y,
         width: nextProps.item.props.width,
         height: nextProps.item.props.height,
+        z: nextProps.item.props.style.zIndex
+      };
+    } else if (nextProps.item !== prevState.item) {
+      return {
+        item: nextProps.item,
+        textbox: nextProps.item.props.textbox,
+        x: nextProps.item.props.x,
+        y: nextProps.item.props.y,
         z: nextProps.item.props.style.zIndex
       };
     } else return null;
@@ -77,12 +88,10 @@ export default class Box extends Component {
     if (type === 'resizing') {
       this.setState({ resizing: true });
     } else {
-      this.setState({ dragging: true });
+      this.setState({
+        dragging: true
+      });
     }
-
-    setTimeout(() => {
-      this.setState({ clicks: 0 });
-    }, 500);
 
     e.target.setPointerCapture(e.pointerId);
     this.getPosition(e);
@@ -93,34 +102,22 @@ export default class Box extends Component {
     const { item, width, height, x, y } = this.state;
     const { id } = item.props;
 
-    if (this.state.clicks === 0) {
-      this.setState({
-        textbox: {
-          ...this.state.textbox,
-          editable: true
-        }
-      });
-    }
-
     this.setState({
       dragging: false,
       resizing: false,
       prevWidth: width,
       prevHeight: height,
       top: y,
-      left: x,
-      clicks: this.state.clicks + 1
+      left: x
     });
 
-    if (item.type === TextEdit) {
-      this.props.setItem(
-        'textbox',
-        { ...this.state.textbox, id: id, x: x, y: y, type: 'text', style: {zIndex: this.state.z} },
-        null,
-        null,
-        null
-      );
-    } else this.props.setItem(id, width, height, x, y);
+    setTimeout(() => {
+      this.setState({ clicks: 0 });
+    }, 1000);
+
+    if (this.props.item.type !== TextEdit) {
+      this.props.setItem(id, width, height, x, y);
+    }
   };
 
   onMove = e => {
@@ -177,16 +174,20 @@ export default class Box extends Component {
         [set]: val
       }
     });
-  };
 
-  textboxFinish = () => {
-    this.setState({
-      clicks: 0,
-      textbox: {
-        ...this.state.textbox,
-        editable: false
-      }
-    });
+    setTimeout(() => {
+      this.props.setTextbox(this.state.item.props.id, {
+        color: this.state.textbox.color || '',
+        background: this.state.textbox.background || '',
+        style: this.state.textbox.style || '',
+        weight: this.state.textbox.weight || '',
+        decoration: this.state.textbox.textbox || '',
+        slider: this.state.textbox.slider || 15,
+        text: this.state.textbox.text || '',
+        x: this.state.x,
+        y: this.state.y
+      });
+    }, 500);
   };
 
   changeOpacity = opacity => {
@@ -228,11 +229,6 @@ export default class Box extends Component {
       transform: `rotate(${this.state.transform}deg) scaleX(${this.state.flip})`
     };
 
-    const rotate = {
-      transform: `rotate(${this.state.transform}deg)`,
-      border: '1px solid black'
-    };
-
     return (
       <>
         <Toolbar
@@ -264,7 +260,7 @@ export default class Box extends Component {
           {item.type === TextEdit ? (
             <TextEdit
               textbox={this.state.textbox}
-              textboxFinish={this.textboxFinish}
+              setTextbox={this.setTextbox}
             />
           ) : (
             <>
