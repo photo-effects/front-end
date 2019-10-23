@@ -10,6 +10,7 @@ import {
 
 import Notfound from "./Pages/NotFound/Notfound";
 import Landing from "./Pages/Landing/Landing";
+import About from './Pages/About/About';
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import Canvas from "./Pages/Canvas/Canvas";
 import Test from './Pages/Test/Test'
@@ -49,6 +50,12 @@ export default class App extends Component {
           path="/"
           exact
           render={props => <Landing auth={this.auth} {...props} />}
+        />
+
+        <Route
+          path="/about"
+          exact
+          render={props => <About auth={this.auth} {...props} />}
         />
 
         <Route

@@ -1,9 +1,13 @@
 import React from 'react'
+import Navbar from '../Landing/components/nav/Navbar';
 
-const About = () => {
+const About = (props) => {
   return (
     <div>
-      About
+      <Navbar auth={props.auth} />
+      <div>
+      <h1>About</h1>
+      </div>
     </div>
   )
 }

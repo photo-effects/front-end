@@ -13,7 +13,7 @@ class CanvasArea extends Component {
       return {
         items: nextProps.items
       };
-    }
+    } else return null;
   }
 
   render() {
@@ -57,6 +57,8 @@ class CanvasArea extends Component {
                     id={item.props.id}
                     setPaint={this.props.setPaint}
                     bringToTop={this.props.bringToTop}
+                    parent={this.refs.parent}
+                    container={this.refs.container}
                   />
                 );
               } else
@@ -70,6 +72,7 @@ class CanvasArea extends Component {
                     removeImage={this.props.removeImage}
                     parent={this.refs.parent}
                     container={this.refs.container}
+                    setTextbox={this.props.setTextbox}
                   />
                 );
             })
@@ -80,6 +83,8 @@ class CanvasArea extends Component {
                 id={items[0].props.id}
                 setPaint={this.props.setPaint}
                 bringToTop={this.props.bringToTop}
+                parent={this.refs.parent}
+                container={this.refs.container}
               />
             ) : (
               <Box
@@ -90,6 +95,7 @@ class CanvasArea extends Component {
                 removeImage={this.props.removeImage}
                 parent={this.refs.parent}
                 container={this.refs.container}
+                setTextbox={this.props.setTextbox}
               />
             )
           ) : (
@@ -103,34 +109,5 @@ class CanvasArea extends Component {
     );
   }
 }
-
-const flexBox = {
-  display: 'flex',
-  alignSelf: 'center',
-  justifyContent: 'center',
-  margin: '0 auto',
-  background: 'white',
-  border: '1px solid gray',
-  width: '60%',
-  height: '80%'
-};
-
-const flexBox2 = {
-  display: 'flex',
-  justifyContent: 'center',
-  alignContent: 'center',
-  margin: '0 auto',
-  overflow: 'hidden',
-  width: '100%'
-};
-
-const imgSize = {
-  display: 'flex',
-  alignContent: 'center',
-  alignSelf: 'center',
-  // border: '1px solid yellow',
-  height: '600px',
-  minWidth: '100%'
-};
 
 export default CanvasArea;

@@ -7,6 +7,8 @@ import withAuth from '../../components/Auth/AuthOne/withAuth';
 import ToolsArea from './layout/ToolsArea/ToolsArea';
 import CanvasArea from './layout/CanvasArea/CanvasArea';
 
+import TextEdit from './components/LeftPanelArea/Tools/TextBox/TextEdit';
+
 export class Canvas extends Component {
   state = {
     items: [],
@@ -84,18 +86,8 @@ export class Canvas extends Component {
       options: {
         format: 'jpg',
         overwrite: 'true',
-        public_id: localStorage.getItem('publicId')
-      }
-    };
-
-    const imgFormEx = {
-      // method: "explicit",
-      image: this.state.imgPreview,
-      options: {
-        format: 'jpg',
-        overwrite: 'true',
-        invalidate: 'true',
-        public_id: localStorage.getItem('publicId')
+        public_id: localStorage.getItem('publicId'),
+        timeout: 60000
       }
     };
 
@@ -107,15 +99,17 @@ export class Canvas extends Component {
           `https://photo-effects-backend-stage-1.herokuapp.com/cloudinary/upload2`,
           imgForm
         )
+        // .then(res => {
+        //   if (!res.ok) {
+        //     throw res;
+        //   }
+        //   return res.json();
+        // })
         .then(res => {
-          if (!res.ok) {
-            throw res;
-          }
-          return res.json();
-        })
-        .then(imgUrl => {
-          this.setState({ imgUrl });
-          localStorage.setItem('imgUrl', this.state.imgUrl);
+          // this.setState({ imgUrl: data.secure_url });
+          // localStorage.setItem('imgUrl', this.state.imgUrl);
+          console.log(res);
+          console.log(res.data.secure_url);
         })
         .catch(err => {
           console.log(err);
@@ -131,7 +125,7 @@ export class Canvas extends Component {
       .sort((a, b) => b - a)[0];
 
     let items = this.state.items.map(item => {
-      if (item.props.id === id) {
+      if ((item.props && item.props.id === id) || item.id === id) {
         return (
           <item.type
             {...item.props}
@@ -172,9 +166,25 @@ export class Canvas extends Component {
           x={this.state.w / 2 - 100}
           y={100}
           style={{
-            zIndex: this.state.items.length ? z * 100 + 1 : 100
+            zIndex: this.state.items.length ? z * 100 + 1 : 100,
+            width: '100%',
+            height: '100%'
           }}
           id={uuidv4()}
+          textbox={
+            item.type === TextEdit
+              ? {
+                  color: '',
+                  background: '',
+                  style: '',
+                  weight: '',
+                  decoration: '',
+                  slider: 15,
+                  editable: false,
+                  text: 'text'
+                }
+              : null
+          }
           src={item.type === 'img' ? item.props.src : null}
           alt={item.type === 'img' ? item.props.title : null}
         />
@@ -200,44 +210,65 @@ export class Canvas extends Component {
 
   setItem = (id, w, h, x, y) => {
     let items;
-    if (id === 'textbox') {
-      items = this.state.items.map(item => {
-        if (item.props.id === w.id) {
-          return w
-        } else return item;
-      });
-    } else {
-      items = this.state.items.map(item => {
-        if (item.props.id === id) {
-          return (
-            <item.type
-              {...item.props}
-              width={w}
-              height={h}
-              x={x}
-              y={y}
-              style={{
-                ...item.props.style,
-                width: '100%',
-                height: '100%'
-              }}
-            >
-              {item.props.children}
-            </item.type>
-          );
-        } else return item;
-      });
-    }
+    items = this.state.items.map(item => {
+      if (item.props.id === id) {
+        return (
+          <item.type
+            {...item.props}
+            width={w}
+            height={h}
+            x={x}
+            y={y}
+            style={{
+              ...item.props.style,
+              width: '100%',
+              height: '100%'
+            }}
+          >
+            {item.props.children}
+          </item.type>
+        );
+      } else return item;
+    });
 
     this.setState({ items });
     this.saveImageToState();
+  };
+
+  setTextbox = (id, textbox) => {
+    const { x, y } = textbox;
+
+    let items = this.state.items.map(item => {
+      if (item.props.id === id) {
+        return (
+          <item.type
+            {...item.props}
+            x={x}
+            y={y}
+            textbox={textbox}
+            style={item.props.style}
+          />
+        );
+      }
+      return item;
+    });
+
+    this.setState({ items });
   };
 
   setPaint = (id, image, x, y, w, h) => {
     let items = this.state.items.map(item => {
       if (item.props.id === id) {
         return (
-          <img {...item.props} width={w} height={h} x={x} y={y} src={image} />
+          <img
+            {...item.props}
+            width={w}
+            height={h}
+            x={x}
+            y={y}
+            src={image}
+            alt={'img'}
+          />
         );
       } else return item;
     });
@@ -250,7 +281,6 @@ export class Canvas extends Component {
   };
 
   render() {
-    console.log(this.state.imgPreview);
     return (
       <div style={page}>
         <ToolsArea
@@ -269,6 +299,7 @@ export class Canvas extends Component {
           image={this.state.image}
           saveImg={this.state.saveImg}
           setPaint={this.setPaint}
+          setTextbox={this.setTextbox}
         />
       </div>
     );

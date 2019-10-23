@@ -27,14 +27,15 @@ export default class Toolbar extends Component {
 
   render() {
     const { open } = this.state;
-    const { currentTool } = this.props;
+    const { currentTool, toolbar } = this.props;
+    const { width, left } = toolbar;
 
     const container = {
-      width: 'calc(100% + 4px)',
+      width,
       height: '74px',
       position: 'absolute',
       top: -74,
-      left: -1,
+      left: left * -1,
       border: '1px solid black',
       background: 'lightgray',
       display: 'flex',
@@ -79,7 +80,7 @@ export default class Toolbar extends Component {
           dropdown={dropdown}
         />
 
-        { this.props.preview ? 
+        {this.props.preview ? (
           <img
             src={this.props.preview}
             style={{
@@ -89,13 +90,15 @@ export default class Toolbar extends Component {
             }}
             alt="preview"
           />
-        :
-          <div style={{
-            border: '2px solid black',
-            height: '50px',
-            width: this.props.preview ? 'auto' : '50px'
-          }}></div>
-        }
+        ) : (
+          <div
+            style={{
+              border: '2px solid black',
+              height: '50px',
+              width: this.props.preview ? 'auto' : '50px'
+            }}
+          ></div>
+        )}
 
         <button onClick={() => this.props.saveLayer()}>
           save as image layer
