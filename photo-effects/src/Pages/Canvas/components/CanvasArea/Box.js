@@ -8,6 +8,7 @@ export default class Box extends Component {
   state = {
     item: null,
     capture: false,
+    hover: false,
     prevLeft: null,
     prevTop: null,
     prevWidth: null,
@@ -254,6 +255,12 @@ export default class Box extends Component {
           style={overlay}
           onGotPointerCapture={() => this.setState({ capture: true })}
           onLostPointerCapture={() => this.setState({ capture: false })}
+          onPointerEnter={
+            !this.state.hover ? () => this.setState({ hover: true }) : null
+          }
+          onPointerLeave={
+            this.state.hover ? () => this.setState({ hover: false }) : null
+          }
           onPointerDown={e => this.onDown(e, 'dragging')}
           onPointerUp={this.onUp}
           onPointerCancel={this.onUp}
@@ -267,8 +274,7 @@ export default class Box extends Component {
           ) : (
             <>
               {item}
-              {(item.type !== Paint || item.type !== 'div') &&
-              this.state.capture ? (
+              {item.type !== Paint || item.type !== 'div' ? (
                 <Resizer
                   bottom
                   gotCapture={this.gotCapture}

@@ -258,6 +258,7 @@ export class Canvas extends Component {
     });
 
     this.setState({ items });
+    this.saveImageToState();
   };
 
   setPaint = (id, image, x, y, w, h) => {
