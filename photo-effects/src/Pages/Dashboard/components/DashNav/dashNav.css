@@ -1,0 +1,43 @@
+
+
+  .links {
+    cursor: pointer;
+    padding: 5px;
+   
+}
+
+.links:hover {
+    transform: scale(1.2);
+    transition: ease-in-out 0.1s;
+}
+
+
+
+.dashLogout:hover {
+    filter: brightness(110%);
+    transform: scale(1.1);
+    transition: ease-in-out 0.1s
+}
+
+/* Dashboard */
+.welcome {
+    padding-top: 20vh;
+    font-size: 3.5rem;
+    width: 95%;
+    margin: 0 auto;
+}
+
+.center {
+    text-align: center;
+    margin-top: 50px;
+    /* border: 1px solid black; */
+}
+
+.center h2 {
+  font-size: 4.6rem;
+}
+
+.errorBox {
+  margin-top: 10px;
+  font-size: 2rem;
+}
