@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import axios from 'axios';
+
 
 import {
   /* BrowserRouter as Router, */
@@ -8,29 +8,28 @@ import {
   /* NavLink */
 } from "react-router-dom";
 
-import Notfound from "./layout/Notfound";
-import Landing from "./layout/Landing";
-import Dashboard from "./layout/Dashboard";
-import Canvas from "./layout/Canvas/Canvas";
+import Notfound from "./Pages/NotFound/Notfound";
+import Landing from "./Pages/Landing/Landing";
+import About from './Pages/About/About';
+import Dashboard from "./Pages/Dashboard/Dashboard";
+import Canvas from "./Pages/Canvas/Canvas";
+import Test from './Pages/Test/Test'
 
 // import Users from './components/Auth/Users';
 import Auth from "./components/Auth/AuthOne/Auth";
 // import Home from './components/Auth/Home';
 import Callback from "./components/Auth/Callback";
 
-import Test from "./layout/TextBox/Test";
-
 export default class App extends Component {
   state = {
-    image: [],
- 
+    image: null
   };
+
   auth = new Auth(this.props.history);
 
 
   setBgImage = (item) => {
     this.setState({ image: item })
-    console.log(this.state.image)
   }
 
   // componentDidMount() {
@@ -51,6 +50,12 @@ export default class App extends Component {
           path="/"
           exact
           render={props => <Landing auth={this.auth} {...props} />}
+        />
+
+        <Route
+          path="/about"
+          exact
+          render={props => <About auth={this.auth} {...props} />}
         />
 
         <Route
@@ -83,7 +88,7 @@ export default class App extends Component {
           render={props => <Canvas auth={this.auth} image={this.state.image} {...props} />}
         />
 
-        {/* <Route exact path='/textbox' component={Test} /> */}
+        <Route exact path='/test' component={Test} />
 
         <Route component={Notfound} />
       </Switch>

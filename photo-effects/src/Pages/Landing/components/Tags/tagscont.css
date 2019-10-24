@@ -1,0 +1,63 @@
+.swiper {
+  border-top: 1px solid green;
+  border-bottom: 1px solid green;
+  padding-bottom: 10px;
+  padding-top: 8px;
+  background-color: #364f6b;
+  color: whitesmoke;
+  background-color: #53deeb;
+}
+.tagheader {
+  margin: 0px 5px 25px;
+  font-size: 2rem;
+}
+.swipecards {
+  width: 50px;
+  height: 50px;
+  font-size: 2rem;
+  text-align: center;
+  color: whitesmoke;
+  padding-top: 11px;
+  border-radius: 8px;
+}
+.greencard {
+  background-color: #328d67;
+}
+.ltpurplecard {
+  background-color: #5b62a5;
+}
+.magentacard {
+  background-color: #633875;
+}
+.ltgreencard {
+  background-color: #60aebb;
+}
+.ltbluecard {
+  background-color: #93bdff;
+}
+.getouttheway {
+  display: none;
+}
+.chevrons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+  position: absolute;
+  z-index: +2;
+  width: 98%;
+  margin: auto;
+}
+.swiper-button-next {
+  background-image: url('https://img.icons8.com/nolan/2x/chevron-right.png');
+  height: 30px;
+  top: 31px;
+}
+.swiper-button-prev {
+  background-image: url('https://img.icons8.com/nolan/2x/chevron-left.png');
+  height: 30px;
+  top: 31px;
+}
+
+.swiper-container {
+  z-index: 0;
+}
