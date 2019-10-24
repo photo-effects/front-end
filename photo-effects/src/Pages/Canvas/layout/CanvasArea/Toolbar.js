@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import TextEdit from '../../components/LeftPanelArea/Tools/TextBox/TextEdit';
-import TextToolbar from '../../components/LeftPanelArea/Tools/TextBox/TextToolbar';
+import TextEdit from "../../components/LeftPanelArea/Tools/TextBox/TextEdit";
+import TextToolbar from "../../components/LeftPanelArea/Tools/TextBox/TextToolbar";
 
 export default class Toolbar extends Component {
   state = {
@@ -19,16 +19,16 @@ export default class Toolbar extends Component {
   }
 
   container = open => ({
-    height: '72px',
-    marginTop: open ? '-72px' : '-144px',
-    borderBottom: '2px solid black',
+    height: "72px",
+    marginTop: open ? "-72px" : "-144px",
+    borderBottom: "2px solid black",
     width: this.props.width,
-    background: 'white',
-    transition: 'margin-top 1s ease',
-    position: 'absolute',
+    background: "white",
+    transition: "margin-top 1s ease",
+    position: "absolute",
     top: 0 - this.props.top,
     left: 0 - this.props.left,
-    zIndex: this.state.item.props.style.zIndex
+    zIndex: this.state.item.props.style ? this.state.item.props.style.zIndex : 0
   });
 
   render() {
@@ -45,15 +45,15 @@ export default class Toolbar extends Component {
           ) : (
             <div
               style={{
-                width: '100%',
-                height: '100%',
-                background: 'white',
-                color: 'black',
-                fontWeight: 'bold',
-                fontSize: '2rem',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center'
+                width: "100%",
+                height: "100%",
+                background: "white",
+                color: "black",
+                fontWeight: "bold",
+                fontSize: "2rem",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center"
               }}
             >
               <span>{this.props.alt}</span>
@@ -111,8 +111,8 @@ export default class Toolbar extends Component {
 }
 
 const btnBackground = {
-  background: 'white',
-  border: 'none'
+  background: "white",
+  border: "none"
 };
 
 // const openBtn = {

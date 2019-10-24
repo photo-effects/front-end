@@ -119,7 +119,7 @@ class Projects extends Component {
   toCanvas = project => {
     localStorage.setItem('projectId', project.id);
     localStorage.setItem('publicId', project.public_id);
-    this.props.setBgImage(project.secure_url);
+    this.props.setBgImage(project);
     this.props.history.push('/canvas');
   };
 

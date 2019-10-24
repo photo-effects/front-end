@@ -21,10 +21,36 @@ export class Canvas extends Component {
   };
 
   componentDidMount() {
-    this.setState({
-      w: (ReactDOM.findDOMNode(this).getBoundingClientRect().width / 4) * 3,
-      image: this.props.image
-    });
+    if (this.props.image && this.props.image.p_data) {
+      let data = this.props.image.p_data.split("");
+      let p_data = [];
+
+      for (let i = 0; i < data.length; i++) {
+        if (data[i] === "\\") {
+          p_data.splice(0, data[i]);
+        } else {
+          p_data.push(data[i]);
+        }
+      }
+
+      const _ = React.createElement;
+
+      p_data = JSON.parse(p_data.join("")).map(a =>
+        _(a.type, { ...a.props }, a.children)
+      );
+
+      console.log(p_data[0])
+
+      this.setState({ items: p_data });
+    } else if (this.props.image) {
+      this.setState({ image: this.props.image });
+    }
+
+    // this.setState({
+    //   w: (ReactDOM.findDOMNode(this).getBoundingClientRect().width / 4) * 3,
+    //   image: this.props.image.secure_url || null,
+    //   items: JSON.parse(this.props.image.p_data) || null
+    // });
   }
 
   saveImageToState = () => {
@@ -100,7 +126,7 @@ export class Canvas extends Component {
 
   updateProject = () => {
     console.log("update called!");
-    let data = JSON.stringify(this.state.items).split("");
+    let data = JSON.stringify([ this.state.image, ...this.state.items]).split("");
     let p_data = [];
 
     // console.log(data[2] === "\"");
@@ -113,11 +139,11 @@ export class Canvas extends Component {
       }
     }
 
-    console.log(p_data.join(''))
+    console.log(p_data.join(""));
 
     const updatedProject = {
       p_name: this.state.projectTitle,
-      p_data: p_data.join(''),
+      p_data: p_data.join(""),
       secure_url: this.state.projectSecureUrl
     };
 
@@ -143,6 +169,8 @@ export class Canvas extends Component {
   };
 
   // this.setState({ items: JSON.parse("[{\"type\":\"img\",\"key\":null,\"ref\":null,\"props\":{\"height\":492,\"width\":293.875,\"x\":270.8125,\"y\":-27,\"style\":{\"zIndex\":1},\"id\":\"88b2af17-a46e-4c04-bba2-30508737c444\",\"src\":\"https://res.cloudinary.com/dn94qw6w7/image/upload/v1567202073/rv8qvq2siyxqpbtwnl4i.jpg\"},\"_owner\":null,\"_store\":{}}]") })
+
+  // this.setState({ items: JSON.parse() })
 
   bringToTop = id => {
     let z = this.state.items
@@ -307,6 +335,7 @@ export class Canvas extends Component {
   };
 
   render() {
+    console.log(this.state.items);
     return (
       <div style={page}>
         <ToolsArea
