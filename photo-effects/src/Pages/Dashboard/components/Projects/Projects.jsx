@@ -175,7 +175,7 @@ class Projects extends Component {
                 <>
                   {this.props.projects.map(project => {
                     return (
-                      <div style={projectContainer}>
+                      <div key={project.id} style={projectContainer}>
                         <h2 style={uploadedImgTitle}>{project.p_name}</h2>
                         <p>{project.index}</p>
                         <div
