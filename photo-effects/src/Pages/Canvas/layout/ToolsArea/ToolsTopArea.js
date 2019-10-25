@@ -7,15 +7,7 @@ import edit from './icons/icon-edit.svg';
 
 class ToolsTopArea extends Component {
   state = {
-    projectName: 'Untitled Design',
     focus: false
-  };
-
-  handleChange = e => {
-    this.setState({
-      ...this.state,
-      projectName: e.target.value
-    });
   };
 
   render() {
@@ -63,9 +55,9 @@ class ToolsTopArea extends Component {
           <input
             style={pnInput}
             type="text"
-            value={this.state.projectName}
+            value={this.props.projectTitle}
             placeholder="Untitled Design"
-            onChange={this.handleChange}
+            onChange={this.props.handleChange}
             autoFocus={this.state.focus ? true : false}
           />
         </div>

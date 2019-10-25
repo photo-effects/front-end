@@ -33,22 +33,22 @@ export class Canvas extends Component {
         }
       }
 
-      console.log(p_data.join(''))
+      console.log(p_data.join(""));
 
       const _ = React.createElement;
 
       p_data = JSON.parse(p_data.join("")).map(a =>
-        a.props.textbox ? 
-        _(TextEdit, a.props, null) :
-        _(a.type, a.props, a.children)
+        a.props.textbox
+          ? _(TextEdit, a.props, null)
+          : _(a.type, a.props, a.children)
       );
 
       const image = {
         ...p_data[0],
         secure_url: p_data[0].props.src
-      }
+      };
 
-      const items = p_data.slice(1, p_data.length)
+      const items = p_data.slice(1, p_data.length);
 
       this.setState({ items, image });
     } else if (this.props.image) {
@@ -75,6 +75,8 @@ export class Canvas extends Component {
     });
   };
 
+
+
   handleScreenshot = () => {
     html2canvas(document.querySelector("#capture"), {
       proxy: "https://photo-effects-backend-stage-1.herokuapp.com",
@@ -92,6 +94,14 @@ export class Canvas extends Component {
       link.click();
     });
   };
+
+
+  handleChange = e => {
+    this.setState({
+      ...this.state,
+      projectTitle: e.target.value
+    });
+  }
 
   saveImg = () => {
     const public_id = localStorage.getItem("publicId");
@@ -135,7 +145,19 @@ export class Canvas extends Component {
 
   updateProject = () => {
     console.log(this.state.items);
-    let data = JSON.stringify([ { type: 'img', props: { src: this.state.image.secure_url, style: { zIndex: 0 } }}, ...this.state.items.map(item => item.type === TextEdit ? <div {...item.props} >{item.props.textbox.text}</div> : item)]).split("");
+    let data = JSON.stringify([
+      {
+        type: "img",
+        props: { src: this.state.image.secure_url, style: { zIndex: 0 } }
+      },
+      ...this.state.items.map(item =>
+        item.type === TextEdit ? (
+          <div {...item.props}>{item.props.textbox.text}</div>
+        ) : (
+          item
+        )
+      )
+    ]).split("");
     let p_data = [];
 
     for (let i = 0; i < data.length; i++) {
@@ -252,9 +274,9 @@ export class Canvas extends Component {
     }
 
     let items = [...this.state.items, add_item()];
-      // this.state.items.length === 0 && item === "Paint"
-      //   ? [<div style={{ zIndex: 0 }}></div>, add_item()]
-      //   : [...this.state.items, add_item()];
+    // this.state.items.length === 0 && item === "Paint"
+    //   ? [<div style={{ zIndex: 0 }}></div>, add_item()]
+    //   : [...this.state.items, add_item()];
 
     this.setState({ items });
     this.saveImageToState();
@@ -351,6 +373,8 @@ export class Canvas extends Component {
           handleScreenshot={this.handleScreenshot}
           updateProject={this.updateProject}
           saveImg={this.saveImg}
+          projectTitle={this.state.projectTitle}
+          handleChange={this.handleChange}
         />
         <CanvasArea
           items={this.state.items}
@@ -362,6 +386,7 @@ export class Canvas extends Component {
           saveImg={this.state.saveImg}
           setPaint={this.setPaint}
           setTextbox={this.setTextbox}
+         
         />
       </div>
     );
