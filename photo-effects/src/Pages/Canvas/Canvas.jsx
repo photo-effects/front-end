@@ -33,15 +33,24 @@ export class Canvas extends Component {
         }
       }
 
+      console.log(p_data.join(''))
+
       const _ = React.createElement;
 
       p_data = JSON.parse(p_data.join("")).map(a =>
-        _(a.type, { ...a.props }, a.children)
+        a.props.textbox ? 
+        _(TextEdit, a.props, null) :
+        _(a.type, a.props, a.children)
       );
 
-      console.log(p_data[0])
+      const image = {
+        ...p_data[0],
+        secure_url: p_data[0].props.src
+      }
 
-      this.setState({ items: p_data });
+      const items = p_data.slice(1, p_data.length)
+
+      this.setState({ items, image });
     } else if (this.props.image) {
       this.setState({ image: this.props.image });
     }
@@ -125,11 +134,9 @@ export class Canvas extends Component {
   };
 
   updateProject = () => {
-    console.log("update called!");
-    let data = JSON.stringify([ this.state.image, ...this.state.items]).split("");
+    console.log(this.state.items);
+    let data = JSON.stringify([ { type: 'img', props: { src: this.state.image.secure_url, style: { zIndex: 0 } }}, ...this.state.items.map(item => item.type === TextEdit ? <div {...item.props} >{item.props.textbox.text}</div> : item)]).split("");
     let p_data = [];
-
-    // console.log(data[2] === "\"");
 
     for (let i = 0; i < data.length; i++) {
       if (data[i] === '"') {
@@ -244,10 +251,10 @@ export class Canvas extends Component {
       );
     }
 
-    let items =
-      this.state.items.length === 0 && item === "Paint"
-        ? [<div style={{ zIndex: 0 }}></div>, add_item()]
-        : [...this.state.items, add_item()];
+    let items = [...this.state.items, add_item()];
+      // this.state.items.length === 0 && item === "Paint"
+      //   ? [<div style={{ zIndex: 0 }}></div>, add_item()]
+      //   : [...this.state.items, add_item()];
 
     this.setState({ items });
     this.saveImageToState();
@@ -321,7 +328,7 @@ export class Canvas extends Component {
             x={x}
             y={y}
             src={image}
-            alt={"img"}
+            alt={"paint layer image"}
           />
         );
       } else return item;
