@@ -108,7 +108,7 @@ class CanvasArea extends Component {
             <div></div>
           )}
           {this.props.image ? (
-            <img ref="image" src={this.props.image} style={hidden} alt="img" />
+            <img ref="image" src={this.props.image.secure_url} style={hidden} alt="img" />
           ) : null}
         </div>
       </div>
