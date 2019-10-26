@@ -88,7 +88,7 @@ export default class Dashboard extends Component {
           fileName: fileName[0]
         });
         images.map(image => {
-          this.props.setBgImage(image.url);
+          this.props.setBgImage(image);
         });
       })
       .catch(err => {
@@ -157,7 +157,7 @@ export default class Dashboard extends Component {
           fileName: fileName[0]
         });
         images.map(image => {
-          this.props.setBgImage(image.url);
+          this.props.setBgImage(image);
         });
       })
       .catch(err => {

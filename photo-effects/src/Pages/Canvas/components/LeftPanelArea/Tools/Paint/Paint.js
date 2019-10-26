@@ -66,14 +66,16 @@ export default class Paint extends Component {
   };
 
   saveLayer = () => {
-    this.props.setPaint(
-      this.state.id,
-      this.state.preview,
-      this.state.width / 2,
-      this.state.height / 2,
-      this.state.width,
-      this.state.height
-    );
+    setTimeout(() => {
+      this.props.setPaint(
+        this.state.id,
+        this.state.preview,
+        this.state.width / 2,
+        this.state.height / 2,
+        this.state.width,
+        this.state.height
+      );
+    }, 500)
   };
 
   actions = e => {

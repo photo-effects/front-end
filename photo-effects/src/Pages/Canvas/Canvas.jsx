@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import html2canvas from 'html2canvas';
-import uuidv4 from 'uuid/v4';
-import axios from 'axios';
-import withAuth from '../../components/Auth/AuthOne/withAuth';
-import ToolsArea from './layout/ToolsArea/ToolsArea';
-import CanvasArea from './layout/CanvasArea/CanvasArea';
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
+import html2canvas from "html2canvas";
+import uuidv4 from "uuid/v4";
+import axios from "axios";
+import withAuth from "../../components/Auth/AuthOne/withAuth";
+import ToolsArea from "./layout/ToolsArea/ToolsArea";
+import CanvasArea from "./layout/CanvasArea/CanvasArea";
 
-import TextEdit from './components/LeftPanelArea/Tools/TextBox/TextEdit';
+import TextEdit from "./components/LeftPanelArea/Tools/TextBox/TextEdit";
 
 export class Canvas extends Component {
   state = {
@@ -16,57 +16,102 @@ export class Canvas extends Component {
     image: null,
     // imgUrl: [],
     imgPreview: null,
-    projectTitle: '',
-    projectSecureUrl: ''
+    projectTitle: "",
+    projectSecureUrl: ""
   };
 
   componentDidMount() {
-    this.setState({
-      w: (ReactDOM.findDOMNode(this).getBoundingClientRect().width / 4) * 3,
-      image: this.props.image
-    });
+    if (this.props.image && this.props.image.p_data) {
+      let data = this.props.image.p_data.split("");
+      let p_data = [];
+
+      for (let i = 0; i < data.length; i++) {
+        if (data[i] === "\\") {
+          p_data.splice(0, data[i]);
+        } else {
+          p_data.push(data[i]);
+        }
+      }
+
+      console.log(p_data.join(""));
+
+      const _ = React.createElement;
+
+      p_data = JSON.parse(p_data.join("")).map(a =>
+        a.props.textbox
+          ? _(TextEdit, a.props, null)
+          : _(a.type, a.props, a.children)
+      );
+
+      const image = {
+        ...p_data[0],
+        secure_url: p_data[0].props.src
+      };
+
+      const items = p_data.slice(1, p_data.length);
+
+      this.setState({ items, image });
+    } else if (this.props.image) {
+      this.setState({ image: this.props.image });
+    }
+
+    // this.setState({
+    //   w: (ReactDOM.findDOMNode(this).getBoundingClientRect().width / 4) * 3,
+    //   image: this.props.image.secure_url || null,
+    //   items: JSON.parse(this.props.image.p_data) || null
+    // });
   }
 
   saveImageToState = () => {
-    html2canvas(document.querySelector('#capture'), {
-      proxy: 'https://photo-effects-backend-stage-1.herokuapp.com',
+    html2canvas(document.querySelector("#capture"), {
+      proxy: "https://photo-effects-backend-stage-1.herokuapp.com",
       useCORS: true
     }).then(canvas => {
       const image = canvas
-        .toDataURL('image/png')
-        .replace('image/png', 'image/octet-stream');
+        .toDataURL("image/png")
+        .replace("image/png", "image/octet-stream");
 
       this.setState({ imgPreview: image });
     });
   };
 
+
+
   handleScreenshot = () => {
-    html2canvas(document.querySelector('#capture'), {
-      proxy: 'https://photo-effects-backend-stage-1.herokuapp.com',
+    html2canvas(document.querySelector("#capture"), {
+      proxy: "https://photo-effects-backend-stage-1.herokuapp.com",
       useCORS: true
     }).then(canvas => {
       const image = canvas
-        .toDataURL('image/png')
-        .replace('image/png', 'image/octet-stream');
+        .toDataURL("image/png")
+        .replace("image/png", "image/octet-stream");
 
       this.setState({ imgPreview: image });
 
-      const link = document.createElement('a');
-      link.download = this.state.projectName + '.png';
+      const link = document.createElement("a");
+      link.download = this.state.projectName + ".png";
       link.href = image;
       link.click();
     });
   };
 
+
+  handleChange = e => {
+    this.setState({
+      ...this.state,
+      projectTitle: e.target.value
+    });
+  }
+
   saveImg = () => {
-    const public_id = localStorage.getItem('publicId');
+    const public_id = localStorage.getItem("publicId");
 
     const imgForm = {
       // method: "upload",
       image: this.state.imgPreview,
       options: {
-        format: 'png',
-        overwrite: 'true',
+        format: "png",
+        overwrite: "true",
         public_id
         // timeout: 2000
       }
@@ -99,29 +144,62 @@ export class Canvas extends Component {
   };
 
   updateProject = () => {
-    console.log('update called!');
+    console.log(this.state.items);
+    let data = JSON.stringify([
+      {
+        type: "img",
+        props: { src: this.state.image.secure_url, style: { zIndex: 0 } }
+      },
+      ...this.state.items.map(item =>
+        item.type === TextEdit ? (
+          <div {...item.props}>{item.props.textbox.text}</div>
+        ) : (
+          item
+        )
+      )
+    ]).split("");
+    let p_data = [];
+
+    for (let i = 0; i < data.length; i++) {
+      if (data[i] === '"') {
+        p_data.push('\\"');
+      } else {
+        p_data.push(data[i]);
+      }
+    }
+
+    console.log(p_data.join(""));
+
     const updatedProject = {
       p_name: this.state.projectTitle,
-      // p_data: JSON.stringify(this.state.items),
+      p_data: p_data.join(""),
       secure_url: this.state.projectSecureUrl
     };
 
-    console.log(updatedProject);
+    setTimeout(() => {
+      console.log(this.state.items);
+      console.log(typeof JSON.stringify(this.state.items));
+      console.log(JSON.stringify(this.state.items));
 
-    axios
-      .put(
-        `https://photo-effects-backend-stage-1.herokuapp.com/canvas/${localStorage.getItem(
-          'projectId'
-        )}`,
-        updatedProject
-      )
-      .then(res => {
-        console.log('Project updated', res.data);
-      })
-      .catch(err => console.log('error'));
+      console.log(updatedProject);
+
+      axios
+        .put(
+          `https://photo-effects-backend-stage-1.herokuapp.com/canvas/${localStorage.getItem(
+            "projectId"
+          )}`,
+          updatedProject
+        )
+        .then(res => {
+          console.log("Project updated", res.data);
+        })
+        .catch(err => console.log("error"));
+    }, 500);
   };
 
   // this.setState({ items: JSON.parse("[{\"type\":\"img\",\"key\":null,\"ref\":null,\"props\":{\"height\":492,\"width\":293.875,\"x\":270.8125,\"y\":-27,\"style\":{\"zIndex\":1},\"id\":\"88b2af17-a46e-4c04-bba2-30508737c444\",\"src\":\"https://res.cloudinary.com/dn94qw6w7/image/upload/v1567202073/rv8qvq2siyxqpbtwnl4i.jpg\"},\"_owner\":null,\"_store\":{}}]") })
+
+  // this.setState({ items: JSON.parse() })
 
   bringToTop = id => {
     let z = this.state.items
@@ -154,9 +232,9 @@ export class Canvas extends Component {
 
     let add_item;
 
-    if (item === 'Paint') {
+    if (item === "Paint") {
       add_item = () => ({
-        type: 'Paint',
+        type: "Paint",
         props: {
           id: uuidv4(),
           style: { zIndex: this.state.items.length ? z * 100 + 1 : 100 }
@@ -171,34 +249,34 @@ export class Canvas extends Component {
           y={100}
           style={{
             zIndex: this.state.items.length ? z * 100 + 1 : 100,
-            width: '100%',
-            height: '100%'
+            width: "100%",
+            height: "100%"
           }}
           id={uuidv4()}
           textbox={
             item.type === TextEdit
               ? {
-                  color: '',
-                  background: '',
-                  style: '',
-                  weight: '',
-                  decoration: '',
+                  color: "",
+                  background: "",
+                  style: "",
+                  weight: "",
+                  decoration: "",
                   slider: 15,
                   editable: false,
-                  text: 'text'
+                  text: "text"
                 }
               : null
           }
-          src={item.type === 'img' ? item.props.src : null}
-          alt={item.type === 'img' ? item.props.title : null}
+          src={item.type === "img" ? item.props.src : null}
+          alt={item.type === "img" ? item.props.title : null}
         />
       );
     }
 
-    let items =
-      this.state.items.length === 0 && item === 'Paint'
-        ? [<div style={{ zIndex: 0 }}></div>, add_item()]
-        : [...this.state.items, add_item()];
+    let items = [...this.state.items, add_item()];
+    // this.state.items.length === 0 && item === "Paint"
+    //   ? [<div style={{ zIndex: 0 }}></div>, add_item()]
+    //   : [...this.state.items, add_item()];
 
     this.setState({ items });
     this.saveImageToState();
@@ -225,8 +303,8 @@ export class Canvas extends Component {
             y={y}
             style={{
               ...item.props.style,
-              width: '100%',
-              height: '100%'
+              width: "100%",
+              height: "100%"
             }}
           >
             {item.props.children}
@@ -272,7 +350,7 @@ export class Canvas extends Component {
             x={x}
             y={y}
             src={image}
-            alt={'img'}
+            alt={"paint layer image"}
           />
         );
       } else return item;
@@ -286,6 +364,7 @@ export class Canvas extends Component {
   };
 
   render() {
+    console.log(this.state.items);
     return (
       <div style={page}>
         <ToolsArea
@@ -294,6 +373,8 @@ export class Canvas extends Component {
           handleScreenshot={this.handleScreenshot}
           updateProject={this.updateProject}
           saveImg={this.saveImg}
+          projectTitle={this.state.projectTitle}
+          handleChange={this.handleChange}
         />
         <CanvasArea
           items={this.state.items}
@@ -305,6 +386,7 @@ export class Canvas extends Component {
           saveImg={this.state.saveImg}
           setPaint={this.setPaint}
           setTextbox={this.setTextbox}
+         
         />
       </div>
     );
@@ -314,7 +396,7 @@ export class Canvas extends Component {
 export default Canvas;
 
 const page = {
-  height: '100vh',
-  width: '100vw',
-  display: 'flex'
+  height: "100vh",
+  width: "100vw",
+  display: "flex"
 };

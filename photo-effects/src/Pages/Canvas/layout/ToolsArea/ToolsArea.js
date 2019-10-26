@@ -11,6 +11,8 @@ const ToolsArea = props => {
         saveImg={props.saveImg}
         handleScreenshot={props.handleScreenshot}
         updateProject={props.updateProject}
+        projectTitle={props.projectTitle}
+        handleChange={props.handleChange}
       />
       <ToolPanel 
         addItem = { props.addItem }

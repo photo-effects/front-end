@@ -7,7 +7,7 @@ export default class Toolbar extends Component {
     preview: null,
     warning: {
       message:
-        'Save each paint layer as an image before adding new elements, saving, or downloading!',
+      'Save each paint layer as an image before adding new elements, saving, or downloading!',
       open: false
     }
   };
