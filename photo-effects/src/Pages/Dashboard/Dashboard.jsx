@@ -188,7 +188,7 @@ export default class Dashboard extends Component {
       });
   };
 
-  // Update
+  // Update - NOT BEING USED
   // will update state for user projects when adding/deleting for now.
   updateProject = (e, newProject) => {
     e.preventDefault();
@@ -196,7 +196,7 @@ export default class Dashboard extends Component {
     this.setState({
       canvasprojects: newProject
     });
-  };
+  }; //NOT NEEDED - getProjects is called again instead of reloading
 
   // logout
   logoutButton = e => {
@@ -307,6 +307,7 @@ export default class Dashboard extends Component {
           updateProject={this.updateProject}
           toggleSort={this.toggleSort}
           setBgImage={this.props.setBgImage}
+          getProjects={this.getProjects}
         />
 
         <Footer />

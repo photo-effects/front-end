@@ -62,6 +62,10 @@ export class Canvas extends Component {
     // });
   }
 
+  componentDidUpdate() {
+    // setTimeout(() => this.saveImageToState(), 60000)
+  }
+
   saveImageToState = () => {
     html2canvas(document.querySelector("#capture"), {
       proxy: "https://photo-effects-backend-stage-1.herokuapp.com",
@@ -104,16 +108,15 @@ export class Canvas extends Component {
   }
 
   saveImg = () => {
+    this.saveImageToState();
     const public_id = localStorage.getItem("publicId");
 
     const imgForm = {
-      // method: "upload",
       image: this.state.imgPreview,
       options: {
         format: "png",
         overwrite: "true",
         public_id
-        // timeout: 2000
       }
     };
 
@@ -136,11 +139,6 @@ export class Canvas extends Component {
           console.log(err);
         });
     }, 500);
-
-    // axios.post(
-    //   `https://api.cloudinary.com/v1_1/dn94qw6w7/image/upload`,
-    //   imgForm
-    // );
   };
 
   updateProject = () => {
@@ -223,6 +221,7 @@ export class Canvas extends Component {
     });
 
     this.setState({ items });
+    this.saveImageToState();
   };
 
   addItem = item => {
@@ -357,6 +356,7 @@ export class Canvas extends Component {
     });
 
     this.setState({ items });
+    this.saveImageToState();
   };
 
   getJsonData = () => {

@@ -57,64 +57,97 @@ const projectsSectionTitle = {
 
 const uploadedImg = {
   flex: '0 0 auto',
-  width: '20rem',
-  height: '20rem',
+  width: 'auto',
+  height: 'auto',
+  maxWidth: '20rem',
+  maxHeight: '20rem',
   border: '0px solid #000',
-  padding: '5px',
-  marginRight: '6px',
-  marginBottom: '6px',
+  // padding: '5px',
+  margin: '10px',
   borderRadius: '5px',
   background: '#7B8794',
-  cursor: 'pointer'
+  cursor: 'pointer',
 };
 
 const uploadedImgTitle = {
   width: '100%',
   color: 'whitesmoke',
-  paddingBottom: '5px',
-  display: 'flex',
-  justifyContent: 'center',
-  textAlign: 'center',
-  fontSize: '1.8rem'
+  // paddingBottom: '5px',
+  paddingLeft: '17px',
+  // display: 'flex',
+  // justifyContent: 'center',
+  // textAlign: 'center',
+  fontSize: '1.5rem'
 };
 
 const projectContainer = {
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'center',
+  justifyContent: 'space-between',
   alignItems: 'center',
-  width: '275px',
-  padding: '15px',
-  margin: '10px',
-  borderRadius: '8px'
+  minHeight: '32rem',
+  width: '230px',
+  padding: '8px',
+  margin: '5px',
+  borderRadius: '8px',
+  border: '1px solid #4a6079',
+  backgroundColor: '#304760'
 };
 
-const projectDeleteButton = {
-  backgroundColor: '#fc5185',
+const projectButton = {
+  backgroundColor: '#364f6b',
   border: 'none',
   borderRadius: '5px',
-  padding: '4px 5px',
+  padding: '6px 10px',
   marginTop: '3px',
-  color: 'whitesmoke',
+  color: '#44DDE6',
   cursor: 'pointer',
-  fontSize: '1.4rem'
+  fontSize: '2.5rem',
+  margin: '0 0 1rem 0',
+  width: "100%", 
+  display: "flex",
+  alignContent: "center"
 };
 class Projects extends Component {
+  // state = {
+  //   projects: this.props.projects
+  // }
+
+  // componentDidMount() {
+  //   setTimeout(() => {
+  //     this.setState({
+  //       ...this.state,
+  //       projects: this.props.projects
+  //     })
+  //     //console.log(this.state.projects)
+  //   }, 2000)
+    
+  // }
+
   // master
   // Used to delete a project already in our backend and from cloudinary (handled in backend)
   deleteProject = (e,id) => {
-
     axios
       .delete(`https://photo-effects-backend-stage-1.herokuapp.com/canvas/${id}`)
       .then(res => {
-        this.props.updateProject(e,res.data);
-        // window.location.reload();
-       
-      })
-      .catch(err => {
+        this.props.getProjects();
+      }).catch(err => {
         console.log(err);
       });
   };
+
+  publishToggle = (e, id, published) => {
+    const publishToggle = {
+      p_published: !published
+    }
+
+    axios.put(`https://photo-effects-backend-stage-1.herokuapp.com/canvas/${id}`, publishToggle)
+    .then(res => {
+      this.props.getProjects();
+    }).catch(err => {
+      console.log(err);
+    });
+  }
 
   toCanvas = project => {
     localStorage.setItem('projectId', project.id);
@@ -123,24 +156,7 @@ class Projects extends Component {
     this.props.history.push('/canvas');
   };
 
-  // staging
-  //   deleteProject = (id, public_id) => {
-  //     console.log(id, public_id);
-  //     axios
-  //       .delete(`https://photo-effects-backend-stage-1.herokuapp.com/api/projects/${id}`, { data: { public_id } })
-  //       .then(res => {
-  //           this.props.history.push('/home')
-  //           this.props.updateProject(res.data);
-  //           console.log('deleting from backend')
-  //       })
-  //       .catch(err => {
-  //           console.log(err);
-  //       })
-  // }
-
   render() {
-    // console.log(this.props.projects)
-
     return (
       <>
         {this.props.projects === (undefined || null || []) ? (
@@ -164,45 +180,46 @@ class Projects extends Component {
                   }}
                 >
                   {' '}
-                  <h4 style={{ fontSize: '3rem' }}>Quack! No Projects!</h4>
-                  <h4 style={{ margin: 'auto', fontSize: '5rem' }}>\</h4>
-                  <img
+                  <h4 style={{ fontSize: '3rem' }}>Loading...</h4>
+                  {/* <h4 style={{ fontSize: '3rem' }}>Quack! No Projects!</h4> */}
+                  {/* <h4 style={{ margin: 'auto', fontSize: '5rem' }}>\</h4> */}
+                  {/* <img
                     src="http://www.pngnames.com/files/4/Rubber-Duck-PNG-Background.png"
                     alt="duck"
-                  />{' '}
+                  /> */}
+                  {' '}
                 </div>
               ) : (
                 <>
                   {this.props.projects.map(project => {
                     return (
                       <div key={project.id} style={projectContainer}>
-                        <h2 style={uploadedImgTitle}>{project.p_name}</h2>
-                        <p>{project.index}</p>
-                        <div
-                          onClick={() => this.toCanvas(project)}
-                          className="uploaded-img-container"
-                        >
-                          {project.secure_url === undefined ? (
-                            <i
-                              className="fas fa-image"
-                              style={{ fontSize: '10rem' }}
-                            ></i>
-                          ) : (
-                            <img
-                              style={uploadedImg}
-                              src={project.secure_url}
-                              alt="pic"
-                            />
-                          )}
+
+                        <div style={{width: "100%", display: "flex", justifyContent: "space-between", alignItems: "baseline"}}>
+                          <h2 style={uploadedImgTitle}>{project.p_name}</h2>
+                          <span style={{color: "#fc5185", fontSize: "2.5rem", cursor: "pointer"}} onClick={(e) =>
+                              this.deleteProject(e, project.id, project.public_id)
+                            }>
+                            <i className="fas fa-times-circle"></i>
+                          </span>
                         </div>
-                        <button
-                          style={projectDeleteButton}
-                          onClick={(e) =>
-                            this.deleteProject(e, project.id, project.public_id)
-                          }
-                        >
-                          Delete
-                        </button>
+                        <div onClick={() => this.toCanvas(project)}>
+                            <img style={uploadedImg} src={project.secure_url} alt="pic"/>
+                        </div>
+
+                        <div style={{}}>
+                          <button style={projectButton} onClick={(e) => 
+                              this.publishToggle(e, project.id, project.p_published)
+                          }>
+                            {project.p_published ? 
+                              <span style={{ display: "flex", justifyContent: "space-between", alignItems:"center", color: "#44DDE6", fontSize: "2rem", cursor: "pointer"}} ><i className="fas fa-check-circle"></i><span style={{fontSize: "1.5rem", paddingLeft: "8px"}}>Published</span></span>
+                            :
+                              <span style={{ display: "flex", justifyContent: "space-between", alignItems:"center", color: "#fbdb27", fontSize: "2rem", cursor: "pointer" }}><i className="fas fa-ban"></i><span style={{fontSize: "1.5rem", paddingLeft: "8px"}}>Not Published</span></span>
+                            }
+                          </button>
+                        </div>
+
+                        
                       </div>
                     );
                   })}

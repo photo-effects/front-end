@@ -29,7 +29,7 @@ export class Photolist extends Component {
               key={pic.id}
             >
               <div style={{ height: '100px' }}>
-                <h4 style={cardTitle}>{pic.title}</h4>
+                <h4 style={cardTitle}>{pic.p_name}</h4>
               </div>
               <img
                 src={pic.secure_url}
@@ -50,7 +50,8 @@ export class Photolist extends Component {
                   fontWeight: 'bold'
                 }}
               >
-                <h3> Tags: {pic.tags}</h3>
+                {/* <h3> Tags: {pic.tags}</h3> */}
+                <p>Published: {pic.p_published.toString()}</p>
               </p>
               {/* <Link to={`/photolist/${props.match.params.id}`}/>
                 <Route path={`/photolist/${props.match.params.id}`}  render={ props =>  <Cardview {...this.props} /> */}
@@ -65,7 +66,7 @@ export class Photolist extends Component {
           <Fade bottom cascade>
             <div className="cards" style={cardstyle} key={pic.id}>
               <div style={{ height: '100px' }}>
-                <h4 style={cardTitle}>{pic.title}</h4>
+                <h4 style={cardTitle}>{pic.p_name}</h4>
               </div>
               <img
                 src={pic.secure_url}
@@ -86,7 +87,7 @@ export class Photolist extends Component {
                   fontWeight: 'bold'
                 }}
               >
-                <h3> Tags: {pic.tags}</h3>
+                {/* <p> Tags: {pic.tags}</p> */}s
               </p>
               {/* <Link to={`/photolist/${props.match.params.id}`}/>
                 <Route path={`/photolist/${props.match.params.id}`}  render={ props =>  <Cardview {...this.props} /> */}
@@ -106,7 +107,7 @@ export class Photolist extends Component {
               className="far fa-times-circle"
             ></i>
              
-                <h4 style={cardTitle}>{this.state.modalPic.title}</h4>
+                <h4 style={cardTitle}>{this.state.modalPic.p_name}</h4>
             
               <img
                 src={this.state.modalPic.secure_url}
@@ -126,7 +127,8 @@ export class Photolist extends Component {
                   fontWeight: 'bold'
                 }}
               >
-                <h3> Tags: {this.state.modalPic.tags}</h3>
+                {/* <p>Tags: {this.state.modalPic.tags}</p> */}
+                <p>Published: {this.state.modalPic.p_published.toString()}</p>
               </p>
           
             </div>
@@ -136,7 +138,6 @@ export class Photolist extends Component {
             </div>
            
           </div>
-          <div />
         </div>
      
     );

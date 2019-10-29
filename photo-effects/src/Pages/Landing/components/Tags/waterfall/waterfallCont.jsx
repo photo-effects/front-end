@@ -23,7 +23,7 @@ const WaterfallCont = props => {
   const [pics, setPics] = useState([]);
   useEffect(() => {
     axios
-      .get('https://photo-effects-backend.herokuapp.com/api/projects')
+      .get('https://photo-effects-backend-stage-1.herokuapp.com/canvas/published')
       .then(res => {
         console.log(res.data);
         setPics(res.data);
