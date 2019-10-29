@@ -7,7 +7,6 @@ export class Navbar extends Component {
     hover: false
   };
 
-
   //push to landing
   render() {
     const isLoggedIn = Boolean(localStorage.getItem("access_token"));
@@ -31,20 +30,20 @@ export class Navbar extends Component {
       marginLeft: "80px",
       height: "60px",
       width: "150px",
-      cursor: 'pointer'
+      cursor: "pointer"
     };
 
     const navlinks = {
       display: "flex",
       justifyContent: "space-between",
-      width: "600px",
+      width: "600px"
     };
 
     const navLinksLoggedOut = {
       display: "flex",
       justifyContent: "space-between",
-      width: '400px',
-    }
+      width: "400px"
+    };
 
     const links = [
       {
@@ -53,10 +52,6 @@ export class Navbar extends Component {
       },
       {
         name: "Features",
-        element: "link"
-      },
-      {
-        name: "Canvas",
         element: "link"
       },
       {
@@ -84,28 +79,25 @@ export class Navbar extends Component {
       }
     ];
 
-  
-
     return (
       <nav style={nav}>
-       <Link to="/"> 
-       <img src={navLogo}  alt="navbar logo" style={navbarLogo} />
-       </Link>
-        {isLoggedIn ?
-               <ul style={navlinks} >
-                 <>
-                   {links.map(link => (
-                     <A
-                       link={link}
-                       isLoggedIn={isLoggedIn}
-                       login={this.props.auth.login}
-                       logout={this.props.auth.logout}
-                     />
-                   ))}
-                 </>
-                 </ul>
-         :
-         (
+        <Link to="/">
+          <img src={navLogo} alt="navbar logo" style={navbarLogo} />
+        </Link>
+        {isLoggedIn ? (
+          <ul style={navlinks}>
+            <>
+              {links.map(link => (
+                <A
+                  link={link}
+                  isLoggedIn={isLoggedIn}
+                  login={this.props.auth.login}
+                  logout={this.props.auth.logout}
+                />
+              ))}
+            </>
+          </ul>
+        ) : (
           <ul style={navLinksLoggedOut}>
             <>
               {loggedOutLinks.map(link => (
@@ -117,8 +109,8 @@ export class Navbar extends Component {
                 />
               ))}
             </>
-            </ul>
-          )}
+          </ul>
+        )}
       </nav>
     );
   }
@@ -150,7 +142,7 @@ class A extends Component {
     const smallnavlinks = {
       marginTop: "10px",
       transform: hover ? "scale(1.1)" : "scale(1)",
-      transition: hover ? "ease-in-out 0.1s" : "null",
+      transition: hover ? "ease-in-out 0.1s" : "null"
     };
 
     const linkStyle = {
