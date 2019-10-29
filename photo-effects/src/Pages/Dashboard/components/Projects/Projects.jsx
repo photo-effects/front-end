@@ -119,7 +119,7 @@ class Projects extends Component {
   toCanvas = project => {
     localStorage.setItem('projectId', project.id);
     localStorage.setItem('publicId', project.public_id);
-    this.props.setBgImage(project.secure_url);
+    this.props.setBgImage(project);
     this.props.history.push('/canvas');
   };
 
@@ -175,7 +175,7 @@ class Projects extends Component {
                 <>
                   {this.props.projects.map(project => {
                     return (
-                      <div style={projectContainer}>
+                      <div key={project.id} style={projectContainer}>
                         <h2 style={uploadedImgTitle}>{project.p_name}</h2>
                         <p>{project.index}</p>
                         <div
