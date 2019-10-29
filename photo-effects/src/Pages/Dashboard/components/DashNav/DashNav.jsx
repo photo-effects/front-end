@@ -19,8 +19,8 @@ const dashNav = {
 
 const navBarLogo = {
   marginLeft: "80px",
-  height: "60px",
-  width: "150px"
+  height: "70px",
+  width: "170px"
 };
 
 const dashNavLinks = {

@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import Box from '../../components/CanvasArea/Box';
-import Paint from '../../components/LeftPanelArea/Tools/Paint/Paint';
+import Box from "../../components/CanvasArea/Box";
+import Paint from "../../components/LeftPanelArea/Tools/Paint/Paint";
 
 class CanvasArea extends Component {
   state = {
@@ -27,27 +27,28 @@ class CanvasArea extends Component {
     const { image } = this.props;
 
     const container = {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      width: '75%',
-      height: 'calc(100% - 72px)',
-      position: 'absolute',
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      width: "75%",
+      height: "calc(100% - 72px)",
+      position: "absolute",
       bottom: 0,
       right: 0,
-      background: 'whitesmoke',
-      border: '1px solid gray'
+      background: "whitesmoke",
+      border: "1px solid gray"
+      // border: '5px solid red'
     };
 
     const bg = {
-      width: image ? 'auto' : '100%',
-      height: image ? 'auto' : '100%',
-      position: 'relative'
+      width: image ? "auto" : "100%",
+      height: image ? "auto" : "100%",
+      position: "relative"
     };
 
     const hidden = {
       maxHeight,
-      width: 'auto',
+      width: "auto",
       zIndex: -1000000000
     };
 
@@ -56,7 +57,7 @@ class CanvasArea extends Component {
         <div ref="parent" id="capture" style={bg}>
           {items.length > 1 ? (
             this.state.items.map((item, i) => {
-              if (item.type === 'Paint') {
+              if (item.type === "Paint") {
                 return (
                   <Paint
                     z={item.props.style.zIndex}
@@ -83,7 +84,7 @@ class CanvasArea extends Component {
                 );
             })
           ) : items.length === 1 ? (
-            items[0].type === 'Paint' ? (
+            items[0].type === "Paint" ? (
               <Paint
                 z={items[0].props.style.zIndex}
                 id={items[0].props.id}
@@ -108,7 +109,12 @@ class CanvasArea extends Component {
             <div></div>
           )}
           {this.props.image ? (
-            <img ref="image" src={this.props.image.secure_url} style={hidden} alt="img" />
+            <img
+              ref="image"
+              src={this.props.image.secure_url}
+              style={hidden}
+              alt="img"
+            />
           ) : null}
         </div>
       </div>

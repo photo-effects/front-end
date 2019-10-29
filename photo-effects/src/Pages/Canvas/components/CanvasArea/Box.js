@@ -33,7 +33,7 @@ export default class Box extends Component {
     grayscale: 0,
     transform: 0,
     rotating: false,
-    flip: 1,
+    // flip: false,
     offsetLeft: 0,
     offsetTop: 0,
     toolbar: {
@@ -44,21 +44,29 @@ export default class Box extends Component {
   };
 
   componentDidMount() {
-    const container = this.props.container.getBoundingClientRect();
-    const parent = this.props.parent.getBoundingClientRect();
+    setTimeout(() => {
+      const container = this.props.container.getBoundingClientRect();
+      const parent = this.props.parent.getBoundingClientRect();
 
-    const left = parent.left - container.left;
-    const top = parent.top - container.top;
+      const left = parent.left - container.left;
+      const top = parent.top - container.top;
 
-    this.setState({
-      offsetLeft: parent.left,
-      offsetTop: parent.top,
-      toolbar: {
-        width: container.width,
-        left,
-        top
-      }
-    });
+      const { item } = this.props;
+      const { opacity, grayscale, transform } = item.props;
+
+      this.setState({
+        offsetLeft: parent.left,
+        offsetTop: parent.top,
+        toolbar: {
+          width: container.width,
+          left,
+          top
+        },
+        opacity,
+        grayscale,
+        transform
+      });
+    }, 500);
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -101,8 +109,7 @@ export default class Box extends Component {
   };
 
   onUp = () => {
-    const { item, width, height, x, y } = this.state;
-    const { id } = item.props;
+    const { width, height, x, y } = this.state;
 
     this.setState({
       dragging: false,
@@ -113,13 +120,35 @@ export default class Box extends Component {
       left: x
     });
 
-    setTimeout(() => {
-      this.setState({ clicks: 0 });
-    }, 1000);
-
     if (this.props.item.type !== TextEdit) {
-      this.props.setItem(id, width, height, x, y);
+      this.saveImg();
     }
+  };
+
+  saveImg = () => {
+    const {
+      item,
+      width,
+      height,
+      x,
+      y,
+      opacity,
+      grayscale,
+      transform
+    } = this.state;
+
+    const { id } = item.props;
+
+    this.props.setItem(
+      id,
+      width,
+      height,
+      x,
+      y,
+      opacity,
+      grayscale,
+      transform
+    );
   };
 
   onMove = e => {
@@ -195,25 +224,26 @@ export default class Box extends Component {
 
   changeOpacity = opacity => {
     this.setState({ opacity: opacity });
+    this.saveImg();
   };
 
   changeGrayscale = grayscale => {
     this.setState({ grayscale: grayscale });
+    this.saveImg();
   };
 
   changeTransform = transform => {
     this.setState({ transform: transform });
+    this.saveImg();
   };
 
-  flipImage = e => {
-    e.preventDefault();
-    console.log("im click");
-    if (this.state.flip === 1) {
-      this.setState({ flip: -1 });
-    } else {
-      this.setState({ flip: 1 });
-    }
-  };
+  // flipImage = e => {
+  //   e.preventDefault();
+  //   console.log("im click");
+  //   this.setState({ flip: !this.state.flip });
+
+  //   this.saveImg();
+  // };
 
   render() {
     const { capture, item, width, height, y, x, z } = this.state;
@@ -229,7 +259,7 @@ export default class Box extends Component {
       boxShadow: capture ? "2px 2px 15px black" : "none",
       opacity: this.state.opacity,
       filter: `grayscale(${this.state.grayscale}%)`,
-      transform: `rotate(${this.state.transform}deg) scaleX(${this.state.flip})`
+      transform: `rotate(${this.state.transform}deg)`
     };
 
     return (
@@ -246,7 +276,7 @@ export default class Box extends Component {
           changeGrayscale={this.changeGrayscale}
           transform={this.state.transform}
           changeTransform={this.changeTransform}
-          flipImage={this.flipImage}
+          // flipImage={this.flipImage}
           width={this.state.toolbar.width}
           left={this.state.toolbar.left}
           top={this.state.toolbar.top}
@@ -273,8 +303,8 @@ export default class Box extends Component {
             />
           ) : (
             <>
-              {item ? item : null }
-              { item && item.type !== Paint || item.type !== "div" ? (
+              {item ? item : null}
+              {(item && item.type !== Paint) || item.type !== "div" ? (
                 <Resizer
                   bottom
                   gotCapture={this.gotCapture}

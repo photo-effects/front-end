@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
+
+//colors: 
+//text: #F4F4F0
+
 export default class Toolbar extends Component {
   state = {
     open: false,
@@ -37,12 +41,13 @@ export default class Toolbar extends Component {
       top: top * -1 - 72,
       left: left * -1,
       border: '1px solid black',
-      background: 'lightgray',
+      background: '#364F6B',
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
       padding: '0 20px',
-      zIndex: this.props.z
+      zIndex: this.props.z,
+      fontSize: '1.6rem'
     };
 
     const dropdown = {
@@ -68,7 +73,37 @@ export default class Toolbar extends Component {
       fontSize: '1.3rem'
     };
 
-    const tools = ['brush', 'line', 'rectangle', 'circle', 'eraser'];
+    const saveBtn = {
+      border: 'none',
+      fontSize: '1.6rem',
+      padding: '6px',
+      background: '#fc5185',
+      borderRadius:'8px',
+      color: '#3b3f42',
+      fontWeight: 'bold'
+    }
+
+    const undoBtn = {
+      border: 'none',
+      fontSize: '1.6rem',
+      padding: '6px',
+      background: '#43dde6',
+      borderRadius:'8px',
+      color: '#3b3f42',
+      fontWeight: 'bold'
+    }
+
+    const redoBtn = {
+      border: 'none',
+      fontSize: '1.6rem',
+      padding: '6px',
+      background: '#ffdb27',
+      borderRadius:'8px',
+      color: '#3b3f42',
+      fontWeight: 'bold'
+    }
+
+    const tools = ['Brush', 'Line', 'Rectangle', 'Circle', 'Eraser'];
 
     return (
       <div style={container}>
@@ -100,14 +135,14 @@ export default class Toolbar extends Component {
           ></div>
         )}
 
-        <button onClick={() => this.props.saveLayer()}>
+        <button style={saveBtn} onClick={() => this.props.saveLayer()}>
           save as image layer
         </button>
 
         <div>
-          <button onClick={e => this.props.undo(e)}>undo</button>
+          <button style={undoBtn} onClick={e => this.props.undo(e)}>undo</button>
 
-          <button onClick={e => this.props.redo(e)}>redo</button>
+          <button style={redoBtn} onClick={e => this.props.redo(e)}>redo</button>
         </div>
 
         <Width
@@ -144,14 +179,17 @@ class Tools extends Component {
     const toolsMenu = {
       width: '25%',
       height: 'auto',
-      border: '2px solid blue',
+      boxShadow: '1px 0px 19px -4px rgba(59,63,66,1)',
+      border: '1px solid #3B3F42',
+      borderRadius:'8px',
       display: 'flex',
       flexDirection: 'column',
       position: 'absolute',
       top: open ? 47 : -500,
       left: 0,
       zIndex: 1000,
-      background: 'gray'
+      background: '#D0D0D0',
+      fontSize: '1.6rem'
     };
 
     const rotate = {
@@ -159,11 +197,13 @@ class Tools extends Component {
     };
 
     const item = {
-      width: '12%',
+      width: '100%',
       textAlign: 'center',
       padding: '15px 5px',
       transition: 'all 0.5s ease',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      borderBottom: '1px solid #3B3F42',
+      borderRadius: '2px'
     };
 
     return (

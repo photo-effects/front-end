@@ -37,21 +37,26 @@ export class Canvas extends Component {
 
       const _ = React.createElement;
 
-      p_data = JSON.parse(p_data.join("")).map(a =>
-        a.props.textbox
-          ? _(TextEdit, a.props, null)
-          : _(a.type, a.props, a.children)
+      p_data = JSON.parse(p_data.join("")).map((a, i) =>
+        i > 0
+          ? a.props.textbox
+            ? _(TextEdit, a.props, null)
+            : _(a.type, a.props, a.children)
+          : a
       );
 
       const image = {
         ...p_data[0],
-        secure_url: p_data[0].props.src
+        secure_url: p_data[0].props.secure_url
       };
+
+      console.log(image);
 
       const items = p_data.slice(1, p_data.length);
 
       this.setState({ items, image });
     } else if (this.props.image) {
+      console.log(this.props.image);
       this.setState({ image: this.props.image });
     }
 
@@ -75,8 +80,6 @@ export class Canvas extends Component {
     });
   };
 
-
-
   handleScreenshot = () => {
     html2canvas(document.querySelector("#capture"), {
       proxy: "https://photo-effects-backend-stage-1.herokuapp.com",
@@ -95,13 +98,12 @@ export class Canvas extends Component {
     });
   };
 
-
   handleChange = e => {
     this.setState({
       ...this.state,
       projectTitle: e.target.value
     });
-  }
+  };
 
   saveImg = () => {
     const public_id = localStorage.getItem("publicId");
@@ -148,7 +150,7 @@ export class Canvas extends Component {
     let data = JSON.stringify([
       {
         type: "img",
-        props: { src: this.state.image.secure_url, style: { zIndex: 0 } }
+        props: { secure_url: this.state.image.secure_url, style: { zIndex: 0 } }
       },
       ...this.state.items.map(item =>
         item.type === TextEdit ? (
@@ -290,7 +292,7 @@ export class Canvas extends Component {
     this.setState({ items: this.filter(id) });
   };
 
-  setItem = (id, w, h, x, y) => {
+  setItem = (id, w, h, x, y, opacity, grayscale, transform) => {
     let items;
     items = this.state.items.map(item => {
       if (item.props.id === id) {
@@ -301,6 +303,10 @@ export class Canvas extends Component {
             height={h}
             x={x}
             y={y}
+            opacity={opacity}
+            grayscale={grayscale}
+            transform={transform}
+            // flip={flip}
             style={{
               ...item.props.style,
               width: "100%",
@@ -386,7 +392,6 @@ export class Canvas extends Component {
           saveImg={this.state.saveImg}
           setPaint={this.setPaint}
           setTextbox={this.setTextbox}
-         
         />
       </div>
     );

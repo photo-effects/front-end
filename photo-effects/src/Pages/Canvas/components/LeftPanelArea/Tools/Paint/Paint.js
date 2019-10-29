@@ -258,7 +258,7 @@ export default class Paint extends Component {
           },
           start: { x: 0, y: 0 },
           end: { x: 0, y: 0 },
-          left: '-150%'
+          left: '-10000%'
         });
 
         this.handlePreview();

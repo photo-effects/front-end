@@ -75,7 +75,7 @@ const uploadedImgTitle = {
   display: 'flex',
   justifyContent: 'center',
   textAlign: 'center',
-  fontSize: '1.8rem'
+  fontSize: '2.2rem'
 };
 
 const projectContainer = {
@@ -93,11 +93,11 @@ const projectDeleteButton = {
   backgroundColor: '#fc5185',
   border: 'none',
   borderRadius: '5px',
-  padding: '4px 5px',
+  padding: '6px 10px',
   marginTop: '3px',
   color: 'whitesmoke',
   cursor: 'pointer',
-  fontSize: '1.4rem'
+  fontSize: '1.8rem'
 };
 class Projects extends Component {
   // master
