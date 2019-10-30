@@ -58,8 +58,8 @@ const Footer = () => {
     <div style={footerContainer}>
       <div style={footerCard}>
         <div>
-          {links.map(link => (
-            <Link link={link} />
+          {links.map((link, i) => (
+            <Link link={link} key={i} />
           ))}
         </div>
 
@@ -69,8 +69,8 @@ const Footer = () => {
         />
 
         <div>
-          {socials.map(social => (
-            <Link social link={social.name} icon={social.icon} />
+          {socials.map((social,i) => (
+            <Link social link={social.name} icon={social.icon} key={i} />
           ))}
         </div>
       </div>

@@ -51,7 +51,7 @@ export class Navbar extends Component {
         element: "link"
       },
       {
-        name: "Features",
+        name: "Docs",
         element: "link"
       },
       {
@@ -70,7 +70,7 @@ export class Navbar extends Component {
         element: "link"
       },
       {
-        name: "Features",
+        name: "Docs",
         element: "link"
       },
       {
@@ -87,12 +87,13 @@ export class Navbar extends Component {
         {isLoggedIn ? (
           <ul style={navlinks}>
             <>
-              {links.map(link => (
+              {links.map((link, i) => (
                 <A
                   link={link}
                   isLoggedIn={isLoggedIn}
                   login={this.props.auth.login}
                   logout={this.props.auth.logout}
+                  key={i}
                 />
               ))}
             </>

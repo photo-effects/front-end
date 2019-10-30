@@ -4,7 +4,7 @@ import WaterfallCont from './waterfall/waterfallCont';
 // css
 import 'react-id-swiper/lib/styles/css/swiper.css';
 import './tagscont.css';
-import Footer from '../Footer/Footer';
+
 const TagsCont = props => {
   const params = {
     slidesPerView: 13,

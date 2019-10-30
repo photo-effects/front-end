@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
 import html2canvas from "html2canvas";
 import uuidv4 from "uuid/v4";
 import axios from "axios";
-import withAuth from "../../components/Auth/AuthOne/withAuth";
+// import withAuth from "../../components/Auth/AuthOne/withAuth";
 import ToolsArea from "./layout/ToolsArea/ToolsArea";
 import CanvasArea from "./layout/CanvasArea/CanvasArea";
 
@@ -14,10 +13,11 @@ export class Canvas extends Component {
     items: [],
     w: 0,
     image: null,
-    // imgUrl: [],
     imgPreview: null,
     projectTitle: "",
-    projectSecureUrl: ""
+    projectSecureUrl: "",
+    prevTitle: this.props.image,
+    saving: false
   };
 
   componentDidMount() {
@@ -32,8 +32,6 @@ export class Canvas extends Component {
           p_data.push(data[i]);
         }
       }
-
-      console.log(p_data.join(""));
 
       const _ = React.createElement;
 
@@ -50,14 +48,15 @@ export class Canvas extends Component {
         secure_url: p_data[0].props.secure_url
       };
 
-      console.log(image);
-
       const items = p_data.slice(1, p_data.length);
 
       this.setState({ items, image });
     } else if (this.props.image) {
       console.log(this.props.image);
-      this.setState({ image: this.props.image });
+      this.setState({
+        image: this.props.image,
+        projectTitle: this.props.image.p_name
+      });
     }
 
     // this.setState({
@@ -108,6 +107,8 @@ export class Canvas extends Component {
   saveImg = () => {
     const public_id = localStorage.getItem("publicId");
 
+    this.setState({ saving: true });
+
     const imgForm = {
       // method: "upload",
       image: this.state.imgPreview,
@@ -128,29 +129,31 @@ export class Canvas extends Component {
           imgForm
         )
         .then(res => {
-          console.log(res);
-          this.setState({ projectSecureUrl: res.data.secure_url });
-          console.log(res.data.secure_url);
-
+          this.setState({
+            projectSecureUrl: res.data.secure_url
+          });
           this.updateProject();
         })
         .catch(err => {
           console.log(err);
         });
     }, 500);
-
-    // axios.post(
-    //   `https://api.cloudinary.com/v1_1/dn94qw6w7/image/upload`,
-    //   imgForm
-    // );
   };
 
   updateProject = () => {
     console.log(this.state.items);
+    console.log(this.props.image.p_name);
     let data = JSON.stringify([
       {
         type: "img",
-        props: { secure_url: this.state.image.secure_url, style: { zIndex: 0 } }
+        props: {
+          secure_url: this.state.image.secure_url,
+          p_name:
+            this.state.projectTitle === ""
+              ? this.props.image.p_name
+              : this.state.projectTitle,
+          style: { zIndex: 0 }
+        }
       },
       ...this.state.items.map(item =>
         item.type === TextEdit ? (
@@ -170,21 +173,16 @@ export class Canvas extends Component {
       }
     }
 
-    console.log(p_data.join(""));
-
     const updatedProject = {
-      p_name: this.state.projectTitle,
+      p_name:
+        this.state.projectTitle === ""
+          ? this.state.prevTitle.p_name
+          : this.state.projectTitle,
       p_data: p_data.join(""),
       secure_url: this.state.projectSecureUrl
     };
 
     setTimeout(() => {
-      console.log(this.state.items);
-      console.log(typeof JSON.stringify(this.state.items));
-      console.log(JSON.stringify(this.state.items));
-
-      console.log(updatedProject);
-
       axios
         .put(
           `https://photo-effects-backend-stage-1.herokuapp.com/canvas/${localStorage.getItem(
@@ -193,7 +191,7 @@ export class Canvas extends Component {
           updatedProject
         )
         .then(res => {
-          console.log("Project updated", res.data);
+          this.setState({ saving: false });
         })
         .catch(err => console.log("error"));
     }, 500);
@@ -356,7 +354,7 @@ export class Canvas extends Component {
             x={x}
             y={y}
             src={image}
-            alt={"paint layer image"}
+            alt={"paint layer"}
           />
         );
       } else return item;
@@ -365,12 +363,7 @@ export class Canvas extends Component {
     this.setState({ items });
   };
 
-  getJsonData = () => {
-    console.log(JSON.stringify(this.state.items));
-  };
-
   render() {
-    console.log(this.state.items);
     return (
       <div style={page}>
         <ToolsArea
@@ -381,6 +374,7 @@ export class Canvas extends Component {
           saveImg={this.saveImg}
           projectTitle={this.state.projectTitle}
           handleChange={this.handleChange}
+          image={this.props.image}
         />
         <CanvasArea
           items={this.state.items}
@@ -392,6 +386,7 @@ export class Canvas extends Component {
           saveImg={this.state.saveImg}
           setPaint={this.setPaint}
           setTextbox={this.setTextbox}
+          saving={this.state.saving}
         />
       </div>
     );

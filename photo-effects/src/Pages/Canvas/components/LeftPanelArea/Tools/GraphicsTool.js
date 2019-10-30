@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import Photo from './Photo';
 
-import { tab_content_photos, _photo } from './library';
+import { tab_content_photos } from './library';
 
 export default class GraphicsTool extends Component {
    state = {

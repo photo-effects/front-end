@@ -2,10 +2,8 @@ import React, { Component } from "react";
 
 
 import {
-  /* BrowserRouter as Router, */
   Route,
   Switch
-  /* NavLink */
 } from "react-router-dom";
 
 import Notfound from "./Pages/NotFound/Notfound";
@@ -13,12 +11,10 @@ import Landing from "./Pages/Landing/Landing";
 import About from './Pages/About/About';
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import Canvas from "./Pages/Canvas/Canvas";
-import Test from './Pages/Test/Test'
 
-// import Users from './components/Auth/Users';
 import Auth from "./components/Auth/AuthOne/Auth";
-// import Home from './components/Auth/Home';
 import Callback from "./components/Auth/Callback";
+import Docs from './Pages/Docs/Docs'
 
 export default class App extends Component {
   state = {
@@ -27,18 +23,9 @@ export default class App extends Component {
 
   auth = new Auth(this.props.history);
 
-
   setBgImage = (item) => {
     this.setState({ image: item })
   }
-
-  // componentDidMount() {
-  //   // sets projects in state
-  //   axios
-  //     .get("https://photo-effects-backend.herokuapp.com/api/projects")
-  //     .then(res => this.setState({ image: res.data[res.data.length-1] }))
-  //     .catch(err => console.log(err));
-  // }
   
 
   render = () => (
@@ -59,15 +46,16 @@ export default class App extends Component {
         />
 
         <Route
+          exact
+          path="/docs"
+          render={props => <Docs auth={this.auth} image={this.state.image} {...props} />}
+        />
+
+        <Route
           path="/callback"
           render={props => <Callback auth={this.auth} {...props} />}
         />
 
-        {/* <Route
-       path="/profile" render = {props => <Profile auth={this.auth} {...props} />} 
-      /> */}
-
-        {/* <Route exact path="/dashboard" component={Dashboard} /> */}
         <Route
           path="/dashboard"
           exact
@@ -81,14 +69,13 @@ export default class App extends Component {
           )}
         />
 
-        {/* Douglas commenting to explain canvas */}
         <Route
           exact
           path="/canvas"
           render={props => <Canvas auth={this.auth} image={this.state.image} {...props} />}
         />
 
-        <Route exact path='/test' component={Test} />
+      
 
         <Route component={Notfound} />
       </Switch>

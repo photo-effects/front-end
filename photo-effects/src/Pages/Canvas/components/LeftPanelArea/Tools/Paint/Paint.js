@@ -33,7 +33,6 @@ export default class Paint extends Component {
   };
 
   componentDidMount() {
-    const node = ReactDOM.findDOMNode(this.refs.canvas);
     const parent = this.props.parent.getBoundingClientRect();
     const container = this.props.container.getBoundingClientRect();
 

@@ -52,6 +52,17 @@ class CanvasArea extends Component {
       zIndex: -1000000000
     };
 
+    const saving = {
+      textAlign: "center",
+      width: "100%",
+      fontSize: "6.0rem",
+      margin: "10px 0 20px 0"
+    };
+
+    const hide = {
+      display: "none"
+    };
+
     return (
       <div style={container} ref="container">
         <div ref="parent" id="capture" style={bg}>
@@ -108,6 +119,10 @@ class CanvasArea extends Component {
           ) : (
             <div></div>
           )}
+          <div style={this.props.saving ? saving : hide}>
+            {/* <div style={saving}> */}
+            {this.props.saving ? "Saving Project..." : "not save"}
+          </div>
           {this.props.image ? (
             <img
               ref="image"

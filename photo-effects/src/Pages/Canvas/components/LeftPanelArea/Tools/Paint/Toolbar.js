@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
 
 //colors:
 //text: #F4F4F0
@@ -374,7 +373,6 @@ class Colors extends Component {
                     type="range"
                     min="0"
                     max="255"
-                    value="0"
                     onChange={e => this.handleChange(e, color.toLowerCase())}
                     value={this.props.paintColor[color.toLowerCase()]}
                   />
