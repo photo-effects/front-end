@@ -28,18 +28,19 @@ export class Photolist extends Component {
               style={cardstyle}
               key={pic.id}
             >
-              <div style={{ height: "100px" }}>
+              <div style={{ height: "50px" }}>
                 <h4 style={cardTitle}>{pic.title}</h4>
               </div>
               <img
                 src={pic.secure_url}
                 alt="pic"
                 style={{
-                  height: "200px",
+                  // height: "200px",
                   minWidth: "200px",
                   maxWidth: "250px",
-                  position: "relative",
-                  bottom: "10px"
+                  // position: "relative",
+                  // bottom: "10px"
+                  height: "200px"
                 }}
               />
               {/* <span
@@ -171,6 +172,7 @@ const modalstyle = {
   maxWidth: "45%",
   maxHeight: "85%",
   position: "fixed",
+
   /* center the div */
   right: "0",
   left: "0",
