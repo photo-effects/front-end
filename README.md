@@ -15,9 +15,19 @@ TODO: Give a short introduction of your project. Let this section explain the ob
 
 ## Photo Effects Team
   - Christian Ford
+    - Front End App / Auth0
   - Jasmine Logan
+    - Front End / Back End / Auth0
   - Nicholas Rafeek
-
+    - Front End / Back End
+  - Edgar Flores
+    - Back End / Front End
+  - Douglas Jordan
+    - Built the Library 
+  - Joe Bugajski
+    - Team Leader
+  - Ashley LaNeave
+    - Auth0
 
 
 # Build and Test
