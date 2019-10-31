@@ -12,6 +12,16 @@ TODO: Give a short introduction of your project. Let this section explain the ob
 ## App Docs
 
 ## Libraries / Frameworks
+  Front End
+    - React
+    - React Dropzone
+    
+  Back End
+    - Node.js
+    - Express
+    - Cloudinary
+   
+    
 
 ## Photo Effects Team
   - Christian Ford
