@@ -4,7 +4,6 @@ import axios from "axios";
 import "./projects.css";
 
 const userProjects = {
-  // border: "3px solid #364f6b",
   display: "flex",
   flexDirection: "row",
   justifyContent: "center",
@@ -19,40 +18,18 @@ const userProjects = {
   borderRadius: "8px"
 };
 
-// const sortBox = {
-//   display: "flex",
-//   justifyContent: "space-between",
-//   width: "95%",
-//   margin: "0 auto",
-//   marginBottom: "5px"
-// };
-
-// const sort = {
-//   backgroundColor: "#fc5185",
-//   padding: "4px 10px",
-//   borderRadius: "8px",
-//   color: "whitesmoke",
-//   fontSize: "2rem",
-//   cursor: "pointer"
-// };
-
 const projectsSectionTitle = {
-  // top: "100px",
   color: "whitesmoke",
   background: "#304760",
   width: "95%",
-  // height: "35px",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
   margin: "0 auto",
   marginTop: "50px",
-  // marginBottom: "10px",
   padding: "16px",
   fontSize: "2.0rem",
   borderRadius: "7px"
-  // textDecoration: 'underline',
-  // border: "1px solid whitesmoke"
 };
 
 const projectImg = {
@@ -62,7 +39,6 @@ const projectImg = {
   maxWidth: "20rem",
   maxHeight: "20rem",
   border: "0px solid #000",
-  // padding: '5px',
   margin: "10px",
   borderRadius: "5px",
   background: "#7B8794",
@@ -72,11 +48,7 @@ const projectImg = {
 const projectImgTitle = {
   width: "100%",
   color: "whitesmoke",
-  // paddingBottom: '5px',
   paddingLeft: "17px",
-  // display: 'flex',
-  // justifyContent: 'center',
-  // textAlign: 'center',
   fontSize: "1.5rem"
 };
 
@@ -110,19 +82,9 @@ const projectButton = {
 };
 class Projects extends Component {
   state = {
-    tags: []
+    tags: [],
+    hover: false
   };
-
-  // componentDidMount() {
-  //   setTimeout(() => {
-  //     this.setState({
-  //       ...this.state,
-  //       projects: this.props.projects
-  //     })
-  //     //console.log(this.state.projects)
-  //   }, 2000)
-
-  // }
 
   // master
   // Used to delete a project already in our backend and from cloudinary (handled in backend)
@@ -175,11 +137,6 @@ class Projects extends Component {
         ) : (
           <>
             <h1 style={projectsSectionTitle}>Projects</h1>
-            {/* <div style={sortBox}>
-              <button onClick={this.props.toggleSort} style={sort}>
-                Name <i className="fas fa-sort"></i>
-              </button>
-            </div> */}
             <div style={userProjects}>
               {this.props.projects.length === 0 ? (
                 <div
@@ -191,13 +148,7 @@ class Projects extends Component {
                   }}
                 >
                   {" "}
-                  <h4 style={{ fontSize: "2.5rem" }}>Loading...</h4>
-                  {/* <h4 style={{ fontSize: '3rem' }}>Quack! No Projects!</h4> */}
-                  {/* <h4 style={{ margin: 'auto', fontSize: '5rem' }}>\</h4> */}
-                  {/* <img
-                    src="http://www.pngnames.com/files/4/Rubber-Duck-PNG-Background.png"
-                    alt="duck"
-                  /> */}{" "}
+                  <h4 style={{ fontSize: "2.5rem" }}>Loading...</h4>{" "}
                 </div>
               ) : (
                 <>
@@ -287,7 +238,6 @@ class Projects extends Component {
                               </span>
                             )}
                           </button>
-                          {/* <button style={projectButton} onClick={(e) => this.viewTags(e, project.id)}><span style={{fontSize: "1.5rem"}}>View Tags</span></button> */}
                         </div>
                       </div>
                     );
