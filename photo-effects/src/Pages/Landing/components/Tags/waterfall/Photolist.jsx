@@ -29,7 +29,7 @@ export class Photolist extends Component {
               key={pic.id}
             >
               <div style={{ height: "50px" }}>
-                <h4 style={cardTitle}>{pic.title}</h4>
+                <h4 style={cardTitle}>{pic.p_name}</h4>
               </div>
               <img
                 src={pic.secure_url}
@@ -197,13 +197,12 @@ const cardstyle = {
   borderRadius: "8px",
   boxShadow: "2px 2px 4px 2px rgba(59,63,66, 0.8)",
   cursor: "pointer"
-  // marginTop: index %2 === 0 ? '-140px': '0px',
 };
 
 const cardTitle = {
   color: "#fc5185",
   fontSize: "2rem",
-  marginBottom: "20px"
+  marginTop: "20px"
 };
 const cardContainer = {
   display: "flex",
@@ -212,7 +211,6 @@ const cardContainer = {
   justifyContent: "center",
   alignItems: "center",
   margin: "auto",
-  // background: '#364f6b',
   backgroundImage:
     "linear-gradient(to bottom, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa4e9, #7aaeef, #6bb7f1, #56c2f4, #44cbf3, #3bd5ee, #43dde6)",
   width: "96%",

@@ -375,6 +375,7 @@ export class Canvas extends Component {
           projectTitle={this.state.projectTitle}
           handleChange={this.handleChange}
           image={this.props.image}
+          saving={this.state.saving}
         />
         <CanvasArea
           items={this.state.items}
@@ -386,7 +387,6 @@ export class Canvas extends Component {
           saveImg={this.state.saveImg}
           setPaint={this.setPaint}
           setTextbox={this.setTextbox}
-          saving={this.state.saving}
         />
       </div>
     );

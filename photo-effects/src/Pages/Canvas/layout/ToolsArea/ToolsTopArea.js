@@ -11,6 +11,17 @@ class ToolsTopArea extends Component {
   };
 
   render() {
+    const saving = {
+      textAlign: "center",
+      width: "100%",
+      fontSize: "3.0rem",
+      margin: "10px 0 20px 0"
+    };
+
+    const hide = {
+      display: "none"
+    };
+
     return (
       <div style={panel_toparea_container}>
         <div style={panel_toparea}>
@@ -41,6 +52,10 @@ class ToolsTopArea extends Component {
               </div>
             </div>
           </div>
+        </div>
+
+        <div style={this.props.saving ? saving : hide}>
+          {this.props.saving ? "Saving Project..." : "not save"}
         </div>
 
         <div style={panel_projectname}>
