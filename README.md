@@ -7,7 +7,7 @@
   
 
 ## Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+Build beautiful and meaningful messages over photos with ease without the complexity of Photoshop and Canva.
 
 ## App Docs
 
