@@ -19,15 +19,15 @@ const dashNav = {
 
 const navBarLogo = {
   marginLeft: "80px",
-  height: "60px",
-  width: "150px"
+  height: "70px",
+  width: "170px"
 };
 
 const dashNavLinks = {
   display: "flex",
   alignItems: "baseline",
   justifyContent: "space-evenly",
-  marginRight: '10px'
+  marginRight: "10px"
 };
 
 const navLink = {
@@ -61,10 +61,6 @@ export class DashNav extends Component {
           <ul style={dashNavLinks} className="dashNavRight">
             <NavLink style={navLink} exact to="/">
               <li className="links">Home</li>
-            </NavLink>
-
-            <NavLink style={navLink} exact to="/canvas">
-              <li className="links"> Canvas </li>
             </NavLink>
             <li style={{ paddingLeft: "15px" }}>
               <button style={dashLogout} onClick={this.props.auth.logout}>

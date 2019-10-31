@@ -33,7 +33,6 @@ export default class Paint extends Component {
   };
 
   componentDidMount() {
-    const node = ReactDOM.findDOMNode(this.refs.canvas);
     const parent = this.props.parent.getBoundingClientRect();
     const container = this.props.container.getBoundingClientRect();
 
@@ -258,7 +257,7 @@ export default class Paint extends Component {
           },
           start: { x: 0, y: 0 },
           end: { x: 0, y: 0 },
-          left: '-150%'
+          left: '-10000%'
         });
 
         this.handlePreview();

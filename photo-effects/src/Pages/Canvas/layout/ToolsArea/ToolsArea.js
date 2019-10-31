@@ -13,6 +13,7 @@ const ToolsArea = props => {
         updateProject={props.updateProject}
         projectTitle={props.projectTitle}
         handleChange={props.handleChange}
+        image={props.image}
       />
       <ToolPanel 
         addItem = { props.addItem }
