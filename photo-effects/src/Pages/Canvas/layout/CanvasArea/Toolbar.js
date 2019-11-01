@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import TextEdit from '../../components/LeftPanelArea/Tools/TextBox/TextEdit';
-import TextToolbar from '../../components/LeftPanelArea/Tools/TextBox/TextToolbar';
+import TextEdit from "../../components/LeftPanelArea/Tools/TextBox/TextEdit";
+import TextToolbar from "../../components/LeftPanelArea/Tools/TextBox/TextToolbar";
 
 export default class Toolbar extends Component {
   state = {
@@ -19,16 +19,16 @@ export default class Toolbar extends Component {
   }
 
   container = open => ({
-    height: '72px',
-    marginTop: open ? '-72px' : '-144px',
-    borderBottom: '2px solid black',
+    height: "72px",
+    marginTop: open ? "-72px" : "-144px",
+    borderBottom: "2px solid black",
     width: this.props.width,
-    background: 'white',
-    transition: 'margin-top 1s ease',
-    position: 'absolute',
+    background: "white",
+    transition: "margin-top 1s ease",
+    position: "absolute",
     top: 0 - this.props.top,
-    left: 0 - this.props.left,
-    zIndex: this.state.item.props.style.zIndex
+    right: 0 - this.props.left,
+    zIndex: this.state.item.props.style ? this.state.item.props.style.zIndex : 0
   });
 
   render() {
@@ -44,22 +44,13 @@ export default class Toolbar extends Component {
             />
           ) : (
             <div
-              style={{
-                width: '100%',
-                height: '100%',
-                background: 'white',
-                color: 'black',
-                fontWeight: 'bold',
-                fontSize: '2rem',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center'
-              }}
+              style={toobarStyle}
             >
               <span>{this.props.alt}</span>
-              <form>
-                <span>Opacity: </span>
-                <input
+              <form style={formStyle}>
+                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                <span style={{ color: '#F4F4F4' }}>Opacity: </span>
+                <input style={{marginTop:'10px'}}
                   type="range"
                   min="0"
                   max="1"
@@ -67,9 +58,10 @@ export default class Toolbar extends Component {
                   value={this.props.opacity}
                   onChange={e => this.props.changeOpacity(e.target.value)}
                 />
-
-                <span>Grayscale: </span>
-                <input
+                </div> 
+                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                <span style={{ color: '#F4F4F4' }}>Grayscale: </span>
+                <input style={{marginTop:'10px'}}
                   type="range"
                   min="0"
                   max="100"
@@ -77,9 +69,10 @@ export default class Toolbar extends Component {
                   value={this.props.grayscale}
                   onChange={e => this.props.changeGrayscale(e.target.value)}
                 />
-
-                <span>Rotate: </span>
-                <input
+</div>
+<div style={{ display: 'flex', flexDirection: 'column' }}>
+                <span style={{ color: '#F4F4F4' }}>Rotate: </span>
+                <input style={{marginTop:'10px'}}
                   type="range"
                   min="-180"
                   max="180"
@@ -87,14 +80,14 @@ export default class Toolbar extends Component {
                   value={this.props.transform}
                   onChange={e => this.props.changeTransform(e.target.value)}
                 />
-
-                <button onClick={this.props.flipImage}> Flip Image </button>
+</div>
+                {/* <button onClick={e => this.props.flipImage(e)} style={flipBtn}> Flip Image </button> */}
               </form>
               <button
                 style={btnBackground}
                 onClick={e => this.props.removeImage(this.props.id)}
               >
-                <i className="far fa-trash-alt fa-fw fa-3x"></i>
+                <i className="far fa-trash-alt fa-fw fa-3x" style={{padding:'5px'}}></i>
               </button>
             </div>
           )
@@ -111,16 +104,50 @@ export default class Toolbar extends Component {
 }
 
 const btnBackground = {
-  background: 'white',
-  border: 'none'
+  background: '#FC5185',
+  border: 'none',
+  borderRadius: '10px',
+marginRight:'70px',
+  color: '#F4F4F4',
+  fontSize: '12px',
+  textShadow: '0px 0px 2px rgba(59,63,66,0.67)'
 };
 
-// const openBtn = {
-//   position: 'absolute',
-//   bottom: '-20px',
-//   height: '20px',
-//   width: '35px',
-//   borderBottom: '2px solid black',
-//   borderRight: '2px solid black',
-//   cursor: 'pointer'
-// }
+
+const toobarStyle = {
+  width: '100%',
+  height: '100%',
+  background: '#364F6B',
+  color: 'black',
+  fontWeight: 'bold',
+  fontSize: '2rem',
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  // border: 'pink 1px solid',
+  margin: 'auto',
+  padding:'10px'
+};
+
+const formStyle = {
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  width: '70%',
+  // border: '1px solid blue',
+  margin: 'auto'
+};
+
+
+
+// const flipBtn = {
+//   background: '#58DDE6',
+//   border: 'none',
+//   borderRadius: '10px',
+//   color: '#F4F4F4',
+//   fontSize: '18px',
+//   fontWeight: 'bold',
+//   padding: '5px',
+//   textShadow: '0px 0px 2px rgba(59,63,66,0.67)'
+// };
+

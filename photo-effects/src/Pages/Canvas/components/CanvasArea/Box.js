@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import Toolbar from '../../layout/CanvasArea/Toolbar';
-import TextEdit from '../LeftPanelArea/Tools/TextBox/TextEdit';
-import Paint from '../LeftPanelArea/Tools/Paint/Paint';
+import Toolbar from "../../layout/CanvasArea/Toolbar";
+import TextEdit from "../LeftPanelArea/Tools/TextBox/TextEdit";
+import Paint from "../LeftPanelArea/Tools/Paint/Paint";
 
 export default class Box extends Component {
   state = {
@@ -19,21 +19,21 @@ export default class Box extends Component {
     y: 0,
     clicks: 0,
     textbox: {
-      color: '',
-      background: '',
-      style: '',
-      weight: '',
-      decoration: '',
+      color: "",
+      background: "",
+      style: "",
+      weight: "",
+      decoration: "",
       slider: 0,
       editable: false,
-      text: '',
+      text: "",
       hold: false
     },
     opacity: 1,
     grayscale: 0,
     transform: 0,
     rotating: false,
-    flip: 1,
+    // flip: false,
     offsetLeft: 0,
     offsetTop: 0,
     toolbar: {
@@ -44,32 +44,40 @@ export default class Box extends Component {
   };
 
   componentDidMount() {
-    const container = this.props.container.getBoundingClientRect();
-    const parent = this.props.parent.getBoundingClientRect();
+    setTimeout(() => {
+      const container = this.props.container.getBoundingClientRect();
+      const parent = this.props.parent.getBoundingClientRect();
 
-    const left = parent.left - container.left;
-    const top = parent.top - container.top;
+      const left = parent.left - container.left;
+      const top = parent.top - container.top;
 
-    this.setState({
-      offsetLeft: parent.left,
-      offsetTop: parent.top,
-      toolbar: {
-        width: container.width,
-        left,
-        top
-      }
-    });
+      const { item } = this.props;
+      const { opacity, grayscale, transform } = item.props;
+
+      this.setState({
+        offsetLeft: parent.left,
+        offsetTop: parent.top,
+        toolbar: {
+          width: container.width,
+          left,
+          top
+        },
+        opacity,
+        grayscale,
+        transform
+      });
+    }, 500);
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps.item !== prevState.item && nextProps.item.type !== TextEdit) {
       return {
-        item: nextProps.item,
+        item: nextProps.item ? nextProps.item : null,
         x: nextProps.item.props.x,
         y: nextProps.item.props.y,
         width: nextProps.item.props.width,
         height: nextProps.item.props.height,
-        z: nextProps.item.props.style.zIndex
+        z: nextProps.item.props.style ? nextProps.item.props.style.zIndex : 0
       };
     } else if (nextProps.item !== prevState.item) {
       return {
@@ -87,7 +95,7 @@ export default class Box extends Component {
   };
 
   onDown = (e, type) => {
-    if (type === 'resizing') {
+    if (type === "resizing") {
       this.setState({ resizing: true });
     } else {
       this.setState({
@@ -101,8 +109,7 @@ export default class Box extends Component {
   };
 
   onUp = () => {
-    const { item, width, height, x, y } = this.state;
-    const { id } = item.props;
+    const { width, height, x, y } = this.state;
 
     this.setState({
       dragging: false,
@@ -113,13 +120,35 @@ export default class Box extends Component {
       left: x
     });
 
-    setTimeout(() => {
-      this.setState({ clicks: 0 });
-    }, 1000);
-
     if (this.props.item.type !== TextEdit) {
-      this.props.setItem(id, width, height, x, y);
+      this.saveImg();
     }
+  };
+
+  saveImg = () => {
+    const {
+      item,
+      width,
+      height,
+      x,
+      y,
+      opacity,
+      grayscale,
+      transform
+    } = this.state;
+
+    const { id } = item.props;
+
+    this.props.setItem(
+      id,
+      width,
+      height,
+      x,
+      y,
+      opacity,
+      grayscale,
+      transform
+    );
   };
 
   onMove = e => {
@@ -180,13 +209,13 @@ export default class Box extends Component {
 
     setTimeout(() => {
       this.props.setTextbox(this.state.item.props.id, {
-        color: this.state.textbox.color || '',
-        background: this.state.textbox.background || '',
-        style: this.state.textbox.style || '',
-        weight: this.state.textbox.weight || '',
-        decoration: this.state.textbox.textbox || '',
+        color: this.state.textbox.color || "",
+        background: this.state.textbox.background || "",
+        style: this.state.textbox.style || "",
+        weight: this.state.textbox.weight || "",
+        decoration: this.state.textbox.textbox || "",
         slider: this.state.textbox.slider || 15,
-        text: this.state.textbox.text || '',
+        text: this.state.textbox.text || "",
         x: this.state.x,
         y: this.state.y
       });
@@ -195,41 +224,42 @@ export default class Box extends Component {
 
   changeOpacity = opacity => {
     this.setState({ opacity: opacity });
+    this.saveImg();
   };
 
   changeGrayscale = grayscale => {
     this.setState({ grayscale: grayscale });
+    this.saveImg();
   };
 
   changeTransform = transform => {
     this.setState({ transform: transform });
+    this.saveImg();
   };
 
-  flipImage = e => {
-    e.preventDefault();
-    console.log('im click');
-    if (this.state.flip === 1) {
-      this.setState({ flip: -1 });
-    } else {
-      this.setState({ flip: 1 });
-    }
-  };
+  // flipImage = e => {
+  //   e.preventDefault();
+  //   console.log("im click");
+  //   this.setState({ flip: !this.state.flip });
+
+  //   this.saveImg();
+  // };
 
   render() {
     const { capture, item, width, height, y, x, z } = this.state;
 
     const overlay = {
-      width: item.type === TextEdit ? 'auto' : width,
-      height: item.type === TextEdit ? 'auto' : height,
-      padding: item.type === TextEdit ? '5px' : 0,
-      position: 'absolute',
+      width: item.type === TextEdit ? "auto" : width,
+      height: item.type === TextEdit ? "auto" : height,
+      padding: item.type === TextEdit ? "5px" : 0,
+      position: "absolute",
       top: y,
       left: x,
       zIndex: z,
-      boxShadow: capture ? '2px 2px 15px black' : 'none',
+      boxShadow: capture ? "2px 2px 15px black" : "none",
       opacity: this.state.opacity,
       filter: `grayscale(${this.state.grayscale}%)`,
-      transform: `rotate(${this.state.transform}deg) scaleX(${this.state.flip})`
+      transform: `rotate(${this.state.transform}deg)`
     };
 
     return (
@@ -246,7 +276,7 @@ export default class Box extends Component {
           changeGrayscale={this.changeGrayscale}
           transform={this.state.transform}
           changeTransform={this.changeTransform}
-          flipImage={this.flipImage}
+          // flipImage={this.flipImage}
           width={this.state.toolbar.width}
           left={this.state.toolbar.left}
           top={this.state.toolbar.top}
@@ -261,24 +291,24 @@ export default class Box extends Component {
           onPointerLeave={
             this.state.hover ? () => this.setState({ hover: false }) : null
           }
-          onPointerDown={e => this.onDown(e, 'dragging')}
+          onPointerDown={e => this.onDown(e, "dragging")}
           onPointerUp={this.onUp}
           onPointerCancel={this.onUp}
           onPointerMove={e => this.onMove(e)}
         >
-          {item.type === TextEdit ? (
+          {item && item.type === TextEdit ? (
             <TextEdit
               textbox={this.state.textbox}
               setTextbox={this.setTextbox}
             />
           ) : (
             <>
-              {item}
-              {item.type !== Paint || item.type !== 'div' ? (
+              {item ? item : null}
+              {(item && item.type !== Paint) || item.type !== "div" ? (
                 <Resizer
                   bottom
                   gotCapture={this.gotCapture}
-                  onPointerDown={e => this.onDown(e, 'resizing')}
+                  onPointerDown={e => this.onDown(e, "resizing")}
                   onUp={this.onUp}
                   onMove={this.onMove}
                   startResize={this.startResize}
@@ -294,26 +324,26 @@ export default class Box extends Component {
 
 const Resizer = props => {
   const style = type => ({
-    height: '25px',
-    width: '25px',
-    position: 'absolute',
-    top: type === 'top' ? -20 : null,
-    left: type === 'top' ? -20 : null,
-    right: type === 'bottom' ? -20 : null,
-    bottom: type === 'bottom' ? -20 : null,
-    borderLeft: type === 'top' ? '1px solid red' : null,
-    borderTop: type === 'top' ? '1px solid red' : null,
-    borderRight: type === 'bottom' ? '1px solid black' : null,
-    borderBottom: type === 'bottom' ? '1px solid black' : null,
+    height: "25px",
+    width: "25px",
+    position: "absolute",
+    top: type === "top" ? -20 : null,
+    left: type === "top" ? -20 : null,
+    right: type === "bottom" ? -20 : null,
+    bottom: type === "bottom" ? -20 : null,
+    borderLeft: type === "top" ? "1px solid red" : null,
+    borderTop: type === "top" ? "1px solid red" : null,
+    borderRight: type === "bottom" ? "1px solid black" : null,
+    borderBottom: type === "bottom" ? "1px solid black" : null,
     zIndex: 1000000
   });
 
   if (props.top) {
-    return <div style={style('top')}></div>;
+    return <div style={style("top")}></div>;
   } else
     return (
       <div
-        style={style('bottom')}
+        style={style("bottom")}
         onGotPointerCapture={() => props.startResize(true)}
         onLostPointerCapture={() => props.startResize(false)}
         onPointerDown={props.onPointerDown}

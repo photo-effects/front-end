@@ -33,7 +33,6 @@ export default class Paint extends Component {
   };
 
   componentDidMount() {
-    const node = ReactDOM.findDOMNode(this.refs.canvas);
     const parent = this.props.parent.getBoundingClientRect();
     const container = this.props.container.getBoundingClientRect();
 
@@ -66,14 +65,16 @@ export default class Paint extends Component {
   };
 
   saveLayer = () => {
-    this.props.setPaint(
-      this.state.id,
-      this.state.preview,
-      this.state.width / 2,
-      this.state.height / 2,
-      this.state.width,
-      this.state.height
-    );
+    setTimeout(() => {
+      this.props.setPaint(
+        this.state.id,
+        this.state.preview,
+        this.state.width / 2,
+        this.state.height / 2,
+        this.state.width,
+        this.state.height
+      );
+    }, 500)
   };
 
   actions = e => {
@@ -256,7 +257,7 @@ export default class Paint extends Component {
           },
           start: { x: 0, y: 0 },
           end: { x: 0, y: 0 },
-          left: '-150%'
+          left: '-10000%'
         });
 
         this.handlePreview();

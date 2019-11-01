@@ -4,8 +4,6 @@ import React from 'react';
 function Cardview(props, {match}) {
   const cardId = props.find(({id})=> id === match.params.id)
 
-  // const photo = props.pic.find(cardpic => `${cardpic.id}` === id);
-  console.log(props);
   return (
     <div
       style={{

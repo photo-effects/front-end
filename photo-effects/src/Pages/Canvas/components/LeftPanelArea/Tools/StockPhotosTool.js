@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React, { Component } from "react";
+import axios from "axios";
 
-import Photo from './Photo';
+import Photo from "./Photo";
 
-import { tab_content_photos, _photo, photoImg } from './library';
+import { tab_content_photos, _photo } from "./library";
 
 export default class StockPhotosTool extends Component {
   state = {
@@ -14,10 +14,10 @@ export default class StockPhotosTool extends Component {
   componentDidMount() {
     setTimeout(() => {
       axios
-        .get('https://api.pexels.com/v1/curated?per_page=15&page=1', {
+        .get("https://api.pexels.com/v1/curated?per_page=15&page=1", {
           headers: {
             Authorization:
-              '563492ad6f917000010000014867b6499ef7493dadf228acfc7c3c35' // Pexels API Key
+              "563492ad6f917000010000014867b6499ef7493dadf228acfc7c3c35" // Pexels API Key
           }
         })
         .then(res =>
@@ -47,18 +47,6 @@ export default class StockPhotosTool extends Component {
                     alt={photo.photographer}
                     key={photo.src.small}
                   />
-                  {/* <img 
-                              style = { photoImg }
-                              key={photo.src.small} 
-                              src={photo.src.small} 
-                              alt = { photo.photographer }
-                              onClick={() => this.props.addItem(
-                                 <img
-                                    src = { photo.src.original }
-                                    alt = { photo.photographer }
-                                 />
-                              )}
-                           /> */}
                 </div>
               );
             })}
@@ -70,25 +58,25 @@ export default class StockPhotosTool extends Component {
 }
 
 const photo_landing = {
-  height: '80px',
-  width: '100px',
-  border: '0px',
-  borderRadius: '5px',
-  marginRight: '5px',
-  opacity: '0.7'
+  height: "80px",
+  width: "100px",
+  border: "0px",
+  borderRadius: "5px",
+  marginRight: "5px",
+  opacity: "0.7"
 };
 
 const cyan = {
   ...photo_landing,
-  background: '#44DDE6'
+  background: "#44DDE6"
 };
 
 const pink = {
   ...photo_landing,
-  background: '#FC5185'
+  background: "#FC5185"
 };
 
 const yellow = {
   ...photo_landing,
-  background: '#FFDB27'
+  background: "#FFDB27"
 };

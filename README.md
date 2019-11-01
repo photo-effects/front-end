@@ -1,20 +1,46 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+# Table of Contents
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+1. [Introduction to App](#introduction)
+2. [Link to App Docs](#app-docs)
+3. [Libraries / Frameworks used](#libraries-/-frameworks)
+4. [Photo Effects Team](#photo-effects-team)
+  
+
+## Introduction 
+Build beautiful and meaningful messages over photos with ease without the complexity of Photoshop and Canva.
+
+## App Docs
+
+## Libraries / Frameworks
+  Front End
+    - React
+    - React Dropzone
+    
+  Back End
+    - Node.js
+    - Express
+    - Cloudinary
+   
+    
+
+## Photo Effects Team
+  - Christian Ford
+    - Front End App / Auth0
+  - Jasmine Logan
+    - Front End / Back End / Auth0
+  - Nicholas Rafeek
+    - Front End / Back End
+  - Edgar Flores
+    - Back End / Front End
+  - Douglas Jordan
+    - Built the Library 
+  - Joe Bugajski
+    - Team Leader
+  - Ashley LaNeave
+    - Auth0
+
 
 # Build and Test
 TODO: Describe and show how to build your code and run the tests. 
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)

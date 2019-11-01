@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
-import TabContent from './TabContent';
-import photo from './Tools/svg/icon-photo.svg';
-import attach from './Tools/svg/icon-attach.svg';
-import text from './Tools/svg/icon-text.svg';
-import layers from './Tools/svg/icon-layers.svg';
-import chevron from './Tools/svg/icon-chevron.svg';
-import paint from './Tools/svg/icon-paint.svg';
+import React, { Component } from "react";
+import TabContent from "./TabContent";
+import photo from "./Tools/svg/icon-photo.svg";
+import attach from "./Tools/svg/icon-attach.svg";
+import text from "./Tools/svg/icon-text.svg";
+import chevron from "./Tools/svg/icon-chevron.svg";
+import paint from "./Tools/svg/icon-paint.svg";
 
 class Tab extends Component {
   state = {
@@ -28,11 +27,11 @@ class Tab extends Component {
               style={panel_icon}
               alt={this.props.tabName}
               src={
-                this.props.tabName === 'Photos'
+                this.props.tabName === "Photos"
                   ? photo
-                  : this.props.tabName === 'Graphics'
+                  : this.props.tabName === "Graphics"
                   ? attach
-                  : this.props.tabName === 'Text'
+                  : this.props.tabName === "Text"
                   ? text
                   : paint
               }
@@ -69,8 +68,8 @@ class Arrow extends Component {
   }
 
   arrowImg = open => ({
-    transform: open ? 'rotate(180deg)' : 'rotate(270deg)',
-    transition: 'transform 500ms ease-out'
+    transform: open ? "rotate(180deg)" : "rotate(270deg)",
+    transition: "transform 500ms ease-out"
   });
 
   render() {
@@ -86,39 +85,39 @@ class Arrow extends Component {
 }
 
 const panel_tab = {
-  background: '#d0d0d0',
-  cursor: 'pointer',
-  borderLeft: '5px solid #3b3f42',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  fontSize: '12px',
-  fontWeight: '700',
-  height: '45px',
-  width: '100%'
+  background: "#d0d0d0",
+  cursor: "pointer",
+  borderLeft: "5px solid #3b3f42",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  fontSize: "12px",
+  fontWeight: "700",
+  height: "45px",
+  width: "100%"
 };
 
 // fix
 const panel_tab_active = {
   ...panel_tab,
-  background: '#eaeaea'
+  background: "#eaeaea"
 };
 
 const panel_tab_info = {
-  display: 'flex',
-  alignItems: 'center'
+  display: "flex",
+  alignItems: "center"
 };
 
 const panel_icon = {
-  margin: '0 20px'
+  margin: "0 20px"
 };
 
 const panel_tab_arrow = {
-  height: '45px',
-  width: '45px',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center'
+  height: "45px",
+  width: "45px",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center"
 };
 
 export default Tab;

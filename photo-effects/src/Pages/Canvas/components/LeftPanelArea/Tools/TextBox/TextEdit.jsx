@@ -26,16 +26,6 @@ export default class TextEdit extends Component {
       text
     } = this.props.textbox;
 
-    const { height, width } = this.state;
-
-    const flex = {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      width: 'auto',
-      height: 'auto'
-    };
-
     const styles = {
       margin: 'auto',
       width: 'auto',
@@ -49,12 +39,6 @@ export default class TextEdit extends Component {
       fontSize: slider,
       cursor: editable ? 'text' : 'pointer',
       padding: '10px'
-    };
-
-    const hidden = {
-      visibility: 'hidden',
-      position: 'absolute',
-      left: -10000000
     };
 
     return (
