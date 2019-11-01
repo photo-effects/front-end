@@ -1,47 +1,47 @@
-import React from "react";
-import Navbar from "../Landing/components/nav/Navbar";
+import React from 'react';
+import Navbar from '../Landing/components/nav/Navbar';
 // import { HashLink as Link } from "react-router-hash-link";
 
 const Docs = ({ auth }) => {
   const h3s = {
-    fontSize: "24px",
-    marginTop: "10px"
+    fontSize: '24px',
+    marginTop: '10px'
   };
 
   const sections = {
-    marginTop: "15px"
+    marginTop: '15px'
   };
 
   const menu = {
-    minWidth: "180px",
-    padding: "16px",
-    height: "850px",
-    overflow: "auto",
-    background: "#FC5185",
-    color: "#E5E5E6",
-    fontSize: "16px",
-    fontWeight: "bold"
+    minWidth: '180px',
+    padding: '16px',
+    height: '850px',
+    overflow: 'auto',
+    background: '#FC5185',
+    color: '#E5E5E6',
+    fontSize: '16px',
+    fontWeight: 'bold'
   };
 
   const docsMenu = {
-    width: "100%",
-    height: "850px",
-    fontSize: "16px",
-    margin: "5px",
-    overflow: "auto"
+    width: '100%',
+    height: '850px',
+    fontSize: '16px',
+    margin: '5px',
+    overflow: 'auto'
   };
 
   const listItems = [
-    { id: 1, name: "First Item", link: "link stuff" },
-    { id: 2, name: "2nd Item", link: "link stuff" },
-    { id: 3, name: "3rd Item", link: "link stuff" },
-    { id: 4, name: "4th Item", link: "link stuff" },
-    { id: 5, name: "5th Item", link: "link stuff" },
-    { id: 6, name: "6th Item", link: "link stuff" },
-    { id: 7, name: "7th Item", link: "link stuff" },
-    { id: 8, name: "8th Item", link: "link stuff" },
-    { id: 9, name: "9th Item", link: "link stuff" },
-    { id: 10, name: "10th Item", link: "link stuff" }
+    { id: 1, name: 'Tech Stack', link: 'link stuff' },
+    { id: 2, name: 'Dependencies', link: 'link stuff' },
+    { id: 3, name: 'Overview', link: 'link stuff' },
+    { id: 4, name: 'Links, Docs and more', link: 'link stuff' },
+    { id: 5, name: '5th Item', link: 'link stuff' },
+    { id: 6, name: '6th Item', link: 'link stuff' },
+    { id: 7, name: '7th Item', link: 'link stuff' },
+    { id: 8, name: '8th Item', link: 'link stuff' },
+    { id: 9, name: '9th Item', link: 'link stuff' },
+    { id: 10, name: '10th Item', link: 'link stuff' }
   ];
 
   const scrollFunc = id => {
@@ -49,20 +49,20 @@ const Docs = ({ auth }) => {
     console.log(id);
 
     let element = document.getElementById(id);
-    element.scrollIntoView({ behavior: "smooth" });
+    element.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <div style={{ height: "945px", overflow: "hidden" }}>
+    <div style={{ height: '937px', overflow: 'hidden' }}>
       <Navbar auth={auth} />
-      <div style={{ height: "100px" }}></div>
+      <div style={{ height: '105px' }}></div>
 
-      <div style={{ display: "flex", flexDirection: "row" }}>
+      <div style={{ display: 'flex', flexDirection: 'row' }}>
         <div style={menu}>
           <ul>
             {listItems.map(item => (
               <li
-                style={{ marginTop: "10px" }}
+                style={{ marginTop: '10px' }}
                 onClick={() => scrollFunc(item.id)}
               >
                 {item.id}. {item.name}
@@ -70,56 +70,274 @@ const Docs = ({ auth }) => {
             ))}
           </ul>
         </div>
-        <div style={docsMenu}>
-          <div id="1" style={sections}>
+        <div id="1" style={docsMenu}>
+          <div style={sections}>
             <h3 style={h3s}>Our Tech Stack!</h3>
-            <h4>FrontEnd</h4>
+            <h4>FrontEnd:</h4>
             <ul>
               <li>React</li>
             </ul>
-            <h4>Backend</h4>
+            <h4>Backend:</h4>
             <ul>
               <li>PostgreSQL</li>
               <li>Cloudinary</li>
               <li>Node.js</li>
             </ul>
+            <h4>DevOps</h4>
+            <ul>
+              <li>Auth0</li>
+            </ul>
+            <h4>Wireframes/Planning Docs</h4>
+            <ul>
+              <li>
+                <a
+                  href="https://drive.google.com/file/d/10MtSzS81h8kgcXFGgP7RC0pwSsfDttqx/view?usp=sharing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Folder Structure Diagram
+                </a>
+              </li>
+              Trello Board
+              <li>
+                <a
+                  href="https://www.notion.so/Product-Cycle-Planning-Release-Canvas-fb376825344f46b6a88d377d7a6f7201"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Labs Training Kit
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://drive.google.com/file/d/18PuWgQFjPMBCSf_lHWWZeb_bbdelXd_X/view?usp=sharing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Wireframe
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.notion.so/Photo-Effects-Words-Layout-Overlay-Filters-dbad058a07cc4646b3c0b583249d14a6"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Product Board Notion Doc
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.notion.so/1st-Feature-Canvas-Template-9f0ec58b922340e0a84fdc253ea274a3"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Canvas 1 Notion Doc
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.notion.so/2nd-Feature-Canvas-Template-79bd25ff5b564c488aae5f9281a5722d"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Canvas 2 Notion Doc
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.notion.so/3rd-Feature-Canvas-Template-8f70dfc9fb9f4912862327e9cb656105"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Canvas 3 Notion Doc
+                </a>
+              </li>
+            </ul>
           </div>
-          <div id="2" style={sections}>
-            <h3 style={h3s}>Our dependencies! </h3>
-            <p>
-              auth0, auth0-js, auth0-lock, axios, cloudinary-react,
-              dom-to-image, html2canvas, jwt-decode, react-dropzone,
-              react-id-swiper, react-input-range, react-particles-js,
-              react-reveal, swiper, uuid
-            </p>
+          <span id="2"></span>
+          <div style={sections}>
+            <h3 style={h3s}>Dependencies </h3>
+            <ul>
+              <li>
+                <a
+                  href="https://www.npmjs.com/package/auth0"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  auth0
+                </a>
+              </li>
+              <li>
+                {' '}
+                <a
+                  href="https://www.npmjs.com/package/auth0-js"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  auth0-js
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.npmjs.com/package/auth0-lock"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  auth0-lock
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.npmjs.com/package/axios"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  axios
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.npmjs.com/package/cloudinary-react"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  cloudinary-react
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.npmjs.com/package/html2canvas"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  html2canvas
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.npmjs.com/package/jwt-decode"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  jwt-decode
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.npmjs.com/package/react-dropzone"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  react-dropzone
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.npmjs.com/package/react-id-swiper"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  react-id-swiper
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.npmjs.com/package/swiper"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  swiper
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.npmjs.com/package/react-particles-js"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {' '}
+                  react-particles-js
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.npmjs.com/package/react-reveal"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  react-reveal
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.npmjs.com/package/uuid"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  uuid
+                </a>
+              </li>
+            </ul>
           </div>
-          <div id="3" style={sections}>
-            <h3 style={h3s}>3rd thing </h3>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
-            sed pariatur illum facilis modi neque, esse repellat iste ipsa
-            ipsum, fuga nobis! Vitae exercitationem incidunt impedit doloribus
-            distinctio! Delectus, aliquid. Lorem, ipsum dolor sit amet
-            consectetur adipisicing elit. Cumque odit excepturi fuga fugit quod,
-            odio aliquam nihil sint explicabo tempora minus ratione tempore
-            laborum nam repellendus esse iusto maiores alias. Lorem ipsum dolor,
-            sit amet consectetur adipisicing elit. Accusantium tenetur ab autem
-            eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
-            vitae labore enim natus quasi laborum culpa mollitia?
+          <span id="3"></span>
+          <div style={sections}>
+            <h3 style={h3s}>Overview </h3>
+            This product was made with non-tech-savvie users in mind. It is, at
+            this point, strictly a desktop application. Users can login using
+            either thier Google username/password, or make a new account. Once
+            logged in, they are redirected to the dashboard where the user can
+            either choose to continue a previous project or start a new project
+            by uploading a photo. Once the existing or new photo is chosen, the
+            user is redirected to the canvas to decorate their photo. The
+            completed photo can be saved for later, or downloaded to the users
+            device.
           </div>
-          <div id="4" style={sections}>
-            <h3 style={h3s}>4th thing</h3>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
-            sed pariatur illum facilis modi neque, esse repellat iste ipsa
-            ipsum, fuga nobis! Vitae exercitationem incidunt impedit doloribus
-            distinctio! Delectus, aliquid. Lorem, ipsum dolor sit amet
-            consectetur adipisicing elit. Cumque odit excepturi fuga fugit quod,
-            odio aliquam nihil sint explicabo tempora minus ratione tempore
-            laborum nam repellendus esse iusto maiores alias. Lorem ipsum dolor,
-            sit amet consectetur adipisicing elit. Accusantium tenetur ab autem
-            eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
-            vitae labore enim natus quasi laborum culpa mollitia?
+          <span id="4"></span>
+          <div style={sections}>
+            <h3 style={h3s}>Links, Docs and More</h3>
+            <ul>
+              <li>
+                <a
+                  href="https://github.com/photo-effects/front-end/tree/feature/refactoring"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  FontEnd Github
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://github.com/photo-effects/back-end"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Backend Github
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://photo-effect-backend.herokuapp.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  API: https://photo-effect-backend.herokuapp.com
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.draw.io/?lightbox=1&target=blank&edit=_blank&layers=1&nav=1&title=docs#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D10MtSzS81h8kgcXFGgP7RC0pwSsfDttqx%26export%3Ddownload"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Folder Structure Diagram
+                </a>
+              </li>
+            </ul>
+            
           </div>
-          <div id="5" style={sections}>
+          <span id="5"></span>
+          <div style={sections}>
             <h3>5th thing</h3>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
             sed pariatur illum facilis modi neque, esse repellat iste ipsa
@@ -132,7 +350,8 @@ const Docs = ({ auth }) => {
             eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
             vitae labore enim natus quasi laborum culpa mollitia?
           </div>
-          <div id="6" style={sections}>
+          <span id="6"></span>
+          <div style={sections}>
             <h3>6th thing</h3>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
             sed pariatur illum facilis modi neque, esse repellat iste ipsa
@@ -145,7 +364,8 @@ const Docs = ({ auth }) => {
             eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
             vitae labore enim natus quasi laborum culpa mollitia?
           </div>
-          <div id="7" style={sections}>
+          <span id="7" ></span>
+          <div style={sections}>
             <h3>7th thing</h3>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
             sed pariatur illum facilis modi neque, esse repellat iste ipsa
@@ -158,7 +378,8 @@ const Docs = ({ auth }) => {
             eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
             vitae labore enim natus quasi laborum culpa mollitia?
           </div>
-          <div id="8" style={sections}>
+          <span id="8" ></span>
+          <div  style={sections}>
             <h3>8th thing</h3>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
             sed pariatur illum facilis modi neque, esse repellat iste ipsa
@@ -171,7 +392,8 @@ const Docs = ({ auth }) => {
             eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
             vitae labore enim natus quasi laborum culpa mollitia?
           </div>
-          <div id="9" style={sections}>
+          <span id="9" ></span>
+          <div  style={sections}>
             <h3>9th thing</h3>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
             sed pariatur illum facilis modi neque, esse repellat iste ipsa
@@ -184,7 +406,8 @@ const Docs = ({ auth }) => {
             eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
             vitae labore enim natus quasi laborum culpa mollitia?
           </div>
-          <div id="10" style={sections}>
+          <span id="10" ></span>
+          <div  style={sections}>
             <h3>10th thing</h3>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
             sed pariatur illum facilis modi neque, esse repellat iste ipsa
@@ -197,7 +420,8 @@ const Docs = ({ auth }) => {
             eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
             vitae labore enim natus quasi laborum culpa mollitia?
           </div>
-          <div id="11" style={sections}>
+          <span id="11" ></span>
+          <div  style={sections}>
             <h3>11th thing</h3>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
             sed pariatur illum facilis modi neque, esse repellat iste ipsa
@@ -210,7 +434,8 @@ const Docs = ({ auth }) => {
             eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
             vitae labore enim natus quasi laborum culpa mollitia?
           </div>
-          <div id="12" style={sections}>
+          <span id="12" ></span>
+          <div  style={sections}>
             <h3>12th thing</h3>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
             sed pariatur illum facilis modi neque, esse repellat iste ipsa
@@ -223,7 +448,8 @@ const Docs = ({ auth }) => {
             eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
             vitae labore enim natus quasi laborum culpa mollitia?
           </div>
-          <div id="13" style={sections}>
+          <span id="13" ></span>
+          <div  style={sections}>
             <h3>13th thing</h3>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
             sed pariatur illum facilis modi neque, esse repellat iste ipsa
@@ -236,7 +462,8 @@ const Docs = ({ auth }) => {
             eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
             vitae labore enim natus quasi laborum culpa mollitia?
           </div>
-          <div id="14" style={sections}>
+          <span id="14" ></span>
+          <div  style={sections}>
             <h3>14th thing</h3>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
             sed pariatur illum facilis modi neque, esse repellat iste ipsa
@@ -249,7 +476,8 @@ const Docs = ({ auth }) => {
             eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
             vitae labore enim natus quasi laborum culpa mollitia?
           </div>
-          <div id="15" style={sections}>
+          <span  id="15" ></span>
+          <div style={sections}>
             <h3>15th thing</h3>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
             sed pariatur illum facilis modi neque, esse repellat iste ipsa
@@ -262,7 +490,8 @@ const Docs = ({ auth }) => {
             eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
             vitae labore enim natus quasi laborum culpa mollitia?
           </div>
-          <div id="16" style={sections}>
+          <span  id="16" ></span>
+          <div  style={sections}>
             <h3>16th thing</h3>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
             sed pariatur illum facilis modi neque, esse repellat iste ipsa
