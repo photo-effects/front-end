@@ -17,7 +17,8 @@ const divColor = {
   alignItems: 'center',
   width: '60%' ,
   marginTop: '90px',
-  fontSize: '36px'
+  fontSize: '36px',
+  
 }
 
 const divColor2 = {
@@ -33,6 +34,7 @@ const divColor2 = {
 
 const aboutSection = {
   marginTop: '10px' ,
+  
   padding: '25px' ,
   fontSize: '24px',
   textAlign: 'center',
@@ -62,7 +64,8 @@ const listWrap = {
   display: 'flex' ,
   flexDirection: 'row',
   justifyContent: 'center',
-  marginTop: '10px'
+  marginTop: '10px',
+  
 }
 
 const listItem = {
@@ -74,7 +77,9 @@ const listItem = {
   alignItems: 'center',
   margin: '5px',
   backgroundColor: '#FC5185' ,
-  borderRadius: '8px'
+  borderRadius: '8px',
+  margin: '10px' ,
+  paddingTop: '10px'
 }
 
 const bodyColor = {
@@ -93,13 +98,15 @@ const linkStyle = {
   fontSize: '16px',
   textDecoration: 'none',
   padding: '5px',
-  color: 'white'
+  color: 'white',
+  
 }
 
 const profilePic = {
   height: '150px',
   width: '150px',
-  marginTop: '50px'
+  marginTop: '50px',
+  
 }
 
 const buttonStyle = {
