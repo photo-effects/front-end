@@ -7,12 +7,13 @@
   
 
 ## Introduction 
-Build beautiful and meaningful messages over photos with ease without the complexity of Photoshop and Canva.
+The Photo Effects App was created so you could build  beautiful and meaningful messages over photos with ease without the complexity of Photoshop and Canva. 
 
 ## App Docs
 
 ## Libraries / Frameworks
   Front End
+    - JavaScript
     - React
     - React Dropzone
     
@@ -20,14 +21,23 @@ Build beautiful and meaningful messages over photos with ease without the comple
     - Node.js
     - Express
     - Cloudinary
+    
+   Other Tools
+    - Auth0
+    - Trello for Planning
+    - Google Docs for Wireframming
+    - Zoom / Slack for team collaboration
+    
    
     
 
 ## Photo Effects Team
   - Christian Ford
     - Front End App / Auth0
+    - GitHub : https://github.com/Christian-Ford
   - Jasmine Logan
     - Front End / Back End / Auth0
+    - GitHub :
   - Nicholas Rafeek
     - Front End / Back End
   - Edgar Flores
@@ -40,7 +50,6 @@ Build beautiful and meaningful messages over photos with ease without the comple
     - Auth0
 
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+
 
 
