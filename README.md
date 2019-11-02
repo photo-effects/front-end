@@ -13,17 +13,17 @@ The Photo Effects App was created so you could build  beautiful and meaningful m
 https://www.photoeffectsapp.com/docs
 
 ## Libraries / Frameworks
-  Front End
+  ### Front End
     - JavaScript
     - React
     - React Dropzone
     
-  Back End
+  ### Back End
     - Node.js
     - Express
     - Cloudinary
     
-   Other Tools
+  ### Other Tools
     - Auth0
     - Trello for Planning
     - Google Docs for Wireframming
