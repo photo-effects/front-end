@@ -1,10 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Navbar from '../Landing/components/nav/Navbar';
+//images
 import Diagram from '../../assetts/diagram.JPG';
+import LocalStorageImg from '../../assetts/local storage.JPG';
+import Door from '../../assetts/exitdoor.JPG';
+import Exit from '../../assetts/logout.JPG';
+import dashState from "../../assetts/dashboardState.png";
+//code snippets
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { atomOneDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
-import dashState from "../../assetts/dashboardState.png";
-// import { HashLink as Link } from "react-router-hash-link";
+
 
 const Docs = ({ auth }) => {
   const yLocation = {
@@ -27,6 +32,22 @@ const Docs = ({ auth }) => {
     padding: '3px',
     borderRadius: '5px'
   };
+
+  const liSpace ={
+    marginTop: '10px'
+  }
+
+  const boldpointer = {
+    cursor:'pointer',
+    fontWeight:'bold'
+  }
+  const bold ={
+    fontWeight:'bold'
+  }
+
+  const h4s ={
+    marginTop: '20px'
+  }
 
   const h3s = {
     fontSize: '24px',
@@ -51,7 +72,8 @@ const Docs = ({ auth }) => {
     background: '#FC5185',
     color: '#E5E5E6',
     fontSize: '16px',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    
   };
 
   const docsMenu = {
@@ -65,38 +87,46 @@ const Docs = ({ auth }) => {
   };
 
   const listItems = [
-    { id: 1, name: 'Tech Stack', details: '', padding: '', indent: '' },
-    { id: 2, name: 'Dependencies', details: '', padding: '', indent: '' },
-    { id: 3, name: 'Overview', details: '', padding: '', indent: '' },
+    { id: 1, name: 'Tech Stack', details: '', padding: '', indent: '', drop:'block'  },
+    { id: 2, name: 'Dependencies', details: '', padding: '', indent: '', drop:'block' },
+    { id: 3, name: 'Overview', details: '', padding: '', indent: '', drop:'block' },
     {
       id: 4,
       name: 'Links, Docs and more',
       details: '',
       padding: '',
-      indent: ''
+      indent: '', drop:'block'
     },
     {
       id: 5,
       name: '  Navigating Through this Project ',
       details: '**READ THIS FIRST!**',
-      padding: '3px'
+      padding: '3px', drop:'block'
     },
     {
       id: 6,
       name: 'Authorization/Security',
       details: '',
       padding: '',
-      indent: ''
+      indent: '', drop:'block'
     },
-    { id: '6a', name: 'Getting Started', padding: '', indent: '20px' },
-    { id: '6b', name: 'Integration', padding: '', indent: '20px' },
-    { id: '6c', name: 'withAuth.js', padding: '', indent: '20px' },
-    { id: '6d', name: 'Callback.js', padding: '', indent: '20px' },
-    { id: '6e', name: 'Authorization', padding: '', indent: '20px' },
-    { id: 7, name: 'Landing', details: '', padding: '', indent: '' },
-    { id: 8, name: 'Dashboard', details: '', padding: '', indent: '' },
-    { id: 9, name: '9th Item', details: '', padding: '', indent: '' },
-    { id: 10, name: '10th Item', details: '', padding: '', indent: '' }
+    { id: '6a', name: 'Getting Started', padding: '', indent: '20px', drop:'none' },
+    { id: '6b', name: 'Integration', padding: '', indent: '20px', drop:'none' },
+    { id: '6c', name: 'withAuth.js', padding: '', indent: '20px', drop:'none' },
+    { id: '6d', name: 'Callback.js', padding: '', indent: '20px', drop:'none' },
+    { id: '6e', name: 'Authorization', padding: '', indent: '20px', drop:'none' },
+    { id: '6f', name: 'Tokens/Ids', padding: '', indent: '20px', drop:'none' },
+    { id: '6g', name: 'Logout', padding: '', indent: '20px', drop:'none' },
+    { id: 7, name: 'Landing', details: '', padding: '', indent: '', drop:'block' },
+    { id: '7a', name: '', padding: '', indent: '20px', drop:'none' },
+    { id: '7b', name: '', padding: '', indent: '20px', drop:'none' },
+    { id: '7c', name: '', padding: '', indent: '20px', drop:'none' },
+    { id: '7d', name: '', padding: '', indent: '20px', drop:'none' },
+    { id: '7e', name: '', padding: '', indent: '20px', drop:'none' },
+    { id: '7f', name: '', padding: '', indent: '20px', drop:'none' },
+    { id: 8, name: 'Dashboard', details: '', padding: '', indent: '', drop:'block' },
+    { id: 9, name: '9th Item', details: '', padding: '', indent: '', drop:'block' },
+    { id: 'Backend', name: '', details: '', padding: '', indent: '', drop:'block' },
   ];
 
   const scrollFunc = id => {
@@ -106,6 +136,8 @@ const Docs = ({ auth }) => {
     let element = document.getElementById(id);
     element.scrollIntoView({ behavior: "smooth" });
   };
+
+
 
   return (
     
@@ -118,9 +150,11 @@ const Docs = ({ auth }) => {
           <ul>
             {listItems.map(item => (
               <li
-                style={{ marginTop: '10px', marginLeft: item.indent }}
+                style={{ marginTop: '10px', marginLeft: item.indent, cursor:'pointer' }}
                 onClick={() => scrollFunc(item.id)}
               >
+                
+                
                 {item.id}.{' '}
                 <span
                   style={{
@@ -131,29 +165,33 @@ const Docs = ({ auth }) => {
                 >
                   {item.details}
                 </span>{' '}
-                {item.name}
+                {item.name}  
+                {/* <i className="fas fa-plus-circle" style={{display:item.drop}}></i> */}
+                
               </li>
             ))}
           </ul>
         </div>
-        <div id="1" style={docsMenu}>
+        
+        <div style={docsMenu}>
           <div style={sections}>
+          <span id="1"></span>
             <h3 style={h3s}>Our Tech Stack!</h3>
-            <h4>FrontEnd:</h4>
+            <h4 style={h4s}>FrontEnd:</h4>
             <ul>
               <li>React</li>
             </ul>
-            <h4>Backend:</h4>
+            <h4 style={h4s}>Backend:</h4>
             <ul>
               <li>PostgreSQL</li>
               <li>Cloudinary</li>
               <li>Node.js</li>
             </ul>
-            <h4>DevOps</h4>
+            <h4 style={h4s}>DevOps</h4>
             <ul>
               <li>Auth0</li>
             </ul>
-            <h4>Wireframes/Planning Docs</h4>
+            <h4 style={h4s}>Wireframes/Planning Docs</h4>
             <ul>
               <li>
                 <a
@@ -465,17 +503,16 @@ const Docs = ({ auth }) => {
             <p style={{ marginTop: '10px' }}>
               Throughout the docs we will reference the diagram to point out
               important things such as the location of components or where
-              top-level state is located as{' '}
+              top-level state is located because this project has lots of {' '}
               <a
                 href="https://codeburst.io/react-anti-pattern-prop-drilling-54474d5236bd"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 prop-drilling
-              </a>{' '}
-              is pervasive. If you are unfamiliar with prop-drilling, you may
+              </a>. If you are unfamiliar with prop-drilling, you may
               want to brush up on it. And then, once you learn it, refactor the
-              whole project into functional components, put state in
+              whole project into hooks, put state in
               Context...then totally forget you ever had to learned
               prop-drilling in the first place.
             </p>
@@ -533,9 +570,8 @@ const Docs = ({ auth }) => {
               </li>
             </ul>
             <span id="6a"></span>
-            <h4 style={{ marginTop: '20px' }}>Getting Started</h4>
-            Auth0 is managed outside of this project and outsouces all of the
-            security, so we don't have to worry about it. **Before messing with
+            <h4  style={h4s}>Getting Started</h4>
+            Auth0 is what we use to manage security features. So we don't have to worry about it. There is quite a learning curve so **Before messing with
             anything in the code, read through the Getting Started tutorial on
             the Auth0 site.**
             <p style={{background:'#FC5185', color:'#EAEAEA', width:'350px', padding:'5px', textDecoration:'none', borderRadius:'8px', margin:'10px 0px'}}> <a
@@ -547,7 +583,7 @@ const Docs = ({ auth }) => {
               https://auth0.com/docs/quickstart/spa/react
             </a></p>
             <p>
-              The docs on Auth0 at this point use functional components and
+              The docs on Auth0 at this point uses hooks and
               Context, which will look different than what we have in this project. This tutorial can help as it still uses class componenents. 
             </p>
             <p style={{background:'#FC5185', color:'#EAEAEA', width:'180px', padding:'5px', textDecoration:'none', borderRadius:'8px', margin:'10px 0px'}}> <a
@@ -560,10 +596,10 @@ const Docs = ({ auth }) => {
             </a></p>
 
             <p>
-              The Auth0 tutorial on PluralSight.com is also very useful and uses class components. 
+              The Auth0 tutorial on PluralSight.com is also very useful and can be done using a free trial, but is worth the money if you need it longer than the first free month. 
             </p>
             <span id="6b"></span>
-            <h4 style={{ marginTop: '20px' }}>Integration</h4>
+            <h4  style={h4s}>Integration</h4>
             <p style={{ marginTop: '10px' }}>
               {' '}
               I marked{' '}
@@ -760,6 +796,8 @@ export default class App extends Component {
   );
 }
 
+...
+
 `}
               </SyntaxHighlighter>
             </div>
@@ -767,9 +805,9 @@ export default class App extends Component {
 
             <p>
             <span id="6c"></span>
-            <h4 style={{ marginTop: '20px' }}>WithAuth.js </h4> 
+            <h4  style={h4s}>WithAuth.js </h4> 
             </p>
-            <p>The Auth.js componenent <span style={bLocation}>G2</span> is script that will redirect any user who tried to access protected routes without logging in. It redirects the user back to the the landing page. Changing the route being passed on line 9 will redirect them user to wherever you choose.</p>
+            <p>The Auth.js componenent <span style={bLocation}>G2</span> is script that will redirect any user who tries to access protected routes without logging in. It redirects the user back to the the landing page. Changing the route being passed on line 9 will redirect them user to wherever you choose.</p>
 
             <div
                style={{
@@ -811,9 +849,9 @@ export default withAuth
             </div>
             <p>
             <span id="6d"></span>
-            <h4 style={{ marginTop: '20px' }}>Callback.js </h4> 
+            <h4 style={h4s}>Callback.js </h4> 
             </p>
-            <p>The Callback.js componenent <span style={bLocation}>F1</span> is a component that the user will only ever see for a split-second, if at all. It automatically sends the user to Auth0 so they can sign in with google. Upon successful login/registration, it reroutes the user back to PhotoEffects by triggering the handleAuthentication() function through props (located in Auth.js <span style={bLocation}>G1</span>)... </p>
+            <p>The Callback.js componenent <span style={bLocation}>F1</span> is a component that the user will only ever see for a split-second, if at all. It automatically sends the user to Auth0 so they can sign in with google or register a new username/password. Upon successful login/registration, it reroutes the user back to PhotoEffects by triggering the handleAuthentication() function through props (located in Auth.js <span style={bLocation}>G1</span>)... </p>
 
             <div
                style={{
@@ -857,7 +895,7 @@ export default Callback;
 `}
               </SyntaxHighlighter>
             </div>
-<p>... which then pushes the user to the dashboard. </p>
+<p>... which then pushes the user to the dashboard so they can start their project. </p>
 
 <div
                style={{
@@ -895,8 +933,8 @@ export default Callback;
             </div>
 
             <span id="6e"></span>
-            <h4 style={{ marginTop: '20px' }}> Authorization </h4> 
-            <p>In order to create a new user account or access and existing account we must have access to the user information from Auth0. This occurs in Auth.js <span style={bLocation}>G1</span> specifically in handleAuthentication() on line 4 of the snippet below. This saves the data to local storage in the form of a token </p>
+            <h4  style={h4s}> Authorization </h4> 
+            <p>In order to create a new user account or access and existing account we must have access to the user information from Auth0. This occurs in Auth.js <span style={bLocation}>G1</span> specifically in handleAuthentication() on line 4 of the snippet below. If a valid token is in local storage, the setSession() function will alert Google that this person is logged in. </p>
 
 <div
    style={{
@@ -933,10 +971,485 @@ export default Callback;
   </SyntaxHighlighter>
 </div>
 
+<p>This allows us access to user data. immediately after setSession is triggered, getId's is also triggered.</p>
+<p>
+  getId's creates a newUser object which includes the <span style={bold}> email</span>,<span style={bold}> user_id </span>and <span style={bold}>name</span>, all pulled in from Auth0 using thier native function getProfile(). 
+</p>
+
+<div
+   style={{
+    margin: '10px 0px',
+    borderRadius: '8px',
+    padding: '5px',
+    background: 'black',
+    color:'white'
+  }}
+>
+  Auth.js <span style={bLocation}>G1</span>
+  <SyntaxHighlighter
+    language="javascript"
+    style={atomOneDark}
+    showLineNumbers
+    useInlineStyles
+  >
+    {`
+  getIds = () => {
+    const newUser = {
+      email: this.getProfile().email,
+      user_id: this.getProfile().sub,
+      name: this.getProfile().name
+    };
+
+`}
+  </SyntaxHighlighter>
+</div>
+
+<p>
+ The <span style={bold}>newUser</span> object is passed into the axios POST call which send the object to our <span style={boldpointer} onClick={()=>scrollFunc('backend')}>backend</span> hosted on {' '} 
+        <a href="https://photo-effect-backend.herokuapp.com/"
+          target="_blank"
+          rel="noopener noreferrer" 
+          style={bold}>
+            Heroku
+      </a>. 
+</p>
+<p>
+If the user already exists, then the POST call will send back an error message, specifically error code 23505. If we get this specific code, the google user id is set into local storage, and the user is sent to the dashboard to start their project. This prevents multiples of the same user being saved to the backend. 
+</p>
+<p>
+  If there is no error message, then the POST goes through as normal, creating a new user in the backend.  
+</p>
+
+<div
+   style={{
+    margin: '10px 0px',
+    borderRadius: '8px',
+    padding: '5px',
+    background: 'black',
+    color:'white'
+  }}
+>
+  Auth.js <span style={bLocation}>G1</span>
+  <SyntaxHighlighter
+    language="javascript"
+    style={atomOneDark}
+    showLineNumbers
+    useInlineStyles
+  >
+    {` axios
+      .post(
+        'https://photo-effects-backend-stage-1.herokuapp.com/users',
+        newUser
+      )
+      .then(res => {
+        this.getdbId();
+        console.log('new user added');
+      })
+      .catch(error => {
+        error.response.data.code === '23505' && console.log('user exists');
+        localStorage.setItem('userId', this.getProfile().sub);
+        this.history.push('/dashboard');
+      });
+  };
+
+`}
+  </SyntaxHighlighter>
+</div>
+
+<p>Then, getdbId() is triggered, which is a GET call that retrieves the new user we just created in getIDs(), and sets the new user's id to local storage for later use. Then, the handleAuthentication() function finishes up by pushing the user to the dashboard to start their project.</p>
+<div
+   style={{
+    margin: '10px 0px',
+    borderRadius: '8px',
+    padding: '5px',
+    background: 'black',
+    color:'white'
+  }}
+>
+  Auth.js <span style={bLocation}>G1</span>
+  <SyntaxHighlighter
+    language="javascript"
+    style={atomOneDark}
+    showLineNumbers
+    useInlineStyles
+  >
+    {`getdbId = async () => {
+    await axios.get(\`https://photo-effects-backend-stage-1.herokuapp.com/users/google/\${localStorage.getItem(
+      'userId'
+    )}\`)
+    .then(res => {
+      localStorage.setItem('dbId', res.data[0].id);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+};
+`}
+  </SyntaxHighlighter>
+  <span id="6f"></span>
+</div>
+
+<p>Once all of the functions in Auth.js <span style={bLocation}>G1</span> have run, all the data we need to access the individual user's data and begin a new project should be in local storage and ready to be used.</p>
+<p style={liSpace}> Local storage should look like this: </p>
+
+<img src={LocalStorageImg} alt="localstorage" style={{borderRadius:'8px', border:'1px solid black', margin: 'auto', width: '100%'}}/>
+
+<ul>
+  <li style={liSpace}><span style={bold}>access_token</span>: Required by Google to log the user in. </li>
+  <li style={liSpace}><span style={bold}>id_token</span>: Required by Google to log the user in.</li>
+  <li style={liSpace}><span style={bold}>expires_at</span>: Defines how long the user can stay logged in with google. Right now it is set to infinite, but can be changed by logging into the <a href="https://auth0.com/auth/login"  
+  target="_blank" 
+  rel="noopener noreferrer" 
+  style={boldpointer}>Auth0 backend</a>.  </li>
+  <li style={liSpace}><span style={bold}>userId</span>: Unique user id from google </li>
+  <li style={liSpace}><span style={bold}>dbId</span>: unique user id in our heroku backend. </li>
+</ul>
+
+<span id="6g"></span>
+  <h4  style={h4s}>Logout</h4>
+
+<img style={{width:'76px', borderRadius:'8px'}}src={Door} alt='door'/>
+<img style={{borderRadius:'8px'}} src={Exit} alt='exit'/>
+<p>
+  Logout buttons are at the top of every page in the app. In the code they are located in Navbar.jsx <span style={bLocation}>Z1</span>, DashNav.jsx <span style={bLocation}>V1</span>, and TopBar.js <span style={bLocation}>S8</span>. The logout buttons accesses the Logout() function based in Auth.js through props that were passed around the project through Apps.js. 
+</p>
+
+<div
+   style={{
+    margin: '10px 0px',
+    borderRadius: '8px',
+    padding: '5px',
+    background: 'black',
+    color:'white'
+  }}
+>
+  NavBar.jsx <span style={bLocation}>Z1</span>
+  <SyntaxHighlighter
+    language="javascript"
+    style={atomOneDark}
+    showLineNumbers
+    useInlineStyles
+  >
+    {`import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import navLogo from "../../../../assetts/photoLogo.png";
+
+export class Navbar extends Component {
+  state = {
+    hover: false
+  };
+
+  //push to landing
+  render() {
+    const isLoggedIn = Boolean(localStorage.getItem("access_token"));
+
+...
+
+    const links = [
+      {
+        name: "About",
+        element: "link"
+      },
+      {
+        name: "Docs",
+        element: "link"
+      },
+      {
+        name: "Dashboard",
+        element: "link"
+      },
+      {
+        name: "auth",
+        element: "button"
+      }
+    ];
+
+    const loggedOutLinks = [
+      {
+        name: "About",
+        element: "link"
+      },
+      {
+        name: "Docs",
+        element: "link"
+      },
+      {
+        name: "auth",
+        element: "button"
+      }
+    ];
+
+    return (
+      <nav style={nav}>
+        <Link to="/">
+          <img src={navLogo} alt="navbar logo" style={navbarLogo} />
+        </Link>
+        {isLoggedIn ? (
+          <ul style={navlinks}>
+            <>
+              {links.map((link, i) => (
+                <A
+                  link={link}
+                  isLoggedIn={isLoggedIn}
+                  login={this.props.auth.login}
+                  logout={this.props.auth.logout} <== **here**
+                  key={i}
+                />
+              ))}
+            </>
+          </ul>
+        ) : (
+          <ul style={navLinksLoggedOut}>
+            <>
+              {loggedOutLinks.map(link => (
+                <A
+                  link={link}
+                  isLoggedIn={isLoggedIn}
+                  login={this.props.auth.login}
+                  logout={this.props.auth.logout}
+                />
+              ))}
+            </>
+          </ul>
+        )}
+      </nav>
+    );
+  }
+}
+
+class A extends Component {
+  state = {
+    hover: false
+  };
+
+  render() {
+    const { hover } = this.state;
+    const { link, isLoggedIn } = this.props;
+    const { name, element } = link;
+
+    const loginbutton = {
+      backgroundColor: "#fc5185",
+      padding: "12px",
+      transform: hover ? "scale(1.1)" : "scale(1)",
+      transition: hover ? "ease-in-out 0.1s" : "null",
+      borderRadius: "8px",
+      color: "whitesmoke",
+      boxShadow: "-1px 1px 90px -2px rgba(240,240,240,1)",
+      border: "none",
+      fontSize: "2rem",
+      cursor: "pointer"
+    };
+
+    const smallnavlinks = {
+      marginTop: "10px",
+      transform: hover ? "scale(1.1)" : "scale(1)",
+      transition: hover ? "ease-in-out 0.1s" : "null"
+    };
+
+    const linkStyle = {
+      textDecoration: "none",
+      color: name === "Dashboard" ? "inherit" : "whitesmoke",
+      padding: name === "Dashboard" ? "inherit" : null
+    };
+
+    return element === "button" ? (
+      <li>
+        <button
+          style={loginbutton}
+          onMouseEnter={
+            !this.state.hover ? () => this.setState({ hover: true }) : null
+          }
+          onMouseLeave={
+            this.state.hover ? () => this.setState({ hover: false }) : null
+          }
+          onClick={isLoggedIn ? this.props.logout : this.props.login}
+        >
+          {isLoggedIn ? "Logout" : "Login / Signup"}
+        </button>
+      </li>
+    ) : (
+      <li style={smallnavlinks}>
+        <Link
+          to={\`/\${name.toLowerCase()}\`}
+          style={linkStyle}
+          onMouseEnter={
+            !this.state.hover ? () => this.setState({ hover: true }) : null
+          }
+          onMouseLeave={
+            this.state.hover ? () => this.setState({ hover: false }) : null
+          }
+        >
+          {name}
+        </Link>
+      </li>
+    );
+  }
+}
+
+export default Navbar;
+
+`}
+  </SyntaxHighlighter>
+</div>
+<div
+   style={{
+    margin: '10px 0px',
+    borderRadius: '8px',
+    padding: '5px',
+    background: 'black',
+    color:'white'
+  }}
+>
+  DashNav.jsx <span style={bLocation}>V1</span>
+  <SyntaxHighlighter
+    language="javascript"
+    style={atomOneDark}
+    showLineNumbers
+    useInlineStyles
+  >
+    {`import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
+import "./dashNav.css";
+import logo from "../../../../assetts/photoLogo.png";
+
+...
+
+export class DashNav extends Component {
+  //push to landing
+
+  render() {
+    return (
+      <nav style={dashNav}>
+        <NavLink to="/">
+          <img style={navBarLogo} src={logo} alt="logo" />
+        </NavLink>
+        <div className="navWrap">
+          <ul style={dashNavLinks} className="dashNavRight">
+            <NavLink style={navLink} exact to="/">
+              <li className="links">Home</li>
+            </NavLink>
+            <li style={{ paddingLeft: "15px" }}>
+              <button style={dashLogout} onClick={this.props.auth.logout}> //<==**here**
+                Logout
+              </button>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    );
+  }
+}
+
+export default DashNav;
+
+`}
+  </SyntaxHighlighter>
+</div>
+
+
+<div
+   style={{
+    margin: '10px 0px',
+    borderRadius: '8px',
+    padding: '5px',
+    background: 'black',
+    color:'white'
+  }}
+>
+  TopBar.js <span style={bLocation}>G1</span>
+  <SyntaxHighlighter
+    language="javascript"
+    style={atomOneDark}
+    showLineNumbers
+    useInlineStyles
+  >
+    {`export default class TopBar extends Component {
+
+...
+
+  tools = [
+    // 'Share',
+    // 'Print',
+    'Home',
+    'Save',
+    'Logout'
+  ]
+
+  clickHandler = type => {
+    switch(type) {
+      case 'Share':
+        // do something
+        break;
+      case 'Print':
+        // do something
+        break;
+      case 'Logout': 
+        return this.props.auth.logout(); //<==here
+
+      default: return;
+    }
+  }
+
+  render = () => (
+    <div style = { this.container }>
+      { this.tools.map(tool => (
+        <Tool 
+          key = { tool }
+          tool = { tool }
+          clickHandler = { this.clickHandler }
+        />
+      )) }
+    </div>
+  )
+}
+
+class Tool extends Component {
+  state = {
+    hover: false
+  }
+
+  btn = hover => ({
+    borderRadius: '100%',
+    padding: '10px',
+    border: '1px solid black',
+    background: hover ? 'black' : 'white',
+    color: hover ? 'white' : 'black',
+    cursor: 'pointer'
+  })
+
+  render() {
+    return (
+      <div 
+        // style = { this.btn(this.state.hover) }
+        style = {buttonStyle}
+        onMouseEnter = { this.state.hover ? null : () => this.setState({ hover: true }) }
+        onMouseLeave = { this.state.hover ? () => this.setState({ hover: false }) : null }
+        onClick = { () => this.props.clickHandler(this.props.tool) }
+      >
+        { this.props.tool }
+      </div>
+    )
+  }
+}
+`}
+  </SyntaxHighlighter>
+</div>
 
           </div>
-
-
+          <span id="7"></span>
+          <div style={sections}>
+            <h3 style={h3s}>Landing</h3>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
+            sed pariatur illum facilis modi neque, esse repellat iste ipsa
+            ipsum, fuga nobis! Vitae exercitationem incidunt impedit doloribus
+            distinctio! Delectus, aliquid. Lorem, ipsum dolor sit amet
+            consectetur adipisicing elit. Cumque odit excepturi fuga fugit quod,
+            odio aliquam nihil sint explicabo tempora minus ratione tempore
+            laborum nam repellendus esse iusto maiores alias. Lorem ipsum dolor,
+            sit amet consectetur adipisicing elit. Accusantium tenetur ab autem
+            eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
+            vitae labore enim natus quasi laborum culpa mollitia?
+          </div>
 
           <span id="8"></span>
           <div style={sections}>
@@ -1009,35 +1522,10 @@ export default Callback;
               </p>
             </div>
           </div>
+         
 
-          <span id="7"></span>
-          <div style={sections}>
-            <h3 style={h3s}>7th thing</h3>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
-            sed pariatur illum facilis modi neque, esse repellat iste ipsa
-            ipsum, fuga nobis! Vitae exercitationem incidunt impedit doloribus
-            distinctio! Delectus, aliquid. Lorem, ipsum dolor sit amet
-            consectetur adipisicing elit. Cumque odit excepturi fuga fugit quod,
-            odio aliquam nihil sint explicabo tempora minus ratione tempore
-            laborum nam repellendus esse iusto maiores alias. Lorem ipsum dolor,
-            sit amet consectetur adipisicing elit. Accusantium tenetur ab autem
-            eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
-            vitae labore enim natus quasi laborum culpa mollitia?
-          </div>
-          <span id="8"></span>
-          <div style={sections}>
-            <h3 style={h3s}>8th thing</h3>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
-            sed pariatur illum facilis modi neque, esse repellat iste ipsa
-            ipsum, fuga nobis! Vitae exercitationem incidunt impedit doloribus
-            distinctio! Delectus, aliquid. Lorem, ipsum dolor sit amet
-            consectetur adipisicing elit. Cumque odit excepturi fuga fugit quod,
-            odio aliquam nihil sint explicabo tempora minus ratione tempore
-            laborum nam repellendus esse iusto maiores alias. Lorem ipsum dolor,
-            sit amet consectetur adipisicing elit. Accusantium tenetur ab autem
-            eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
-            vitae labore enim natus quasi laborum culpa mollitia?
-          </div>
+        
+         
           <span id="9"></span>
           <div style={sections}>
             <h3 style={h3s}>9th thing</h3>
@@ -1122,9 +1610,9 @@ export default Callback;
             eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
             vitae labore enim natus quasi laborum culpa mollitia?
           </div>
-          <span id="15"></span>
+          <span id="backend"></span>
           <div style={sections}>
-            <h3 style={h3s}>15th thing</h3>
+            <h3 style={h3s}>Backend</h3>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
             sed pariatur illum facilis modi neque, esse repellat iste ipsa
             ipsum, fuga nobis! Vitae exercitationem incidunt impedit doloribus
@@ -1136,6 +1624,21 @@ export default Callback;
             eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
             vitae labore enim natus quasi laborum culpa mollitia?
           </div>
+          <span id="15"></span>
+          <div style={sections}>
+            <h3 style={h3s}>8th thing</h3>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
+            sed pariatur illum facilis modi neque, esse repellat iste ipsa
+            ipsum, fuga nobis! Vitae exercitationem incidunt impedit doloribus
+            distinctio! Delectus, aliquid. Lorem, ipsum dolor sit amet
+            consectetur adipisicing elit. Cumque odit excepturi fuga fugit quod,
+            odio aliquam nihil sint explicabo tempora minus ratione tempore
+            laborum nam repellendus esse iusto maiores alias. Lorem ipsum dolor,
+            sit amet consectetur adipisicing elit. Accusantium tenetur ab autem
+            eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
+            vitae labore enim natus quasi laborum culpa mollitia?
+          </div>
+
           <span id="16"></span>
           <div style={sections}>
             <h3 style={h3s}>F.A.Q</h3>
