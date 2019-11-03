@@ -15,7 +15,6 @@ const Image = props => {
               public_id={image.public_id}
               removeImage={props.removeImage}
               updateProject={props.updateProject}
-              fileName={props.fileName}
             />
           </>
         );

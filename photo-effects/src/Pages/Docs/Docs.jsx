@@ -3,7 +3,7 @@ import Navbar from '../Landing/components/nav/Navbar';
 import Diagram from '../../assetts/diagram.JPG';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { atomOneDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
-
+import dashState from "../../assetts/dashboardState.png";
 // import { HashLink as Link } from "react-router-hash-link";
 
 const Docs = ({ auth }) => {
@@ -94,7 +94,7 @@ const Docs = ({ auth }) => {
     { id: '6d', name: 'Callback.js', padding: '', indent: '20px' },
     { id: '6e', name: 'Authorization', padding: '', indent: '20px' },
     { id: 7, name: 'Landing', details: '', padding: '', indent: '' },
-    { id: 8, name: '8th Item', details: '', padding: '', indent: '' },
+    { id: 8, name: 'Dashboard', details: '', padding: '', indent: '' },
     { id: 9, name: '9th Item', details: '', padding: '', indent: '' },
     { id: 10, name: '10th Item', details: '', padding: '', indent: '' }
   ];
@@ -104,15 +104,16 @@ const Docs = ({ auth }) => {
     console.log(id);
 
     let element = document.getElementById(id);
-    element.scrollIntoView({ behavior: 'smooth' });
+    element.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
+    
     <div style={{ height: '937px', overflow: 'hidden', lineHeight: '22px' }}>
       <Navbar auth={auth} />
-      <div style={{ height: '105px' }}></div>
+      <div style={{ height: "105px" }}></div>
 
-      <div style={{ display: 'flex', flexDirection: 'row' }}>
+      <div style={{ display: "flex", flexDirection: "row" }}>
         <div style={menu}>
           <ul>
             {listItems.map(item => (
@@ -234,7 +235,7 @@ const Docs = ({ auth }) => {
                 </a>
               </li>
               <li>
-                {' '}
+                {" "}
                 <a
                   href="https://www.npmjs.com/package/auth0-js"
                   target="_blank"
@@ -321,7 +322,7 @@ const Docs = ({ auth }) => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {' '}
+                  {" "}
                   react-particles-js
                 </a>
               </li>
@@ -933,13 +934,82 @@ export default Callback;
 </div>
 
 
-
-
-
-
-
-
           </div>
+
+
+
+          <span id="8"></span>
+          <div style={sections}>
+            <h3 style={h3s}>Dashboard</h3>
+            <p>To find the Dashboard component go into Pages --> Dashboard.</p>
+            <div>
+              <img
+                style={{ width: "300px", height: "200px" }}
+                src={dashState} alt='screenshot'
+              />
+            </div>
+            <p>This is the state in Dashboard</p>
+            <p> users: Obtaining users from our backend</p>
+            <p>
+              images: This is where the image from cloudinary is stored
+              initially when the user chooses an image from their computer to
+              use via dragndrop or choosing file.
+            </p>
+            <p>
+              uploading: Used when user chooses a photo to tell them the photo
+              is waiting to load to be displayed from Cloudinary
+            </p>
+            <p>
+              error: Error will be displayed if user chooses image that is too
+              big or if trying to upload multiple images at once
+            </p>
+            <p>
+              inputKey: Needed to reset the "Choose File" option if user decides
+              to choose a differnt photo.(It's a little hack)
+            </p>
+            <p>exist: Used for conditional rendering</p>
+            <p>canvasprojects: Pulling projects from our backend</p>
+            <div>
+              <h3>Methods:</h3>
+              <p>
+                onChange: There are two of these in Dashboard.jsx. Two is needed
+                because one is used for when a user clicks "Choose File" and the
+                second is used if the user uploads a photo via DragNDrop.
+              </p>
+            </div>
+            <div>
+              <p>
+                {" "}
+                Dashboard has 4 components which are DashNav, Image, Projects,
+                and Upload
+              </p>
+              <p>DashNav is simply the component that deals with the navbar</p>
+              <p>
+                Image component also holds a component called PhotoLink. These
+                components deal with the image that is being displayed ot the
+                user. The image is being displayed by returning a "secure_url"
+                from Cloudinary. The image has all of the data coming back from
+                Cloudinary in Dashboard.jsx state mentioned above. In PhotoLink
+                is where the user can click "Go to canvas" or to "Choose a
+                different Image". Going to canvas will push the data to our
+                backend(see the info pushed in PhotoLink component) and "Choose
+                a different image" will delete the image from Cloudinary and
+                allow the user to choose another image
+              </p>
+              <p>
+                Projects is the component that displays the specific user's
+                projects on the bottom of the Dashboard page. It is being mapped
+                from canvasprojects from the state in Dashboard.jsx. A user can
+                click on a photo to go to the canvas with the image displayed
+                and edit the image{" "}
+              </p>
+              <p>
+                Upload component has the react-dragndrop code for when a user
+                wants to choose a file to upload
+              </p>
+            </div>
+          </div>
+
           <span id="7"></span>
           <div style={sections}>
             <h3 style={h3s}>7th thing</h3>
