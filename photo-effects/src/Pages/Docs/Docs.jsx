@@ -1,11 +1,16 @@
 import React, {useState} from 'react';
 import Navbar from '../Landing/components/nav/Navbar';
+
 //images
 import Diagram from '../../assetts/diagram.JPG';
 import LocalStorageImg from '../../assetts/local storage.JPG';
 import Door from '../../assetts/exitdoor.JPG';
 import Exit from '../../assetts/logout.JPG';
 import dashState from "../../assetts/dashboardState.png";
+import Navout from "../../assetts/navout.JPG";
+import Navin from "../../assetts/navin.JPG";
+import Heropic from "../../assetts/hero.JPG";
+import Tagpic from "../../assetts/tags.JPG";
 //code snippets
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { atomOneDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
@@ -63,11 +68,12 @@ const Docs = ({ auth }) => {
 
   const menu = {
     width: '270px',
+    height: '100%',
     padding: '10',
     paddingTop: '20px ',
     paddingLeft: '16px',
     paddingRight: '12px',
-    height: '850px',
+    // height: '850px',
     overflow: 'auto',
     background: '#FC5185',
     color: '#E5E5E6',
@@ -80,10 +86,12 @@ const Docs = ({ auth }) => {
     width: '100%',
     paddingLeft: '20px',
     paddingRight: '80px',
-    height: '850px',
+    // height: '850px',
+    height: '100%',
     fontSize: '16px',
-    margin: '5px',
-    overflow: 'auto'
+    overflow: 'auto',
+    background:'#EAEAEA',
+    margin:'0px'
   };
 
   const listItems = [
@@ -118,15 +126,22 @@ const Docs = ({ auth }) => {
     { id: '6f', name: 'Tokens/Ids', padding: '', indent: '20px', drop:'none' },
     { id: '6g', name: 'Logout', padding: '', indent: '20px', drop:'none' },
     { id: 7, name: 'Landing', details: '', padding: '', indent: '', drop:'block' },
-    { id: '7a', name: '', padding: '', indent: '20px', drop:'none' },
-    { id: '7b', name: '', padding: '', indent: '20px', drop:'none' },
-    { id: '7c', name: '', padding: '', indent: '20px', drop:'none' },
-    { id: '7d', name: '', padding: '', indent: '20px', drop:'none' },
-    { id: '7e', name: '', padding: '', indent: '20px', drop:'none' },
-    { id: '7f', name: '', padding: '', indent: '20px', drop:'none' },
+    { id: '7a', name: 'NavBar', padding: '', indent: '20px', drop:'none' },
+    { id: '7b', name: 'Hero', padding: '', indent: '20px', drop:'none' },
+    { id: '7c', name: 'Tags', padding: '', indent: '20px', drop:'none' },
+    { id: '7d', name: 'TagsCont', padding: '', indent: '20px', drop:'none' },
     { id: 8, name: 'Dashboard', details: '', padding: '', indent: '', drop:'block' },
+    { id: '8a', name: '', details: '', padding: '', indent: '20px', drop:'block' },
+    { id: '8b', name: '', details: '', padding: '', indent:'20px', drop:'block' },
+    { id: '8c', name: '', details: '', padding: '', indent:'20px', drop:'block' },
     { id: 9, name: '9th Item', details: '', padding: '', indent: '', drop:'block' },
+    { id: '9a', name: '', details: '', padding: '', indent:'20px', drop:'block' },
+   
+    { id: '9b', name: '', details: '', padding: '', indent:'20px', drop:'block' },
+    { id: '9c', name: '', details: '', padding: '', indent:'20px', drop:'block' },
+    { id: 17, name: 'Known Issues', details: '', padding: '', indent:'20px', drop:'block' },
     { id: 'Backend', name: '', details: '', padding: '', indent: '', drop:'block' },
+    
   ];
 
   const scrollFunc = id => {
@@ -141,11 +156,11 @@ const Docs = ({ auth }) => {
 
   return (
     
-    <div style={{ height: '937px', overflow: 'hidden', lineHeight: '22px' }}>
+    <div style={{ height: '937px', overflow: 'hidden', lineHeight: '22px', background: '#FC5185' }}>
       <Navbar auth={auth} />
-      <div style={{ height: "105px" }}></div>
+      <div style={{ height: "101px" }}></div>
 
-      <div style={{ display: "flex", flexDirection: "row" }}>
+      <div style={{ display: "flex", flexDirection: "row", height:'88.5vh' }}>
         <div style={menu}>
           <ul>
             {listItems.map(item => (
@@ -466,7 +481,7 @@ const Docs = ({ auth }) => {
             , which is available in Google Drive.
             <p style={{ marginTop: '10px' }}>
               The diagram has folders in yellow. Each folder is given a letter.
-              The letter are roughly in alphabetical order left to right to help
+              The letters are roughly in alphabetical order left to right to help
               you quickly find what you need and navigate the diagram. The
               letters are stictly for navigation and doesn't correspond to the
               folder structure itself in VSCode. Each file within the folders
@@ -501,7 +516,7 @@ const Docs = ({ auth }) => {
               green.{' '}
             </p>
             <p style={{ marginTop: '10px' }}>
-              Throughout the docs we will reference the diagram to point out
+              Throughout the docs, we will reference the diagram to point out
               important things such as the location of components or where
               top-level state is located because this project has lots of {' '}
               <a
@@ -528,7 +543,7 @@ const Docs = ({ auth }) => {
             <h3 style={h3s}>Authorization/Security</h3>
             <ul>
               <li>
-                Location: <span style={yLocation}>F</span>,{' '}
+                Location: <span style={yLocation}>N</span>,{' '}
                 <span style={yLocation}>G</span>
               </li>
               <li>
@@ -571,7 +586,7 @@ const Docs = ({ auth }) => {
             </ul>
             <span id="6a"></span>
             <h4  style={h4s}>Getting Started</h4>
-            Auth0 is what we use to manage security features. So we don't have to worry about it. There is quite a learning curve so **Before messing with
+            Auth0 is what we use to manage security features so we don't have to worry about it. There is quite a learning curve so **Before messing with
             anything in the code, read through the Getting Started tutorial on
             the Auth0 site.**
             <p style={{background:'#FC5185', color:'#EAEAEA', width:'350px', padding:'5px', textDecoration:'none', borderRadius:'8px', margin:'10px 0px'}}> <a
@@ -699,7 +714,7 @@ setSession = authResult => {
               </SyntaxHighlighter>
             </div>
             <p>
-              Props from the above functions are exported from Auth.js
+              Props from the above functions are exported from Auth.js {' '}
                 <span style={yLocation}>G1</span> and then imported into App.js <span style={bLocation}>A4</span>, which allows us to use them in any of the other components in the application. 
             </p>
             <div
@@ -807,7 +822,7 @@ export default class App extends Component {
             <span id="6c"></span>
             <h4  style={h4s}>WithAuth.js </h4> 
             </p>
-            <p>The Auth.js componenent <span style={bLocation}>G2</span> is script that will redirect any user who tries to access protected routes without logging in. It redirects the user back to the the landing page. Changing the route being passed on line 9 will redirect them user to wherever you choose.</p>
+            <p>The withAuth.js componenent <span style={bLocation}>G2</span> is script that will redirect any user who tries to access protected routes without logging in. It redirects the user back to the the landing page. Changing the route being passed on line 9 will redirect them user to wherever you choose.</p>
 
             <div
                style={{
@@ -971,7 +986,7 @@ export default Callback;
   </SyntaxHighlighter>
 </div>
 
-<p>This allows us access to user data. immediately after setSession is triggered, getId's is also triggered.</p>
+<p>This allows us access to user data from Google. Immediately after setSession is triggered, getId's is also triggered.</p>
 <p>
   getId's creates a newUser object which includes the <span style={bold}> email</span>,<span style={bold}> user_id </span>and <span style={bold}>name</span>, all pulled in from Auth0 using thier native function getProfile(). 
 </p>
@@ -1089,7 +1104,7 @@ If the user already exists, then the POST call will send back an error message, 
   <span id="6f"></span>
 </div>
 
-<p>Once all of the functions in Auth.js <span style={bLocation}>G1</span> have run, all the data we need to access the individual user's data and begin a new project should be in local storage and ready to be used.</p>
+<p>Once all of the functions in Auth.js <span style={bLocation}>G1</span> have run, all the data we need to access the individual user's existing projects or to create a new project in the database should be available in local storage.</p>
 <p style={liSpace}> Local storage should look like this: </p>
 
 <img src={LocalStorageImg} alt="localstorage" style={{borderRadius:'8px', border:'1px solid black', margin: 'auto', width: '100%'}}/>
@@ -1227,30 +1242,9 @@ class A extends Component {
     const { link, isLoggedIn } = this.props;
     const { name, element } = link;
 
-    const loginbutton = {
-      backgroundColor: "#fc5185",
-      padding: "12px",
-      transform: hover ? "scale(1.1)" : "scale(1)",
-      transition: hover ? "ease-in-out 0.1s" : "null",
-      borderRadius: "8px",
-      color: "whitesmoke",
-      boxShadow: "-1px 1px 90px -2px rgba(240,240,240,1)",
-      border: "none",
-      fontSize: "2rem",
-      cursor: "pointer"
-    };
 
-    const smallnavlinks = {
-      marginTop: "10px",
-      transform: hover ? "scale(1.1)" : "scale(1)",
-      transition: hover ? "ease-in-out 0.1s" : "null"
-    };
+   ...
 
-    const linkStyle = {
-      textDecoration: "none",
-      color: name === "Dashboard" ? "inherit" : "whitesmoke",
-      padding: name === "Dashboard" ? "inherit" : null
-    };
 
     return element === "button" ? (
       <li>
@@ -1384,7 +1378,7 @@ export default DashNav;
         // do something
         break;
       case 'Logout': 
-        return this.props.auth.logout(); //<==here
+        return this.props.auth.logout(); //<== **here**
 
       default: return;
     }
@@ -1439,22 +1433,262 @@ class Tool extends Component {
           <span id="7"></span>
           <div style={sections}>
             <h3 style={h3s}>Landing</h3>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
-            sed pariatur illum facilis modi neque, esse repellat iste ipsa
-            ipsum, fuga nobis! Vitae exercitationem incidunt impedit doloribus
-            distinctio! Delectus, aliquid. Lorem, ipsum dolor sit amet
-            consectetur adipisicing elit. Cumque odit excepturi fuga fugit quod,
-            odio aliquam nihil sint explicabo tempora minus ratione tempore
-            laborum nam repellendus esse iusto maiores alias. Lorem ipsum dolor,
-            sit amet consectetur adipisicing elit. Accusantium tenetur ab autem
-            eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
-            vitae labore enim natus quasi laborum culpa mollitia?
+            <ul>
+              <li>
+                Location: <span style={yLocation}>F</span>
+              </li>
+              <li>
+                Depencies:{' '}
+                <a
+                  href="https://www.npmjs.com/package/axios"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  axios
+                </a>
+                ,{' '}
+                <a
+                  href="https://www.npmjs.com/package/react-id-swiper"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  react-id-swiper
+                </a>
+                ,{' '}
+                <a
+                  href="https://www.npmjs.com/package/swiper"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  swiper
+                </a>
+                ,{' '}
+                <a
+                  href="https://www.npmjs.com/package/react-particles-js"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                 react-particles-js
+                </a>,{' '}
+                <a
+                  href="https://www.npmjs.com/package/react-reveal"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                 react-reveal
+                </a>{' '}
+              </li>
+              <li>
+                Where is State? : Modal State - <span style={bLocation}>EE2</span>, Sort by Tags - <span style={bLocation}>BB1</span>,  Filter Published projects - <span style={bLocation}>EE3</span>, NavBar Hover State - <span style={bLocation}>Z1</span>, 
+              </li>
+            </ul>
+          
+            <span id="7a"></span>
+            <h4  style={h4s}>NavBar <span style={bLocation}>Z1</span></h4>
+            <p>
+  Much of what you need to know about the navbar was addressed in the <span onClick={()=>{scrollFunc('6e')}} style={boldpointer}>Authorization</span>  section.
+            </p>
+            
+            <img src={Navout}alt="navout" style={{width:'100%', borderRadius:'8px', border:' 1px solid black'}}/>
+            <img src={Navin} alt="navin" style={{width:'100%',borderRadius:'8px', border:' 1px solid black'}}/>
+<p>
+  It render's conditionally based on if the user is logged in or logged out of Auth0. The code looks more complicated than a navbar normally would be, but this is what is required to have a working onHover without use of CSS stylesheets. <br/>
+  I love CSS...it's the best...seriously...this is what you would have to go through for a simple onHover <span onClick={()=>scrollFunc('css')} style={boldpointer}>without CSS</span>.
+
+</p>
+<span id="7b"></span>
+            <h4  style={h4s}>Hero <span style={bLocation}>AA1</span> & <span style={bLocation}>AA3</span></h4>
+            <p style={liSpace}>
+  The hero is composed of two simple stateless components. The only thing to know is that the bubbles are from a dependency called React-Particles. The Particles effect is in the HeroBg.js component, which is set with absolute positioning and floating behind the Hero.jsx component. Particles can be tricky to position correctly, but looks great, and a lot of fun to play with (the bubbles move when you click on them!)
+            </p>
+
+            
+            <img src={Heropic}alt="hero" style={{width:'100%',borderRadius:'8px', border:' 1px solid black'}}/>
+            
+            <span id="7c"></span>
+            <h4  style={h4s}>Tags <span style={bLocation}>BB1</span> </h4>
+            <p style={liSpace}>
+The TagsCont.jsx component is fully functional. It appears to not be working on the landing page because the cards do not contain any tags. This is due to there not being a "tags" input in dashboard or canvas just yet. This was an intended feature, but was not included fully due to time constraints. A tags category is available in the backend already. Once a mechanism to update tags on the saved projects is built, and tags mapped into the cards on the landing page, the filter it will work just fine.
+            </p>
+
+            
+            <img src={Tagpic}alt="hero" style={{width:'100%',borderRadius:'8px', border:' 1px solid black', marginTop:'10px'}}/>
+
+            <p>
+              The clicked tag name is sent from TagsCont.jsx to WaterfallCont.jsx through props, and used to filter results coming from the heroku backend.
+            </p>
+
+            <div
+              style={{
+                margin: '10px 0px',
+                borderRadius: '8px',
+                padding: '5px',
+                background: 'black',
+                color:'white'
+              }}
+            >
+              TagsCont.jsx <span style={bLocation}>BB1</span> 
+              <SyntaxHighlighter
+                language="javascript"
+                style={atomOneDark}
+                showLineNumbers
+                useInlineStyles
+              >
+                {`import React, { useState } from 'react';
+import Swiper from 'react-id-swiper';
+import WaterfallCont from './waterfall/waterfallCont';
+// css
+import 'react-id-swiper/lib/styles/css/swiper.css';
+import './tagscont.css';
+
+const TagsCont = props => {
+
+...
+
+  const [sortedpics, setSortedpics] = useState('');
+
+  const Sortedpics = tag => {
+    setSortedpics(tag);
+  };
+  console.log(sortedpics);
+  return (
+    <div style={{ background: '#42DDE5', paddingBottom: '10px' }}>
+      <Swiper {...params}>
+        {topics.map(topic => (
+          <div
+            key={topic.tag}
+            onClick={() => Sortedpics(topic.tag)}
+            style={{
+              background: topic.bgColor,
+              display: 'flex',
+              justifyContent: 'center',
+              padding: '10px',
+              borderRadius: '8px',
+              boxShadow: ' 1px -1px 6px -1px rgba(0,0,0,0.29)',
+              marginBottom: '10px'
+            }}
+          >
+            <p style={tagDesign}>{topic.tag}</p>
           </div>
+        ))}
+      </Swiper>
+      <div style={{ position: 'relative' }}>
+        <WaterfallCont sortBy={sortedpics} />
+      </div>
+    </div>
+  );
+};
+export default TagsCont; 
+
+`}
+              </SyntaxHighlighter>
+            </div>
+
+<h4>Waterfall</h4>  
+
+            <div
+              style={{
+                margin: '10px 0px',
+                borderRadius: '8px',
+                padding: '5px',
+                background: 'black',
+                color:'white'
+              }}
+            >
+              WaterfallCont.jsx <span style={bLocation}>EE3</span> 
+              <SyntaxHighlighter
+                language="javascript"
+                style={atomOneDark}
+                showLineNumbers
+                useInlineStyles
+              >
+                {`import React, { useEffect, useState } from "react";
+import Photolist from "./Photolist";
+import Footer from "../../../components/Footer/Footer";
+import "./waterfall.css";
+import axios from "axios";
+
+...
+
+const WaterfallCont = props => {
+  const [pics, setPics] = useState([]);
+  useEffect(() => {
+    axios
+      .get(
+        "https://photo-effects-backend-stage-1.herokuapp.com/canvas/published"
+      )
+      .then(res => {
+        setPics(res.data);
+      });
+  }, []);
+  const filteredpics = pics.filter(pic => pic.tags ===\`\${props.sortBy}\`);
+  return (
+    <div style={waterfallCont}>
+      <Photolist pics={filteredpics.length === 0 ? pics : filteredpics} />
+      <Footer />
+    </div>
+  );
+};
+export default WaterfallCont;
+
+`}
+              </SyntaxHighlighter>
+            </div>
+
+<p>
+  The filtered projects are then passed down through props to Photolist.jsx <span style={bLocation}>EE2</span>. This component maps the projects out as individual cards, and also contains the code to show each card as a large modal for the user to browse through. The cards are wrapped in a 'Fade' tag, which gives the cool fade-in effect on the landing page. The dependency that does this is call <a href="https://www.npmjs.com/package/react-reveal" target="_blank" rel="noopener noreferrer"  style={boldpointer}> React-Reveal</a>. They have really easy to follow docs.
+</p>
+          </div>
+
+
+
 
           <span id="8"></span>
           <div style={sections}>
             <h3 style={h3s}>Dashboard</h3>
-            <p>To find the Dashboard component go into Pages --> Dashboard.</p>
+             <ul>
+              <li>
+                Location: <span style={yLocation}>K</span>,{' '}
+                <span style={yLocation}>G</span>
+              </li>
+              <li>
+                Depencies:{' '}
+                <a
+                  href="https://www.npmjs.com/package/auth0"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  auth0
+                </a>
+                ,{' '}
+                <a
+                  href="https://www.npmjs.com/package/auth0-js"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  auth0-js
+                </a>
+                ,{' '}
+                <a
+                  href="https://www.npmjs.com/package/auth0-lock"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  auth0-lock
+                </a>
+                ,{' '}
+                <a
+                  href="https://www.npmjs.com/package/jwt-decode"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  jwt-decode
+                </a>{' '}
+              </li>
+              <li>
+                Where is State? : <span style={bLocation}>G1</span>
+              </li>
+            </ul>
             <div>
               <img
                 style={{ width: "300px", height: "200px" }}
@@ -1528,7 +1762,7 @@ class Tool extends Component {
          
           <span id="9"></span>
           <div style={sections}>
-            <h3 style={h3s}>9th thing</h3>
+            <h3 style={h3s}>title</h3>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
             sed pariatur illum facilis modi neque, esse repellat iste ipsa
             ipsum, fuga nobis! Vitae exercitationem incidunt impedit doloribus
@@ -1542,7 +1776,7 @@ class Tool extends Component {
           </div>
           <span id="10"></span>
           <div style={sections}>
-            <h3 style={h3s}>10th thing</h3>
+            <h3 style={h3s}>title</h3>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
             sed pariatur illum facilis modi neque, esse repellat iste ipsa
             ipsum, fuga nobis! Vitae exercitationem incidunt impedit doloribus
@@ -1556,7 +1790,7 @@ class Tool extends Component {
           </div>
           <span id="11"></span>
           <div style={sections}>
-            <h3 style={h3s}>11th thing</h3>
+            <h3 style={h3s}>title</h3>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
             sed pariatur illum facilis modi neque, esse repellat iste ipsa
             ipsum, fuga nobis! Vitae exercitationem incidunt impedit doloribus
@@ -1570,7 +1804,7 @@ class Tool extends Component {
           </div>
           <span id="12"></span>
           <div style={sections}>
-            <h3 style={h3s}>12th thing</h3>
+            <h3 style={h3s}>title</h3>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
             sed pariatur illum facilis modi neque, esse repellat iste ipsa
             ipsum, fuga nobis! Vitae exercitationem incidunt impedit doloribus
@@ -1584,7 +1818,7 @@ class Tool extends Component {
           </div>
           <span id="13"></span>
           <div style={sections}>
-            <h3 style={h3s}>13th thing</h3>
+            <h3 style={h3s}>title</h3>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
             sed pariatur illum facilis modi neque, esse repellat iste ipsa
             ipsum, fuga nobis! Vitae exercitationem incidunt impedit doloribus
@@ -1598,7 +1832,7 @@ class Tool extends Component {
           </div>
           <span id="14"></span>
           <div style={sections}>
-            <h3 style={h3s}>14th thing</h3>
+            <h3 style={h3s}>title</h3>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
             sed pariatur illum facilis modi neque, esse repellat iste ipsa
             ipsum, fuga nobis! Vitae exercitationem incidunt impedit doloribus
@@ -1626,7 +1860,7 @@ class Tool extends Component {
           </div>
           <span id="15"></span>
           <div style={sections}>
-            <h3 style={h3s}>8th thing</h3>
+            <h3 style={h3s}>title</h3>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
             sed pariatur illum facilis modi neque, esse repellat iste ipsa
             ipsum, fuga nobis! Vitae exercitationem incidunt impedit doloribus
@@ -1667,9 +1901,10 @@ class Tool extends Component {
                   you sometimes. Have fun refactoring!{' '}
                 </p>
               </li>
+              <span id='css'></span>
               <li>
                 <p style={{ fontWeight: 'bold' }}>
-                  Q. What's with all the javascript styling? Why did you use CSS
+                  Q. What's with all the javascript styling? Why didn't you use CSS?
                 </p>
                 <p>
                   A. There is good reason for this. CSS stylesheets have a
@@ -1679,10 +1914,10 @@ class Tool extends Component {
                   almost constantly, particularly on the canvas components as it
                   has to re-render whenever the user updates their picture. If
                   CSS is thrown into the mix, it will NOTICABLY slow down that
-                  process and make the app almost unuable. If you incorporate
+                  process and make the app almost unusable. If you incorporate
                   CSS, try to only use it on the landing page or some other part
                   of the app that doesn't re-rending frequently. We use CSS
-                  extremely sparingly.
+                  extremely sparingly throughout the project. Many of the existing CSS pages are vestigial and just havn't been deleted yet.
                 </p>
               </li>
               <li>
@@ -1699,8 +1934,81 @@ class Tool extends Component {
               </li>
             </ul>
           </div>
+
+          <span id="17"></span>
+          <div style={sections}>
+            <h3 style={h3s}>Known Issues</h3>
+            <ul>
+              <li id="jsx">
+               
+              </li>
+              <li>
+               Input to add tags to projects not yet completed.
+              </li>
+              <li>
+               When modals are open, the size of the images in the background also get huge. 
+              </li>
+              <li>
+                The project is not fully responsive or mobile friendly.
+              </li>
+              <li>
+               
+              </li>
+              <li>
+              
+              </li>
+            </ul>
+          </div>
+
+          <span id="18"></span>
+          <div style={sections}>
+            <h3 style={h3s}>thing</h3>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
+            sed pariatur illum facilis modi neque, esse repellat iste ipsa
+            ipsum, fuga nobis! Vitae exercitationem incidunt impedit doloribus
+            distinctio! Delectus, aliquid. Lorem, ipsum dolor sit amet
+            consectetur adipisicing elit. Cumque odit excepturi fuga fugit quod,
+            odio aliquam nihil sint explicabo tempora minus ratione tempore
+            laborum nam repellendus esse iusto maiores alias. Lorem ipsum dolor,
+            sit amet consectetur adipisicing elit. Accusantium tenetur ab autem
+            eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
+            vitae labore enim natus quasi laborum culpa mollitia?
+          </div>
+          <span id="18"></span>
+          <div style={sections}>
+            <h3 style={h3s}>thing</h3>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
+            sed pariatur illum facilis modi neque, esse repellat iste ipsa
+            ipsum, fuga nobis! Vitae exercitationem incidunt impedit doloribus
+            distinctio! Delectus, aliquid. Lorem, ipsum dolor sit amet
+            consectetur adipisicing elit. Cumque odit excepturi fuga fugit quod,
+            odio aliquam nihil sint explicabo tempora minus ratione tempore
+            laborum nam repellendus esse iusto maiores alias. Lorem ipsum dolor,
+            sit amet consectetur adipisicing elit. Accusantium tenetur ab autem
+            eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
+            vitae labore enim natus quasi laborum culpa mollitia?
+          </div>
+          <span id="18"></span>
+          <div style={sections}>
+            <h3 style={h3s}>thing</h3>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
+            sed pariatur illum facilis modi neque, esse repellat iste ipsa
+            ipsum, fuga nobis! Vitae exercitationem incidunt impedit doloribus
+            distinctio! Delectus, aliquid. Lorem, ipsum dolor sit amet
+            consectetur adipisicing elit. Cumque odit excepturi fuga fugit quod,
+            odio aliquam nihil sint explicabo tempora minus ratione tempore
+            laborum nam repellendus esse iusto maiores alias. Lorem ipsum dolor,
+            sit amet consectetur adipisicing elit. Accusantium tenetur ab autem
+            eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
+            vitae labore enim natus quasi laborum culpa mollitia?
+          </div>
+
+
+
+
         </div>
       </div>
+     
     </div>
   );
 };
