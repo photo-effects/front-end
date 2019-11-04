@@ -129,18 +129,26 @@ const Docs = ({ auth }) => {
     { id: '7a', name: 'NavBar', padding: '', indent: '20px', drop:'none' },
     { id: '7b', name: 'Hero', padding: '', indent: '20px', drop:'none' },
     { id: '7c', name: 'Tags', padding: '', indent: '20px', drop:'none' },
-    { id: '7d', name: 'TagsCont', padding: '', indent: '20px', drop:'none' },
+    { id: '7d', name: 'Waterfall', padding: '', indent: '20px', drop:'none' },
     { id: 8, name: 'Dashboard', details: '', padding: '', indent: '', drop:'block' },
     { id: '8a', name: '', details: '', padding: '', indent: '20px', drop:'block' },
     { id: '8b', name: '', details: '', padding: '', indent:'20px', drop:'block' },
     { id: '8c', name: '', details: '', padding: '', indent:'20px', drop:'block' },
-    { id: 9, name: '9th Item', details: '', padding: '', indent: '', drop:'block' },
+    { id: 9, name: 'Canvas', details: '', padding: '', indent: '', drop:'block' },
     { id: '9a', name: '', details: '', padding: '', indent:'20px', drop:'block' },
    
     { id: '9b', name: '', details: '', padding: '', indent:'20px', drop:'block' },
     { id: '9c', name: '', details: '', padding: '', indent:'20px', drop:'block' },
-    { id: 17, name: 'Known Issues', details: '', padding: '', indent:'20px', drop:'block' },
-    { id: 'Backend', name: '', details: '', padding: '', indent: '', drop:'block' },
+  
+    { id: 10, name: 'Back End', details: '', padding: '', indent: '', 
+    drop:'block' }, 
+    
+    { id: '10a', name: '', details: '', padding: '', indent:'20px', drop:'block' },
+   
+    { id: '10b', name: '', details: '', padding: '', indent:'20px', drop:'block' },
+    { id: '10c', name: '', details: '', padding: '', indent:'20px', drop:'block' },
+    { id: 11, name: 'F.A.Q', details: '', padding: '', indent:'', drop:'block' },
+    { id: 12, name: 'Known Issues', details: '', padding: '', indent:'', drop:'block' },
     
   ];
 
@@ -1583,7 +1591,7 @@ export default TagsCont;
 `}
               </SyntaxHighlighter>
             </div>
-
+            <span id="7d"></span>
 <h4>Waterfall</h4>  
 
             <div
@@ -1757,12 +1765,9 @@ export default WaterfallCont;
             </div>
           </div>
          
-
-        
-         
           <span id="9"></span>
           <div style={sections}>
-            <h3 style={h3s}>title</h3>
+            <h3 style={h3s}>Canvas</h3>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
             sed pariatur illum facilis modi neque, esse repellat iste ipsa
             ipsum, fuga nobis! Vitae exercitationem incidunt impedit doloribus
@@ -1774,77 +1779,8 @@ export default WaterfallCont;
             eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
             vitae labore enim natus quasi laborum culpa mollitia?
           </div>
+
           <span id="10"></span>
-          <div style={sections}>
-            <h3 style={h3s}>title</h3>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
-            sed pariatur illum facilis modi neque, esse repellat iste ipsa
-            ipsum, fuga nobis! Vitae exercitationem incidunt impedit doloribus
-            distinctio! Delectus, aliquid. Lorem, ipsum dolor sit amet
-            consectetur adipisicing elit. Cumque odit excepturi fuga fugit quod,
-            odio aliquam nihil sint explicabo tempora minus ratione tempore
-            laborum nam repellendus esse iusto maiores alias. Lorem ipsum dolor,
-            sit amet consectetur adipisicing elit. Accusantium tenetur ab autem
-            eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
-            vitae labore enim natus quasi laborum culpa mollitia?
-          </div>
-          <span id="11"></span>
-          <div style={sections}>
-            <h3 style={h3s}>title</h3>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
-            sed pariatur illum facilis modi neque, esse repellat iste ipsa
-            ipsum, fuga nobis! Vitae exercitationem incidunt impedit doloribus
-            distinctio! Delectus, aliquid. Lorem, ipsum dolor sit amet
-            consectetur adipisicing elit. Cumque odit excepturi fuga fugit quod,
-            odio aliquam nihil sint explicabo tempora minus ratione tempore
-            laborum nam repellendus esse iusto maiores alias. Lorem ipsum dolor,
-            sit amet consectetur adipisicing elit. Accusantium tenetur ab autem
-            eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
-            vitae labore enim natus quasi laborum culpa mollitia?
-          </div>
-          <span id="12"></span>
-          <div style={sections}>
-            <h3 style={h3s}>title</h3>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
-            sed pariatur illum facilis modi neque, esse repellat iste ipsa
-            ipsum, fuga nobis! Vitae exercitationem incidunt impedit doloribus
-            distinctio! Delectus, aliquid. Lorem, ipsum dolor sit amet
-            consectetur adipisicing elit. Cumque odit excepturi fuga fugit quod,
-            odio aliquam nihil sint explicabo tempora minus ratione tempore
-            laborum nam repellendus esse iusto maiores alias. Lorem ipsum dolor,
-            sit amet consectetur adipisicing elit. Accusantium tenetur ab autem
-            eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
-            vitae labore enim natus quasi laborum culpa mollitia?
-          </div>
-          <span id="13"></span>
-          <div style={sections}>
-            <h3 style={h3s}>title</h3>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
-            sed pariatur illum facilis modi neque, esse repellat iste ipsa
-            ipsum, fuga nobis! Vitae exercitationem incidunt impedit doloribus
-            distinctio! Delectus, aliquid. Lorem, ipsum dolor sit amet
-            consectetur adipisicing elit. Cumque odit excepturi fuga fugit quod,
-            odio aliquam nihil sint explicabo tempora minus ratione tempore
-            laborum nam repellendus esse iusto maiores alias. Lorem ipsum dolor,
-            sit amet consectetur adipisicing elit. Accusantium tenetur ab autem
-            eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
-            vitae labore enim natus quasi laborum culpa mollitia?
-          </div>
-          <span id="14"></span>
-          <div style={sections}>
-            <h3 style={h3s}>title</h3>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
-            sed pariatur illum facilis modi neque, esse repellat iste ipsa
-            ipsum, fuga nobis! Vitae exercitationem incidunt impedit doloribus
-            distinctio! Delectus, aliquid. Lorem, ipsum dolor sit amet
-            consectetur adipisicing elit. Cumque odit excepturi fuga fugit quod,
-            odio aliquam nihil sint explicabo tempora minus ratione tempore
-            laborum nam repellendus esse iusto maiores alias. Lorem ipsum dolor,
-            sit amet consectetur adipisicing elit. Accusantium tenetur ab autem
-            eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
-            vitae labore enim natus quasi laborum culpa mollitia?
-          </div>
-          <span id="backend"></span>
           <div style={sections}>
             <h3 style={h3s}>Backend</h3>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
@@ -1857,23 +1793,10 @@ export default WaterfallCont;
             sit amet consectetur adipisicing elit. Accusantium tenetur ab autem
             eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
             vitae labore enim natus quasi laborum culpa mollitia?
-          </div>
-          <span id="15"></span>
-          <div style={sections}>
-            <h3 style={h3s}>title</h3>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
-            sed pariatur illum facilis modi neque, esse repellat iste ipsa
-            ipsum, fuga nobis! Vitae exercitationem incidunt impedit doloribus
-            distinctio! Delectus, aliquid. Lorem, ipsum dolor sit amet
-            consectetur adipisicing elit. Cumque odit excepturi fuga fugit quod,
-            odio aliquam nihil sint explicabo tempora minus ratione tempore
-            laborum nam repellendus esse iusto maiores alias. Lorem ipsum dolor,
-            sit amet consectetur adipisicing elit. Accusantium tenetur ab autem
-            eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
-            vitae labore enim natus quasi laborum culpa mollitia?
-          </div>
-
-          <span id="16"></span>
+          </div>      
+         
+         
+          <span id="11"></span>
           <div style={sections}>
             <h3 style={h3s}>F.A.Q</h3>
             <ul>
@@ -1935,11 +1858,11 @@ export default WaterfallCont;
             </ul>
           </div>
 
-          <span id="17"></span>
+          <span id="12"></span>
           <div style={sections}>
             <h3 style={h3s}>Known Issues</h3>
             <ul>
-              <li id="jsx">
+              <li >
                
               </li>
               <li>
@@ -1960,7 +1883,82 @@ export default WaterfallCont;
             </ul>
           </div>
 
-          <span id="18"></span>
+          <span id=""></span>
+          <div style={sections}>
+            <h3 style={h3s}>title</h3>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
+            sed pariatur illum facilis modi neque, esse repellat iste ipsa
+            ipsum, fuga nobis! Vitae exercitationem incidunt impedit doloribus
+            distinctio! Delectus, aliquid. Lorem, ipsum dolor sit amet
+            consectetur adipisicing elit. Cumque odit excepturi fuga fugit quod,
+            odio aliquam nihil sint explicabo tempora minus ratione tempore
+            laborum nam repellendus esse iusto maiores alias. Lorem ipsum dolor,
+            sit amet consectetur adipisicing elit. Accusantium tenetur ab autem
+            eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
+            vitae labore enim natus quasi laborum culpa mollitia?
+          </div>
+
+          <span id=""></span>
+          <div style={sections}>
+            <h3 style={h3s}>title</h3>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
+            sed pariatur illum facilis modi neque, esse repellat iste ipsa
+            ipsum, fuga nobis! Vitae exercitationem incidunt impedit doloribus
+            distinctio! Delectus, aliquid. Lorem, ipsum dolor sit amet
+            consectetur adipisicing elit. Cumque odit excepturi fuga fugit quod,
+            odio aliquam nihil sint explicabo tempora minus ratione tempore
+            laborum nam repellendus esse iusto maiores alias. Lorem ipsum dolor,
+            sit amet consectetur adipisicing elit. Accusantium tenetur ab autem
+            eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
+            vitae labore enim natus quasi laborum culpa mollitia?
+          </div>
+
+          <span id=""></span>
+          <div style={sections}>
+            <h3 style={h3s}>title</h3>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
+            sed pariatur illum facilis modi neque, esse repellat iste ipsa
+            ipsum, fuga nobis! Vitae exercitationem incidunt impedit doloribus
+            distinctio! Delectus, aliquid. Lorem, ipsum dolor sit amet
+            consectetur adipisicing elit. Cumque odit excepturi fuga fugit quod,
+            odio aliquam nihil sint explicabo tempora minus ratione tempore
+            laborum nam repellendus esse iusto maiores alias. Lorem ipsum dolor,
+            sit amet consectetur adipisicing elit. Accusantium tenetur ab autem
+            eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
+            vitae labore enim natus quasi laborum culpa mollitia?
+          </div>
+
+          <span id=""></span>
+          <div style={sections}>
+            <h3 style={h3s}>title</h3>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
+            sed pariatur illum facilis modi neque, esse repellat iste ipsa
+            ipsum, fuga nobis! Vitae exercitationem incidunt impedit doloribus
+            distinctio! Delectus, aliquid. Lorem, ipsum dolor sit amet
+            consectetur adipisicing elit. Cumque odit excepturi fuga fugit quod,
+            odio aliquam nihil sint explicabo tempora minus ratione tempore
+            laborum nam repellendus esse iusto maiores alias. Lorem ipsum dolor,
+            sit amet consectetur adipisicing elit. Accusantium tenetur ab autem
+            eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
+            vitae labore enim natus quasi laborum culpa mollitia?
+          </div>
+
+
+          <span id=""></span>
+          <div style={sections}>
+            <h3 style={h3s}>title</h3>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
+            sed pariatur illum facilis modi neque, esse repellat iste ipsa
+            ipsum, fuga nobis! Vitae exercitationem incidunt impedit doloribus
+            distinctio! Delectus, aliquid. Lorem, ipsum dolor sit amet
+            consectetur adipisicing elit. Cumque odit excepturi fuga fugit quod,
+            odio aliquam nihil sint explicabo tempora minus ratione tempore
+            laborum nam repellendus esse iusto maiores alias. Lorem ipsum dolor,
+            sit amet consectetur adipisicing elit. Accusantium tenetur ab autem
+            eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
+            vitae labore enim natus quasi laborum culpa mollitia?
+          </div>
+          <span id=""></span>
           <div style={sections}>
             <h3 style={h3s}>thing</h3>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
@@ -1974,7 +1972,8 @@ export default WaterfallCont;
             eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
             vitae labore enim natus quasi laborum culpa mollitia?
           </div>
-          <span id="18"></span>
+
+          <span id=""></span>
           <div style={sections}>
             <h3 style={h3s}>thing</h3>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
@@ -1988,7 +1987,8 @@ export default WaterfallCont;
             eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
             vitae labore enim natus quasi laborum culpa mollitia?
           </div>
-          <span id="18"></span>
+
+          <span id=""></span>
           <div style={sections}>
             <h3 style={h3s}>thing</h3>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
