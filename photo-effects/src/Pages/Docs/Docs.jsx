@@ -424,7 +424,7 @@ const Docs = ({ auth }) => {
 
           <span id="7"></span>
           <div style={sections}>
-            <h3>7th thing</h3>
+            <h3>Canvas</h3>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
             sed pariatur illum facilis modi neque, esse repellat iste ipsa
             ipsum, fuga nobis! Vitae exercitationem incidunt impedit doloribus
