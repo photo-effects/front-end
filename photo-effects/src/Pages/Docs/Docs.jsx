@@ -11,6 +11,8 @@ import Navout from "../../assetts/navout.JPG";
 import Navin from "../../assetts/navin.JPG";
 import Heropic from "../../assetts/hero.JPG";
 import Tagpic from "../../assetts/tags.JPG";
+import Dragdrop from '../../assetts/dragndrop.JPG'
+import Ducky from '../../assetts/ducky.JPG';
 //code snippets
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { atomOneDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
@@ -131,11 +133,15 @@ const Docs = ({ auth }) => {
     { id: '7c', name: 'Tags', padding: '', indent: '20px', drop:'none' },
     { id: '7d', name: 'Waterfall', padding: '', indent: '20px', drop:'none' },
     { id: 8, name: 'Dashboard', details: '', padding: '', indent: '', drop:'block' },
-    { id: '8a', name: '', details: '', padding: '', indent: '20px', drop:'block' },
-    { id: '8b', name: '', details: '', padding: '', indent:'20px', drop:'block' },
-    { id: '8c', name: '', details: '', padding: '', indent:'20px', drop:'block' },
+    { id: '8a', name: 'Overview', details: '', padding: '', indent: '20px', drop:'block' },
+    { id: '8b', name: 'Cloudinary', details: '', padding: '', indent: '20px', drop:'block' },
+    { id: '8c', name: 'DashNav', details: '', padding: '', indent: '20px', drop:'block' },
+    { id: '8d', name: 'Image', details: '', padding: '', indent:'20px', drop:'block' },
+    { id: '8e', name: 'PhotoLink', details: '', padding: '', indent:'20px', drop:'block' },
+    { id: '8f', name: 'Projects', details: '', padding: '', indent:'20px', drop:'block' },
+    { id: '8g', name: 'Upload', details: '', padding: '', indent:'20px', drop:'block' },
     { id: 9, name: 'Canvas', details: '', padding: '', indent: '', drop:'block' },
-    { id: '9a', name: '', details: '', padding: '', indent:'20px', drop:'block' },
+    { id: '9a', name: 'Overview', details: '', padding: '', indent:'20px', drop:'block' },
    
     { id: '9b', name: '', details: '', padding: '', indent:'20px', drop:'block' },
     { id: '9c', name: '', details: '', padding: '', indent:'20px', drop:'block' },
@@ -1293,6 +1299,8 @@ export default Navbar;
 `}
   </SyntaxHighlighter>
 </div>
+
+<span id='dashnav'></span>
 <div
    style={{
     margin: '10px 0px',
@@ -1656,54 +1664,79 @@ export default WaterfallCont;
             <h3 style={h3s}>Dashboard</h3>
              <ul>
               <li>
-                Location: <span style={yLocation}>K</span>,{' '}
-                <span style={yLocation}>G</span>
+                Location: <span style={yLocation}>K</span>,
               </li>
               <li>
                 Depencies:{' '}
                 <a
-                  href="https://www.npmjs.com/package/auth0"
+                  href="https://www.npmjs.com/package/react-dropzone"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  auth0
+                 react-dropzone
                 </a>
                 ,{' '}
                 <a
-                  href="https://www.npmjs.com/package/auth0-js"
+                  href="https://www.npmjs.com/package/axios"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  auth0-js
+                  axios
                 </a>
                 ,{' '}
                 <a
-                  href="https://www.npmjs.com/package/auth0-lock"
+                  href="https://www.npmjs.com/package/cloudinary-react"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  auth0-lock
+                  cloudinary-react
                 </a>
-                ,{' '}
-                <a
-                  href="https://www.npmjs.com/package/jwt-decode"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  jwt-decode
-                </a>{' '}
+                
               </li>
               <li>
-                Where is State? : <span style={bLocation}>G1</span>
+                Where is State? : Dashboard Top Level State - <span style={bLocation}>K1</span> Projects State - <span style={bLocation}>X1</span>
               </li>
             </ul>
-            <div>
-              <img
-                style={{ width: "300px", height: "200px" }}
-                src={dashState} alt='screenshot'
-              />
-            </div>
-            <p>This is the state in Dashboard</p>
+            <h4>Overview</h4> 
+            <span id="8a"></span> 
+            <p style={liSpace}>The dashboard is where users can either start a new project, or continue an existing project. </p>
+            <p>New pojects are created by clicking on the drag 'n' drop box, or dragging an image into the box. The uploaded image displays and gives the user a choice to either keep the image, or clear it out and choose a different image.</p>
+  <img src={Dragdrop} alt="dragndrop" style={{border:'black 1px solid', borderRadius:'8px', width:'48%' }}/>
+<img src={Ducky} alt="ducky" style={{border:'black 1px solid', borderRadius:'8px', width:'32%' }} />
+            <p>Once the user clicks on "Yes, go to Canvas", they are pushed to canvas where their photo is waiting to be edited. </p>
+            
+            <p style={liSpace}>The two main dependencies of this component are Dropzone and Cloudinary. <a href='https://www.npmjs.com/package/react-dropzone' target="_blank"
+                  rel="noopener noreferrer"  style={boldpointer}>Dropzone</a> is very copy/paste, but Cloudinary has a pretty steep learning curve and thier docs are not...useful...</p>
+            <p>To understand what we're doing on dashboard, a quick crashcourse in Cloudinary is neccessary. </p>
+            
+            {/* cloudinary buttons */}
+            <p> The link below isn't from Cloudinary but it is an example project I followed that helped me figure how to do axios requests using cloudinary in the backend. </p> 
+            <p style={{background:'#FC5185', color:'#EAEAEA', width:'100%', padding:'5px', textDecoration:'none', borderRadius:'8px', margin:'10px 0px'}}> <a
+              href="https://github.com/nax3t/image_upload_example/tree/edit-delete"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color:'#EAEAEA', fontWeight:'bold'}}
+            >
+             https://github.com/nax3t/image_upload_example/tree/edit-delete
+            </a></p>
+            
+            <p style={{background:'#FC5185', color:'#EAEAEA', width:'100%', padding:'5px', textDecoration:'none', borderRadius:'8px', margin:'10px 0px'}}> <a
+              href="https://cloudinary.com/documentation/upload_images"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color:'#EAEAEA', fontWeight:'bold'}}
+            >
+              https://cloudinary.com/documentation/upload_images
+            </a></p>
+            <p style={{background:'#FC5185', color:'#EAEAEA', width:'100%', padding:'5px', textDecoration:'none', borderRadius:'8px', margin:'10px 0px'}}> <a
+              href="https://cloudinary.com/documentation/image_upload_api_reference"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color:'#EAEAEA', fontWeight:'bold'}}
+            >
+              https://cloudinary.com/documentation/image_upload_api_reference
+            </a></p>
+
             <p> users: Obtaining users from our backend</p>
             <p>
               images: This is where the image from cloudinary is stored
@@ -1714,6 +1747,7 @@ export default WaterfallCont;
               uploading: Used when user chooses a photo to tell them the photo
               is waiting to load to be displayed from Cloudinary
             </p>
+
             <p>
               error: Error will be displayed if user chooses image that is too
               big or if trying to upload multiple images at once
@@ -1732,15 +1766,106 @@ export default WaterfallCont;
                 second is used if the user uploads a photo via DragNDrop.
               </p>
             </div>
+
+
             <div>
+              <span id="8b"></span>
+            <h4  style={h4s}>Cloudinary</h4>
+            <div  style={{
+                margin: '10px 0px',
+                borderRadius: '8px',
+                padding: '5px',
+                background: 'black',
+                color:'white'
+              }}>
+                
+            <SyntaxHighlighter
+    language="javascript"
+    style={atomOneDark}
+    showLineNumbers
+    useInlineStyles
+  >
+    {`{
+  "public_id": "eneivicys42bq5f2jpn2",
+  "version": 1570979139,
+  "signature": "abcdefghijklmnopqrstuvwxyz12345",
+  "width": 1000,
+  "height": 672,
+  "access_control": [       
+     { access_type: "token" },
+     { access_type: "anonymous", start: "2017-12-15T12:00Z", end: "2018-01-20T12:00Z" }],
+  "format": "jpg",
+  "resource_type": "image",
+  "created_at": "2017-08-11T12:24:32Z",
+  "tags": [],
+  "bytes": 350749,
+  "type": "upload",
+  "etag": "5297bd123ad4ddad723483c176e35f6e",
+  "url": "http://res.cloudinary.com/demo/image/upload/v1570979139/eneivicys42bq5f2jpn2.jpg",
+  "secure_url": "https://res.cloudinary.com/demo/image/upload/v1570979139/eneivicys42bq5f2jpn2.jpg",
+  "original_filename": "sample",
+  "eager": [
+    { "transformation": "c_pad,h_300,w_400",
+      "width": 400,
+      "height": 300,
+      "url": "http://res.cloudinary.com/demo/image/upload/c_pad,h_300,w_400/v1570979139/eneivicys42bq5f2jpn2.jpg",
+      "secure_url": "https://res.cloudinary.com/demo/image/upload/c_pad,h_300,w_400/v1570979139/eneivicys42bq5f2jpn2.jpg" },
+    { "transformation": "c_crop,g_north,h_200,w_260",
+      "width": 260,
+      "height": 200,
+      "url": "http://res.cloudinary.com/demo/image/upload/c_crop,g_north,h_200,w_260/v1570979139/eneivicys42bq5f2jpn2.jpg",
+      "secure_url": "https://res.cloudinary.com/demo/image/upload/c_crop,g_north,h_200,w_260/v1570979139/eneivicys42bq5f2jpn2.jpg" }]
+}
+`}
+  </SyntaxHighlighter>
+            </div>
+
+<p> The snippet that you see above is the information that Cloudinary sends back to us after a user uploads a photo. This information is being stored in the frontend initially in the Dashboard.jsx state as "image". This info is passed to PhotoLink(located in the Image folder) and when the user clicks "Yes Go To Canvas" the "secure_url" and "public_id" are passed to our backend(Refer to <span onClick={()=>{scrollFunc('photoLink')}} style={boldpointer}>PhotoLink</span> ) </p>
+<br/>
+<span id='cloud'></span>
+<p> The "secure_url" and "public_id" are the most important parts of Cloudinary that we need for our project. The "secure_url" is how we access the photo from Cloudinary that the user uploads. It is the link that displays the image on our canvas. The "public_id" is the specific id for the image and is what is needed to remove an image from Cloudinary.</p>
+<br/>
+<p> Cloudinary will always use a new "public_id" if you delete an image and try to reupload it. </p>
+
+<div>
+<SyntaxHighlighter
+    language="javascript"
+    style={atomOneDark}
+    showLineNumbers
+    useInlineStyles
+  >
+    {`
+    // Canvas Project - DELETE
+
+    router.delete('/:projectId', async (req, res) => {
+       console.log(req.body.public_id)
+    
+       const { projectId } = req.params;
+       try {
+          const result = await CanvasProjects.remove(projectId);
+          await cloudinary.v2.uploader.destroy(result[0].public_id) 
+          res.status(200).json({ message: \`Project has been deleted! \${projectId}\`})
+       } catch(error) {
+          res.status(500).json({message: "Error removing project"})
+       }
+    })
+`}
+  </SyntaxHighlighter>
+            </div>
+            <p> The above code is from our backend and it shows how we delete that are stored in Cloudinary. For delete we use the "destroy" method which is a Cloudinary method. </p>
+
+              <span id="8c"></span>
+            <h4  style={h4s}>DashNav <span style={bLocation}>Z1</span></h4>
+<p>
+Refer back to <span onClick={()=>{scrollFunc('dashnav')}} style={boldpointer}>Logout</span> 
+</p>
+
+
+
+            <span id="8d"></span>
+            <h4  style={h4s}>Image <span style={bLocation}>W1</span></h4>
               <p>
-                {" "}
-                Dashboard has 4 components which are DashNav, Image, Projects,
-                and Upload
-              </p>
-              <p>DashNav is simply the component that deals with the navbar</p>
-              <p>
-                Image component also holds a component called PhotoLink. These
+                Image component also holds a component called PhotoLink(W2). These
                 components deal with the image that is being displayed ot the
                 user. The image is being displayed by returning a "secure_url"
                 from Cloudinary. The image has all of the data coming back from
@@ -1751,6 +1876,75 @@ export default WaterfallCont;
                 a different image" will delete the image from Cloudinary and
                 allow the user to choose another image
               </p>
+
+              <span id="8e"></span>
+              <span id='photoLink'></span>
+            <h4  style={h4s}>PhotoLink <span style={bLocation}>W2</span></h4>
+<div  style={{
+                margin: '10px 0px',
+                borderRadius: '8px',
+                padding: '5px',
+                background: 'black',
+                color:'white'
+              }}>
+                PhotoLink.jsx
+            <SyntaxHighlighter
+    language="javascript"
+    style={atomOneDark}
+    showLineNumbers
+    useInlineStyles
+  >
+    {`import React, {Component} from 'react';
+import { withRouter } from 'react-router-dom';
+import './image.css';
+import axios from 'axios';
+
+class PhotoLink extends Component {
+    constructor(props) {
+    super(props);
+    this.state = {
+        photoInfo: {
+            user_id: localStorage.getItem('dbId'),
+            secure_url: this.props.secure_url,
+            public_id: this.props.public_id,
+        }
+    }
+    }
+
+
+    addProject = () => {
+        const newProject = {
+            "p_name": "Untitled Design",
+            "p_description": "",
+            "user_created_id": this.state.photoInfo.user_id,
+            "user_created_google_id": localStorage.getItem('userId'),
+            "p_created_at": null,
+            "p_data": "",
+            "p_likes": 0,
+            "p_published": false,
+            "secure_url": this.state.photoInfo.secure_url,
+            "public_id": this.state.photoInfo.public_id
+        }
+    
+        axios.post('https://photo-effects-backend-stage-1.herokuapp.com/canvas', newProject)
+            .then(res => {
+                localStorage.setItem('projectId', res.data[0].id)
+                localStorage.setItem('publicId', this.props.public_id)
+                console.log(res.data)
+            })
+            .then(
+                this.props.history.push('/canvas')
+            )
+            .catch(err => console.log(err))
+    }
+`}
+  </SyntaxHighlighter>
+            </div>
+  <p>In PhotoLink we are sending all the data in the addProject method to our backend that we get from Cloudinary once they click "Yes Go To Canvas". "secure_url" and "public_id" is explained in the <span onClick={()=>{scrollFunc('cloud')}} style={boldpointer}>Cloudinary</span>  section. </p>
+
+
+              <span id="8f"></span>
+            <h4  style={h4s}>Projects <span style={bLocation}>X1</span></h4>
               <p>
                 Projects is the component that displays the specific user's
                 projects on the bottom of the Dashboard page. It is being mapped
@@ -1758,27 +1952,78 @@ export default WaterfallCont;
                 click on a photo to go to the canvas with the image displayed
                 and edit the image{" "}
               </p>
+
+              <span id="8g"></span>
+            <h4  style={h4s}>Upload <span style={bLocation}>Y1</span></h4>
               <p>
-                Upload component has the react-dragndrop code for when a user
-                wants to choose a file to upload
+                The Upload component uses React-Dropzone & Cloudinary to upload the user's image to the cloudinary backend.
               </p>
+              <p style={liSpace}>
+                Props are passed down into this component from Dashboard.jsx, specifically  into this component 
+              </p>
+              <div  style={{
+                margin: '10px 0px',
+                borderRadius: '8px',
+                padding: '5px',
+                background: 'black',
+                color:'white'
+              }}>
+                PhotoLink.jsx
+            <SyntaxHighlighter
+    language="javascript"
+    style={atomOneDark}
+    showLineNumbers
+    useInlineStyles
+  >
+    {`import React, { Component } from "react";
+import './upload.css';
+import Dropzone from "react-dropzone";
+
+class Upload extends Component {
+
+
+  render() {
+    return (
+      <Dropzone onDrop= {this.props.dropOnChange}>
+  {({getRootProps, getInputProps}) => (
+    <section className="uploadBox">
+      <div {...getRootProps()}>
+        <input {...getInputProps()} onChange={this.props.onChange} />
+        <p className="dragBox">Drag 'n' drop a file here, or click to select a file!</p>
+      </div>
+    </section>
+  )}
+</Dropzone>
+
+    );
+  }
+}
+
+export default Upload;  
+`}
+  </SyntaxHighlighter>
+            </div>
+
+
+
             </div>
           </div>
          
           <span id="9"></span>
           <div style={sections}>
             <h3 style={h3s}>Canvas</h3>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
-            sed pariatur illum facilis modi neque, esse repellat iste ipsa
-            ipsum, fuga nobis! Vitae exercitationem incidunt impedit doloribus
-            distinctio! Delectus, aliquid. Lorem, ipsum dolor sit amet
-            consectetur adipisicing elit. Cumque odit excepturi fuga fugit quod,
-            odio aliquam nihil sint explicabo tempora minus ratione tempore
-            laborum nam repellendus esse iusto maiores alias. Lorem ipsum dolor,
-            sit amet consectetur adipisicing elit. Accusantium tenetur ab autem
-            eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
-            vitae labore enim natus quasi laborum culpa mollitia?
           </div>
+
+          <span id="9a"></span>
+
+        <h4  style={h4s}>Overview</h4>
+          <p>
+          The Canvas encompasses the area where the user will manipulate the photo they choose. They can add graphics, textboxes, other photos, and paint on there images here. 
+          </p>
+
+
+
+
 
           <span id="10"></span>
           <div style={sections}>
@@ -1860,7 +2105,7 @@ export default WaterfallCont;
 
           <span id="12"></span>
           <div style={sections}>
-            <h3 style={h3s}>Known Issues</h3>
+            <h3 style={h3s}>Known Issues/ Opportunities</h3>
             <ul>
               <li >
                
@@ -1875,7 +2120,7 @@ export default WaterfallCont;
                 The project is not fully responsive or mobile friendly.
               </li>
               <li>
-               
+               Need templates for users to choose from and edit.
               </li>
               <li>
               

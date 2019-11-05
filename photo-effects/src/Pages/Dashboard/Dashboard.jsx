@@ -5,7 +5,6 @@ import Image from "./components/Image/Image";
 import Projects from "./components/Projects/Projects";
 import DashNav from "./components/DashNav/DashNav";
 import "./components/DashNav/dashNav.css";
-// import withAuth from "../../components/Auth/AuthOne/withAuth";
 import Footer from "../../Pages/Landing/components/Footer/Footer";
 
 export default class Dashboard extends Component {
@@ -259,7 +258,7 @@ export default class Dashboard extends Component {
           setBgImage={this.props.setBgImage}
           getProjects={this.getProjects}
         />
-        <Footer />
+        <Footer /> 
       </div>
     );
   }

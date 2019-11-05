@@ -15,9 +15,7 @@ class PhotoLink extends Component {
     }
     }
 
-   // master
-   // when adding project will push info from component state to our backend in postgreSQL
-   // doing props.history.push as a bandaid fix until fix error that occurs after clicking "Add To Backend"
+
     addProject = () => {
         const newProject = {
             "p_name": "Untitled Design",
