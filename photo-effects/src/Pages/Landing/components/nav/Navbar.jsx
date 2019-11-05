@@ -18,7 +18,7 @@ export class Navbar extends Component {
       justifyContent: "space-between",
       alignItems: "center",
       width: "100%",
-      height: "11vh",
+      height: "100px",
       backgroundColor: "#364f6b",
       color: "whitesmoke",
       fontSize: "2rem",

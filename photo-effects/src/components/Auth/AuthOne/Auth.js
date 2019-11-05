@@ -15,7 +15,7 @@ export default class Auth {
       scope: 'openid profile email'
     });
   }
-
+ 
   getProfile = () => {
     if (localStorage.getItem('id_token')) {
       return jwtDecode(localStorage.getItem('id_token'));
@@ -33,7 +33,6 @@ export default class Auth {
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
     localStorage.removeItem('userId'); //google Id
-    // localStorage.removeItem('Id');
     localStorage.removeItem('dbId'); //Database Id
     localStorage.removeItem('projectId'); //project Id
     localStorage.removeItem('publicId'); //Cloudinary Id of main picture
@@ -94,24 +93,6 @@ export default class Auth {
       });
   };
 
-  // componentDidMount = () => {
-  //   this.getdbId();
-  // }
-
-  //   getProjectIds=()=> {
-
-  //     axios.get('https://photo-effects-backend-stage-1.herokuapp.com/users')
-  //       .then(res=>{
-  //           console.log('new user added')
-  //       })
-  //       .catch(error => {
-
-  //         error.response.data.code === "23505" &&
-  //             console.log('user exists')
-  //             localStorage.setItem('userId', this.getProfile().sub)
-  //             this.history.push("/dashboard");
-  //       });
-  //   }
 
   setSession = authResult => {
     //set the time that the access token will expire
@@ -124,3 +105,4 @@ export default class Auth {
     localStorage.setItem('expires_at', expiresAt);
   };
 }
+ 

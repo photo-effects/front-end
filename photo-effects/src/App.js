@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+ 
 
 import {
   Route,
@@ -31,7 +31,7 @@ export default class App extends Component {
   render = () => (
     
     <div>
-      {/* <Router> */}
+    
       <Switch>
         <Route
           path="/"
@@ -79,7 +79,7 @@ export default class App extends Component {
 
         <Route component={Notfound} />
       </Switch>
-      {/* </Router> */}
+    
     </div>
   );
 }

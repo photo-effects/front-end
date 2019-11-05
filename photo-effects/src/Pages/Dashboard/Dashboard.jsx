@@ -14,24 +14,20 @@ export default class Dashboard extends Component {
     this.state = {
       users: [],
       images: [],
-      projects: [],
-      projectSort: [],
       uploading: false,
       error: null,
       inputKey: Date.now(),
       exist: "false",
-      fileName: "",
-      sort: false,
       canvasprojects: []
     };
   }
+  
   //
   // When click "Choose File" and choosing a photo the code below will occur. First will check to make sure only using 1 files and will only accept /png /jgp
   // Code set up for multiple files but need to change for only a single file(using because works for now and gets job done)
   onChange = e => {
     const errs = [];
     const files = Array.from(e.target.files);
-    const fileName = files.map(file => file.name);
 
     // this will clear the error message from the user screen
     // this.setState({ error: null })
@@ -78,8 +74,7 @@ export default class Dashboard extends Component {
           uploading: false,
           exist: "true",
           images,
-          error: null,
-          fileName: fileName[0]
+          error: null
         });
         images.map(image => {
           return this.props.setBgImage(image);
@@ -96,8 +91,6 @@ export default class Dashboard extends Component {
   dropOnChange = e => {
     const errs = [];
     const files = Array.from(e);
-    const fileName = files.map(file => file.name);
-    console.log(fileName);
 
     // this will clear the error message from the user screen
     // this.setState({ error: null })
@@ -142,8 +135,7 @@ export default class Dashboard extends Component {
           uploading: false,
           exist: "true",
           images,
-          error: null,
-          fileName: fileName[0]
+          error: null
         });
         images.map(image => {
           return this.props.setBgImage(image);
@@ -168,8 +160,7 @@ export default class Dashboard extends Component {
         this.setState({
           images: [],
           inputKey: Date.now(),
-          exist: "false",
-          fileName: ""
+          exist: "false"
         });
       })
       .catch(err => {
@@ -177,7 +168,7 @@ export default class Dashboard extends Component {
       });
   };
 
- // Update - NOT BEING USED
+  // Update - NOT BEING USED
   // will update state for user projects when adding/deleting for now.
   updateProject = (e, newProject) => {
     e.preventDefault();
@@ -255,7 +246,6 @@ export default class Dashboard extends Component {
           <div className="errorBox">{this.state.error}</div>
           <Image
             images={this.state.images}
-            fileName={this.state.fileName}
             removeImage={this.removeImage}
             updateProject={this.updateProject}
             createProject={this.createProject}
