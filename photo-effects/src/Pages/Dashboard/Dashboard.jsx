@@ -76,7 +76,9 @@ export default class Dashboard extends Component {
           error: null
         });
         images.map(image => {
+          console.log(image)
           return this.props.setBgImage(image);
+          
         });
       })
       .catch(err => {

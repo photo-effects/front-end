@@ -29,7 +29,8 @@ export default class Paint extends Component {
     start: { x: 0, y: 0 },
     end: { x: 0, y: 0 },
     preview: null,
-    toolbar: {}
+    toolbar: {},
+    boxShadow: '2px 2px 15px black'
   };
 
   componentDidMount() {
@@ -53,15 +54,18 @@ export default class Paint extends Component {
   }
 
   handlePreview = () => {
-    html2canvas(document.querySelector(`#canvas-${this.state.id}`), {
-      backgroundColor: 'rgba(0,0,0,0)'
-    }).then(canvas => {
-      const image = canvas
-        .toDataURL('image/png')
-        .replace('image/png', 'image/octet-stream');
+    this.setState({ boxShadow: 'none' });
+    setTimeout(() => {
+      html2canvas(document.querySelector(`#canvas-${this.state.id}`), {
+        backgroundColor: 'rgba(0,0,0,0)'
+      }).then(canvas => {
+        const image = canvas
+          .toDataURL('image/png')
+          .replace('image/png', 'image/octet-stream');
 
-      this.setState({ preview: image });
-    });
+        this.setState({ preview: image, boxShadow: '2px 2px 15px black' });
+      });
+    }, 50);
   };
 
   saveLayer = () => {
@@ -74,7 +78,7 @@ export default class Paint extends Component {
         this.state.width,
         this.state.height
       );
-    }, 500)
+    }, 500);
   };
 
   actions = e => {
@@ -323,7 +327,7 @@ export default class Paint extends Component {
         bottom: this.state.height / 2,
         left: temp ? this.state.left : this.state.width / 2,
         zIndex: this.props.z,
-        boxShadow: '2px 2px 15px black'
+        boxShadow: this.state.boxShadow
       },
       onMouseDown: e => this.actions(e).mousedown(),
       onMouseUp: e => this.actions(e).mouseup(),

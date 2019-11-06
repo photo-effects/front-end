@@ -13,6 +13,9 @@ import Heropic from "../../assetts/hero.JPG";
 import Tagpic from "../../assetts/tags.JPG";
 import Dragdrop from '../../assetts/dragndrop.JPG'
 import Ducky from '../../assetts/ducky.JPG';
+import IMGData from '../../assetts/cloudImg.JPG';
+import LeftToolBar from '../../assetts/leftToolBar.png';
+
 //code snippets
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { atomOneDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
@@ -135,7 +138,7 @@ const Docs = ({ auth }) => {
     { id: 8, name: 'Dashboard', details: '', padding: '', indent: '', drop:'block' },
     { id: '8a', name: 'Overview', details: '', padding: '', indent: '20px', drop:'block' },
     { id: '8b', name: 'Cloudinary', details: '', padding: '', indent: '20px', drop:'block' },
-    { id: '8c', name: 'DashNav', details: '', padding: '', indent: '20px', drop:'block' },
+    { id: '8c', name: 'ImageUpload', details: '', padding: '', indent: '20px', drop:'block' },
     { id: '8d', name: 'Image', details: '', padding: '', indent:'20px', drop:'block' },
     { id: '8e', name: 'PhotoLink', details: '', padding: '', indent:'20px', drop:'block' },
     { id: '8f', name: 'Projects', details: '', padding: '', indent:'20px', drop:'block' },
@@ -143,8 +146,9 @@ const Docs = ({ auth }) => {
     { id: 9, name: 'Canvas', details: '', padding: '', indent: '', drop:'block' },
     { id: '9a', name: 'Overview', details: '', padding: '', indent:'20px', drop:'block' },
    
-    { id: '9b', name: '', details: '', padding: '', indent:'20px', drop:'block' },
-    { id: '9c', name: '', details: '', padding: '', indent:'20px', drop:'block' },
+    { id: '9b', name: 'Structure', details: '', padding: '', indent:'20px', drop:'block' },
+    { id: '9c', name: 'Left ToolBar', details: '', padding: '', indent:'20px', drop:'block'} ,
+    { id: '9d', name: 'Save Button', details: '', padding: '', indent:'20px', drop:'block' },
   
     { id: 10, name: 'Back End', details: '', padding: '', indent: '', 
     drop:'block' }, 
@@ -1707,7 +1711,7 @@ export default WaterfallCont;
             
             <p style={liSpace}>The two main dependencies of this component are Dropzone and Cloudinary. <a href='https://www.npmjs.com/package/react-dropzone' target="_blank"
                   rel="noopener noreferrer"  style={boldpointer}>Dropzone</a> is very copy/paste, but Cloudinary has a pretty steep learning curve and thier docs are not...useful...</p>
-            <p>To understand what we're doing on dashboard, a quick crashcourse in Cloudinary is neccessary. </p>
+            <p>To understand what we're doing on dashboard, a quick crashcourse in Cloudinary is neccessary. Hopefully the links below help. If not, we totally understand. </p>
             
             {/* cloudinary buttons */}
             <p> The link below isn't from Cloudinary but it is an example project I followed that helped me figure how to do axios requests using cloudinary in the backend. </p> 
@@ -1737,34 +1741,99 @@ export default WaterfallCont;
               https://cloudinary.com/documentation/image_upload_api_reference
             </a></p>
 
-            <p> users: Obtaining users from our backend</p>
             <p>
-              images: This is where the image from cloudinary is stored
-              initially when the user chooses an image from their computer to
-              use via dragndrop or choosing file.
+              The comments in Dashboard.jsx are pretty good and very clearly explain what is going on. But I will explain the major points of this component.
+            </p>
+            <span id="8c"></span>
+            <h4>Upload Photo</h4>
+            <p>
+              The dropzone where the user uploads the initial photo triggers the function dropOnChange() when a photo is dragged in. Alternatively it will trigger onChange() if you click to add a photo rather than dragging one in. Both functions are very similar aside from the method that triggers them. Both include frontend validation that prevents the user from trying to upload multiple files, and <span  onClick={()=>{scrollFunc('6mb')}} style={boldpointer}>limits the files to less than 6MB</span>. 
             </p>
             <p>
-              uploading: Used when user chooses a photo to tell them the photo
-              is waiting to load to be displayed from Cloudinary
+              If the image passes all validation, it is then posted to cloudinary via the post call (line 26 in the snippet below) 
             </p>
-
-            <p>
-              error: Error will be displayed if user chooses image that is too
-              big or if trying to upload multiple images at once
-            </p>
-            <p>
-              inputKey: Needed to reset the "Choose File" option if user decides
-              to choose a differnt photo.(It's a little hack)
-            </p>
-            <p>exist: Used for conditional rendering</p>
-            <p>canvasprojects: Pulling projects from our backend</p>
             <div>
-              <h3>Methods:</h3>
-              <p>
-                onChange: There are two of these in Dashboard.jsx. Two is needed
-                because one is used for when a user clicks "Choose File" and the
-                second is used if the user uploads a photo via DragNDrop.
-              </p>
+
+            <div  style={{
+                margin: '10px 0px',
+                borderRadius: '8px',
+                padding: '5px',
+                background: 'black',
+                color:'white'
+              }}>
+                Dashboard.jsx
+            <SyntaxHighlighter
+    language="javascript"
+    style={atomOneDark}
+    showLineNumbers
+    useInlineStyles
+  >
+    {`
+       dropOnChange = e => {
+        const errs = [];
+        const files = Array.from(e);
+        if (files.length > 1) {
+          return console.log("No more than 1");
+        }
+        const formData = new FormData();
+        const types = ["image/png", "image/jpeg"];
+        files.forEach((file, i) => {
+          if (types.every(type => file.type !== type)) {
+            errs.push(\`Sorry about that! We only accept JPG and PNG files! :(\`);
+          }
+          if (file.size > 6000000) {
+            errs.push(\`'\${file.name}\' is too large, please pick a smaller file\`);
+          }
+    
+          formData.append(i, file);
+        });
+
+        if (errs.length) {
+          return errs.forEach(err => this.setState({ ...this.state, error: err }));
+        }
+        this.setState({ uploading: true });
+
+        fetch(\`https://photo-effects-backend.herokuapp.com/image-upload\`, {
+          method: "POST",
+          body: formData
+        })
+          .then(res => {
+            if (!res.ok) {
+              console.log(formData);
+              throw res;
+            }
+            return res.json();
+          })
+          // will push image in images state to be displayed to user
+          .then(images => {
+            this.setState({
+              uploading: false,
+              exist: "true",
+              images,
+              error: null
+            });
+            images.map(image => {
+              return this.props.setBgImage(image);
+            });
+          })
+          .catch(err => {
+            err.json().then(e => {
+              this.setState({ uploading: false });
+            });
+          });
+      };
+    
+`}
+  </SyntaxHighlighter>
+            </div>
+<p>
+  The POST call saves the image to Cloudinary. Cloudinary then sends back data about the saved image to use in the project. The data coming back from cloudinary looks like this in the console.:
+</p>
+<img src={IMGData} alt="clouddata" style={{borderRadius:'8px', border:'1px black solid', width:'100%' }}/>
+      
+      <p>
+The data is save in local state in Dashboard.jsx <span style={bLocation}>K1</span>, and also sent back up to App.js <span style={bLocation}>A4</span> through prop-drilling and stored in top level so it can be used in the Canvas component later on. 
+      </p>
             </div>
 
 
@@ -1786,36 +1855,7 @@ export default WaterfallCont;
     useInlineStyles
   >
     {`{
-  "public_id": "eneivicys42bq5f2jpn2",
-  "version": 1570979139,
-  "signature": "abcdefghijklmnopqrstuvwxyz12345",
-  "width": 1000,
-  "height": 672,
-  "access_control": [       
-     { access_type: "token" },
-     { access_type: "anonymous", start: "2017-12-15T12:00Z", end: "2018-01-20T12:00Z" }],
-  "format": "jpg",
-  "resource_type": "image",
-  "created_at": "2017-08-11T12:24:32Z",
-  "tags": [],
-  "bytes": 350749,
-  "type": "upload",
-  "etag": "5297bd123ad4ddad723483c176e35f6e",
-  "url": "http://res.cloudinary.com/demo/image/upload/v1570979139/eneivicys42bq5f2jpn2.jpg",
-  "secure_url": "https://res.cloudinary.com/demo/image/upload/v1570979139/eneivicys42bq5f2jpn2.jpg",
-  "original_filename": "sample",
-  "eager": [
-    { "transformation": "c_pad,h_300,w_400",
-      "width": 400,
-      "height": 300,
-      "url": "http://res.cloudinary.com/demo/image/upload/c_pad,h_300,w_400/v1570979139/eneivicys42bq5f2jpn2.jpg",
-      "secure_url": "https://res.cloudinary.com/demo/image/upload/c_pad,h_300,w_400/v1570979139/eneivicys42bq5f2jpn2.jpg" },
-    { "transformation": "c_crop,g_north,h_200,w_260",
-      "width": 260,
-      "height": 200,
-      "url": "http://res.cloudinary.com/demo/image/upload/c_crop,g_north,h_200,w_260/v1570979139/eneivicys42bq5f2jpn2.jpg",
-      "secure_url": "https://res.cloudinary.com/demo/image/upload/c_crop,g_north,h_200,w_260/v1570979139/eneivicys42bq5f2jpn2.jpg" }]
-}
+
 `}
   </SyntaxHighlighter>
             </div>
@@ -1854,7 +1894,7 @@ export default WaterfallCont;
             </div>
             <p> The above code is from our backend and it shows how we delete that are stored in Cloudinary. For delete we use the "destroy" method which is a Cloudinary method. </p>
 
-              <span id="8c"></span>
+             
             <h4  style={h4s}>DashNav <span style={bLocation}>Z1</span></h4>
 <p>
 Refer back to <span onClick={()=>{scrollFunc('dashnav')}} style={boldpointer}>Logout</span> 
@@ -2012,14 +2052,92 @@ export default Upload;
           <span id="9"></span>
           <div style={sections}>
             <h3 style={h3s}>Canvas</h3>
+
+            <span id="9b"></span>
+
+<h4  style={h4s}>Structure</h4>
+<p>
+Because the Canvas is very vast the way we are going to this part of the docs is as if a user were on the canvas itself after choosing a photo. We explain each part of the canvas that the user sees instead of going through file by file. We will start by examining the left toolbar(where the save button is and the photos, graphics, text, and paint.) Then we will proceed to the Canvas area and the toolbar. 
+</p>
+
+
+<span id="9c"></span>
+
+<h4  style={h4s}>Left ToolBar</h4>
+
+ <img src={LeftToolBar}alt="hero" style={{width:'300px',borderRadius:'8px', border:' 1px solid black'}}/>
+
+<p> For this area we will talk about the save button(floppy disk icon), the download button(next to the save button), the naming of the project, the Photos tab, the Graphics Tab, the Text tab, and the Paint tab  </p> 
+
+
+<span id="9d"></span>
+
+<h4  style={h4s}>Save Button</h4>
+
+<div  style={{
+                margin: '10px 0px',
+                borderRadius: '8px',
+                padding: '5px',
+                background: 'black',
+                color:'white'
+              }}>
+                Canvas.jsx
+            <SyntaxHighlighter
+    language="javascript"
+    style={atomOneDark}
+    showLineNumbers
+    useInlineStyles
+  >
+    {`
+      saveImg = () => {
+        const public_id = localStorage.getItem("publicId");
+    
+        this.setState({ saving: true });
+    
+        const imgForm = {
+          // method: "upload",
+          image: this.state.imgPreview,
+          options: {
+            format: "png",
+            overwrite: "true",
+            public_id
+            // timeout: 2000
+          }
+        };
+    
+        console.log(\`imgForm:\`, imgForm);
+    
+        setTimeout(() => {
+          axios
+            .post(
+              \`https://photo-effects-backend-stage-1.herokuapp.com/cloudinary/upload2\`,
+              imgForm
+            )
+            .then(res => {
+              this.setState({
+                projectSecureUrl: res.data.secure_url
+              });
+              this.updateProject();
+            })
+            .catch(err => {
+              console.log(err);
+            });
+        }, 500);
+      };  
+`}
+  </SyntaxHighlighter>
+            </div>
+
+
+<p> The method above is found in Canvas.jsx(I1). This is passed to ToolsArea.js(S) --> ToolsTopArea.js(S7) </p> 
+<p> </p> 
+
+
+
           </div>
 
-          <span id="9a"></span>
 
-        <h4  style={h4s}>Overview</h4>
-          <p>
-          The Canvas encompasses the area where the user will manipulate the photo they choose. They can add graphics, textboxes, other photos, and paint on there images here. 
-          </p>
+
 
 
 
@@ -2088,9 +2206,10 @@ export default Upload;
                   extremely sparingly throughout the project. Many of the existing CSS pages are vestigial and just havn't been deleted yet.
                 </p>
               </li>
+              <span id='6mb'></span>
               <li>
-                <p style={{ fontWeight: 'bold' }}>Q.</p>
-                <p>A.</p>
+                <p style={{ fontWeight: 'bold' }}>Q. Why are you limiting photo uploads to 6MB or less?</p>
+                <p>A. Cloudinary has a limit of 10MB per image. A large part of what allows us to pass image data around the project and be able to save it in state, is that the data is converted into a Base-64 string. When an image is converted to Base-64 it increases the size of the image by around 34%. Additionally, when the image is decorated on Canvas, the size of the image increases even further. We limit the size of the initial image to allow enough buffer so the final image won't be too large to save to cloudinary. </p>
               </li>
               <li>
                 <p style={{ fontWeight: 'bold' }}>Q.</p>
@@ -2123,7 +2242,10 @@ export default Upload;
                Need templates for users to choose from and edit.
               </li>
               <li>
-              
+              underline text doesn't work on canvas
+              </li>
+              <li>
+              There is a good amount of repeated code in dashboard. needs to be refactored to be more DRY. In peticular, the axios call should be in it's own function and called by onChange and dropOnChange.
               </li>
             </ul>
           </div>
