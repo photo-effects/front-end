@@ -171,13 +171,14 @@ export default class Dashboard extends Component {
 
   // Update - NOT BEING USED
   // will update state for user projects when adding/deleting for now.
-  updateProject = (e, newProject) => {
-    e.preventDefault();
-    setTimeout(window.location.reload(), 2000);
-    this.setState({
-      canvasprojects: newProject
-    });
-  }; //NOT NEEDED - getProjects is called again instead of reloading
+  // updateProject = (e, newProject) => {
+  //   e.preventDefault();
+  //   setTimeout(window.location.reload(), 2000);
+  //   this.setState({
+  //     canvasprojects: newProject
+  //   });
+  // }; 
+  //NOT NEEDED - getProjects is called again instead of reloading
 
   // logout
   logoutButton = e => {

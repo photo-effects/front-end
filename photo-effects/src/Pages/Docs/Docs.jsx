@@ -138,7 +138,7 @@ const Docs = ({ auth }) => {
     { id: 8, name: 'Dashboard', details: '', padding: '', indent: '', drop:'block' },
     { id: '8a', name: 'Overview', details: '', padding: '', indent: '20px', drop:'block' },
     { id: '8b', name: 'Cloudinary', details: '', padding: '', indent: '20px', drop:'block' },
-    { id: '8c', name: 'ImageUpload', details: '', padding: '', indent: '20px', drop:'block' },
+    { id: '8c', name: 'Upload Photo', details: '', padding: '', indent: '20px', drop:'block' },
     { id: '8d', name: 'Image', details: '', padding: '', indent:'20px', drop:'block' },
     { id: '8e', name: 'PhotoLink', details: '', padding: '', indent:'20px', drop:'block' },
     { id: '8f', name: 'Projects', details: '', padding: '', indent:'20px', drop:'block' },
@@ -148,7 +148,9 @@ const Docs = ({ auth }) => {
    
     { id: '9b', name: 'Structure', details: '', padding: '', indent:'20px', drop:'block' },
     { id: '9c', name: 'Left ToolBar', details: '', padding: '', indent:'20px', drop:'block'} ,
-    { id: '9d', name: 'Save Button', details: '', padding: '', indent:'20px', drop:'block' },
+    { id: '9d', name: 'Save & Download', details: '', padding: '', indent:'20px', drop:'block' },
+     { id: '9e', name: 'Title Project', details: '', padding: '', indent:'20px', drop:'block' },
+     { id: '9e', name: 'Photos Tab', details: '', padding: '', indent:'20px', drop:'block' },
   
     { id: 10, name: 'Back End', details: '', padding: '', indent: '', 
     drop:'block' }, 
@@ -1834,19 +1836,19 @@ export default WaterfallCont;
       <p>
 The data is save in local state in Dashboard.jsx <span style={bLocation}>K1</span>, and also sent back up to App.js <span style={bLocation}>A4</span> through prop-drilling and stored in top level so it can be used in the Canvas component later on. 
       </p>
-            </div>
 
+      <p>
+        If the user uploads a photo, and decided to go with a different photo, they can click <span style={{background:'#FC5185', padding:'10px', color:'white', fontWeight:'bold'}} >No, Choose a different Image</span> 
+      </p>
 
-            <div>
-              <span id="8b"></span>
-            <h4  style={h4s}>Cloudinary</h4>
-            <div  style={{
+      <div  style={{
                 margin: '10px 0px',
                 borderRadius: '8px',
                 padding: '5px',
                 background: 'black',
                 color:'white'
               }}>
+                Remove Image
                 
             <SyntaxHighlighter
     language="javascript"
@@ -1854,11 +1856,34 @@ The data is save in local state in Dashboard.jsx <span style={bLocation}>K1</spa
     showLineNumbers
     useInlineStyles
   >
-    {`{
-
+    {` removeImage = public_id => {
+    axios
+      .delete(\`https://photo-effects-backend.herokuapp.com/image-delete\`, {
+        data: { public_id }
+      })
+      .then(res => {
+        this.setState({
+          images: [],
+          inputKey: Date.now(),
+          exist: "false"
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 `}
   </SyntaxHighlighter>
             </div>
+
+
+            </div>
+
+
+            <div>
+              <span id="8b"></span>
+            <h4  style={h4s}>Cloudinary</h4>
+           
 
 <p> The snippet that you see above is the information that Cloudinary sends back to us after a user uploads a photo. This information is being stored in the frontend initially in the Dashboard.jsx state as "image". This info is passed to PhotoLink(located in the Image folder) and when the user clicks "Yes Go To Canvas" the "secure_url" and "public_id" are passed to our backend(Refer to <span onClick={()=>{scrollFunc('photoLink')}} style={boldpointer}>PhotoLink</span> ) </p>
 <br/>
@@ -2072,7 +2097,7 @@ Because the Canvas is very vast the way we are going to this part of the docs is
 
 <span id="9d"></span>
 
-<h4  style={h4s}>Save Button</h4>
+<h4  style={h4s}>Save and Download Button</h4>
 
 <div  style={{
                 margin: '10px 0px',
@@ -2089,6 +2114,43 @@ Because the Canvas is very vast the way we are going to this part of the docs is
     useInlineStyles
   >
     {`
+
+handleScreenshot = () => {
+  html2canvas(document.querySelector("#capture"), {
+    proxy: "https://photo-effects-backend-stage-1.herokuapp.com",
+    useCORS: true
+  }).then(canvas => {
+    const image = canvas
+      .toDataURL("image/png")
+      .replace("image/png", "image/octet-stream");
+
+    this.setState({ imgPreview: image });
+
+    const link = document.createElement("a");
+    link.download = this.state.projectName + ".png";
+    link.href = image;
+    link.click();
+  });
+};
+
+
+
+
+saveImageToState = () => {
+  html2canvas(document.querySelector("#capture"), {
+    proxy: "https://photo-effects-backend-stage-1.herokuapp.com",
+    useCORS: true
+  }).then(canvas => {
+    const image = canvas
+      .toDataURL("image/png")
+      .replace("image/png", "image/octet-stream");
+
+    this.setState({ imgPreview: image });
+  });
+};
+
+
+
       saveImg = () => {
         const public_id = localStorage.getItem("publicId");
     
@@ -2124,13 +2186,172 @@ Because the Canvas is very vast the way we are going to this part of the docs is
             });
         }, 500);
       };  
+
+
+      updateProject = () => {
+        console.log(this.state.items);
+        console.log(this.props.image.p_name);
+        let data = JSON.stringify([
+          {
+            type: "img",
+            props: {
+              secure_url: this.state.image.secure_url,
+              p_name:
+                this.state.projectTitle === ""
+                  ? this.props.image.p_name
+                  : this.state.projectTitle,
+              style: { zIndex: 0 }
+            }
+          },
+          ...this.state.items.map(item =>
+            item.type === TextEdit ? (
+              <div {...item.props}>{item.props.textbox.text}</div>
+            ) : (
+              item
+            )
+          )
+        ]).split("");
+        let p_data = [];
+    
+        for (let i = 0; i < data.length; i++) {
+          if (data[i] === '"') {
+            p_data.push('\\"');
+          } else {
+            p_data.push(data[i]);
+          }
+        }
+    
+        const updatedProject = {
+          p_name:
+            this.state.projectTitle === ""
+              ? this.state.prevTitle.p_name
+              : this.state.projectTitle,
+          p_data: p_data.join(""),
+          secure_url: this.state.projectSecureUrl
+        };
+    
+        setTimeout(() => {
+          axios
+            .put(
+              \`https://photo-effects-backend-stage-1.herokuapp.com/canvas/\${localStorage.getItem(
+                "projectId"
+              )}\`,
+              updatedProject
+            )
+            .then(res => {
+              this.setState({ saving: false });
+            })
+            .catch(err => console.log("error"));
+        }, 500);
+      };
 `}
   </SyntaxHighlighter>
             </div>
 
 
-<p> The method above is found in Canvas.jsx(I1). This is passed to ToolsArea.js(S) --> ToolsTopArea.js(S7) </p> 
-<p> </p> 
+<p> The methods above is found in Canvas.jsx(I1). The saveImg method is passed to ToolsArea.js(S) --> ToolsTopArea.js(S7) </p> 
+<p> The saveImageToState method is always saving the canvas at the moment anything is added ot it or moved on it(like a graphic, textbox, etc) and is stored in state as imgPreview.  </p> 
+<p> The saveImg method does exactly what it says. It saves the image info along with the graphics and posts it to Cloudinary. saveImg then calls updateProject method. </p>
+<p> The updateProject method updates the image to our backend. It saves all the data on the cavnas as JSON data so a user will be able to edit it later. </p>
+
+
+<span id="9e"></span>
+
+<h4  style={h4s}>Title Project</h4>
+
+
+<p> In the state you'll see projectTitle and prevTitle. You'll see a method called handleChange. projecTitle and handleChange are passed to ToolsArea --> ToolsTopArea.</p> 
+<p> You know how this works!!! </p>
+
+
+<span id="9f"></span>
+
+<h4  style={h4s}>Photos Tab</h4>
+
+<div  style={{
+                margin: '10px 0px',
+                borderRadius: '8px',
+                padding: '5px',
+                background: 'black',
+                color:'white'
+              }}>
+                Canvas.jsx
+            <SyntaxHighlighter
+    language="javascript"
+    style={atomOneDark}
+    showLineNumbers
+    useInlineStyles
+  >
+    {`
+
+addItem = item => {
+  let z = this.state.items
+    .map(item => item.props.style.zIndex)
+    .sort((a, b) => b - a)[0];
+
+  let add_item;
+
+  if (item === "Paint") {
+    add_item = () => ({
+      type: "Paint",
+      props: {
+        id: uuidv4(),
+        style: { zIndex: this.state.items.length ? z * 100 + 1 : 100 }
+      }
+    });
+  } else {
+    add_item = () => (
+      <item.type
+        height={100}
+        width={100}
+        x={this.state.w / 2 - 100}
+        y={100}
+        style={{
+          zIndex: this.state.items.length ? z * 100 + 1 : 100,
+          width: "100%",
+          height: "100%"
+        }}
+        id={uuidv4()}
+        textbox={
+          item.type === TextEdit
+            ? {
+                color: "",
+                background: "",
+                style: "",
+                weight: "",
+                decoration: "",
+                slider: 15,
+                editable: false,
+                text: "text"
+              }
+            : null
+        }
+        src={item.type === "img" ? item.props.src : null}
+        alt={item.type === "img" ? item.props.title : null}
+      />
+    );
+  }
+
+  let items = [...this.state.items, add_item()];
+  // this.state.items.length === 0 && item === "Paint"
+  //   ? [<div style={{ zIndex: 0 }}></div>, add_item()]
+  //   : [...this.state.items, add_item()];
+
+  this.setState({ items });
+  this.saveImageToState();
+};
+
+`}
+  </SyntaxHighlighter>
+            </div>
+
+  <p> For the photos tab it uses a method called addItem. Add item is used for the Photo tab and Graphics tab(i think textbox as well). What this does is when you click on a photo or graphic it will be added to the canvas area. </p>
+  <p> Everything that has to do the Photos tab is located in UploadedPhotosTool.js(DD8), StockPhotosTool.js(DD6), PhotosPanel.js(DD5), Photo.js(DD4), and Tab.js(T3)</p>
+  <p> UploadedPhotos.js grabs the canvasprojects from our backend and is being displayed in the Photos tab and can be accessed by clicking "Uploads" if user clicked "Stocked Photos" in the tab</p> 
+  <p> StockPhotosTool.js pulls in photos from pexel using their API(located within the code) and allows the user to use their photos to drag and move around onto the canvas. </p>
+  <p> PhotosPanel.js   </p>
+
+
 
 
 
@@ -2246,6 +2467,9 @@ Because the Canvas is very vast the way we are going to this part of the docs is
               </li>
               <li>
               There is a good amount of repeated code in dashboard. needs to be refactored to be more DRY. In peticular, the axios call should be in it's own function and called by onChange and dropOnChange.
+              </li>
+              <li>
+              Project disappers if you refresh the page. It's not a bug so much as we just didn't write this to persist on canvas. Either save it or it's gone. 
               </li>
             </ul>
           </div>
