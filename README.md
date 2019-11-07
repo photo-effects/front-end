@@ -1,20 +1,61 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+# Table of Contents
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+1. [Introduction to App](#introduction)
+2. [Link to App Docs](#app-docs)
+3. [Libraries / Frameworks used](#libraries-/-frameworks)
+4. [Photo Effects Team](#photo-effects-team)
+  
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+## Introduction 
+The Photo Effects App was created so you could build  beautiful and meaningful messages over photos with ease without the complexity of Photoshop and Canva. 
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+## App Docs
+https://www.photoeffectsapp.com/docs
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+## Libraries / Frameworks
+  ### Front End
+    - JavaScript
+    - React
+    - React Dropzone
+    
+  ### Back End
+    - Node.js
+    - Express
+    - Cloudinary
+    
+  ### Other Tools
+    - Auth0
+    - Trello for Planning
+    - Google Docs for Wireframming
+    - Zoom / Slack for team collaboration
+    
+   
+    
+
+## Photo Effects Team
+  - Christian Ford
+    - Front End App / Auth0
+    - GitHub : https://github.com/Christian-Ford
+  - Jasmine Logan
+    - Front End / Back End / Auth0
+    - GitHub : https://github.com/claridiva2000
+  - Nicholas Rafeek
+    - Front End / Back End
+    - GitHub : https://github.com/Reyaad510
+  - Edgar Flores
+    - Back End / Front End
+    - GitHub : https://github.com/efloreslb
+  - Douglas Jordan
+    - Built the Library / Front & Back End 
+    - GitHub : https://github.com/efloreslb
+  - Joe Bugajski
+    - Team Leader
+    - GitHub : https://github.com/JoeBugajski
+  - Ashley LaNeave
+    - Auth0
+    - GitHub : https://github.com/digitalAsh
+
+
+
+
+

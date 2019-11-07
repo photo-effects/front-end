@@ -1,12 +1,7 @@
-import React, {useState} from 'react';
-import Navbar from '../Landing/components/nav/Navbar';
-
-//images
-import Diagram from '../../assetts/diagram.JPG';
-import LocalStorageImg from '../../assetts/local storage.JPG';
-import Door from '../../assetts/exitdoor.JPG';
-import Exit from '../../assetts/logout.JPG';
+import React from "react";
+import Navbar from "../Landing/components/nav/Navbar";
 import dashState from "../../assetts/dashboardState.png";
+
 import Navout from "../../assetts/navout.JPG";
 import Navin from "../../assetts/navin.JPG";
 import Heropic from "../../assetts/hero.JPG";
@@ -21,85 +16,38 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 import { atomOneDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 
+
 const Docs = ({ auth }) => {
-  const yLocation = {
-    background: 'yellow',
-    border: '1px solid #364F6B',
-    padding: '3px',
-    borderRadius: '5px'
-  };
-
-  const bLocation = {
-    background: '#45DDE6',
-    border: '1px solid #364F6B',
-    padding: '3px',
-    borderRadius: '5px'
-  };
-
-  const gLocation = {
-    background: 'lightGreen',
-    border: '1px solid #364F6B',
-    padding: '3px',
-    borderRadius: '5px'
-  };
-
-  const liSpace ={
-    marginTop: '10px'
-  }
-
-  const boldpointer = {
-    cursor:'pointer',
-    fontWeight:'bold'
-  }
-  const bold ={
-    fontWeight:'bold'
-  }
-
-  const h4s ={
-    marginTop: '20px'
-  }
-
   const h3s = {
-    fontSize: '24px',
-    marginTop: '20px',
-    marginBottom:'10px'
+    fontSize: "24px",
+    marginTop: "10px"
   };
 
   const sections = {
-    marginTop: '15px',
-    paddingTop: '10px',
-    border: '1px, #E6E7E7, solid'
+    marginTop: "15px"
   };
 
   const menu = {
-    width: '270px',
-    height: '100%',
-    padding: '10',
-    paddingTop: '20px ',
-    paddingLeft: '16px',
-    paddingRight: '12px',
-    // height: '850px',
-    overflow: 'auto',
-    background: '#FC5185',
-    color: '#E5E5E6',
-    fontSize: '16px',
-    fontWeight: 'bold',
-    
+    minWidth: "180px",
+    padding: "16px",
+    height: "850px",
+    overflow: "auto",
+    background: "#FC5185",
+    color: "#E5E5E6",
+    fontSize: "16px",
+    fontWeight: "bold"
   };
 
   const docsMenu = {
-    width: '100%',
-    paddingLeft: '20px',
-    paddingRight: '80px',
-    // height: '850px',
-    height: '100%',
-    fontSize: '16px',
-    overflow: 'auto',
-    background:'#EAEAEA',
-    margin:'0px'
+    width: "100%",
+    height: "850px",
+    fontSize: "16px",
+    margin: "5px",
+    overflow: "auto"
   };
 
   const listItems = [
+
     { id: 1, name: 'Tech Stack', details: '', padding: '', indent: '', drop:'block'  },
     { id: 2, name: 'Dependencies', details: '', padding: '', indent: '', drop:'block' },
     { id: 3, name: 'Overview', details: '', padding: '', indent: '', drop:'block' },
@@ -162,6 +110,7 @@ const Docs = ({ auth }) => {
     { id: 11, name: 'F.A.Q', details: '', padding: '', indent:'', drop:'block' },
     { id: 12, name: 'Known Issues', details: '', padding: '', indent:'', drop:'block' },
     
+
   ];
 
   const scrollFunc = id => {
@@ -172,61 +121,42 @@ const Docs = ({ auth }) => {
     element.scrollIntoView({ behavior: "smooth" });
   };
 
-
-
   return (
-    
-    <div style={{ height: '937px', overflow: 'hidden', lineHeight: '22px', background: '#FC5185' }}>
+    <div style={{ height: "937px", overflow: "hidden" }}>
       <Navbar auth={auth} />
-      <div style={{ height: "101px" }}></div>
+      <div style={{ height: "105px" }}></div>
 
-      <div style={{ display: "flex", flexDirection: "row", height:'88.5vh' }}>
+      <div style={{ display: "flex", flexDirection: "row" }}>
         <div style={menu}>
           <ul>
             {listItems.map(item => (
               <li
-                style={{ marginTop: '10px', marginLeft: item.indent, cursor:'pointer' }}
+                style={{ marginTop: "10px" }}
                 onClick={() => scrollFunc(item.id)}
               >
-                
-                
-                {item.id}.{' '}
-                <span
-                  style={{
-                    background: '#364F6B',
-                    borderRadius: '6px',
-                    padding: item.padding
-                  }}
-                >
-                  {item.details}
-                </span>{' '}
-                {item.name}  
-                {/* <i className="fas fa-plus-circle" style={{display:item.drop}}></i> */}
-                
+                {item.id}. {item.name}
               </li>
             ))}
           </ul>
         </div>
-        
-        <div style={docsMenu}>
+        <div id="1" style={docsMenu}>
           <div style={sections}>
-          <span id="1"></span>
             <h3 style={h3s}>Our Tech Stack!</h3>
-            <h4 style={h4s}>FrontEnd:</h4>
+            <h4>FrontEnd:</h4>
             <ul>
               <li>React</li>
             </ul>
-            <h4 style={h4s}>Backend:</h4>
+            <h4>Backend:</h4>
             <ul>
               <li>PostgreSQL</li>
               <li>Cloudinary</li>
               <li>Node.js</li>
             </ul>
-            <h4 style={h4s}>DevOps</h4>
+            <h4>DevOps</h4>
             <ul>
               <li>Auth0</li>
             </ul>
-            <h4 style={h4s}>Wireframes/Planning Docs</h4>
+            <h4>Wireframes/Planning Docs</h4>
             <ul>
               <li>
                 <a
@@ -474,92 +404,23 @@ const Docs = ({ auth }) => {
               </li>
             </ul>
           </div>
-          <span style={{ height: '10px' }} id="5"></span>
+          <span id="5"></span>
           <div style={sections}>
-            <h3 style={h3s}>Navigating Through this Project</h3>
-            Upon first inspection, you will likely notice that our folder
-            structure goes DEEP. So in our infinite mercy, we created a flow
-            chart to make it easier for anyone who inherits this project to
-            figure out where things are hidden. The full diagram is {''}
-            <a
-              href="https://drive.google.com/file/d/10MtSzS81h8kgcXFGgP7RC0pwSsfDttqx/view?usp=sharing"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span style={{ fontWeight: 'bold' }}>here</span>
-            </a>
-            , and can be opened and edited using a program called{' '}
-            <span style={{ fontWeight: 'bold' }}>
-              <a
-                href="https://www.draw.io"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Draw.io
-              </a>
-            </span>
-            , which is available in Google Drive.
-            <p style={{ marginTop: '10px' }}>
-              The diagram has folders in yellow. Each folder is given a letter.
-              The letters are roughly in alphabetical order left to right to help
-              you quickly find what you need and navigate the diagram. The
-              letters are stictly for navigation and doesn't correspond to the
-              folder structure itself in VSCode. Each file within the folders
-              are marked with the parent folder letter followed by a number.
-            </p>
-            <img
-              src={Diagram}
-              alt="diagram"
-              style={{
-                margin: '30px 10px 30px 70px',
-                border: '1px solid #364F6B',
-                borderRadius: '8px'
-              }}
-            />
-            <p style={{ marginTop: '10px' }}>
-              The above example shows that the canvas/layout folder has 2
-              subfolders. Each subfolder has files in numerical order. The{' '}
-              <span>blue</span> files are .js or .jsx files (If you don't know
-              the difference between .js and .jsx, click{' '}
-              <span
-                onClick={() => scrollFunc('jsx')}
-                style={{
-                  fontWeight: 'bold',
-                  textDecoration: 'underline',
-                  cursor: 'pointer'
-                }}
-              >
-                {' '}
-                here
-              </span>
-              ). CSS files are in red, and image files (svg, jpeg etc. ) are in
-              green.{' '}
-            </p>
-            <p style={{ marginTop: '10px' }}>
-              Throughout the docs, we will reference the diagram to point out
-              important things such as the location of components or where
-              top-level state is located because this project has lots of {' '}
-              <a
-                href="https://codeburst.io/react-anti-pattern-prop-drilling-54474d5236bd"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                prop-drilling
-              </a>. If you are unfamiliar with prop-drilling, you may
-              want to brush up on it. And then, once you learn it, refactor the
-              whole project into hooks, put state in
-              Context...then totally forget you ever had to learned
-              prop-drilling in the first place.
-            </p>
-            <p style={{ marginTop: '10px' }}>
-              We will organize documentation by major components and include as
-              many references, code snippets, screenshots and helpful documents
-              as we can think of.{' '}
-            </p>
+            <h3>5th thing</h3>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
+            sed pariatur illum facilis modi neque, esse repellat iste ipsa
+            ipsum, fuga nobis! Vitae exercitationem incidunt impedit doloribus
+            distinctio! Delectus, aliquid. Lorem, ipsum dolor sit amet
+            consectetur adipisicing elit. Cumque odit excepturi fuga fugit quod,
+            odio aliquam nihil sint explicabo tempora minus ratione tempore
+            laborum nam repellendus esse iusto maiores alias. Lorem ipsum dolor,
+            sit amet consectetur adipisicing elit. Accusantium tenetur ab autem
+            eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
+            vitae labore enim natus quasi laborum culpa mollitia?
           </div>
-
           <span id="6"></span>
           <div style={sections}>
+
             <h3 style={h3s}>Authorization/Security</h3>
             <ul>
               <li>
@@ -1743,6 +1604,7 @@ export default WaterfallCont;
               https://cloudinary.com/documentation/image_upload_api_reference
             </a></p>
 
+
             <p>
               The comments in Dashboard.jsx are pretty good and very clearly explain what is going on. But I will explain the major points of this component.
             </p>
@@ -2073,9 +1935,10 @@ export default Upload;
 
             </div>
           </div>
-         
-          <span id="9"></span>
+
+          <span id="7"></span>
           <div style={sections}>
+
             <h3 style={h3s}>Canvas</h3>
 
             <span id="9b"></span>
@@ -2365,8 +2228,9 @@ addItem = item => {
 
 
           <span id="10"></span>
+
           <div style={sections}>
-            <h3 style={h3s}>Backend</h3>
+            <h3>8th thing</h3>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
             sed pariatur illum facilis modi neque, esse repellat iste ipsa
             ipsum, fuga nobis! Vitae exercitationem incidunt impedit doloribus
@@ -2377,6 +2241,7 @@ addItem = item => {
             sit amet consectetur adipisicing elit. Accusantium tenetur ab autem
             eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
             vitae labore enim natus quasi laborum culpa mollitia?
+
           </div>      
          
          
@@ -2472,11 +2337,11 @@ addItem = item => {
               Project disappers if you refresh the page. It's not a bug so much as we just didn't write this to persist on canvas. Either save it or it's gone. 
               </li>
             </ul>
-          </div>
 
-          <span id=""></span>
+          </div>
+          <span id="9"></span>
           <div style={sections}>
-            <h3 style={h3s}>title</h3>
+            <h3>9th thing</h3>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
             sed pariatur illum facilis modi neque, esse repellat iste ipsa
             ipsum, fuga nobis! Vitae exercitationem incidunt impedit doloribus
@@ -2488,10 +2353,9 @@ addItem = item => {
             eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
             vitae labore enim natus quasi laborum culpa mollitia?
           </div>
-
-          <span id=""></span>
+          <span id="10"></span>
           <div style={sections}>
-            <h3 style={h3s}>title</h3>
+            <h3>10th thing</h3>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
             sed pariatur illum facilis modi neque, esse repellat iste ipsa
             ipsum, fuga nobis! Vitae exercitationem incidunt impedit doloribus
@@ -2503,10 +2367,9 @@ addItem = item => {
             eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
             vitae labore enim natus quasi laborum culpa mollitia?
           </div>
-
-          <span id=""></span>
+          <span id="11"></span>
           <div style={sections}>
-            <h3 style={h3s}>title</h3>
+            <h3>11th thing</h3>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
             sed pariatur illum facilis modi neque, esse repellat iste ipsa
             ipsum, fuga nobis! Vitae exercitationem incidunt impedit doloribus
@@ -2518,10 +2381,9 @@ addItem = item => {
             eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
             vitae labore enim natus quasi laborum culpa mollitia?
           </div>
-
-          <span id=""></span>
+          <span id="12"></span>
           <div style={sections}>
-            <h3 style={h3s}>title</h3>
+            <h3>12th thing</h3>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
             sed pariatur illum facilis modi neque, esse repellat iste ipsa
             ipsum, fuga nobis! Vitae exercitationem incidunt impedit doloribus
@@ -2533,11 +2395,9 @@ addItem = item => {
             eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
             vitae labore enim natus quasi laborum culpa mollitia?
           </div>
-
-
-          <span id=""></span>
+          <span id="13"></span>
           <div style={sections}>
-            <h3 style={h3s}>title</h3>
+            <h3>13th thing</h3>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
             sed pariatur illum facilis modi neque, esse repellat iste ipsa
             ipsum, fuga nobis! Vitae exercitationem incidunt impedit doloribus
@@ -2549,9 +2409,9 @@ addItem = item => {
             eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
             vitae labore enim natus quasi laborum culpa mollitia?
           </div>
-          <span id=""></span>
+          <span id="14"></span>
           <div style={sections}>
-            <h3 style={h3s}>thing</h3>
+            <h3>14th thing</h3>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
             sed pariatur illum facilis modi neque, esse repellat iste ipsa
             ipsum, fuga nobis! Vitae exercitationem incidunt impedit doloribus
@@ -2563,10 +2423,9 @@ addItem = item => {
             eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
             vitae labore enim natus quasi laborum culpa mollitia?
           </div>
-
-          <span id=""></span>
+          <span id="15"></span>
           <div style={sections}>
-            <h3 style={h3s}>thing</h3>
+            <h3>15th thing</h3>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
             sed pariatur illum facilis modi neque, esse repellat iste ipsa
             ipsum, fuga nobis! Vitae exercitationem incidunt impedit doloribus
@@ -2578,10 +2437,9 @@ addItem = item => {
             eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
             vitae labore enim natus quasi laborum culpa mollitia?
           </div>
-
-          <span id=""></span>
+          <span id="16"></span>
           <div style={sections}>
-            <h3 style={h3s}>thing</h3>
+            <h3>16th thing</h3>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
             sed pariatur illum facilis modi neque, esse repellat iste ipsa
             ipsum, fuga nobis! Vitae exercitationem incidunt impedit doloribus
@@ -2593,13 +2451,8 @@ addItem = item => {
             eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
             vitae labore enim natus quasi laborum culpa mollitia?
           </div>
-
-
-
-
         </div>
       </div>
-     
     </div>
   );
 };
