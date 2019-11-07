@@ -13,6 +13,7 @@ import Dragdrop from "../../assetts/dragndrop.JPG";
 import Ducky from "../../assetts/ducky.JPG";
 import IMGData from "../../assetts/cloudImg.JPG";
 import LeftToolBar from "../../assetts/leftToolBar.png";
+import Diagram from "../../assetts/diagram.JPG";
 
 //code snippets
 import SyntaxHighlighter from "react-syntax-highlighter";
@@ -58,11 +59,14 @@ const Docs = ({ auth }) => {
 
   const h3s = {
     fontSize: "24px",
-    marginTop: "10px"
+    marginTop: "20px",
+    marginBottom: "10px"
   };
 
   const sections = {
-    marginTop: "15px"
+    marginTop: "15px",
+    paddingTop: "10px",
+    border: "1px, #E6E7E7, solid"
   };
 
   const menu = {
@@ -295,8 +299,44 @@ const Docs = ({ auth }) => {
       drop: "block"
     },
     {
-      id: "9e",
+      id: "9f",
       name: "Photos Tab",
+      details: "",
+      padding: "",
+      indent: "20px",
+      drop: "block"
+    },
+
+    {
+      id: "9g",
+      name: "Graphics Tab",
+      details: "",
+      padding: "",
+      indent: "20px",
+      drop: "block"
+    },
+
+    {
+      id: "9h",
+      name: "Text Tab",
+      details: "",
+      padding: "",
+      indent: "20px",
+      drop: "block"
+    },
+
+    {
+      id: "9i",
+      name: "Paint Tab",
+      details: "",
+      padding: "",
+      indent: "20px",
+      drop: "block"
+    },
+
+    {
+      id: "9j",
+      name: "Canvas Area",
       details: "",
       padding: "",
       indent: "20px",
@@ -364,23 +404,46 @@ const Docs = ({ auth }) => {
   };
 
   return (
-    <div style={{ height: "937px", overflow: "hidden" }}>
+    <div
+      style={{
+        height: "937px",
+        overflow: "hidden",
+        lineHeight: "22px",
+        background: "#EAEAEA"
+      }}
+    >
       <Navbar auth={auth} />
-      <div style={{ height: "105px" }}></div>
+      <div style={{ height: "101px" }}></div>
 
-      <div style={{ display: "flex", flexDirection: "row" }}>
+      <div style={{ display: "flex", flexDirection: "row", height: "810px" }}>
         <div style={menu}>
           <ul>
             {listItems.map(item => (
               <li
-                style={{ marginTop: "10px" }}
+                style={{
+                  marginTop: "10px",
+                  marginLeft: item.indent,
+                  cursor: "pointer"
+                }}
                 onClick={() => scrollFunc(item.id)}
               >
-                {item.id}. {item.name}
+                {item.id}.{" "}
+                <span
+                  style={{
+                    background: "#364F6B",
+                    borderRadius: "6px",
+                    padding: item.padding
+                  }}
+                >
+                  {item.details}
+                </span>{" "}
+                {item.name}
+                {/* <i className="fas fa-plus-circle" style={{display:item.drop}}></i> */}
               </li>
             ))}
           </ul>
         </div>
+
         <div id="1" style={docsMenu}>
           <div style={sections}>
             <h3 style={h3s}>Our Tech Stack!</h3>
@@ -604,6 +667,7 @@ const Docs = ({ auth }) => {
             completed photo can be saved for later, or downloaded to the users
             device.
           </div>
+
           <span id="4"></span>
           <div style={sections}>
             <h3 style={h3s}>Links, Docs and More</h3>
@@ -646,20 +710,93 @@ const Docs = ({ auth }) => {
               </li>
             </ul>
           </div>
-          <span id="5"></span>
+
+          <span style={{ height: "10px" }} id="5"></span>
           <div style={sections}>
-            <h3>5th thing</h3>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
-            sed pariatur illum facilis modi neque, esse repellat iste ipsa
-            ipsum, fuga nobis! Vitae exercitationem incidunt impedit doloribus
-            distinctio! Delectus, aliquid. Lorem, ipsum dolor sit amet
-            consectetur adipisicing elit. Cumque odit excepturi fuga fugit quod,
-            odio aliquam nihil sint explicabo tempora minus ratione tempore
-            laborum nam repellendus esse iusto maiores alias. Lorem ipsum dolor,
-            sit amet consectetur adipisicing elit. Accusantium tenetur ab autem
-            eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
-            vitae labore enim natus quasi laborum culpa mollitia?
+            <h3 style={h3s}>Navigating Through this Project</h3>
+            Upon first inspection, you will likely notice that our folder
+            structure goes DEEP. So in our infinite mercy, we created a flow
+            chart to make it easier for anyone who inherits this project to
+            figure out where things are hidden. The full diagram is {""}
+            <a
+              href="https://drive.google.com/file/d/10MtSzS81h8kgcXFGgP7RC0pwSsfDttqx/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span style={{ fontWeight: "bold" }}>here</span>
+            </a>
+            , and can be opened and edited using a program called{" "}
+            <span style={{ fontWeight: "bold" }}>
+              <a
+                href="https://www.draw.io"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Draw.io
+              </a>
+            </span>
+            , which is available in Google Drive.
+            <p style={{ marginTop: "10px" }}>
+              The diagram has folders in yellow. Each folder is given a letter.
+              The letters are roughly in alphabetical order left to right to
+              help you quickly find what you need and navigate the diagram. The
+              letters are stictly for navigation and doesn't correspond to the
+              folder structure itself in VSCode. Each file within the folders
+              are marked with the parent folder letter followed by a number.
+            </p>
+            <img
+              src={Diagram}
+              alt="diagram"
+              style={{
+                margin: "30px 10px 30px 70px",
+                border: "1px solid #364F6B",
+                borderRadius: "8px"
+              }}
+            />
+            <p style={{ marginTop: "10px" }}>
+              The above example shows that the canvas/layout folder has 2
+              subfolders. Each subfolder has files in numerical order. The{" "}
+              <span>blue</span> files are .js or .jsx files (If you don't know
+              the difference between .js and .jsx, click{" "}
+              <span
+                onClick={() => scrollFunc("jsx")}
+                style={{
+                  fontWeight: "bold",
+                  textDecoration: "underline",
+                  cursor: "pointer"
+                }}
+              >
+                {" "}
+                here
+              </span>
+              ). CSS files are in red, and image files (svg, jpeg etc. ) are in
+              green.{" "}
+            </p>
+            <p style={{ marginTop: "10px" }}>
+              Throughout the docs, we will reference the diagram to point out
+              important things such as the location of components or where
+              top-level state is located because this project has lots of{" "}
+              <a
+                href="https://codeburst.io/react-anti-pattern-prop-drilling-54474d5236bd"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                prop-drilling
+              </a>
+              . If you are unfamiliar with prop-drilling, you may want to brush
+              up on it. And then, once you learn it, refactor the whole project
+              into hooks, put state in Context...then totally forget you ever
+              had to learned prop-drilling in the first place.
+            </p>
+            <p style={{ marginTop: "10px" }}>
+              We will organize documentation by major components and include as
+              many references, code snippets, screenshots and helpful documents
+              as we can think of.{" "}
+            </p>
           </div>
+
+          {/* you are here */}
+
           <span id="6"></span>
           <div style={sections}>
             <h3 style={h3s}>Authorization/Security</h3>
@@ -2567,9 +2704,51 @@ export default Upload;
             </div>
           </div>
 
-          <span id="7"></span>
+          <span id="9"></span>
           <div style={sections}>
             <h3 style={h3s}>Canvas</h3>
+            <ul>
+              <li>
+                Location: <span style={yLocation}>K</span>,
+              </li>
+              <li>
+                Depencies:{" "}
+                <a
+                  href="https://www.npmjs.com/package/react-dropzone"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  cloudinary-react
+                </a>
+                ,{" "}
+                <a
+                  href="https://www.npmjs.com/package/axios"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  html2canvas
+                </a>
+                ,{" "}
+                <a
+                  href="https://www.npmjs.com/package/cloudinary-react"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  uuid
+                </a>
+              </li>
+              <li>
+                Where is State? : Canvas Top Level State -{" "}
+                <span style={bLocation}>I1</span> Projects State -{" "}
+                <span style={bLocation}>X1</span>
+              </li>
+            </ul>
+
+
+            <span id="9a"></span>
+            <h4 style={h4s}>Overview</h4>
+
+            
 
             <span id="9b"></span>
 
@@ -2905,7 +3084,171 @@ addItem = item => {
               API(located within the code) and allows the user to use their
               photos to drag and move around onto the canvas.{" "}
             </p>
-            <p> PhotosPanel.js </p>
+            <p>
+              {" "}
+              PhotosPanel.js is the area in the photos tab where a user can
+              choose to display photos from their canvas or from the pexels API.{" "}
+            </p>
+            <p>
+              Photo.js are each of the photos mapped out. When clicked on they
+              will be added to the canvas due to the addItem method passed down
+              from Canvas.jsx mentioned above.
+            </p>
+            <p>
+              Tab.js simply displays the "Photos", "Graphics", and "Text" on the
+              left that a user clicks to open them up.
+            </p>
+            <p>For photos in in Box.js(P2) in in the stat </p>
+
+            <span id="9g"></span>
+
+            <h4 style={h4s}>Graphics Tab</h4>
+            <p>
+              The Graphics Tab is the same as the above with the fact that it
+              uses the same addItem method from Canvas.jsx and is passed to the
+              GraphicsTool.js(DD1)
+            </p>
+            <p>
+              In GraphicsTool.js it receives svg stickers from Mojilala api and
+              is then stored in the graphics tab.
+            </p>
+            <p>
+              When a graphic is clicked the addItem method allows it to appear
+              on the canvas to be moved around
+            </p>
+
+            <span id="9h"></span>
+
+            <h4 style={h4s}>Text Tab</h4>
+            <p>
+              {" "}
+              The text tab is the same as the graphics tab and photos tab with
+              how they are added to the canvas which is by using the addItem
+              method from Canvas.jsx. The "Add text" button is located in
+              TextEditorTool.js(DD7) which calls the addItem method
+            </p>
+
+            <div
+              style={{
+                margin: "10px 0px",
+                borderRadius: "8px",
+                padding: "5px",
+                background: "black",
+                color: "white"
+              }}
+            >
+              Canvas.jsx
+              <SyntaxHighlighter
+                language="javascript"
+                style={atomOneDark}
+                showLineNumbers
+                useInlineStyles
+              >
+                {`
+
+setTextbox = (id, textbox) => {
+  const { x, y } = textbox;
+
+  let items = this.state.items.map(item => {
+    if (item.props.id === id) {
+      return (
+        <item.type
+          {...item.props}
+          x={x}
+          y={y}
+          textbox={textbox}
+          style={item.props.style}
+        />
+      );
+    }
+    return item;
+  });
+
+  this.setState({ items });
+  this.saveImageToState();
+};
+
+`}
+              </SyntaxHighlighter>
+            </div>
+            <p>
+              {" "}
+              THe setTextbox method is in Canvas.jsx and is passed down to
+              Box.js(P2)
+            </p>
+
+            <div
+              style={{
+                margin: "10px 0px",
+                borderRadius: "8px",
+                padding: "5px",
+                background: "black",
+                color: "white"
+              }}
+            >
+              Box.js
+              <SyntaxHighlighter
+                language="javascript"
+                style={atomOneDark}
+                showLineNumbers
+                useInlineStyles
+              >
+                {`
+ setTextbox = (set, val) => {
+  this.setState({
+    textbox: {
+      ...this.state.textbox,
+      [set]: val
+    }
+  });
+
+  setTimeout(() => {
+    this.props.setTextbox(this.state.item.props.id, {
+      color: this.state.textbox.color || "",
+      background: this.state.textbox.background || "",
+      style: this.state.textbox.style || "",
+      weight: this.state.textbox.weight || "",
+      decoration: this.state.textbox.textbox || "",
+      slider: this.state.textbox.slider || 15,
+      text: this.state.textbox.text || "",
+      x: this.state.x,
+      y: this.state.y
+    });
+  }, 500);
+};
+
+`}
+              </SyntaxHighlighter>
+            </div>
+
+<p>In Box.js we also have a method called setTextbox that will update the state if a user changes the values for the textbox and then called this.props.setTextbox located in Canvas.jsx to update</p>
+<p> The setTextbox in Box.js is passed down to TextToolbar.jsx(FF3) </p>
+<p>When a user clicks "Add text" and text box will appear on canvas the TextToolbar will appear allowing the user to manipulate the text by increasing font, changing the background color, changing the color of the font, bold, italicize, underlinem and the delete the text. All of the things in the text toolbar will be located in TextToolbar.jsx.</p>
+<p> When those values are changed the setTextbox from Box.js is updated and then the setTextbox from Canvas.jsx is updated.</p>
+<p>To find other components related to the textbox look in the TextBox(H) folder</p>
+
+
+
+<span id="9i"></span>
+
+<h4 style={h4s}>Paint Tab</h4>
+
+<p>
+JASIMINE HELP PLZ :'(
+</p>
+
+
+
+<span id="9J"></span>
+
+<h4 style={h4s}>Canvas Area</h4>
+
+<p>
+
+</p>
+
+
+
           </div>
 
           <span id="10"></span>
