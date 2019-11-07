@@ -2,29 +2,71 @@ import React from "react";
 import Navbar from "../Landing/components/nav/Navbar";
 import dashState from "../../assetts/dashboardState.png";
 
+import LocalStorageImg from "../../assetts/local storage.JPG";
+import Door from "../../assetts/exitdoor.JPG";
+import Exit from "../../assetts/logout.JPG";
 import Navout from "../../assetts/navout.JPG";
 import Navin from "../../assetts/navin.JPG";
 import Heropic from "../../assetts/hero.JPG";
 import Tagpic from "../../assetts/tags.JPG";
-import Dragdrop from '../../assetts/dragndrop.JPG'
-import Ducky from '../../assetts/ducky.JPG';
-import IMGData from '../../assetts/cloudImg.JPG';
-import LeftToolBar from '../../assetts/leftToolBar.png';
+import Dragdrop from "../../assetts/dragndrop.JPG";
+import Ducky from "../../assetts/ducky.JPG";
+import IMGData from "../../assetts/cloudImg.JPG";
+import LeftToolBar from "../../assetts/leftToolBar.png";
+import Diagram from "../../assetts/diagram.JPG";
 
 //code snippets
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { atomOneDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
-
-
+import SyntaxHighlighter from "react-syntax-highlighter";
+import { atomOneDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 const Docs = ({ auth }) => {
-  const h3s = {
-    fontSize: "24px",
+  const yLocation = {
+    background: "yellow",
+    border: "1px solid #364F6B",
+    padding: "3px",
+    borderRadius: "5px"
+  };
+
+  const bLocation = {
+    background: "#45DDE6",
+    border: "1px solid #364F6B",
+    padding: "3px",
+    borderRadius: "5px"
+  };
+
+  const gLocation = {
+    background: "lightGreen",
+    border: "1px solid #364F6B",
+    padding: "3px",
+    borderRadius: "5px"
+  };
+
+  const liSpace = {
     marginTop: "10px"
   };
 
+  const boldpointer = {
+    cursor: "pointer",
+    fontWeight: "bold"
+  };
+  const bold = {
+    fontWeight: "bold"
+  };
+
+  const h4s = {
+    marginTop: "20px"
+  };
+
+  const h3s = {
+    fontSize: "24px",
+    marginTop: "20px",
+    marginBottom: "10px"
+  };
+
   const sections = {
-    marginTop: "15px"
+    marginTop: "15px",
+    paddingTop: "10px",
+    border: "1px, #E6E7E7, solid"
   };
 
   const menu = {
@@ -47,70 +89,310 @@ const Docs = ({ auth }) => {
   };
 
   const listItems = [
-
-    { id: 1, name: 'Tech Stack', details: '', padding: '', indent: '', drop:'block'  },
-    { id: 2, name: 'Dependencies', details: '', padding: '', indent: '', drop:'block' },
-    { id: 3, name: 'Overview', details: '', padding: '', indent: '', drop:'block' },
+    {
+      id: 1,
+      name: "Tech Stack",
+      details: "",
+      padding: "",
+      indent: "",
+      drop: "block"
+    },
+    {
+      id: 2,
+      name: "Dependencies",
+      details: "",
+      padding: "",
+      indent: "",
+      drop: "block"
+    },
+    {
+      id: 3,
+      name: "Overview",
+      details: "",
+      padding: "",
+      indent: "",
+      drop: "block"
+    },
     {
       id: 4,
-      name: 'Links, Docs and more',
-      details: '',
-      padding: '',
-      indent: '', drop:'block'
+      name: "Links, Docs and more",
+      details: "",
+      padding: "",
+      indent: "",
+      drop: "block"
     },
     {
       id: 5,
-      name: '  Navigating Through this Project ',
-      details: '**READ THIS FIRST!**',
-      padding: '3px', drop:'block'
+      name: "  Navigating Through this Project ",
+      details: "**READ THIS FIRST!**",
+      padding: "3px",
+      drop: "block"
     },
     {
       id: 6,
-      name: 'Authorization/Security',
-      details: '',
-      padding: '',
-      indent: '', drop:'block'
+      name: "Authorization/Security",
+      details: "",
+      padding: "",
+      indent: "",
+      drop: "block"
     },
-    { id: '6a', name: 'Getting Started', padding: '', indent: '20px', drop:'none' },
-    { id: '6b', name: 'Integration', padding: '', indent: '20px', drop:'none' },
-    { id: '6c', name: 'withAuth.js', padding: '', indent: '20px', drop:'none' },
-    { id: '6d', name: 'Callback.js', padding: '', indent: '20px', drop:'none' },
-    { id: '6e', name: 'Authorization', padding: '', indent: '20px', drop:'none' },
-    { id: '6f', name: 'Tokens/Ids', padding: '', indent: '20px', drop:'none' },
-    { id: '6g', name: 'Logout', padding: '', indent: '20px', drop:'none' },
-    { id: 7, name: 'Landing', details: '', padding: '', indent: '', drop:'block' },
-    { id: '7a', name: 'NavBar', padding: '', indent: '20px', drop:'none' },
-    { id: '7b', name: 'Hero', padding: '', indent: '20px', drop:'none' },
-    { id: '7c', name: 'Tags', padding: '', indent: '20px', drop:'none' },
-    { id: '7d', name: 'Waterfall', padding: '', indent: '20px', drop:'none' },
-    { id: 8, name: 'Dashboard', details: '', padding: '', indent: '', drop:'block' },
-    { id: '8a', name: 'Overview', details: '', padding: '', indent: '20px', drop:'block' },
-    { id: '8b', name: 'Cloudinary', details: '', padding: '', indent: '20px', drop:'block' },
-    { id: '8c', name: 'Upload Photo', details: '', padding: '', indent: '20px', drop:'block' },
-    { id: '8d', name: 'Image', details: '', padding: '', indent:'20px', drop:'block' },
-    { id: '8e', name: 'PhotoLink', details: '', padding: '', indent:'20px', drop:'block' },
-    { id: '8f', name: 'Projects', details: '', padding: '', indent:'20px', drop:'block' },
-    { id: '8g', name: 'Upload', details: '', padding: '', indent:'20px', drop:'block' },
-    { id: 9, name: 'Canvas', details: '', padding: '', indent: '', drop:'block' },
-    { id: '9a', name: 'Overview', details: '', padding: '', indent:'20px', drop:'block' },
-   
-    { id: '9b', name: 'Structure', details: '', padding: '', indent:'20px', drop:'block' },
-    { id: '9c', name: 'Left ToolBar', details: '', padding: '', indent:'20px', drop:'block'} ,
-    { id: '9d', name: 'Save & Download', details: '', padding: '', indent:'20px', drop:'block' },
-     { id: '9e', name: 'Title Project', details: '', padding: '', indent:'20px', drop:'block' },
-     { id: '9e', name: 'Photos Tab', details: '', padding: '', indent:'20px', drop:'block' },
-  
-    { id: 10, name: 'Back End', details: '', padding: '', indent: '', 
-    drop:'block' }, 
-    
-    { id: '10a', name: '', details: '', padding: '', indent:'20px', drop:'block' },
-   
-    { id: '10b', name: '', details: '', padding: '', indent:'20px', drop:'block' },
-    { id: '10c', name: '', details: '', padding: '', indent:'20px', drop:'block' },
-    { id: 11, name: 'F.A.Q', details: '', padding: '', indent:'', drop:'block' },
-    { id: 12, name: 'Known Issues', details: '', padding: '', indent:'', drop:'block' },
-    
+    {
+      id: "6a",
+      name: "Getting Started",
+      padding: "",
+      indent: "20px",
+      drop: "none"
+    },
+    {
+      id: "6b",
+      name: "Integration",
+      padding: "",
+      indent: "20px",
+      drop: "none"
+    },
+    {
+      id: "6c",
+      name: "withAuth.js",
+      padding: "",
+      indent: "20px",
+      drop: "none"
+    },
+    {
+      id: "6d",
+      name: "Callback.js",
+      padding: "",
+      indent: "20px",
+      drop: "none"
+    },
+    {
+      id: "6e",
+      name: "Authorization",
+      padding: "",
+      indent: "20px",
+      drop: "none"
+    },
+    { id: "6f", name: "Tokens/Ids", padding: "", indent: "20px", drop: "none" },
+    { id: "6g", name: "Logout", padding: "", indent: "20px", drop: "none" },
+    {
+      id: 7,
+      name: "Landing",
+      details: "",
+      padding: "",
+      indent: "",
+      drop: "block"
+    },
+    { id: "7a", name: "NavBar", padding: "", indent: "20px", drop: "none" },
+    { id: "7b", name: "Hero", padding: "", indent: "20px", drop: "none" },
+    { id: "7c", name: "Tags", padding: "", indent: "20px", drop: "none" },
+    { id: "7d", name: "Waterfall", padding: "", indent: "20px", drop: "none" },
+    {
+      id: 8,
+      name: "Dashboard",
+      details: "",
+      padding: "",
+      indent: "",
+      drop: "block"
+    },
+    {
+      id: "8a",
+      name: "Overview",
+      details: "",
+      padding: "",
+      indent: "20px",
+      drop: "block"
+    },
+    {
+      id: "8b",
+      name: "Cloudinary",
+      details: "",
+      padding: "",
+      indent: "20px",
+      drop: "block"
+    },
+    {
+      id: "8c",
+      name: "Upload Photo",
+      details: "",
+      padding: "",
+      indent: "20px",
+      drop: "block"
+    },
+    {
+      id: "8d",
+      name: "Image",
+      details: "",
+      padding: "",
+      indent: "20px",
+      drop: "block"
+    },
+    {
+      id: "8e",
+      name: "PhotoLink",
+      details: "",
+      padding: "",
+      indent: "20px",
+      drop: "block"
+    },
+    {
+      id: "8f",
+      name: "Projects",
+      details: "",
+      padding: "",
+      indent: "20px",
+      drop: "block"
+    },
+    {
+      id: "8g",
+      name: "Upload",
+      details: "",
+      padding: "",
+      indent: "20px",
+      drop: "block"
+    },
+    {
+      id: 9,
+      name: "Canvas",
+      details: "",
+      padding: "",
+      indent: "",
+      drop: "block"
+    },
+    {
+      id: "9a",
+      name: "Overview",
+      details: "",
+      padding: "",
+      indent: "20px",
+      drop: "block"
+    },
 
+    {
+      id: "9b",
+      name: "Structure",
+      details: "",
+      padding: "",
+      indent: "20px",
+      drop: "block"
+    },
+    {
+      id: "9c",
+      name: "Left ToolBar",
+      details: "",
+      padding: "",
+      indent: "20px",
+      drop: "block"
+    },
+    {
+      id: "9d",
+      name: "Save & Download",
+      details: "",
+      padding: "",
+      indent: "20px",
+      drop: "block"
+    },
+    {
+      id: "9e",
+      name: "Title Project",
+      details: "",
+      padding: "",
+      indent: "20px",
+      drop: "block"
+    },
+    {
+      id: "9f",
+      name: "Photos Tab",
+      details: "",
+      padding: "",
+      indent: "20px",
+      drop: "block"
+    },
+
+    {
+      id: "9g",
+      name: "Graphics Tab",
+      details: "",
+      padding: "",
+      indent: "20px",
+      drop: "block"
+    },
+
+    {
+      id: "9h",
+      name: "Text Tab",
+      details: "",
+      padding: "",
+      indent: "20px",
+      drop: "block"
+    },
+
+    {
+      id: "9i",
+      name: "Paint Tab",
+      details: "",
+      padding: "",
+      indent: "20px",
+      drop: "block"
+    },
+
+    {
+      id: "9j",
+      name: "Canvas Area",
+      details: "",
+      padding: "",
+      indent: "20px",
+      drop: "block"
+    },
+
+    {
+      id: 10,
+      name: "Back End",
+      details: "",
+      padding: "",
+      indent: "",
+      drop: "block"
+    },
+
+    {
+      id: "10a",
+      name: "",
+      details: "",
+      padding: "",
+      indent: "20px",
+      drop: "block"
+    },
+
+    {
+      id: "10b",
+      name: "",
+      details: "",
+      padding: "",
+      indent: "20px",
+      drop: "block"
+    },
+    {
+      id: "10c",
+      name: "",
+      details: "",
+      padding: "",
+      indent: "20px",
+      drop: "block"
+    },
+    {
+      id: 11,
+      name: "F.A.Q",
+      details: "",
+      padding: "",
+      indent: "",
+      drop: "block"
+    },
+    {
+      id: 12,
+      name: "Known Issues",
+      details: "",
+      padding: "",
+      indent: "",
+      drop: "block"
+    }
   ];
 
   const scrollFunc = id => {
@@ -122,23 +404,46 @@ const Docs = ({ auth }) => {
   };
 
   return (
-    <div style={{ height: "937px", overflow: "hidden" }}>
+    <div
+      style={{
+        height: "937px",
+        overflow: "hidden",
+        lineHeight: "22px",
+        background: "#EAEAEA"
+      }}
+    >
       <Navbar auth={auth} />
-      <div style={{ height: "105px" }}></div>
+      <div style={{ height: "101px" }}></div>
 
-      <div style={{ display: "flex", flexDirection: "row" }}>
+      <div style={{ display: "flex", flexDirection: "row", height: "810px" }}>
         <div style={menu}>
           <ul>
             {listItems.map(item => (
               <li
-                style={{ marginTop: "10px" }}
+                style={{
+                  marginTop: "10px",
+                  marginLeft: item.indent,
+                  cursor: "pointer"
+                }}
                 onClick={() => scrollFunc(item.id)}
               >
-                {item.id}. {item.name}
+                {item.id}.{" "}
+                <span
+                  style={{
+                    background: "#364F6B",
+                    borderRadius: "6px",
+                    padding: item.padding
+                  }}
+                >
+                  {item.details}
+                </span>{" "}
+                {item.name}
+                {/* <i className="fas fa-plus-circle" style={{display:item.drop}}></i> */}
               </li>
             ))}
           </ul>
         </div>
+
         <div id="1" style={docsMenu}>
           <div style={sections}>
             <h3 style={h3s}>Our Tech Stack!</h3>
@@ -362,6 +667,7 @@ const Docs = ({ auth }) => {
             completed photo can be saved for later, or downloaded to the users
             device.
           </div>
+
           <span id="4"></span>
           <div style={sections}>
             <h3 style={h3s}>Links, Docs and More</h3>
@@ -404,31 +710,103 @@ const Docs = ({ auth }) => {
               </li>
             </ul>
           </div>
-          <span id="5"></span>
+
+          <span style={{ height: "10px" }} id="5"></span>
           <div style={sections}>
-            <h3>5th thing</h3>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
-            sed pariatur illum facilis modi neque, esse repellat iste ipsa
-            ipsum, fuga nobis! Vitae exercitationem incidunt impedit doloribus
-            distinctio! Delectus, aliquid. Lorem, ipsum dolor sit amet
-            consectetur adipisicing elit. Cumque odit excepturi fuga fugit quod,
-            odio aliquam nihil sint explicabo tempora minus ratione tempore
-            laborum nam repellendus esse iusto maiores alias. Lorem ipsum dolor,
-            sit amet consectetur adipisicing elit. Accusantium tenetur ab autem
-            eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
-            vitae labore enim natus quasi laborum culpa mollitia?
+            <h3 style={h3s}>Navigating Through this Project</h3>
+            Upon first inspection, you will likely notice that our folder
+            structure goes DEEP. So in our infinite mercy, we created a flow
+            chart to make it easier for anyone who inherits this project to
+            figure out where things are hidden. The full diagram is {""}
+            <a
+              href="https://drive.google.com/file/d/10MtSzS81h8kgcXFGgP7RC0pwSsfDttqx/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span style={{ fontWeight: "bold" }}>here</span>
+            </a>
+            , and can be opened and edited using a program called{" "}
+            <span style={{ fontWeight: "bold" }}>
+              <a
+                href="https://www.draw.io"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Draw.io
+              </a>
+            </span>
+            , which is available in Google Drive.
+            <p style={{ marginTop: "10px" }}>
+              The diagram has folders in yellow. Each folder is given a letter.
+              The letters are roughly in alphabetical order left to right to
+              help you quickly find what you need and navigate the diagram. The
+              letters are stictly for navigation and doesn't correspond to the
+              folder structure itself in VSCode. Each file within the folders
+              are marked with the parent folder letter followed by a number.
+            </p>
+            <img
+              src={Diagram}
+              alt="diagram"
+              style={{
+                margin: "30px 10px 30px 70px",
+                border: "1px solid #364F6B",
+                borderRadius: "8px"
+              }}
+            />
+            <p style={{ marginTop: "10px" }}>
+              The above example shows that the canvas/layout folder has 2
+              subfolders. Each subfolder has files in numerical order. The{" "}
+              <span>blue</span> files are .js or .jsx files (If you don't know
+              the difference between .js and .jsx, click{" "}
+              <span
+                onClick={() => scrollFunc("jsx")}
+                style={{
+                  fontWeight: "bold",
+                  textDecoration: "underline",
+                  cursor: "pointer"
+                }}
+              >
+                {" "}
+                here
+              </span>
+              ). CSS files are in red, and image files (svg, jpeg etc. ) are in
+              green.{" "}
+            </p>
+            <p style={{ marginTop: "10px" }}>
+              Throughout the docs, we will reference the diagram to point out
+              important things such as the location of components or where
+              top-level state is located because this project has lots of{" "}
+              <a
+                href="https://codeburst.io/react-anti-pattern-prop-drilling-54474d5236bd"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                prop-drilling
+              </a>
+              . If you are unfamiliar with prop-drilling, you may want to brush
+              up on it. And then, once you learn it, refactor the whole project
+              into hooks, put state in Context...then totally forget you ever
+              had to learned prop-drilling in the first place.
+            </p>
+            <p style={{ marginTop: "10px" }}>
+              We will organize documentation by major components and include as
+              many references, code snippets, screenshots and helpful documents
+              as we can think of.{" "}
+            </p>
           </div>
+
+          {/* you are here */}
+
           <span id="6"></span>
           <div style={sections}>
-
             <h3 style={h3s}>Authorization/Security</h3>
             <ul>
               <li>
-                Location: <span style={yLocation}>N</span>,{' '}
+                Location: <span style={yLocation}>N</span>,{" "}
                 <span style={yLocation}>G</span>
               </li>
               <li>
-                Depencies:{' '}
+                Depencies:{" "}
                 <a
                   href="https://www.npmjs.com/package/auth0"
                   target="_blank"
@@ -436,7 +814,7 @@ const Docs = ({ auth }) => {
                 >
                   auth0
                 </a>
-                ,{' '}
+                ,{" "}
                 <a
                   href="https://www.npmjs.com/package/auth0-js"
                   target="_blank"
@@ -444,7 +822,7 @@ const Docs = ({ auth }) => {
                 >
                   auth0-js
                 </a>
-                ,{' '}
+                ,{" "}
                 <a
                   href="https://www.npmjs.com/package/auth0-lock"
                   target="_blank"
@@ -452,67 +830,99 @@ const Docs = ({ auth }) => {
                 >
                   auth0-lock
                 </a>
-                ,{' '}
+                ,{" "}
                 <a
                   href="https://www.npmjs.com/package/jwt-decode"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   jwt-decode
-                </a>{' '}
+                </a>{" "}
               </li>
               <li>
                 Where is State? : <span style={bLocation}>G1</span>
               </li>
             </ul>
             <span id="6a"></span>
-            <h4  style={h4s}>Getting Started</h4>
-            Auth0 is what we use to manage security features so we don't have to worry about it. There is quite a learning curve so **Before messing with
-            anything in the code, read through the Getting Started tutorial on
-            the Auth0 site.**
-            <p style={{background:'#FC5185', color:'#EAEAEA', width:'350px', padding:'5px', textDecoration:'none', borderRadius:'8px', margin:'10px 0px'}}> <a
-              href="https://auth0.com/docs/quickstart/spa/react"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ color:'#EAEAEA', fontWeight:'bold'}}
+            <h4 style={h4s}>Getting Started</h4>
+            Auth0 is what we use to manage security features so we don't have to
+            worry about it. There is quite a learning curve so **Before messing
+            with anything in the code, read through the Getting Started tutorial
+            on the Auth0 site.**
+            <p
+              style={{
+                background: "#FC5185",
+                color: "#EAEAEA",
+                width: "350px",
+                padding: "5px",
+                textDecoration: "none",
+                borderRadius: "8px",
+                margin: "10px 0px"
+              }}
             >
-              https://auth0.com/docs/quickstart/spa/react
-            </a></p>
-            <p>
-              The docs on Auth0 at this point uses hooks and
-              Context, which will look different than what we have in this project. This tutorial can help as it still uses class componenents. 
+              {" "}
+              <a
+                href="https://auth0.com/docs/quickstart/spa/react"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "#EAEAEA", fontWeight: "bold" }}
+              >
+                https://auth0.com/docs/quickstart/spa/react
+              </a>
             </p>
-            <p style={{background:'#FC5185', color:'#EAEAEA', width:'180px', padding:'5px', textDecoration:'none', borderRadius:'8px', margin:'10px 0px'}}> <a
-              href="https://medium.com/@saurssaurav33/start-react-with-auth0-107525cb969"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ color:'#EAEAEA', fontWeight:'bold'}}
-            >
-               Start React with Auth0
-            </a></p>
-
             <p>
-              The Auth0 tutorial on PluralSight.com is also very useful and can be done using a free trial, but is worth the money if you need it longer than the first free month. 
+              The docs on Auth0 at this point uses hooks and Context, which will
+              look different than what we have in this project. This tutorial
+              can help as it still uses class componenents.
+            </p>
+            <p
+              style={{
+                background: "#FC5185",
+                color: "#EAEAEA",
+                width: "180px",
+                padding: "5px",
+                textDecoration: "none",
+                borderRadius: "8px",
+                margin: "10px 0px"
+              }}
+            >
+              {" "}
+              <a
+                href="https://medium.com/@saurssaurav33/start-react-with-auth0-107525cb969"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "#EAEAEA", fontWeight: "bold" }}
+              >
+                Start React with Auth0
+              </a>
+            </p>
+            <p>
+              The Auth0 tutorial on PluralSight.com is also very useful and can
+              be done using a free trial, but is worth the money if you need it
+              longer than the first free month.
             </p>
             <span id="6b"></span>
-            <h4  style={h4s}>Integration</h4>
-            <p style={{ marginTop: '10px' }}>
-              {' '}
-              I marked{' '}
-              <span style={bLocation}>G1</span> as where state is located,
-              though this isn't quite the case. The props come from the auth0
-              dependency, which is imported into this component as shown below. 
+            <h4 style={h4s}>Integration</h4>
+            <p style={{ marginTop: "10px" }}>
+              {" "}
+              I marked <span style={bLocation}>G1</span> as where state is
+              located, though this isn't quite the case. The props come from the
+              auth0 dependency, which is imported into this component as shown
+              below.
             </p>
             <p>
-              I've isolated the functions that do the heavy-lifting as far as authorization goes. These are standard Auth0 functions, and should work in any project. The purpose of each function is explained in the tutorials from the previous section.  
+              I've isolated the functions that do the heavy-lifting as far as
+              authorization goes. These are standard Auth0 functions, and should
+              work in any project. The purpose of each function is explained in
+              the tutorials from the previous section.
             </p>
             <div
               style={{
-                margin: '10px 0px',
-                borderRadius: '8px',
-                padding: '5px',
-                background: 'black',
-                color:'white'
+                margin: "10px 0px",
+                borderRadius: "8px",
+                padding: "5px",
+                background: "black",
+                color: "white"
               }}
             >
               Auth.js
@@ -595,16 +1005,18 @@ setSession = authResult => {
               </SyntaxHighlighter>
             </div>
             <p>
-              Props from the above functions are exported from Auth.js {' '}
-                <span style={yLocation}>G1</span> and then imported into App.js <span style={bLocation}>A4</span>, which allows us to use them in any of the other components in the application. 
+              Props from the above functions are exported from Auth.js{" "}
+              <span style={yLocation}>G1</span> and then imported into App.js{" "}
+              <span style={bLocation}>A4</span>, which allows us to use them in
+              any of the other components in the application.
             </p>
             <div
-               style={{
-                margin: '10px 0px',
-                borderRadius: '8px',
-                padding: '5px',
-                background: 'black',
-                color:'white'
+              style={{
+                margin: "10px 0px",
+                borderRadius: "8px",
+                padding: "5px",
+                background: "black",
+                color: "white"
               }}
             >
               App.js
@@ -697,21 +1109,24 @@ export default class App extends Component {
 `}
               </SyntaxHighlighter>
             </div>
-
-
             <p>
-            <span id="6c"></span>
-            <h4  style={h4s}>WithAuth.js </h4> 
+              <span id="6c"></span>
+              <h4 style={h4s}>WithAuth.js </h4>
             </p>
-            <p>The withAuth.js componenent <span style={bLocation}>G2</span> is script that will redirect any user who tries to access protected routes without logging in. It redirects the user back to the the landing page. Changing the route being passed on line 9 will redirect them user to wherever you choose.</p>
-
+            <p>
+              The withAuth.js componenent <span style={bLocation}>G2</span> is
+              script that will redirect any user who tries to access protected
+              routes without logging in. It redirects the user back to the the
+              landing page. Changing the route being passed on line 9 will
+              redirect them user to wherever you choose.
+            </p>
             <div
-               style={{
-                margin: '10px 0px',
-                borderRadius: '8px',
-                padding: '5px',
-                background: 'black',
-                color:'white'
+              style={{
+                margin: "10px 0px",
+                borderRadius: "8px",
+                padding: "5px",
+                background: "black",
+                color: "white"
               }}
             >
               withAuth.js
@@ -744,18 +1159,26 @@ export default withAuth
               </SyntaxHighlighter>
             </div>
             <p>
-            <span id="6d"></span>
-            <h4 style={h4s}>Callback.js </h4> 
+              <span id="6d"></span>
+              <h4 style={h4s}>Callback.js </h4>
             </p>
-            <p>The Callback.js componenent <span style={bLocation}>F1</span> is a component that the user will only ever see for a split-second, if at all. It automatically sends the user to Auth0 so they can sign in with google or register a new username/password. Upon successful login/registration, it reroutes the user back to PhotoEffects by triggering the handleAuthentication() function through props (located in Auth.js <span style={bLocation}>G1</span>)... </p>
-
+            <p>
+              The Callback.js componenent <span style={bLocation}>F1</span> is a
+              component that the user will only ever see for a split-second, if
+              at all. It automatically sends the user to Auth0 so they can sign
+              in with google or register a new username/password. Upon
+              successful login/registration, it reroutes the user back to
+              PhotoEffects by triggering the handleAuthentication() function
+              through props (located in Auth.js{" "}
+              <span style={bLocation}>G1</span>)...{" "}
+            </p>
             <div
-               style={{
-                margin: '10px 0px',
-                borderRadius: '8px',
-                padding: '5px',
-                background: 'black',
-                color:'white'
+              style={{
+                margin: "10px 0px",
+                borderRadius: "8px",
+                padding: "5px",
+                background: "black",
+                color: "white"
               }}
             >
               Callback.js
@@ -791,15 +1214,17 @@ export default Callback;
 `}
               </SyntaxHighlighter>
             </div>
-<p>... which then pushes the user to the dashboard so they can start their project. </p>
-
-<div
-               style={{
-                margin: '10px 0px',
-                borderRadius: '8px',
-                padding: '5px',
-                background: 'black',
-                color:'white'
+            <p>
+              ... which then pushes the user to the dashboard so they can start
+              their project.{" "}
+            </p>
+            <div
+              style={{
+                margin: "10px 0px",
+                borderRadius: "8px",
+                padding: "5px",
+                background: "black",
+                color: "white"
               }}
             >
               withAuth.js <span style={bLocation}>G1</span>
@@ -827,28 +1252,33 @@ export default Callback;
 `}
               </SyntaxHighlighter>
             </div>
-
             <span id="6e"></span>
-            <h4  style={h4s}> Authorization </h4> 
-            <p>In order to create a new user account or access and existing account we must have access to the user information from Auth0. This occurs in Auth.js <span style={bLocation}>G1</span> specifically in handleAuthentication() on line 4 of the snippet below. If a valid token is in local storage, the setSession() function will alert Google that this person is logged in. </p>
-
-<div
-   style={{
-    margin: '10px 0px',
-    borderRadius: '8px',
-    padding: '5px',
-    background: 'black',
-    color:'white'
-  }}
->
-  Auth.js <span style={bLocation}>G1</span>
-  <SyntaxHighlighter
-    language="javascript"
-    style={atomOneDark}
-    showLineNumbers
-    useInlineStyles
-  >
-    {`  handleAuthentication = () => {
+            <h4 style={h4s}> Authorization </h4>
+            <p>
+              In order to create a new user account or access and existing
+              account we must have access to the user information from Auth0.
+              This occurs in Auth.js <span style={bLocation}>G1</span>{" "}
+              specifically in handleAuthentication() on line 4 of the snippet
+              below. If a valid token is in local storage, the setSession()
+              function will alert Google that this person is logged in.{" "}
+            </p>
+            <div
+              style={{
+                margin: "10px 0px",
+                borderRadius: "8px",
+                padding: "5px",
+                background: "black",
+                color: "white"
+              }}
+            >
+              Auth.js <span style={bLocation}>G1</span>
+              <SyntaxHighlighter
+                language="javascript"
+                style={atomOneDark}
+                showLineNumbers
+                useInlineStyles
+              >
+                {`  handleAuthentication = () => {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
@@ -864,31 +1294,36 @@ export default Callback;
   };
 
 `}
-  </SyntaxHighlighter>
-</div>
-
-<p>This allows us access to user data from Google. Immediately after setSession is triggered, getId's is also triggered.</p>
-<p>
-  getId's creates a newUser object which includes the <span style={bold}> email</span>,<span style={bold}> user_id </span>and <span style={bold}>name</span>, all pulled in from Auth0 using thier native function getProfile(). 
-</p>
-
-<div
-   style={{
-    margin: '10px 0px',
-    borderRadius: '8px',
-    padding: '5px',
-    background: 'black',
-    color:'white'
-  }}
->
-  Auth.js <span style={bLocation}>G1</span>
-  <SyntaxHighlighter
-    language="javascript"
-    style={atomOneDark}
-    showLineNumbers
-    useInlineStyles
-  >
-    {`
+              </SyntaxHighlighter>
+            </div>
+            <p>
+              This allows us access to user data from Google. Immediately after
+              setSession is triggered, getId's is also triggered.
+            </p>
+            <p>
+              getId's creates a newUser object which includes the{" "}
+              <span style={bold}> email</span>,
+              <span style={bold}> user_id </span>and{" "}
+              <span style={bold}>name</span>, all pulled in from Auth0 using
+              thier native function getProfile().
+            </p>
+            <div
+              style={{
+                margin: "10px 0px",
+                borderRadius: "8px",
+                padding: "5px",
+                background: "black",
+                color: "white"
+              }}
+            >
+              Auth.js <span style={bLocation}>G1</span>
+              <SyntaxHighlighter
+                language="javascript"
+                style={atomOneDark}
+                showLineNumbers
+                useInlineStyles
+              >
+                {`
   getIds = () => {
     const newUser = {
       email: this.getProfile().email,
@@ -897,42 +1332,53 @@ export default Callback;
     };
 
 `}
-  </SyntaxHighlighter>
-</div>
-
-<p>
- The <span style={bold}>newUser</span> object is passed into the axios POST call which send the object to our <span style={boldpointer} onClick={()=>scrollFunc('backend')}>backend</span> hosted on {' '} 
-        <a href="https://photo-effect-backend.herokuapp.com/"
-          target="_blank"
-          rel="noopener noreferrer" 
-          style={bold}>
-            Heroku
-      </a>. 
-</p>
-<p>
-If the user already exists, then the POST call will send back an error message, specifically error code 23505. If we get this specific code, the google user id is set into local storage, and the user is sent to the dashboard to start their project. This prevents multiples of the same user being saved to the backend. 
-</p>
-<p>
-  If there is no error message, then the POST goes through as normal, creating a new user in the backend.  
-</p>
-
-<div
-   style={{
-    margin: '10px 0px',
-    borderRadius: '8px',
-    padding: '5px',
-    background: 'black',
-    color:'white'
-  }}
->
-  Auth.js <span style={bLocation}>G1</span>
-  <SyntaxHighlighter
-    language="javascript"
-    style={atomOneDark}
-    showLineNumbers
-    useInlineStyles
-  >
-    {` axios
+              </SyntaxHighlighter>
+            </div>
+            <p>
+              The <span style={bold}>newUser</span> object is passed into the
+              axios POST call which send the object to our{" "}
+              <span style={boldpointer} onClick={() => scrollFunc("backend")}>
+                backend
+              </span>{" "}
+              hosted on{" "}
+              <a
+                href="https://photo-effect-backend.herokuapp.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={bold}
+              >
+                Heroku
+              </a>
+              .
+            </p>
+            <p>
+              If the user already exists, then the POST call will send back an
+              error message, specifically error code 23505. If we get this
+              specific code, the google user id is set into local storage, and
+              the user is sent to the dashboard to start their project. This
+              prevents multiples of the same user being saved to the backend.
+            </p>
+            <p>
+              If there is no error message, then the POST goes through as
+              normal, creating a new user in the backend.
+            </p>
+            <div
+              style={{
+                margin: "10px 0px",
+                borderRadius: "8px",
+                padding: "5px",
+                background: "black",
+                color: "white"
+              }}
+            >
+              Auth.js <span style={bLocation}>G1</span>
+              <SyntaxHighlighter
+                language="javascript"
+                style={atomOneDark}
+                showLineNumbers
+                useInlineStyles
+              >
+                {` axios
       .post(
         'https://photo-effects-backend-stage-1.herokuapp.com/users',
         newUser
@@ -949,27 +1395,32 @@ If the user already exists, then the POST call will send back an error message, 
   };
 
 `}
-  </SyntaxHighlighter>
-</div>
-
-<p>Then, getdbId() is triggered, which is a GET call that retrieves the new user we just created in getIDs(), and sets the new user's id to local storage for later use. Then, the handleAuthentication() function finishes up by pushing the user to the dashboard to start their project.</p>
-<div
-   style={{
-    margin: '10px 0px',
-    borderRadius: '8px',
-    padding: '5px',
-    background: 'black',
-    color:'white'
-  }}
->
-  Auth.js <span style={bLocation}>G1</span>
-  <SyntaxHighlighter
-    language="javascript"
-    style={atomOneDark}
-    showLineNumbers
-    useInlineStyles
-  >
-    {`getdbId = async () => {
+              </SyntaxHighlighter>
+            </div>
+            <p>
+              Then, getdbId() is triggered, which is a GET call that retrieves
+              the new user we just created in getIDs(), and sets the new user's
+              id to local storage for later use. Then, the
+              handleAuthentication() function finishes up by pushing the user to
+              the dashboard to start their project.
+            </p>
+            <div
+              style={{
+                margin: "10px 0px",
+                borderRadius: "8px",
+                padding: "5px",
+                background: "black",
+                color: "white"
+              }}
+            >
+              Auth.js <span style={bLocation}>G1</span>
+              <SyntaxHighlighter
+                language="javascript"
+                style={atomOneDark}
+                showLineNumbers
+                useInlineStyles
+              >
+                {`getdbId = async () => {
     await axios.get(\`https://photo-effects-backend-stage-1.herokuapp.com/users/google/\${localStorage.getItem(
       'userId'
     )}\`)
@@ -981,52 +1432,91 @@ If the user already exists, then the POST call will send back an error message, 
     });
 };
 `}
-  </SyntaxHighlighter>
-  <span id="6f"></span>
-</div>
-
-<p>Once all of the functions in Auth.js <span style={bLocation}>G1</span> have run, all the data we need to access the individual user's existing projects or to create a new project in the database should be available in local storage.</p>
-<p style={liSpace}> Local storage should look like this: </p>
-
-<img src={LocalStorageImg} alt="localstorage" style={{borderRadius:'8px', border:'1px solid black', margin: 'auto', width: '100%'}}/>
-
-<ul>
-  <li style={liSpace}><span style={bold}>access_token</span>: Required by Google to log the user in. </li>
-  <li style={liSpace}><span style={bold}>id_token</span>: Required by Google to log the user in.</li>
-  <li style={liSpace}><span style={bold}>expires_at</span>: Defines how long the user can stay logged in with google. Right now it is set to infinite, but can be changed by logging into the <a href="https://auth0.com/auth/login"  
-  target="_blank" 
-  rel="noopener noreferrer" 
-  style={boldpointer}>Auth0 backend</a>.  </li>
-  <li style={liSpace}><span style={bold}>userId</span>: Unique user id from google </li>
-  <li style={liSpace}><span style={bold}>dbId</span>: unique user id in our heroku backend. </li>
-</ul>
-
-<span id="6g"></span>
-  <h4  style={h4s}>Logout</h4>
-
-<img style={{width:'76px', borderRadius:'8px'}}src={Door} alt='door'/>
-<img style={{borderRadius:'8px'}} src={Exit} alt='exit'/>
-<p>
-  Logout buttons are at the top of every page in the app. In the code they are located in Navbar.jsx <span style={bLocation}>Z1</span>, DashNav.jsx <span style={bLocation}>V1</span>, and TopBar.js <span style={bLocation}>S8</span>. The logout buttons accesses the Logout() function based in Auth.js through props that were passed around the project through Apps.js. 
-</p>
-
-<div
-   style={{
-    margin: '10px 0px',
-    borderRadius: '8px',
-    padding: '5px',
-    background: 'black',
-    color:'white'
-  }}
->
-  NavBar.jsx <span style={bLocation}>Z1</span>
-  <SyntaxHighlighter
-    language="javascript"
-    style={atomOneDark}
-    showLineNumbers
-    useInlineStyles
-  >
-    {`import React, { Component } from "react";
+              </SyntaxHighlighter>
+              <span id="6f"></span>
+            </div>
+            <p>
+              Once all of the functions in Auth.js{" "}
+              <span style={bLocation}>G1</span> have run, all the data we need
+              to access the individual user's existing projects or to create a
+              new project in the database should be available in local storage.
+            </p>
+            <p style={liSpace}> Local storage should look like this: </p>
+            <img
+              src={LocalStorageImg}
+              alt="localstorage"
+              style={{
+                borderRadius: "8px",
+                border: "1px solid black",
+                margin: "auto",
+                width: "100%"
+              }}
+            />
+            <ul>
+              <li style={liSpace}>
+                <span style={bold}>access_token</span>: Required by Google to
+                log the user in.{" "}
+              </li>
+              <li style={liSpace}>
+                <span style={bold}>id_token</span>: Required by Google to log
+                the user in.
+              </li>
+              <li style={liSpace}>
+                <span style={bold}>expires_at</span>: Defines how long the user
+                can stay logged in with google. Right now it is set to infinite,
+                but can be changed by logging into the{" "}
+                <a
+                  href="https://auth0.com/auth/login"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={boldpointer}
+                >
+                  Auth0 backend
+                </a>
+                .{" "}
+              </li>
+              <li style={liSpace}>
+                <span style={bold}>userId</span>: Unique user id from google{" "}
+              </li>
+              <li style={liSpace}>
+                <span style={bold}>dbId</span>: unique user id in our heroku
+                backend.{" "}
+              </li>
+            </ul>
+            <span id="6g"></span>
+            <h4 style={h4s}>Logout</h4>
+            <img
+              style={{ width: "76px", borderRadius: "8px" }}
+              src={Door}
+              alt="door"
+            />
+            <img style={{ borderRadius: "8px" }} src={Exit} alt="exit" />
+            <p>
+              Logout buttons are at the top of every page in the app. In the
+              code they are located in Navbar.jsx{" "}
+              <span style={bLocation}>Z1</span>, DashNav.jsx{" "}
+              <span style={bLocation}>V1</span>, and TopBar.js{" "}
+              <span style={bLocation}>S8</span>. The logout buttons accesses the
+              Logout() function based in Auth.js through props that were passed
+              around the project through Apps.js.
+            </p>
+            <div
+              style={{
+                margin: "10px 0px",
+                borderRadius: "8px",
+                padding: "5px",
+                background: "black",
+                color: "white"
+              }}
+            >
+              NavBar.jsx <span style={bLocation}>Z1</span>
+              <SyntaxHighlighter
+                language="javascript"
+                style={atomOneDark}
+                showLineNumbers
+                useInlineStyles
+              >
+                {`import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import navLogo from "../../../../assetts/photoLogo.png";
 
@@ -1164,27 +1654,26 @@ class A extends Component {
 export default Navbar;
 
 `}
-  </SyntaxHighlighter>
-</div>
-
-<span id='dashnav'></span>
-<div
-   style={{
-    margin: '10px 0px',
-    borderRadius: '8px',
-    padding: '5px',
-    background: 'black',
-    color:'white'
-  }}
->
-  DashNav.jsx <span style={bLocation}>V1</span>
-  <SyntaxHighlighter
-    language="javascript"
-    style={atomOneDark}
-    showLineNumbers
-    useInlineStyles
-  >
-    {`import React, { Component } from "react";
+              </SyntaxHighlighter>
+            </div>
+            <span id="dashnav"></span>
+            <div
+              style={{
+                margin: "10px 0px",
+                borderRadius: "8px",
+                padding: "5px",
+                background: "black",
+                color: "white"
+              }}
+            >
+              DashNav.jsx <span style={bLocation}>V1</span>
+              <SyntaxHighlighter
+                language="javascript"
+                style={atomOneDark}
+                showLineNumbers
+                useInlineStyles
+              >
+                {`import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import "./dashNav.css";
 import logo from "../../../../assetts/photoLogo.png";
@@ -1220,27 +1709,25 @@ export class DashNav extends Component {
 export default DashNav;
 
 `}
-  </SyntaxHighlighter>
-</div>
-
-
-<div
-   style={{
-    margin: '10px 0px',
-    borderRadius: '8px',
-    padding: '5px',
-    background: 'black',
-    color:'white'
-  }}
->
-  TopBar.js <span style={bLocation}>G1</span>
-  <SyntaxHighlighter
-    language="javascript"
-    style={atomOneDark}
-    showLineNumbers
-    useInlineStyles
-  >
-    {`export default class TopBar extends Component {
+              </SyntaxHighlighter>
+            </div>
+            <div
+              style={{
+                margin: "10px 0px",
+                borderRadius: "8px",
+                padding: "5px",
+                background: "black",
+                color: "white"
+              }}
+            >
+              TopBar.js <span style={bLocation}>G1</span>
+              <SyntaxHighlighter
+                language="javascript"
+                style={atomOneDark}
+                showLineNumbers
+                useInlineStyles
+              >
+                {`export default class TopBar extends Component {
 
 ...
 
@@ -1309,9 +1796,8 @@ class Tool extends Component {
   }
 }
 `}
-  </SyntaxHighlighter>
-</div>
-
+              </SyntaxHighlighter>
+            </div>
           </div>
           <span id="7"></span>
           <div style={sections}>
@@ -1321,7 +1807,7 @@ class Tool extends Component {
                 Location: <span style={yLocation}>F</span>
               </li>
               <li>
-                Depencies:{' '}
+                Depencies:{" "}
                 <a
                   href="https://www.npmjs.com/package/axios"
                   target="_blank"
@@ -1329,7 +1815,7 @@ class Tool extends Component {
                 >
                   axios
                 </a>
-                ,{' '}
+                ,{" "}
                 <a
                   href="https://www.npmjs.com/package/react-id-swiper"
                   target="_blank"
@@ -1337,7 +1823,7 @@ class Tool extends Component {
                 >
                   react-id-swiper
                 </a>
-                ,{' '}
+                ,{" "}
                 <a
                   href="https://www.npmjs.com/package/swiper"
                   target="_blank"
@@ -1345,72 +1831,147 @@ class Tool extends Component {
                 >
                   swiper
                 </a>
-                ,{' '}
+                ,{" "}
                 <a
                   href="https://www.npmjs.com/package/react-particles-js"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                 react-particles-js
-                </a>,{' '}
+                  react-particles-js
+                </a>
+                ,{" "}
                 <a
                   href="https://www.npmjs.com/package/react-reveal"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                 react-reveal
-                </a>{' '}
+                  react-reveal
+                </a>{" "}
               </li>
               <li>
-                Where is State? : Modal State - <span style={bLocation}>EE2</span>, Sort by Tags - <span style={bLocation}>BB1</span>,  Filter Published projects - <span style={bLocation}>EE3</span>, NavBar Hover State - <span style={bLocation}>Z1</span>, 
+                Where is State? : Modal State -{" "}
+                <span style={bLocation}>EE2</span>, Sort by Tags -{" "}
+                <span style={bLocation}>BB1</span>, Filter Published projects -{" "}
+                <span style={bLocation}>EE3</span>, NavBar Hover State -{" "}
+                <span style={bLocation}>Z1</span>,
               </li>
             </ul>
-          
+
             <span id="7a"></span>
-            <h4  style={h4s}>NavBar <span style={bLocation}>Z1</span></h4>
+            <h4 style={h4s}>
+              NavBar <span style={bLocation}>Z1</span>
+            </h4>
             <p>
-  Much of what you need to know about the navbar was addressed in the <span onClick={()=>{scrollFunc('6e')}} style={boldpointer}>Authorization</span>  section.
+              Much of what you need to know about the navbar was addressed in
+              the{" "}
+              <span
+                onClick={() => {
+                  scrollFunc("6e");
+                }}
+                style={boldpointer}
+              >
+                Authorization
+              </span>{" "}
+              section.
             </p>
-            
-            <img src={Navout}alt="navout" style={{width:'100%', borderRadius:'8px', border:' 1px solid black'}}/>
-            <img src={Navin} alt="navin" style={{width:'100%',borderRadius:'8px', border:' 1px solid black'}}/>
-<p>
-  It render's conditionally based on if the user is logged in or logged out of Auth0. The code looks more complicated than a navbar normally would be, but this is what is required to have a working onHover without use of CSS stylesheets. <br/>
-  I love CSS...it's the best...seriously...this is what you would have to go through for a simple onHover <span onClick={()=>scrollFunc('css')} style={boldpointer}>without CSS</span>.
 
-</p>
-<span id="7b"></span>
-            <h4  style={h4s}>Hero <span style={bLocation}>AA1</span> & <span style={bLocation}>AA3</span></h4>
+            <img
+              src={Navout}
+              alt="navout"
+              style={{
+                width: "100%",
+                borderRadius: "8px",
+                border: " 1px solid black"
+              }}
+            />
+            <img
+              src={Navin}
+              alt="navin"
+              style={{
+                width: "100%",
+                borderRadius: "8px",
+                border: " 1px solid black"
+              }}
+            />
+            <p>
+              It render's conditionally based on if the user is logged in or
+              logged out of Auth0. The code looks more complicated than a navbar
+              normally would be, but this is what is required to have a working
+              onHover without use of CSS stylesheets. <br />I love CSS...it's
+              the best...seriously...this is what you would have to go through
+              for a simple onHover{" "}
+              <span onClick={() => scrollFunc("css")} style={boldpointer}>
+                without CSS
+              </span>
+              .
+            </p>
+            <span id="7b"></span>
+            <h4 style={h4s}>
+              Hero <span style={bLocation}>AA1</span> &{" "}
+              <span style={bLocation}>AA3</span>
+            </h4>
             <p style={liSpace}>
-  The hero is composed of two simple stateless components. The only thing to know is that the bubbles are from a dependency called React-Particles. The Particles effect is in the HeroBg.js component, which is set with absolute positioning and floating behind the Hero.jsx component. Particles can be tricky to position correctly, but looks great, and a lot of fun to play with (the bubbles move when you click on them!)
+              The hero is composed of two simple stateless components. The only
+              thing to know is that the bubbles are from a dependency called
+              React-Particles. The Particles effect is in the HeroBg.js
+              component, which is set with absolute positioning and floating
+              behind the Hero.jsx component. Particles can be tricky to position
+              correctly, but looks great, and a lot of fun to play with (the
+              bubbles move when you click on them!)
             </p>
 
-            
-            <img src={Heropic}alt="hero" style={{width:'100%',borderRadius:'8px', border:' 1px solid black'}}/>
-            
+            <img
+              src={Heropic}
+              alt="hero"
+              style={{
+                width: "100%",
+                borderRadius: "8px",
+                border: " 1px solid black"
+              }}
+            />
+
             <span id="7c"></span>
-            <h4  style={h4s}>Tags <span style={bLocation}>BB1</span> </h4>
+            <h4 style={h4s}>
+              Tags <span style={bLocation}>BB1</span>{" "}
+            </h4>
             <p style={liSpace}>
-The TagsCont.jsx component is fully functional. It appears to not be working on the landing page because the cards do not contain any tags. This is due to there not being a "tags" input in dashboard or canvas just yet. This was an intended feature, but was not included fully due to time constraints. A tags category is available in the backend already. Once a mechanism to update tags on the saved projects is built, and tags mapped into the cards on the landing page, the filter it will work just fine.
+              The TagsCont.jsx component is fully functional. It appears to not
+              be working on the landing page because the cards do not contain
+              any tags. This is due to there not being a "tags" input in
+              dashboard or canvas just yet. This was an intended feature, but
+              was not included fully due to time constraints. A tags category is
+              available in the backend already. Once a mechanism to update tags
+              on the saved projects is built, and tags mapped into the cards on
+              the landing page, the filter it will work just fine.
             </p>
 
-            
-            <img src={Tagpic}alt="hero" style={{width:'100%',borderRadius:'8px', border:' 1px solid black', marginTop:'10px'}}/>
+            <img
+              src={Tagpic}
+              alt="hero"
+              style={{
+                width: "100%",
+                borderRadius: "8px",
+                border: " 1px solid black",
+                marginTop: "10px"
+              }}
+            />
 
             <p>
-              The clicked tag name is sent from TagsCont.jsx to WaterfallCont.jsx through props, and used to filter results coming from the heroku backend.
+              The clicked tag name is sent from TagsCont.jsx to
+              WaterfallCont.jsx through props, and used to filter results coming
+              from the heroku backend.
             </p>
 
             <div
               style={{
-                margin: '10px 0px',
-                borderRadius: '8px',
-                padding: '5px',
-                background: 'black',
-                color:'white'
+                margin: "10px 0px",
+                borderRadius: "8px",
+                padding: "5px",
+                background: "black",
+                color: "white"
               }}
             >
-              TagsCont.jsx <span style={bLocation}>BB1</span> 
+              TagsCont.jsx <span style={bLocation}>BB1</span>
               <SyntaxHighlighter
                 language="javascript"
                 style={atomOneDark}
@@ -1467,18 +2028,18 @@ export default TagsCont;
               </SyntaxHighlighter>
             </div>
             <span id="7d"></span>
-<h4>Waterfall</h4>  
+            <h4>Waterfall</h4>
 
             <div
               style={{
-                margin: '10px 0px',
-                borderRadius: '8px',
-                padding: '5px',
-                background: 'black',
-                color:'white'
+                margin: "10px 0px",
+                borderRadius: "8px",
+                padding: "5px",
+                background: "black",
+                color: "white"
               }}
             >
-              WaterfallCont.jsx <span style={bLocation}>EE3</span> 
+              WaterfallCont.jsx <span style={bLocation}>EE3</span>
               <SyntaxHighlighter
                 language="javascript"
                 style={atomOneDark}
@@ -1518,31 +2079,44 @@ export default WaterfallCont;
               </SyntaxHighlighter>
             </div>
 
-<p>
-  The filtered projects are then passed down through props to Photolist.jsx <span style={bLocation}>EE2</span>. This component maps the projects out as individual cards, and also contains the code to show each card as a large modal for the user to browse through. The cards are wrapped in a 'Fade' tag, which gives the cool fade-in effect on the landing page. The dependency that does this is call <a href="https://www.npmjs.com/package/react-reveal" target="_blank" rel="noopener noreferrer"  style={boldpointer}> React-Reveal</a>. They have really easy to follow docs.
-</p>
+            <p>
+              The filtered projects are then passed down through props to
+              Photolist.jsx <span style={bLocation}>EE2</span>. This component
+              maps the projects out as individual cards, and also contains the
+              code to show each card as a large modal for the user to browse
+              through. The cards are wrapped in a 'Fade' tag, which gives the
+              cool fade-in effect on the landing page. The dependency that does
+              this is call{" "}
+              <a
+                href="https://www.npmjs.com/package/react-reveal"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={boldpointer}
+              >
+                {" "}
+                React-Reveal
+              </a>
+              . They have really easy to follow docs.
+            </p>
           </div>
-
-
-
 
           <span id="8"></span>
           <div style={sections}>
             <h3 style={h3s}>Dashboard</h3>
-             <ul>
+            <ul>
               <li>
                 Location: <span style={yLocation}>K</span>,
               </li>
               <li>
-                Depencies:{' '}
+                Depencies:{" "}
                 <a
                   href="https://www.npmjs.com/package/react-dropzone"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                 react-dropzone
+                  react-dropzone
                 </a>
-                ,{' '}
+                ,{" "}
                 <a
                   href="https://www.npmjs.com/package/axios"
                   target="_blank"
@@ -1550,7 +2124,7 @@ export default WaterfallCont;
                 >
                   axios
                 </a>
-                ,{' '}
+                ,{" "}
                 <a
                   href="https://www.npmjs.com/package/cloudinary-react"
                   target="_blank"
@@ -1558,81 +2132,186 @@ export default WaterfallCont;
                 >
                   cloudinary-react
                 </a>
-                
               </li>
               <li>
-                Where is State? : Dashboard Top Level State - <span style={bLocation}>K1</span> Projects State - <span style={bLocation}>X1</span>
+                Where is State? : Dashboard Top Level State -{" "}
+                <span style={bLocation}>K1</span> Projects State -{" "}
+                <span style={bLocation}>X1</span>
               </li>
             </ul>
-            <h4>Overview</h4> 
-            <span id="8a"></span> 
-            <p style={liSpace}>The dashboard is where users can either start a new project, or continue an existing project. </p>
-            <p>New pojects are created by clicking on the drag 'n' drop box, or dragging an image into the box. The uploaded image displays and gives the user a choice to either keep the image, or clear it out and choose a different image.</p>
-  <img src={Dragdrop} alt="dragndrop" style={{border:'black 1px solid', borderRadius:'8px', width:'48%' }}/>
-<img src={Ducky} alt="ducky" style={{border:'black 1px solid', borderRadius:'8px', width:'32%' }} />
-            <p>Once the user clicks on "Yes, go to Canvas", they are pushed to canvas where their photo is waiting to be edited. </p>
-            
-            <p style={liSpace}>The two main dependencies of this component are Dropzone and Cloudinary. <a href='https://www.npmjs.com/package/react-dropzone' target="_blank"
-                  rel="noopener noreferrer"  style={boldpointer}>Dropzone</a> is very copy/paste, but Cloudinary has a pretty steep learning curve and thier docs are not...useful...</p>
-            <p>To understand what we're doing on dashboard, a quick crashcourse in Cloudinary is neccessary. Hopefully the links below help. If not, we totally understand. </p>
-            
-            {/* cloudinary buttons */}
-            <p> The link below isn't from Cloudinary but it is an example project I followed that helped me figure how to do axios requests using cloudinary in the backend. </p> 
-            <p style={{background:'#FC5185', color:'#EAEAEA', width:'100%', padding:'5px', textDecoration:'none', borderRadius:'8px', margin:'10px 0px'}}> <a
-              href="https://github.com/nax3t/image_upload_example/tree/edit-delete"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ color:'#EAEAEA', fontWeight:'bold'}}
-            >
-             https://github.com/nax3t/image_upload_example/tree/edit-delete
-            </a></p>
-            
-            <p style={{background:'#FC5185', color:'#EAEAEA', width:'100%', padding:'5px', textDecoration:'none', borderRadius:'8px', margin:'10px 0px'}}> <a
-              href="https://cloudinary.com/documentation/upload_images"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ color:'#EAEAEA', fontWeight:'bold'}}
-            >
-              https://cloudinary.com/documentation/upload_images
-            </a></p>
-            <p style={{background:'#FC5185', color:'#EAEAEA', width:'100%', padding:'5px', textDecoration:'none', borderRadius:'8px', margin:'10px 0px'}}> <a
-              href="https://cloudinary.com/documentation/image_upload_api_reference"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ color:'#EAEAEA', fontWeight:'bold'}}
-            >
-              https://cloudinary.com/documentation/image_upload_api_reference
-            </a></p>
+            <h4>Overview</h4>
+            <span id="8a"></span>
+            <p style={liSpace}>
+              The dashboard is where users can either start a new project, or
+              continue an existing project.{" "}
+            </p>
+            <p>
+              New pojects are created by clicking on the drag 'n' drop box, or
+              dragging an image into the box. The uploaded image displays and
+              gives the user a choice to either keep the image, or clear it out
+              and choose a different image.
+            </p>
+            <img
+              src={Dragdrop}
+              alt="dragndrop"
+              style={{
+                border: "black 1px solid",
+                borderRadius: "8px",
+                width: "48%"
+              }}
+            />
+            <img
+              src={Ducky}
+              alt="ducky"
+              style={{
+                border: "black 1px solid",
+                borderRadius: "8px",
+                width: "32%"
+              }}
+            />
+            <p>
+              Once the user clicks on "Yes, go to Canvas", they are pushed to
+              canvas where their photo is waiting to be edited.{" "}
+            </p>
 
+            <p style={liSpace}>
+              The two main dependencies of this component are Dropzone and
+              Cloudinary.{" "}
+              <a
+                href="https://www.npmjs.com/package/react-dropzone"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={boldpointer}
+              >
+                Dropzone
+              </a>{" "}
+              is very copy/paste, but Cloudinary has a pretty steep learning
+              curve and thier docs are not...useful...
+            </p>
+            <p>
+              To understand what we're doing on dashboard, a quick crashcourse
+              in Cloudinary is neccessary. Hopefully the links below help. If
+              not, we totally understand.{" "}
+            </p>
+
+            {/* cloudinary buttons */}
+            <p>
+              {" "}
+              The link below isn't from Cloudinary but it is an example project
+              I followed that helped me figure how to do axios requests using
+              cloudinary in the backend.{" "}
+            </p>
+            <p
+              style={{
+                background: "#FC5185",
+                color: "#EAEAEA",
+                width: "100%",
+                padding: "5px",
+                textDecoration: "none",
+                borderRadius: "8px",
+                margin: "10px 0px"
+              }}
+            >
+              {" "}
+              <a
+                href="https://github.com/nax3t/image_upload_example/tree/edit-delete"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "#EAEAEA", fontWeight: "bold" }}
+              >
+                https://github.com/nax3t/image_upload_example/tree/edit-delete
+              </a>
+            </p>
+
+            <p
+              style={{
+                background: "#FC5185",
+                color: "#EAEAEA",
+                width: "100%",
+                padding: "5px",
+                textDecoration: "none",
+                borderRadius: "8px",
+                margin: "10px 0px"
+              }}
+            >
+              {" "}
+              <a
+                href="https://cloudinary.com/documentation/upload_images"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "#EAEAEA", fontWeight: "bold" }}
+              >
+                https://cloudinary.com/documentation/upload_images
+              </a>
+            </p>
+            <p
+              style={{
+                background: "#FC5185",
+                color: "#EAEAEA",
+                width: "100%",
+                padding: "5px",
+                textDecoration: "none",
+                borderRadius: "8px",
+                margin: "10px 0px"
+              }}
+            >
+              {" "}
+              <a
+                href="https://cloudinary.com/documentation/image_upload_api_reference"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "#EAEAEA", fontWeight: "bold" }}
+              >
+                https://cloudinary.com/documentation/image_upload_api_reference
+              </a>
+            </p>
 
             <p>
-              The comments in Dashboard.jsx are pretty good and very clearly explain what is going on. But I will explain the major points of this component.
+              The comments in Dashboard.jsx are pretty good and very clearly
+              explain what is going on. But I will explain the major points of
+              this component.
             </p>
             <span id="8c"></span>
             <h4>Upload Photo</h4>
             <p>
-              The dropzone where the user uploads the initial photo triggers the function dropOnChange() when a photo is dragged in. Alternatively it will trigger onChange() if you click to add a photo rather than dragging one in. Both functions are very similar aside from the method that triggers them. Both include frontend validation that prevents the user from trying to upload multiple files, and <span  onClick={()=>{scrollFunc('6mb')}} style={boldpointer}>limits the files to less than 6MB</span>. 
+              The dropzone where the user uploads the initial photo triggers the
+              function dropOnChange() when a photo is dragged in. Alternatively
+              it will trigger onChange() if you click to add a photo rather than
+              dragging one in. Both functions are very similar aside from the
+              method that triggers them. Both include frontend validation that
+              prevents the user from trying to upload multiple files, and{" "}
+              <span
+                onClick={() => {
+                  scrollFunc("6mb");
+                }}
+                style={boldpointer}
+              >
+                limits the files to less than 6MB
+              </span>
+              .
             </p>
             <p>
-              If the image passes all validation, it is then posted to cloudinary via the post call (line 26 in the snippet below) 
+              If the image passes all validation, it is then posted to
+              cloudinary via the post call (line 26 in the snippet below)
             </p>
             <div>
-
-            <div  style={{
-                margin: '10px 0px',
-                borderRadius: '8px',
-                padding: '5px',
-                background: 'black',
-                color:'white'
-              }}>
+              <div
+                style={{
+                  margin: "10px 0px",
+                  borderRadius: "8px",
+                  padding: "5px",
+                  background: "black",
+                  color: "white"
+                }}
+              >
                 Dashboard.jsx
-            <SyntaxHighlighter
-    language="javascript"
-    style={atomOneDark}
-    showLineNumbers
-    useInlineStyles
-  >
-    {`
+                <SyntaxHighlighter
+                  language="javascript"
+                  style={atomOneDark}
+                  showLineNumbers
+                  useInlineStyles
+                >
+                  {`
        dropOnChange = e => {
         const errs = [];
         const files = Array.from(e);
@@ -1688,37 +2367,64 @@ export default WaterfallCont;
       };
     
 `}
-  </SyntaxHighlighter>
-            </div>
-<p>
-  The POST call saves the image to Cloudinary. Cloudinary then sends back data about the saved image to use in the project. The data coming back from cloudinary looks like this in the console.:
-</p>
-<img src={IMGData} alt="clouddata" style={{borderRadius:'8px', border:'1px black solid', width:'100%' }}/>
-      
-      <p>
-The data is save in local state in Dashboard.jsx <span style={bLocation}>K1</span>, and also sent back up to App.js <span style={bLocation}>A4</span> through prop-drilling and stored in top level so it can be used in the Canvas component later on. 
-      </p>
+                </SyntaxHighlighter>
+              </div>
+              <p>
+                The POST call saves the image to Cloudinary. Cloudinary then
+                sends back data about the saved image to use in the project. The
+                data coming back from cloudinary looks like this in the
+                console.:
+              </p>
+              <img
+                src={IMGData}
+                alt="clouddata"
+                style={{
+                  borderRadius: "8px",
+                  border: "1px black solid",
+                  width: "100%"
+                }}
+              />
 
-      <p>
-        If the user uploads a photo, and decided to go with a different photo, they can click <span style={{background:'#FC5185', padding:'10px', color:'white', fontWeight:'bold'}} >No, Choose a different Image</span> 
-      </p>
+              <p>
+                The data is save in local state in Dashboard.jsx{" "}
+                <span style={bLocation}>K1</span>, and also sent back up to
+                App.js <span style={bLocation}>A4</span> through prop-drilling
+                and stored in top level so it can be used in the Canvas
+                component later on.
+              </p>
 
-      <div  style={{
-                margin: '10px 0px',
-                borderRadius: '8px',
-                padding: '5px',
-                background: 'black',
-                color:'white'
-              }}>
+              <p>
+                If the user uploads a photo, and decided to go with a different
+                photo, they can click{" "}
+                <span
+                  style={{
+                    background: "#FC5185",
+                    padding: "10px",
+                    color: "white",
+                    fontWeight: "bold"
+                  }}
+                >
+                  No, Choose a different Image
+                </span>
+              </p>
+
+              <div
+                style={{
+                  margin: "10px 0px",
+                  borderRadius: "8px",
+                  padding: "5px",
+                  background: "black",
+                  color: "white"
+                }}
+              >
                 Remove Image
-                
-            <SyntaxHighlighter
-    language="javascript"
-    style={atomOneDark}
-    showLineNumbers
-    useInlineStyles
-  >
-    {` removeImage = public_id => {
+                <SyntaxHighlighter
+                  language="javascript"
+                  style={atomOneDark}
+                  showLineNumbers
+                  useInlineStyles
+                >
+                  {` removeImage = public_id => {
     axios
       .delete(\`https://photo-effects-backend.herokuapp.com/image-delete\`, {
         data: { public_id }
@@ -1735,33 +2441,59 @@ The data is save in local state in Dashboard.jsx <span style={bLocation}>K1</spa
       });
   };
 `}
-  </SyntaxHighlighter>
+                </SyntaxHighlighter>
+              </div>
             </div>
-
-
-            </div>
-
 
             <div>
               <span id="8b"></span>
-            <h4  style={h4s}>Cloudinary</h4>
-           
+              <h4 style={h4s}>Cloudinary</h4>
 
-<p> The snippet that you see above is the information that Cloudinary sends back to us after a user uploads a photo. This information is being stored in the frontend initially in the Dashboard.jsx state as "image". This info is passed to PhotoLink(located in the Image folder) and when the user clicks "Yes Go To Canvas" the "secure_url" and "public_id" are passed to our backend(Refer to <span onClick={()=>{scrollFunc('photoLink')}} style={boldpointer}>PhotoLink</span> ) </p>
-<br/>
-<span id='cloud'></span>
-<p> The "secure_url" and "public_id" are the most important parts of Cloudinary that we need for our project. The "secure_url" is how we access the photo from Cloudinary that the user uploads. It is the link that displays the image on our canvas. The "public_id" is the specific id for the image and is what is needed to remove an image from Cloudinary.</p>
-<br/>
-<p> Cloudinary will always use a new "public_id" if you delete an image and try to reupload it. </p>
+              <p>
+                {" "}
+                The snippet that you see above is the information that
+                Cloudinary sends back to us after a user uploads a photo. This
+                information is being stored in the frontend initially in the
+                Dashboard.jsx state as "image". This info is passed to
+                PhotoLink(located in the Image folder) and when the user clicks
+                "Yes Go To Canvas" the "secure_url" and "public_id" are passed
+                to our backend(Refer to{" "}
+                <span
+                  onClick={() => {
+                    scrollFunc("photoLink");
+                  }}
+                  style={boldpointer}
+                >
+                  PhotoLink
+                </span>{" "}
+                ){" "}
+              </p>
+              <br />
+              <span id="cloud"></span>
+              <p>
+                {" "}
+                The "secure_url" and "public_id" are the most important parts of
+                Cloudinary that we need for our project. The "secure_url" is how
+                we access the photo from Cloudinary that the user uploads. It is
+                the link that displays the image on our canvas. The "public_id"
+                is the specific id for the image and is what is needed to remove
+                an image from Cloudinary.
+              </p>
+              <br />
+              <p>
+                {" "}
+                Cloudinary will always use a new "public_id" if you delete an
+                image and try to reupload it.{" "}
+              </p>
 
-<div>
-<SyntaxHighlighter
-    language="javascript"
-    style={atomOneDark}
-    showLineNumbers
-    useInlineStyles
-  >
-    {`
+              <div>
+                <SyntaxHighlighter
+                  language="javascript"
+                  style={atomOneDark}
+                  showLineNumbers
+                  useInlineStyles
+                >
+                  {`
     // Canvas Project - DELETE
 
     router.delete('/:projectId', async (req, res) => {
@@ -1777,51 +2509,69 @@ The data is save in local state in Dashboard.jsx <span style={bLocation}>K1</spa
        }
     })
 `}
-  </SyntaxHighlighter>
-            </div>
-            <p> The above code is from our backend and it shows how we delete that are stored in Cloudinary. For delete we use the "destroy" method which is a Cloudinary method. </p>
-
-             
-            <h4  style={h4s}>DashNav <span style={bLocation}>Z1</span></h4>
-<p>
-Refer back to <span onClick={()=>{scrollFunc('dashnav')}} style={boldpointer}>Logout</span> 
-</p>
-
-
-
-            <span id="8d"></span>
-            <h4  style={h4s}>Image <span style={bLocation}>W1</span></h4>
+                </SyntaxHighlighter>
+              </div>
               <p>
-                Image component also holds a component called PhotoLink(W2). These
-                components deal with the image that is being displayed ot the
-                user. The image is being displayed by returning a "secure_url"
-                from Cloudinary. The image has all of the data coming back from
-                Cloudinary in Dashboard.jsx state mentioned above. In PhotoLink
-                is where the user can click "Go to canvas" or to "Choose a
-                different Image". Going to canvas will push the data to our
-                backend(see the info pushed in PhotoLink component) and "Choose
-                a different image" will delete the image from Cloudinary and
-                allow the user to choose another image
+                {" "}
+                The above code is from our backend and it shows how we delete
+                that are stored in Cloudinary. For delete we use the "destroy"
+                method which is a Cloudinary method.{" "}
+              </p>
+
+              <h4 style={h4s}>
+                DashNav <span style={bLocation}>Z1</span>
+              </h4>
+              <p>
+                Refer back to{" "}
+                <span
+                  onClick={() => {
+                    scrollFunc("dashnav");
+                  }}
+                  style={boldpointer}
+                >
+                  Logout
+                </span>
+              </p>
+
+              <span id="8d"></span>
+              <h4 style={h4s}>
+                Image <span style={bLocation}>W1</span>
+              </h4>
+              <p>
+                Image component also holds a component called PhotoLink(W2).
+                These components deal with the image that is being displayed ot
+                the user. The image is being displayed by returning a
+                "secure_url" from Cloudinary. The image has all of the data
+                coming back from Cloudinary in Dashboard.jsx state mentioned
+                above. In PhotoLink is where the user can click "Go to canvas"
+                or to "Choose a different Image". Going to canvas will push the
+                data to our backend(see the info pushed in PhotoLink component)
+                and "Choose a different image" will delete the image from
+                Cloudinary and allow the user to choose another image
               </p>
 
               <span id="8e"></span>
-              <span id='photoLink'></span>
-            <h4  style={h4s}>PhotoLink <span style={bLocation}>W2</span></h4>
-<div  style={{
-                margin: '10px 0px',
-                borderRadius: '8px',
-                padding: '5px',
-                background: 'black',
-                color:'white'
-              }}>
+              <span id="photoLink"></span>
+              <h4 style={h4s}>
+                PhotoLink <span style={bLocation}>W2</span>
+              </h4>
+              <div
+                style={{
+                  margin: "10px 0px",
+                  borderRadius: "8px",
+                  padding: "5px",
+                  background: "black",
+                  color: "white"
+                }}
+              >
                 PhotoLink.jsx
-            <SyntaxHighlighter
-    language="javascript"
-    style={atomOneDark}
-    showLineNumbers
-    useInlineStyles
-  >
-    {`import React, {Component} from 'react';
+                <SyntaxHighlighter
+                  language="javascript"
+                  style={atomOneDark}
+                  showLineNumbers
+                  useInlineStyles
+                >
+                  {`import React, {Component} from 'react';
 import { withRouter } from 'react-router-dom';
 import './image.css';
 import axios from 'axios';
@@ -1865,13 +2615,28 @@ class PhotoLink extends Component {
             .catch(err => console.log(err))
     }
 `}
-  </SyntaxHighlighter>
-            </div>
-  <p>In PhotoLink we are sending all the data in the addProject method to our backend that we get from Cloudinary once they click "Yes Go To Canvas". "secure_url" and "public_id" is explained in the <span onClick={()=>{scrollFunc('cloud')}} style={boldpointer}>Cloudinary</span>  section. </p>
-
+                </SyntaxHighlighter>
+              </div>
+              <p>
+                In PhotoLink we are sending all the data in the addProject
+                method to our backend that we get from Cloudinary once they
+                click "Yes Go To Canvas". "secure_url" and "public_id" is
+                explained in the{" "}
+                <span
+                  onClick={() => {
+                    scrollFunc("cloud");
+                  }}
+                  style={boldpointer}
+                >
+                  Cloudinary
+                </span>{" "}
+                section.{" "}
+              </p>
 
               <span id="8f"></span>
-            <h4  style={h4s}>Projects <span style={bLocation}>X1</span></h4>
+              <h4 style={h4s}>
+                Projects <span style={bLocation}>X1</span>
+              </h4>
               <p>
                 Projects is the component that displays the specific user's
                 projects on the bottom of the Dashboard page. It is being mapped
@@ -1881,28 +2646,34 @@ class PhotoLink extends Component {
               </p>
 
               <span id="8g"></span>
-            <h4  style={h4s}>Upload <span style={bLocation}>Y1</span></h4>
+              <h4 style={h4s}>
+                Upload <span style={bLocation}>Y1</span>
+              </h4>
               <p>
-                The Upload component uses React-Dropzone & Cloudinary to upload the user's image to the cloudinary backend.
+                The Upload component uses React-Dropzone & Cloudinary to upload
+                the user's image to the cloudinary backend.
               </p>
               <p style={liSpace}>
-                Props are passed down into this component from Dashboard.jsx, specifically  into this component 
+                Props are passed down into this component from Dashboard.jsx,
+                specifically into this component
               </p>
-              <div  style={{
-                margin: '10px 0px',
-                borderRadius: '8px',
-                padding: '5px',
-                background: 'black',
-                color:'white'
-              }}>
+              <div
+                style={{
+                  margin: "10px 0px",
+                  borderRadius: "8px",
+                  padding: "5px",
+                  background: "black",
+                  color: "white"
+                }}
+              >
                 PhotoLink.jsx
-            <SyntaxHighlighter
-    language="javascript"
-    style={atomOneDark}
-    showLineNumbers
-    useInlineStyles
-  >
-    {`import React, { Component } from "react";
+                <SyntaxHighlighter
+                  language="javascript"
+                  style={atomOneDark}
+                  showLineNumbers
+                  useInlineStyles
+                >
+                  {`import React, { Component } from "react";
 import './upload.css';
 import Dropzone from "react-dropzone";
 
@@ -1928,55 +2699,113 @@ class Upload extends Component {
 
 export default Upload;  
 `}
-  </SyntaxHighlighter>
-            </div>
-
-
-
+                </SyntaxHighlighter>
+              </div>
             </div>
           </div>
 
-          <span id="7"></span>
+          <span id="9"></span>
           <div style={sections}>
-
             <h3 style={h3s}>Canvas</h3>
+            <ul>
+              <li>
+                Location: <span style={yLocation}>K</span>,
+              </li>
+              <li>
+                Depencies:{" "}
+                <a
+                  href="https://www.npmjs.com/package/react-dropzone"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  cloudinary-react
+                </a>
+                ,{" "}
+                <a
+                  href="https://www.npmjs.com/package/axios"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  html2canvas
+                </a>
+                ,{" "}
+                <a
+                  href="https://www.npmjs.com/package/cloudinary-react"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  uuid
+                </a>
+              </li>
+              <li>
+                Where is State? : Canvas Top Level State -{" "}
+                <span style={bLocation}>I1</span> Projects State -{" "}
+                <span style={bLocation}>X1</span>
+              </li>
+            </ul>
+
+
+            <span id="9a"></span>
+            <h4 style={h4s}>Overview</h4>
+
+            
 
             <span id="9b"></span>
 
-<h4  style={h4s}>Structure</h4>
-<p>
-Because the Canvas is very vast the way we are going to this part of the docs is as if a user were on the canvas itself after choosing a photo. We explain each part of the canvas that the user sees instead of going through file by file. We will start by examining the left toolbar(where the save button is and the photos, graphics, text, and paint.) Then we will proceed to the Canvas area and the toolbar. 
-</p>
+            <h4 style={h4s}>Structure</h4>
+            <p>
+              Because the Canvas is very vast the way we are going to this part
+              of the docs is as if a user were on the canvas itself after
+              choosing a photo. We explain each part of the canvas that the user
+              sees instead of going through file by file. We will start by
+              examining the left toolbar(where the save button is and the
+              photos, graphics, text, and paint.) Then we will proceed to the
+              Canvas area and the toolbar.
+            </p>
 
+            <span id="9c"></span>
 
-<span id="9c"></span>
+            <h4 style={h4s}>Left ToolBar</h4>
 
-<h4  style={h4s}>Left ToolBar</h4>
+            <img
+              src={LeftToolBar}
+              alt="hero"
+              style={{
+                width: "300px",
+                borderRadius: "8px",
+                border: " 1px solid black"
+              }}
+            />
 
- <img src={LeftToolBar}alt="hero" style={{width:'300px',borderRadius:'8px', border:' 1px solid black'}}/>
+            <p>
+              {" "}
+              For this area we will talk about the save button(floppy disk
+              icon), the download button(next to the save button), the naming of
+              the project, the Photos tab, the Graphics Tab, the Text tab, and
+              the Paint tab{" "}
+            </p>
 
-<p> For this area we will talk about the save button(floppy disk icon), the download button(next to the save button), the naming of the project, the Photos tab, the Graphics Tab, the Text tab, and the Paint tab  </p> 
+            <span id="9d"></span>
 
+            <h4 style={h4s}>Save and Download Button</h4>
 
-<span id="9d"></span>
-
-<h4  style={h4s}>Save and Download Button</h4>
-
-<div  style={{
-                margin: '10px 0px',
-                borderRadius: '8px',
-                padding: '5px',
-                background: 'black',
-                color:'white'
-              }}>
-                Canvas.jsx
-            <SyntaxHighlighter
-    language="javascript"
-    style={atomOneDark}
-    showLineNumbers
-    useInlineStyles
-  >
-    {`
+            <div
+              style={{
+                margin: "10px 0px",
+                borderRadius: "8px",
+                padding: "5px",
+                background: "black",
+                color: "white"
+              }}
+            >
+              Canvas.jsx
+              <SyntaxHighlighter
+                language="javascript"
+                style={atomOneDark}
+                showLineNumbers
+                useInlineStyles
+              >
+                {`
 
 handleScreenshot = () => {
   html2canvas(document.querySelector("#capture"), {
@@ -2108,44 +2937,66 @@ saveImageToState = () => {
         }, 500);
       };
 `}
-  </SyntaxHighlighter>
+              </SyntaxHighlighter>
             </div>
 
+            <p>
+              {" "}
+              The methods above is found in Canvas.jsx(I1). The saveImg method
+              is passed to ToolsArea.js(S) --> ToolsTopArea.js(S7){" "}
+            </p>
+            <p>
+              {" "}
+              The saveImageToState method is always saving the canvas at the
+              moment anything is added ot it or moved on it(like a graphic,
+              textbox, etc) and is stored in state as imgPreview.{" "}
+            </p>
+            <p>
+              {" "}
+              The saveImg method does exactly what it says. It saves the image
+              info along with the graphics and posts it to Cloudinary. saveImg
+              then calls updateProject method.{" "}
+            </p>
+            <p>
+              {" "}
+              The updateProject method updates the image to our backend. It
+              saves all the data on the cavnas as JSON data so a user will be
+              able to edit it later.{" "}
+            </p>
 
-<p> The methods above is found in Canvas.jsx(I1). The saveImg method is passed to ToolsArea.js(S) --> ToolsTopArea.js(S7) </p> 
-<p> The saveImageToState method is always saving the canvas at the moment anything is added ot it or moved on it(like a graphic, textbox, etc) and is stored in state as imgPreview.  </p> 
-<p> The saveImg method does exactly what it says. It saves the image info along with the graphics and posts it to Cloudinary. saveImg then calls updateProject method. </p>
-<p> The updateProject method updates the image to our backend. It saves all the data on the cavnas as JSON data so a user will be able to edit it later. </p>
+            <span id="9e"></span>
 
+            <h4 style={h4s}>Title Project</h4>
 
-<span id="9e"></span>
+            <p>
+              {" "}
+              In the state you'll see projectTitle and prevTitle. You'll see a
+              method called handleChange. projecTitle and handleChange are
+              passed to ToolsArea --> ToolsTopArea.
+            </p>
+            <p> You know how this works!!! </p>
 
-<h4  style={h4s}>Title Project</h4>
+            <span id="9f"></span>
 
+            <h4 style={h4s}>Photos Tab</h4>
 
-<p> In the state you'll see projectTitle and prevTitle. You'll see a method called handleChange. projecTitle and handleChange are passed to ToolsArea --> ToolsTopArea.</p> 
-<p> You know how this works!!! </p>
-
-
-<span id="9f"></span>
-
-<h4  style={h4s}>Photos Tab</h4>
-
-<div  style={{
-                margin: '10px 0px',
-                borderRadius: '8px',
-                padding: '5px',
-                background: 'black',
-                color:'white'
-              }}>
-                Canvas.jsx
-            <SyntaxHighlighter
-    language="javascript"
-    style={atomOneDark}
-    showLineNumbers
-    useInlineStyles
-  >
-    {`
+            <div
+              style={{
+                margin: "10px 0px",
+                borderRadius: "8px",
+                padding: "5px",
+                background: "black",
+                color: "white"
+              }}
+            >
+              Canvas.jsx
+              <SyntaxHighlighter
+                language="javascript"
+                style={atomOneDark}
+                showLineNumbers
+                useInlineStyles
+              >
+                {`
 
 addItem = item => {
   let z = this.state.items
@@ -2205,27 +3056,200 @@ addItem = item => {
 };
 
 `}
-  </SyntaxHighlighter>
+              </SyntaxHighlighter>
             </div>
 
-  <p> For the photos tab it uses a method called addItem. Add item is used for the Photo tab and Graphics tab(i think textbox as well). What this does is when you click on a photo or graphic it will be added to the canvas area. </p>
-  <p> Everything that has to do the Photos tab is located in UploadedPhotosTool.js(DD8), StockPhotosTool.js(DD6), PhotosPanel.js(DD5), Photo.js(DD4), and Tab.js(T3)</p>
-  <p> UploadedPhotos.js grabs the canvasprojects from our backend and is being displayed in the Photos tab and can be accessed by clicking "Uploads" if user clicked "Stocked Photos" in the tab</p> 
-  <p> StockPhotosTool.js pulls in photos from pexel using their API(located within the code) and allows the user to use their photos to drag and move around onto the canvas. </p>
-  <p> PhotosPanel.js   </p>
+            <p>
+              {" "}
+              For the photos tab it uses a method called addItem. Add item is
+              used for the Photo tab and Graphics tab(i think textbox as well).
+              What this does is when you click on a photo or graphic it will be
+              added to the canvas area.{" "}
+            </p>
+            <p>
+              {" "}
+              Everything that has to do the Photos tab is located in
+              UploadedPhotosTool.js(DD8), StockPhotosTool.js(DD6),
+              PhotosPanel.js(DD5), Photo.js(DD4), and Tab.js(T3)
+            </p>
+            <p>
+              {" "}
+              UploadedPhotos.js grabs the canvasprojects from our backend and is
+              being displayed in the Photos tab and can be accessed by clicking
+              "Uploads" if user clicked "Stocked Photos" in the tab
+            </p>
+            <p>
+              {" "}
+              StockPhotosTool.js pulls in photos from pexel using their
+              API(located within the code) and allows the user to use their
+              photos to drag and move around onto the canvas.{" "}
+            </p>
+            <p>
+              {" "}
+              PhotosPanel.js is the area in the photos tab where a user can
+              choose to display photos from their canvas or from the pexels API.{" "}
+            </p>
+            <p>
+              Photo.js are each of the photos mapped out. When clicked on they
+              will be added to the canvas due to the addItem method passed down
+              from Canvas.jsx mentioned above.
+            </p>
+            <p>
+              Tab.js simply displays the "Photos", "Graphics", and "Text" on the
+              left that a user clicks to open them up.
+            </p>
+            <p>For photos in in Box.js(P2) in in the stat </p>
+
+            <span id="9g"></span>
+
+            <h4 style={h4s}>Graphics Tab</h4>
+            <p>
+              The Graphics Tab is the same as the above with the fact that it
+              uses the same addItem method from Canvas.jsx and is passed to the
+              GraphicsTool.js(DD1)
+            </p>
+            <p>
+              In GraphicsTool.js it receives svg stickers from Mojilala api and
+              is then stored in the graphics tab.
+            </p>
+            <p>
+              When a graphic is clicked the addItem method allows it to appear
+              on the canvas to be moved around
+            </p>
+
+            <span id="9h"></span>
+
+            <h4 style={h4s}>Text Tab</h4>
+            <p>
+              {" "}
+              The text tab is the same as the graphics tab and photos tab with
+              how they are added to the canvas which is by using the addItem
+              method from Canvas.jsx. The "Add text" button is located in
+              TextEditorTool.js(DD7) which calls the addItem method
+            </p>
+
+            <div
+              style={{
+                margin: "10px 0px",
+                borderRadius: "8px",
+                padding: "5px",
+                background: "black",
+                color: "white"
+              }}
+            >
+              Canvas.jsx
+              <SyntaxHighlighter
+                language="javascript"
+                style={atomOneDark}
+                showLineNumbers
+                useInlineStyles
+              >
+                {`
+
+setTextbox = (id, textbox) => {
+  const { x, y } = textbox;
+
+  let items = this.state.items.map(item => {
+    if (item.props.id === id) {
+      return (
+        <item.type
+          {...item.props}
+          x={x}
+          y={y}
+          textbox={textbox}
+          style={item.props.style}
+        />
+      );
+    }
+    return item;
+  });
+
+  this.setState({ items });
+  this.saveImageToState();
+};
+
+`}
+              </SyntaxHighlighter>
+            </div>
+            <p>
+              {" "}
+              THe setTextbox method is in Canvas.jsx and is passed down to
+              Box.js(P2)
+            </p>
+
+            <div
+              style={{
+                margin: "10px 0px",
+                borderRadius: "8px",
+                padding: "5px",
+                background: "black",
+                color: "white"
+              }}
+            >
+              Box.js
+              <SyntaxHighlighter
+                language="javascript"
+                style={atomOneDark}
+                showLineNumbers
+                useInlineStyles
+              >
+                {`
+ setTextbox = (set, val) => {
+  this.setState({
+    textbox: {
+      ...this.state.textbox,
+      [set]: val
+    }
+  });
+
+  setTimeout(() => {
+    this.props.setTextbox(this.state.item.props.id, {
+      color: this.state.textbox.color || "",
+      background: this.state.textbox.background || "",
+      style: this.state.textbox.style || "",
+      weight: this.state.textbox.weight || "",
+      decoration: this.state.textbox.textbox || "",
+      slider: this.state.textbox.slider || 15,
+      text: this.state.textbox.text || "",
+      x: this.state.x,
+      y: this.state.y
+    });
+  }, 500);
+};
+
+`}
+              </SyntaxHighlighter>
+            </div>
+
+<p>In Box.js we also have a method called setTextbox that will update the state if a user changes the values for the textbox and then called this.props.setTextbox located in Canvas.jsx to update</p>
+<p> The setTextbox in Box.js is passed down to TextToolbar.jsx(FF3) </p>
+<p>When a user clicks "Add text" and text box will appear on canvas the TextToolbar will appear allowing the user to manipulate the text by increasing font, changing the background color, changing the color of the font, bold, italicize, underlinem and the delete the text. All of the things in the text toolbar will be located in TextToolbar.jsx.</p>
+<p> When those values are changed the setTextbox from Box.js is updated and then the setTextbox from Canvas.jsx is updated.</p>
+<p>To find other components related to the textbox look in the TextBox(H) folder</p>
 
 
+
+<span id="9i"></span>
+
+<h4 style={h4s}>Paint Tab</h4>
+
+<p>
+JASIMINE HELP PLZ :'(
+</p>
+
+
+
+<span id="9J"></span>
+
+<h4 style={h4s}>Canvas Area</h4>
+
+<p>
+
+</p>
 
 
 
           </div>
-
-
-
-
-
-
-
 
           <span id="10"></span>
 
@@ -2241,16 +3265,14 @@ addItem = item => {
             sit amet consectetur adipisicing elit. Accusantium tenetur ab autem
             eius? Non blanditiis unde ipsum expedita in explicabo commodi. Dolor
             vitae labore enim natus quasi laborum culpa mollitia?
+          </div>
 
-          </div>      
-         
-         
           <span id="11"></span>
           <div style={sections}>
             <h3 style={h3s}>F.A.Q</h3>
             <ul>
               <li id="jsx">
-                <p style={{ fontWeight: 'bold' }}>
+                <p style={{ fontWeight: "bold" }}>
                   Q.What is difference between .js & .jsx
                 </p>
                 <p>
@@ -2262,7 +3284,7 @@ addItem = item => {
                 </p>
               </li>
               <li>
-                <p style={{ fontWeight: 'bold' }}>
+                <p style={{ fontWeight: "bold" }}>
                   Q.Why didn't you use context/hooks?
                 </p>
                 <p>
@@ -2270,13 +3292,14 @@ addItem = item => {
                   to the cohort after us. We were taught good old-fashioned
                   class components and had deadlines to meet. state management
                   wasn't needed at first. But projects have a way of growing on
-                  you sometimes. Have fun refactoring!{' '}
+                  you sometimes. Have fun refactoring!{" "}
                 </p>
               </li>
-              <span id='css'></span>
+              <span id="css"></span>
               <li>
-                <p style={{ fontWeight: 'bold' }}>
-                  Q. What's with all the javascript styling? Why didn't you use CSS?
+                <p style={{ fontWeight: "bold" }}>
+                  Q. What's with all the javascript styling? Why didn't you use
+                  CSS?
                 </p>
                 <p>
                   A. There is good reason for this. CSS stylesheets have a
@@ -2289,20 +3312,34 @@ addItem = item => {
                   process and make the app almost unusable. If you incorporate
                   CSS, try to only use it on the landing page or some other part
                   of the app that doesn't re-rending frequently. We use CSS
-                  extremely sparingly throughout the project. Many of the existing CSS pages are vestigial and just havn't been deleted yet.
+                  extremely sparingly throughout the project. Many of the
+                  existing CSS pages are vestigial and just havn't been deleted
+                  yet.
                 </p>
               </li>
-              <span id='6mb'></span>
+              <span id="6mb"></span>
               <li>
-                <p style={{ fontWeight: 'bold' }}>Q. Why are you limiting photo uploads to 6MB or less?</p>
-                <p>A. Cloudinary has a limit of 10MB per image. A large part of what allows us to pass image data around the project and be able to save it in state, is that the data is converted into a Base-64 string. When an image is converted to Base-64 it increases the size of the image by around 34%. Additionally, when the image is decorated on Canvas, the size of the image increases even further. We limit the size of the initial image to allow enough buffer so the final image won't be too large to save to cloudinary. </p>
+                <p style={{ fontWeight: "bold" }}>
+                  Q. Why are you limiting photo uploads to 6MB or less?
+                </p>
+                <p>
+                  A. Cloudinary has a limit of 10MB per image. A large part of
+                  what allows us to pass image data around the project and be
+                  able to save it in state, is that the data is converted into a
+                  Base-64 string. When an image is converted to Base-64 it
+                  increases the size of the image by around 34%. Additionally,
+                  when the image is decorated on Canvas, the size of the image
+                  increases even further. We limit the size of the initial image
+                  to allow enough buffer so the final image won't be too large
+                  to save to cloudinary.{" "}
+                </p>
               </li>
               <li>
-                <p style={{ fontWeight: 'bold' }}>Q.</p>
+                <p style={{ fontWeight: "bold" }}>Q.</p>
                 <p>A.</p>
               </li>
               <li>
-                <p style={{ fontWeight: 'bold' }}>Q.</p>
+                <p style={{ fontWeight: "bold" }}>Q.</p>
                 <p>A.</p>
               </li>
             </ul>
@@ -2312,32 +3349,27 @@ addItem = item => {
           <div style={sections}>
             <h3 style={h3s}>Known Issues/ Opportunities</h3>
             <ul>
-              <li >
-               
+              <li></li>
+              <li>Input to add tags to projects not yet completed.</li>
+              <li>
+                When modals are open, the size of the images in the background
+                also get huge.
+              </li>
+              <li>The project is not fully responsive or mobile friendly.</li>
+              <li>Need templates for users to choose from and edit.</li>
+              <li>underline text doesn't work on canvas</li>
+              <li>
+                There is a good amount of repeated code in dashboard. needs to
+                be refactored to be more DRY. In peticular, the axios call
+                should be in it's own function and called by onChange and
+                dropOnChange.
               </li>
               <li>
-               Input to add tags to projects not yet completed.
-              </li>
-              <li>
-               When modals are open, the size of the images in the background also get huge. 
-              </li>
-              <li>
-                The project is not fully responsive or mobile friendly.
-              </li>
-              <li>
-               Need templates for users to choose from and edit.
-              </li>
-              <li>
-              underline text doesn't work on canvas
-              </li>
-              <li>
-              There is a good amount of repeated code in dashboard. needs to be refactored to be more DRY. In peticular, the axios call should be in it's own function and called by onChange and dropOnChange.
-              </li>
-              <li>
-              Project disappers if you refresh the page. It's not a bug so much as we just didn't write this to persist on canvas. Either save it or it's gone. 
+                Project disappers if you refresh the page. It's not a bug so
+                much as we just didn't write this to persist on canvas. Either
+                save it or it's gone.
               </li>
             </ul>
-
           </div>
           <span id="9"></span>
           <div style={sections}>
