@@ -18,11 +18,7 @@ class Upload extends Component {
     </section>
   )}
 </Dropzone>
-  
-      //   <div className="uploadBox">
-      //   <input className="inputFile" type='file' name="file" id='file' onChange={this.props.onChange} key={this.props.inputKey} />
-      //   <label for="file"> Choose a file</label>
-      // </div>
+
     );
   }
 }

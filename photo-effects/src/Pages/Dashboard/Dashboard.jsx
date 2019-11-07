@@ -5,7 +5,6 @@ import Image from "./components/Image/Image";
 import Projects from "./components/Projects/Projects";
 import DashNav from "./components/DashNav/DashNav";
 import "./components/DashNav/dashNav.css";
-// import withAuth from "../../components/Auth/AuthOne/withAuth";
 import Footer from "../../Pages/Landing/components/Footer/Footer";
 
 export default class Dashboard extends Component {
@@ -77,7 +76,9 @@ export default class Dashboard extends Component {
           error: null
         });
         images.map(image => {
+          console.log(image)
           return this.props.setBgImage(image);
+          
         });
       })
       .catch(err => {
@@ -170,13 +171,14 @@ export default class Dashboard extends Component {
 
   // Update - NOT BEING USED
   // will update state for user projects when adding/deleting for now.
-  updateProject = (e, newProject) => {
-    e.preventDefault();
-    setTimeout(window.location.reload(), 2000);
-    this.setState({
-      canvasprojects: newProject
-    });
-  }; //NOT NEEDED - getProjects is called again instead of reloading
+  // updateProject = (e, newProject) => {
+  //   e.preventDefault();
+  //   setTimeout(window.location.reload(), 2000);
+  //   this.setState({
+  //     canvasprojects: newProject
+  //   });
+  // }; 
+  //NOT NEEDED - getProjects is called again instead of reloading
 
   // logout
   logoutButton = e => {
@@ -259,7 +261,7 @@ export default class Dashboard extends Component {
           setBgImage={this.props.setBgImage}
           getProjects={this.getProjects}
         />
-        <Footer />
+        <Footer /> 
       </div>
     );
   }

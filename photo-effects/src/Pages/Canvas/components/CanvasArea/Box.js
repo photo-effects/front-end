@@ -289,7 +289,7 @@ export default class Box extends Component {
             !this.state.hover ? () => this.setState({ hover: true }) : null
           }
           onPointerLeave={
-            this.state.hover ? () => this.setState({ hover: false }) : null
+            this.state.hover  ? ()=>setTimeout(() => this.setState({ hover: this.state.resizing }), 750) : null
           }
           onPointerDown={e => this.onDown(e, "dragging")}
           onPointerUp={this.onUp}
@@ -304,7 +304,7 @@ export default class Box extends Component {
           ) : (
             <>
               {item ? item : null}
-              {(item && item.type !== Paint) || item.type !== "div" ? (
+              {((item && item.type !== Paint) || item.type !== "div") && this.state.hover ? (
                 <Resizer
                   bottom
                   gotCapture={this.gotCapture}
