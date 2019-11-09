@@ -36,7 +36,7 @@ const Hero = () => {
       </div>
       <iframe
         title="landing video"
-        src="https://www.youtube.com/embed/M7g7Pfx6zjg"
+        src="https://www.youtube.com/embed/qbuMLcZ5Ofw"
         width="100%"
         height="100%"
         style={video}
