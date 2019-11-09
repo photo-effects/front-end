@@ -150,12 +150,16 @@ const About = props => {
                     <a
                       style={linkStyle}
                       href="https://github.com/Christian-Ford"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       <i className="fab fa-github-square fa-2x"></i>
                     </a>
                     <a
                       style={linkStyle}
                       href="https://www.linkedin.com/in/devchristianford/"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       <i className="fab fa-linkedin fa-2x"></i>
                     </a>
@@ -173,12 +177,16 @@ const About = props => {
                     <a
                       style={linkStyle}
                       href="https://github.com/claridiva2000"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       <i className="fab fa-github-square fa-2x"></i>
                     </a>
                     <a
                       style={linkStyle}
                       href="https://www.linkedin.com/in/jasmineclogan/"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       <i className="fab fa-linkedin fa-2x"></i>
                     </a>
@@ -196,15 +204,19 @@ const About = props => {
                     <a
                       style={linkStyle}
                       href="https://github.com/douglasjordan2"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       <i className="fab fa-github-square fa-2x"></i>
                     </a>
-                    <a
+                    {/*  <a
                       style={linkStyle}
-                      href="https://github.com/Christian-Ford"
-                    >
+                      href="#"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    > 
                       <i className="fab fa-linkedin fa-2x"></i>
-                    </a>
+                    </a> */}
                   </div>
                 </li>
               </div>
@@ -217,12 +229,16 @@ const About = props => {
                   <div
                     style={iconList}
                   >
-                    <a style={linkStyle} href="https://github.com/efloreslb">
+                    <a style={linkStyle} href="https://github.com/efloreslb"
+                     target="_blank"
+                     rel="noopener noreferrer">
                       <i className="fab fa-github-square fa-2x"></i>
                     </a>
                     <a
                       style={linkStyle}
                       href="https://www.linkedin.com/in/efloresef/"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       <i className="fab fa-linkedin fa-2x"></i>
                     </a>
@@ -241,12 +257,14 @@ const About = props => {
                   <div
                     style={iconList}
                   >
-                    <a style={linkStyle} href="https://github.com/Reyaad510">
+                    <a style={linkStyle} href="https://github.com/Reyaad510"  target="_blank"
+                rel="noopener noreferrer">
                       <i className="fab fa-github-square fa-2x"></i>
                     </a>
                     <a
                       style={linkStyle}
-                      href="https://www.linkedin.com/in/nicholasrafeek/"
+                      href="https://www.linkedin.com/in/nicholasrafeek/"  target="_blank"
+                      rel="noopener noreferrer"
                     >
                       <i className="fab fa-linkedin fa-2x"></i>
                     </a>
@@ -261,12 +279,14 @@ const About = props => {
                   <div
                     style={iconList}
                   >
-                    <a style={linkStyle} href="https://github.com/JoeBugajski">
+                    <a style={linkStyle} href="https://github.com/JoeBugajski"  target="_blank"
+                rel="noopener noreferrer">
                       <i className="fab fa-github-square fa-2x"></i>
                     </a>
                     <a
                       style={linkStyle}
-                      href="https://www.linkedin.com/in/joseph-bugajski-8a246116a/"
+                      href="https://www.linkedin.com/in/joseph-bugajski-8a246116a/"  target="_blank"
+                      rel="noopener noreferrer"
                     >
                       <i className="fab fa-linkedin fa-2x"></i>
                     </a>
@@ -281,15 +301,17 @@ const About = props => {
                   <div
                     style={iconList}
                   >
-                    <a style={linkStyle} href="https://github.com/">
+                    <a style={linkStyle} href="https://github.com/digitalAsh"  target="_blank"
+                rel="noopener noreferrer">
                       <i className="fab fa-github-square fa-2x"></i>
                     </a>
-                    <a
+                    {/* <a
                       style={linkStyle}
-                      href="ttps://www.linkedin.com"
+                      href="https://www.linkedin.com"  target="_blank"
+                rel="noopener noreferrer"
                     >
                       <i className="fab fa-linkedin fa-2x"></i>
-                    </a>
+                    </a> */}
                   </div>
                 </li>
               </div>
