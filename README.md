@@ -1,5 +1,7 @@
 # Photo Effects App
 
+### A collaborative effort project
+
 ## Table of Contents
 
 1. [Introduction to App](#introduction)
