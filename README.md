@@ -1,6 +1,7 @@
 # Photo Effects App
 
-### A collaborative effort project
+### A collaborative effort project 
+### Time Frame : 4 months
 
 ## Table of Contents
 
